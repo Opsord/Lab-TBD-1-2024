@@ -89,7 +89,7 @@ Create Table Venta_Vendedor (
 	idVend Integer,
 	idEmpl Integer,
 	Foreign Key (idVend) References Vendedor(idVendedor),
-	Foreign Ket (idEmpl) References Empleado(idEmpleado)
+	Foreign Key (idEmpl) References Empleado(idEmpleado)
 );
 
 
