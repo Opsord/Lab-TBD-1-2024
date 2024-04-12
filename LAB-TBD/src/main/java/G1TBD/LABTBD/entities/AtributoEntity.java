@@ -1,5 +1,6 @@
 package G1TBD.LABTBD.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,6 +9,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class AtributoEntity {
-    private int idAtributo;
+    private Integer idAtributo;
     private String atributo;
+
+    public AtributoEntity(String atributo) {
+        this.atributo = atributo;
+    }
 }
