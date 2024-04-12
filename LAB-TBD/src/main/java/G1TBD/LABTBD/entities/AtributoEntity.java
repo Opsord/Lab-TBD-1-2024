@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class AtributoEntity {
-    private Integer idAtributo;
+    private long idAtributo;
     private String atributo;
 
     public AtributoEntity(String atributo) {

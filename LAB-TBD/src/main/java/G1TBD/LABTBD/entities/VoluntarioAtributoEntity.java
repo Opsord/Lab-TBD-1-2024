@@ -10,11 +10,12 @@ import lombok.Setter;
 @Data
 @NoArgsConstructor
 public class VoluntarioAtributoEntity {
-    private Integer idVoluntarioAtributo;
-    private Integer idVoluntario;
-    private Integer idAtributo;
+    private long idVoluntarioAtributo;
+    private long idVoluntario;
+    private long idAtributo;
 
-    public VoluntarioAtributoEntity( Integer idAtributo) {
+    public VoluntarioAtributoEntity(long idVoluntario, long idAtributo) {
+        this.idVoluntario = idVoluntario;
         this.idAtributo = idAtributo;
     }
 }

@@ -8,11 +8,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class RankingEntity {
-    private Integer idRanking;
-    private Integer idVoluntario;
-    private Integer idTarea;
+    private long idRanking;
+    private long idVoluntario;
+    private long idTarea;
     private Integer valorRanking;
-    public RankingEntity(Integer idVoluntario, Integer idTarea, Integer valorRanking) {
+    public RankingEntity(long idVoluntario, long idTarea, Integer valorRanking) {
         this.idVoluntario = idVoluntario;
         this.idTarea = idTarea;
         this.valorRanking = valorRanking;

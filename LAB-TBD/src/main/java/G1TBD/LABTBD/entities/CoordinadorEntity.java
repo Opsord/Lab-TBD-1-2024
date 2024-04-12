@@ -8,15 +8,14 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class CoordinadorEntity {
-    private Integer idCoordinador;
+    private long idCoordinador;
     private String rutCoordinador;
     private String nombreCoordinador;
     private String apellidoCoordinador;
     private String contrasena;
-    private Integer idInstitucion;
+    private long idInstitucion;
 
-
-    public CoordinadorEntity(String rutCoordinador, String nombreCoordinador, String apellidoCoordinador, String contraseña, Integer idInstitucion) {
+    public CoordinadorEntity(String rutCoordinador, String nombreCoordinador, String apellidoCoordinador, String contrasena, long idInstitucion) {
         this.rutCoordinador = rutCoordinador;
         this.nombreCoordinador = nombreCoordinador;
         this.apellidoCoordinador = apellidoCoordinador;

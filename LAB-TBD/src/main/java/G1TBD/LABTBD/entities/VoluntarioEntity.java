@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class VoluntarioEntity {
-    private Integer idVoluntario;
+    private long idVoluntario;
     private String rutVoluntario;
     private String nombreVoluntario;
     private String apellidoVoluntario;

@@ -10,7 +10,7 @@ import lombok.Setter;
 public class EmergenciaEntity {
 
 
-    private Integer idEmergencia;
+    private long idEmergencia;
     private boolean estadoEmergencia;
     private String tituloEmergencia;
     private String descripcionEmergencia;

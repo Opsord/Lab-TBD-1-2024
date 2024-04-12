@@ -8,12 +8,12 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class EmergenciaAtributoEntity {
-    private Integer idEmergenciaAtributo;
-    private Integer idEmergencia;
-    private Integer idHabilidad;
+    private long idEmergenciaAtributo;
+    private long idEmergencia;
+    private long idHabilidad;
     private boolean compatibilidad;
 
-    public EmergenciaAtributoEntity(Integer idEmergencia, Integer idHabilidad, boolean compatibilidad) {
+    public EmergenciaAtributoEntity(long idEmergencia, long idHabilidad, boolean compatibilidad) {
         this.idEmergencia = idEmergencia;
         this.idHabilidad = idHabilidad;
         this.compatibilidad = compatibilidad;

@@ -9,13 +9,13 @@ import lombok.Setter;
 @NoArgsConstructor
 public class TareaEntity {
 
-    private Integer idTarea;
-    private Integer idEmergencia;
+    private long idTarea;
+    private long idEmergencia;
     private String tipoTarea;
     private String descripcion;
     private boolean estado;
 
-    public TareaEntity(Integer idEmergencia, String tipoTarea, String descripcion, boolean estado) {
+    public TareaEntity(long idEmergencia, String tipoTarea, String descripcion, boolean estado) {
         this.idEmergencia = idEmergencia;
         this.tipoTarea = tipoTarea;
         this.descripcion = descripcion;
