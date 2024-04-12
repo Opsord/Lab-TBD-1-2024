@@ -8,8 +8,12 @@ public class EmergenciaEntity {
     private String tituloEmergencia;
     private String descripcionEmergencia;
 
+    public EmergenciaEntity() {
+    }
     public EmergenciaEntity(boolean estadoEmergencia, String tituloEmergencia, String descripcionEmergencia ) {
-        this.id = id;
+        this.estadoEmergencia = estadoEmergencia;
+        this.tituloEmergencia = tituloEmergencia;
+        this.descripcionEmergencia = descripcionEmergencia;
     }
 
     public Integer getId() {
