@@ -1,4 +1,4 @@
-package G1TBD.LABTBD.Entities;
+package G1TBD.LABTBD.entities;
 
 public class EmergenciaEntity {
 
