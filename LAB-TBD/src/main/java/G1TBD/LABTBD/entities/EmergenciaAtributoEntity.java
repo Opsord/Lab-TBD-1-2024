@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class EmergenciaAtributoEntity {
-    private Integer id;
+    private Integer idEmergenciaAtributo;
     private Integer idEmergencia;
     private Integer idHabilidad;
     private boolean compatibilidad;

@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class RankingEntity {
-    private Integer id;
+    private Integer idRanking;
     private Integer idVoluntario;
     private Integer idTarea;
     private Integer valorRanking;

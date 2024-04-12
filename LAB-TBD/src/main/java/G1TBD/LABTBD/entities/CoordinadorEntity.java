@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class CoordinadorEntity {
-    private Integer id;
+    private Integer idCoordinador;
     private String rutCoordinador;
     private String nombreCoordinador;
     private String apellidoCoordinador;

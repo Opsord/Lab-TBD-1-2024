@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class InstitucionEntity {
-    private Integer id;
+    private Integer idInstitucion;
     private String nombreInstitucion;
 
     public InstitucionEntity(String nombreInstitucion) {

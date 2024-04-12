@@ -9,7 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class TareaEntity {
 
-    private Integer id;
+    private Integer idTarea;
     private Integer idEmergencia;
     private String tipoTarea;
     private String descripcion;
