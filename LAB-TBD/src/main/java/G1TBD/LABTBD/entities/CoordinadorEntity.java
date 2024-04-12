@@ -1,11 +1,18 @@
 package G1TBD.LABTBD.entities;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
 public class CoordinadorEntity {
     private Integer id;
     private String rutCoordinador;
     private String nombreCoordinador;
     private String apellidoCoordinador;
-    private String contraseña;
+    private String contrasena;
     private Integer idInstitucion;
 
 
@@ -13,55 +20,7 @@ public class CoordinadorEntity {
         this.rutCoordinador = rutCoordinador;
         this.nombreCoordinador = nombreCoordinador;
         this.apellidoCoordinador = apellidoCoordinador;
-        this.contraseña = contraseña;
-        this.idInstitucion = idInstitucion;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getRutCoordinador() {
-        return rutCoordinador;
-    }
-
-    public void setRutCoordinador(String rutCoordinador) {
-        this.rutCoordinador = rutCoordinador;
-    }
-
-    public String getNombreCoordinador() {
-        return nombreCoordinador;
-    }
-
-    public void setNombreCoordinador(String nombreCoordinador) {
-        this.nombreCoordinador = nombreCoordinador;
-    }
-
-    public String getApellidoCoordinador() {
-        return apellidoCoordinador;
-    }
-
-    public void setApellidoCoordinador(String apellidoCoordinador) {
-        this.apellidoCoordinador = apellidoCoordinador;
-    }
-
-    public String getContraseña() {
-        return contraseña;
-    }
-
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
-    }
-
-    public Integer getIdInstitucion() {
-        return idInstitucion;
-    }
-
-    public void setIdInstitucion(Integer idInstitucion) {
+        this.contrasena = contrasena;
         this.idInstitucion = idInstitucion;
     }
 }
