@@ -1,5 +1,12 @@
 package G1TBD.LABTBD.entities;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
 public class TareaEntity {
 
     private Integer id;
@@ -15,43 +22,4 @@ public class TareaEntity {
         this.estado = estado;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getIdEmergencia() {
-        return idEmergencia;
-    }
-
-    public void setIdEmergencia(Integer idEmergencia) {
-        this.idEmergencia = idEmergencia;
-    }
-
-    public String getTipoTarea() {
-        return tipoTarea;
-    }
-
-    public void setTipoTarea(String tipoTarea) {
-        this.tipoTarea = tipoTarea;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public boolean isEstado() {
-        return estado;
-    }
-
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
 }
