@@ -57,7 +57,7 @@ public class TareaRepositoryImp implements TareaRepository{
     }
 
     @Override
-    public void actualizarTarea(TareaEntity tarea) {
+    public boolean actualizarTarea(TareaEntity tarea) {
         try (Connection conn = sql2o.open()) {
             conn.createQuery("UPDATE Tarea SET idEmergencia = :idEmergencia, tipoTarea = :tipoTarea, descripcion = :descripcion, estado = :estado WHERE idTarea = :id")
                     .addParameter("idEmergencia", tarea.getIdEmergencia())
@@ -66,19 +66,23 @@ public class TareaRepositoryImp implements TareaRepository{
                     .addParameter("estado", tarea.isEstado())
                     .addParameter("id", tarea.getIdTarea())
                     .executeUpdate();
+            return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return false;
         }
     }
 
     @Override
-    public void eliminarTarea(long id) {
+    public boolean eliminarTarea(long id) {
         try(Connection conn = sql2o.open()) {
             conn.createQuery("DELETE FROM Tarea WHERE idTarea = :id")
                     .addParameter("id", id)
                     .executeUpdate();
+            return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return false;
         }
     }
 }

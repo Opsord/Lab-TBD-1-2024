@@ -12,7 +12,7 @@ public interface TareaRepository {
 
     public TareaEntity obtenerTareaPorId(long id);
 
-    public void actualizarTarea(TareaEntity tarea);
+    public boolean actualizarTarea(TareaEntity tarea);
 
-    public void eliminarTarea(long id);
+    public boolean eliminarTarea(long id);
 }
