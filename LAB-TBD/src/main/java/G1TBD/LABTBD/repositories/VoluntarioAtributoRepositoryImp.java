@@ -14,17 +14,23 @@ public class VoluntarioAtributoRepositoryImp implements VoluntarioAtributoReposi
     private Sql2o sql2o;
 
     @Override
-    public void crearVoluntarioAtributo(VoluntarioAtributoEntity voluntarioAtributo) {
+    public VoluntarioAtributoEntity crearVoluntarioAtributo(VoluntarioAtributoEntity voluntarioAtributo) {
         String sql =
                 "INSERT INTO VoluntarioAtributo (idVoluntarioAtributo, idVoluntario, idAtributo) " +
                         "VALUES (:idVoluntarioAtributo, :idVoluntario, :idAtributo)";
 
         try (Connection con = sql2o.open()) {
-            con.createQuery(sql)
+            long id = (long) con.createQuery(sql)
                     .addParameter("idVoluntarioAtributo", voluntarioAtributo.getIdVoluntarioAtributo())
                     .addParameter("idVoluntario", voluntarioAtributo.getIdVoluntario())
                     .addParameter("idAtributo", voluntarioAtributo.getIdAtributo())
-                    .executeUpdate();
+                    .executeUpdate()
+                    .getKey();
+            voluntarioAtributo.setIdVoluntarioAtributo(id);
+            return voluntarioAtributo;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 

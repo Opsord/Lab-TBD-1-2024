@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface AtributoRepository {
 
-    public void crearAtributo(AtributoEntity atributo);
+    public AtributoEntity crearAtributo(AtributoEntity atributo);
 
     public List<AtributoEntity> obtenerTodosLosAtributos();
 

@@ -15,20 +15,25 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
     private Sql2o sql2o;
 
     @Override
-    public void crearCoordinador(CoordinadorEntity coordinador) {
+    public CoordinadorEntity crearCoordinador(CoordinadorEntity coordinador) {
         String sql =
                 "INSERT INTO coordinador (rutCoordinador, nombreCoordinador, apellidoCoordinador, contrasena, idInstitucion) " +
                         "VALUES (:rutCoordinador, :nombreCoordinador, :apellidoCoordinador, :contrasena, :idInstitucion)";
 
         try (Connection con = sql2o.open()) {
-            con.createQuery(sql)
+            long id = (long) con.createQuery(sql)
                     .addParameter("rutcoordinador", coordinador.getRutCoordinador())
                     .addParameter("nombrecoordinador", coordinador.getNombreCoordinador())
                     .addParameter("apellidocoordinador", coordinador.getApellidoCoordinador())
                     .addParameter("contrasena", coordinador.getContrasena())
                     .addParameter("idinstitucion", coordinador.getIdInstitucion())
-                    .executeUpdate();
-            con.commit();
+                    .executeUpdate()
+                    .getKey();
+            coordinador.setIdCoordinador(id);
+            return coordinador;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 

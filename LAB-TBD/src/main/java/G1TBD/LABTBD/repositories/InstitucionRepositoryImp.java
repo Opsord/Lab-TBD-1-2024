@@ -1,6 +1,5 @@
 package G1TBD.LABTBD.repositories;
 
-
 import G1TBD.LABTBD.entities.InstitucionEntity;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
@@ -12,14 +11,20 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
     private Sql2o sql2o;
 
     @Override
-    public void crearInstitucion(InstitucionEntity institucion) {
+    public InstitucionEntity crearInstitucion(InstitucionEntity institucion) {
         String sql =
                 "INSERT INTO Intitucion (nombreInstitucion)" +
                         "VALUES (:nombreInstitucion)";
         try (Connection con = sql2o.open()) {
-            con.createQuery(sql)
+            long id = (long) con.createQuery(sql)
                     .addParameter("nombreInstitucion", institucion.getNombreInstitucion())
-                    .executeUpdate();
+                    .executeUpdate()
+                    .getKey();
+            institucion.setIdInstitucion(id);
+            return institucion;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
         }
 
     }

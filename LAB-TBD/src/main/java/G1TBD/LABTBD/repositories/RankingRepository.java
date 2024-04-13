@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface RankingRepository {
 
-    public void crearRanking(RankingEntity ranking);
+    RankingEntity crearRanking(RankingEntity ranking);
 
-    public List<RankingEntity> obtenerTodosLosRanking();
+    List<RankingEntity> obtenerTodosLosRanking();
 
-    public RankingEntity obtenerRankingPorId(long id);
+    RankingEntity obtenerRankingPorId(long id);
 
-    public void actualizarRanking(RankingEntity ranking);
+    void actualizarRanking(RankingEntity ranking);
 
-    public void eliminarRanking(long id);
+    void eliminarRanking(long id);
 }

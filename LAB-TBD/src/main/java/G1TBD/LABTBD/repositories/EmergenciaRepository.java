@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface EmergenciaRepository {
 
-    void crearEmergencia(EmergenciaEntity emergencia);
+    EmergenciaEntity crearEmergencia(EmergenciaEntity emergencia);
 
     List<EmergenciaEntity> obtenerTodasLasEmergencias();
 

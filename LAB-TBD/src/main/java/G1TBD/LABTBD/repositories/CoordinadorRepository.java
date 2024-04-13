@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CoordinadorRepository {
 
-    void crearCoordinador(CoordinadorEntity coordinador);
+    CoordinadorEntity crearCoordinador(CoordinadorEntity coordinador);
 
     List<CoordinadorEntity> obtenerTodosLosCoordinadores();
 

@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface EmergenciaAtributoRepository {
 
-    public void crearEmergenciaAtributo(EmergenciaAtributoEntity emergenciaAtributo);
+    EmergenciaAtributoEntity crearEmergenciaAtributo(EmergenciaAtributoEntity emergenciaAtributo);
 
-    public List<EmergenciaAtributoEntity> obtenerTodosLosEmergenciaAtributo();
+    List<EmergenciaAtributoEntity> obtenerTodosLosEmergenciaAtributo();
 
-    public EmergenciaAtributoEntity obtenerEmergenciaAtributoPorId(long id);
+    EmergenciaAtributoEntity obtenerEmergenciaAtributoPorId(long id);
 
-    public void actualizarEmergenciaAtributo(EmergenciaAtributoEntity emergenciaAtributo);
+    void actualizarEmergenciaAtributo(EmergenciaAtributoEntity emergenciaAtributo);
 
-    public void eliminarEmergenciaAtributo(long id);
+    void eliminarEmergenciaAtributo(long id);
 }

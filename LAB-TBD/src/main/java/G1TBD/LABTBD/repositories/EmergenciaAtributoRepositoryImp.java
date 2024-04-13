@@ -15,16 +15,20 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
     private Sql2o sql2o;
 
     @Override
-    public void crearEmergenciaAtributo(EmergenciaAtributoEntity emergenciaAtributo) {
+    public EmergenciaAtributoEntity crearEmergenciaAtributo(EmergenciaAtributoEntity emergenciaAtributo) {
         try (Connection conn = sql2o.open()) {
-            conn.createQuery("INSERT INTO EmergenciaAtributo (idEmergencia, idHabilidad, compatibilidad) " +
+            long id = (long) conn.createQuery("INSERT INTO EmergenciaAtributo (idEmergencia, idHabilidad, compatibilidad) " +
                     "VALUES (:idEmergencia, :idHabilidad, :compatibilidad)")
                     .addParameter("idEmergencia", emergenciaAtributo.getIdEmergencia())
                     .addParameter("idHabilidad", emergenciaAtributo.getIdAtributo())
                     .addParameter("compatibilidad", emergenciaAtributo.isCompatibilidad())
-                    .executeUpdate();
+                    .executeUpdate()
+                    .getKey();
+            emergenciaAtributo.setIdEmergenciaAtributo(id);
+            return emergenciaAtributo;
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return null;
         }
     }
 

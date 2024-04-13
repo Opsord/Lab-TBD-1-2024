@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface InstitucionRepository {
 
-    void crearInstitucion(InstitucionEntity institucion);
+    InstitucionEntity crearInstitucion(InstitucionEntity institucion);
 
     public List<InstitucionEntity> obtenerTodasLasInstituciones(InstitucionEntity institucion);
 

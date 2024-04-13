@@ -11,13 +11,13 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
     private Sql2o sql2o;
 
     @Override
-    public void crearVoluntario(VoluntarioEntity voluntario) {
+    public VoluntarioEntity crearVoluntario(VoluntarioEntity voluntario) {
         String sql =
                 "INSERT INTO Voluntario (rutVoluntario, nombreVoluntario, apellidoVoluntario, edadVoluntario, sexoVoluntario, contrasena, disponibilidad) " +
                         "VALUES (:rutVoluntario, :nombreVoluntario, :apellidoVoluntario, :edadVoluntario, :sexoVoluntario, :contrasena, :disponibilidad)";
 
         try (Connection con = sql2o.open()) {
-            con.createQuery(sql)
+            long id = (long) con.createQuery(sql)
                     .addParameter("rutVoluntario", voluntario.getRutVoluntario())
                     .addParameter("nombreVoluntario", voluntario.getNombreVoluntario())
                     .addParameter("apellidoVoluntario", voluntario.getApellidoVoluntario())
@@ -25,7 +25,13 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
                     .addParameter("sexoVoluntario", voluntario.isSexoVoluntario())
                     .addParameter("contrasena", voluntario.getContrasena())
                     .addParameter("disponibilidad", voluntario.isDisponibilidad())
-                    .executeUpdate();
+                    .executeUpdate()
+                    .getKey();
+            voluntario.setIdVoluntario(id);
+            return voluntario;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 

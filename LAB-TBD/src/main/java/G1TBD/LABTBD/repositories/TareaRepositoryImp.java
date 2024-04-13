@@ -17,15 +17,15 @@ public class TareaRepositoryImp implements TareaRepository{
     @Override
     public TareaEntity crearTarea(TareaEntity tarea) {
         try (Connection conn = sql2o.open()) {
-            long idGenerado = (long) conn.createQuery("INSERT INTO Tarea (idEmergencia, tipoTarea, descripcion, estado) " +
-                            "VALUES (:idEmergencia, :tipoTarea, :descripcion, :estado)", true)
+            long id = (long) conn.createQuery("INSERT INTO Tarea (idEmergencia, tipoTarea, descripcion, estado) " +
+                            "VALUES (:idEmergencia, :tipoTarea, :descripcion, :estado)")
                     .addParameter("idEmergencia", tarea.getIdEmergencia())
                     .addParameter("tipoTarea", tarea.getTipoTarea())
                     .addParameter("descripcion", tarea.getDescripcion())
                     .addParameter("estado", tarea.isEstado())
                     .executeUpdate()
                     .getKey();
-            tarea.setIdTarea(idGenerado);
+            tarea.setIdTarea(id);
             return tarea;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -66,8 +66,7 @@ public class TareaRepositoryImp implements TareaRepository{
                     .addParameter("estado", tarea.isEstado())
                     .addParameter("id", tarea.getIdTarea())
                     .executeUpdate();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }

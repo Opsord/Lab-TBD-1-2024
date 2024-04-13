@@ -15,18 +15,23 @@ public class RankingRepositoryImp implements RankingRepository{
     private Sql2o sql2o;
 
     @Override
-    public void crearRanking(RankingEntity ranking) {
+    public RankingEntity crearRanking(RankingEntity ranking) {
         String sql =
                 "INSERT INTO ranking (idVoluntario, idTarea, valorRanking) " +
                         "VALUES (:idVoluntario, :idTarea, :valorRanking)";
 
         try (Connection con = sql2o.open()) {
-            con.createQuery(sql)
+            long id = (long) con.createQuery(sql)
                     .addParameter("idVoluntario", ranking.getIdVoluntario())
                     .addParameter("idTarea", ranking.getIdTarea())
                     .addParameter("valorRanking", ranking.getValorRanking())
-                    .executeUpdate();
-            con.commit();
+                    .executeUpdate()
+                    .getKey();
+            ranking.setIdRanking(id);
+            return ranking;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 

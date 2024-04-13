@@ -7,6 +7,7 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 @Repository
 public class EmergenciaRepositoryImp implements EmergenciaRepository {
@@ -15,19 +16,23 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
     private Sql2o sql2o;
 
     @Override
-    public void crearEmergencia(EmergenciaEntity emergencia){
+    public EmergenciaEntity crearEmergencia(EmergenciaEntity emergencia){
         String sql =
                 "INSERT INTO Emergencia (estadoEmergencia, tituloEmergencia, descripcionEmergencia)"+
                         "VALUES (:estadoEmergencia, :tituloEmergencia, :descripcionEmergencia)";
 
         try (Connection con = sql2o.open()) {
-            con.createQuery(sql)
+            long id = (long) con.createQuery(sql)
                     .addParameter("estadoEmergencia", emergencia.isEstadoEmergencia())
                     .addParameter("tituloEmergencia", emergencia.getTituloEmergencia())
                     .addParameter("descripcionEmergencia", emergencia.getDescripcionEmergencia())
-                    .executeUpdate();
-            con.commit();
-
+                    .executeUpdate()
+                    .getKey();
+            emergencia.setIdEmergencia(id);
+            return emergencia;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 

@@ -17,16 +17,21 @@ public class AtributoRepositoryImp implements AtributoRepository{
 
     // Crear un Atributo
     @Override
-    public void crearAtributo(AtributoEntity atributo) {
+    public AtributoEntity crearAtributo(AtributoEntity atributo) {
         String sql =
                 "INSERT INTO atributo (atributo) " +
                         "VALUES (:atributo)";
 
         try (Connection con = sql2o.open()) {
-            con.createQuery(sql)
+            long id = (long) con.createQuery(sql)
                     .addParameter("atributo", atributo.getTipoAtributo())
-                    .executeUpdate();
-            con.commit();
+                    .executeUpdate()
+                    .getKey();
+            atributo.setIdAtributo(id);
+            return atributo;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 
