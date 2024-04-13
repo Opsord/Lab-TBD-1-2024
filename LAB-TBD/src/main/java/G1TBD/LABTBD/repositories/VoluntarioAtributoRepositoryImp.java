@@ -9,14 +9,10 @@ import org.sql2o.Sql2o;
 
 @Repository
 public class VoluntarioAtributoRepositoryImp implements VoluntarioAtributoRepository{
+
     @Autowired
     private Sql2o sql2o;
 
-    private long idVoluntarioAtributo;
-    private long idVoluntario;
-    private long idAtributo;
-
-    // Crear un VoluntarioAtributo
     @Override
     public void create(VoluntarioAtributoEntity voluntarioAtributo) {
         String sql =
@@ -32,7 +28,6 @@ public class VoluntarioAtributoRepositoryImp implements VoluntarioAtributoReposi
         }
     }
 
-    //Conseguir voluntarioAtributo por su id
     @Override
     public VoluntarioAtributoEntity conseguirPorId(Integer id) {
         String sql = "SELECT * FROM VoluntarioAtributo WHERE idVoluntarioAtributo = :idVoluntarioAtributo";
@@ -44,9 +39,8 @@ public class VoluntarioAtributoRepositoryImp implements VoluntarioAtributoReposi
         }
     }
 
-    // Actualizar datos de un voluntarioAtributo
     @Override
-    public void Update(VoluntarioAtributoEntity voluntarioAtributo) {
+    public void update(VoluntarioAtributoEntity voluntarioAtributo) {
         String sql =
                 "UPDATE VoluntarioAtributo SET idVoluntarioAtributo = :idVoluntarioAtributo, idVoluntario = :idVoluntario, idAtributo = :idAtributo" +
                         "WHERE idVoluntarioAtributo = :idVoluntarioAtributo";
@@ -60,9 +54,8 @@ public class VoluntarioAtributoRepositoryImp implements VoluntarioAtributoReposi
         }
     }
 
-    // Eliminar un voluntarioAtributo
     @Override
-    public void Delete(Integer id) {
+    public void delete(Integer id) {
         String sql = "DELETE FROM VoluntarioAtributo WHERE idVoluntarioAtributo = :idVoluntarioAtributo";
 
         try (Connection con = sql2o.open()) {

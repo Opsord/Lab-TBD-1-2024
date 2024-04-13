@@ -8,12 +8,12 @@ import lombok.NoArgsConstructor;
 public class EmergenciaAtributoEntity {
     private long idEmergenciaAtributo;
     private long idEmergencia;
-    private long idHabilidad;
+    private long idAtributo;
     private boolean compatibilidad;
 
     public EmergenciaAtributoEntity(long idEmergencia, long idHabilidad, boolean compatibilidad) {
         this.idEmergencia = idEmergencia;
-        this.idHabilidad = idHabilidad;
+        this.idAtributo = idHabilidad;
         this.compatibilidad = compatibilidad;
     }
 }

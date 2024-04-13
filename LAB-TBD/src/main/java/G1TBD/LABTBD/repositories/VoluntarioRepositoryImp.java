@@ -6,10 +6,10 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 @Repository
 public class VoluntarioRepositoryImp implements  VoluntarioRepository{
+
     @Autowired
     private Sql2o sql2o;
 
-    // Crear un Voluntario
     @Override
     public void create(VoluntarioEntity voluntario) {
         String sql =
@@ -29,7 +29,6 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
         }
     }
 
-    //Conseguir voluntario por su id
     @Override
     public VoluntarioEntity conseguirPorId(Integer id) {
         String sql = "SELECT * FROM Voluntario WHERE idVoluntario = :idVoluntario";
@@ -41,9 +40,8 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
         }
     }
 
-    // Actualizar datos de un voluntario
     @Override
-    public void Update(VoluntarioEntity voluntario) {
+    public void update(VoluntarioEntity voluntario) {
         String sql =
                 "UPDATE Voluntario SET rutVoluntario = :rutVoluntario, nombreVoluntario = :nombreVoluntario, apellidoVoluntario = :apellidoVoluntario, " +
                         "edadVoluntario = :edadVoluntario, sexoVoluntario = :sexoVoluntario, contrasena = :contrasena, disponibilidad = :disponibilidad " +
@@ -63,9 +61,8 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
         }
     }
 
-    // Eliminar un voluntario
     @Override
-    public void Delete(Integer id) {
+    public void delete(Integer id) {
         String sql = "DELETE FROM Voluntario WHERE idVoluntario = :idVoluntario";
 
         try (Connection con = sql2o.open()) {

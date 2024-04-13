@@ -1,11 +1,17 @@
 package G1TBD.LABTBD.repositories;
 
 import G1TBD.LABTBD.entities.EmergenciaEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
+import java.util.List;
+
+@Repository
 public class EmergenciaRepositoryImp implements EmergenciaRepository {
 
+    @Autowired
     private Sql2o sql2o;
 
     public EmergenciaRepositoryImp(Sql2o sql2o){this.sql2o = sql2o;}
@@ -24,6 +30,35 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
                     .executeUpdate();
             con.commit();
 
+        }
+    }
+
+    @Override
+    public List<EmergenciaEntity> conseguirTodos(){
+        String sql = "SELECT * FROM emergencia";
+
+        try (Connection con = sql2o.open()) {
+            return con.createQuery(sql).executeAndFetch(EmergenciaEntity.class);
+        }
+    }
+
+    @Override
+    public EmergenciaEntity conseguirPorId(Integer id){
+        String sql = "SELECT * FROM emergencia WHERE idEmergencia = :idEmergencia";
+
+        try (Connection con = sql2o.open()) {
+            return con.createQuery(sql)
+                    .addParameter("idEmergencia", id)
+                    .executeAndFetchFirst(EmergenciaEntity.class);
+        }
+    }
+
+    @Override
+    public List<EmergenciaEntity> conseguirPorEmergenciasActivas(){
+        String sql = "SELECT * FROM emergencia WHERE estadoEmergencia = true";
+
+        try (Connection con = sql2o.open()) {
+            return con.createQuery(sql).executeAndFetch(EmergenciaEntity.class);
         }
     }
 

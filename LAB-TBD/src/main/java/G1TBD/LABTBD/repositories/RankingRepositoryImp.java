@@ -9,11 +9,12 @@ import org.sql2o.Sql2o;
 import java.util.List;
 
 @Repository
-public class RankingRepositoryImp {
+public class RankingRepositoryImp implements RankingRepository{
+
     @Autowired
     private Sql2o sql2o;
 
-    // Crear un registro en el ranking
+    @Override
     public void create(RankingEntity ranking) {
         String sql =
                 "INSERT INTO ranking (idVoluntario, idTarea, valorRanking) " +
@@ -29,7 +30,7 @@ public class RankingRepositoryImp {
         }
     }
 
-    // Conseguir todos los registros de ranking
+    @Override
     public List<RankingEntity> conseguirTodos() {
         String sql = "SELECT * FROM ranking";
         try (Connection con = sql2o.open()) {
@@ -37,7 +38,7 @@ public class RankingRepositoryImp {
         }
     }
 
-    // Conseguir un registro de ranking por su ID
+    @Override
     public RankingEntity conseguirPorId(long id) {
         String sql = "SELECT * FROM ranking WHERE idRanking = :idRanking";
 
@@ -48,7 +49,7 @@ public class RankingRepositoryImp {
         }
     }
 
-    // Actualizar un registro de ranking
+    @Override
     public void update(RankingEntity ranking) {
         String sql =
                 "UPDATE ranking SET idVoluntario = :idVoluntario, idTarea = :idTarea, valorRanking = :valorRanking " +
@@ -65,7 +66,7 @@ public class RankingRepositoryImp {
         }
     }
 
-    // Eliminar un registro de ranking
+    @Override
     public void delete(long id) {
         String sql = "DELETE FROM ranking WHERE idRanking = :idRanking";
 

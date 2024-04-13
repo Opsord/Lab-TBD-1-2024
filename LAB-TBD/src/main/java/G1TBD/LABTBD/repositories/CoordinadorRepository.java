@@ -2,16 +2,17 @@ package G1TBD.LABTBD.repositories;
 
 import G1TBD.LABTBD.entities.CoordinadorEntity;
 
+import java.util.List;
+
 public interface CoordinadorRepository {
-    // Crear un Coordinador
+
     void create(CoordinadorEntity coordinador);
 
-    // Conseguir coordinador por su id
+    List<CoordinadorEntity> conseguirTodos();
+
     CoordinadorEntity conseguirPorId(Integer id);
 
-    // Actualizar datos de un coordinador
-    void Update(CoordinadorEntity coordinador);
+    void update(CoordinadorEntity coordinador);
 
-    // Eliminar un Coordinador
-    void Delete(Integer id);
+    void delete(long id);
 }

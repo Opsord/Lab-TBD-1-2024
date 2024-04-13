@@ -5,13 +5,14 @@ import G1TBD.LABTBD.entities.TareaEntity;
 import java.util.List;
 
 public interface TareaRepository {
-    public TareaEntity crearTarea(TareaEntity tarea);
 
-    public List<TareaEntity> obtenerTodasLasTareas();
+    public TareaEntity create(TareaEntity tarea);
+
+    public List<TareaEntity> obtenerTodos();
 
     public TareaEntity obtenerPorId(long id);
 
-    public void actualizarTarea(TareaEntity tarea);
+    public void update(TareaEntity tarea);
 
-    public void eliminarTarea(long id);
+    public void delete(long id);
 }

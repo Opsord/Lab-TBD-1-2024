@@ -7,16 +7,15 @@ import java.util.List;
 
 public interface EmergenciaRepository {
 
-    //Crear emergecia
     void create(EmergenciaEntity emergencia);
 
-    //Conseguir todas las emergencias
-    //Conseguir emergencia por id
-    //Conseguir emergencias activas
+    List<EmergenciaEntity> conseguirTodos();
 
-    //Actualizar emergencia
+    EmergenciaEntity conseguirPorId(Integer id);
+
+    List<EmergenciaEntity> conseguirPorEmergenciasActivas();
+
     void update(EmergenciaEntity emergencia);
 
-    //Eliminar emergencia
     void delete(Integer id);
 }

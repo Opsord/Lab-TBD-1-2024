@@ -10,10 +10,11 @@ import java.util.List;
 
 @Repository
 public class CoordinadorRepositoryImp implements CoordinadorRepository {
+
     @Autowired
     private Sql2o sql2o;
 
-    // Crear un Coordinador
+    @Override
     public void create(CoordinadorEntity coordinador) {
         String sql =
                 "INSERT INTO coordinador (rutCoordinador, nombreCoordinador, apellidoCoordinador, contrasena, idInstitucion) " +
@@ -30,6 +31,8 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
             con.commit();
         }
     }
+
+    @Override
     public List<CoordinadorEntity> conseguirTodos(){
         String sql = "SELECT * FROM coordinador";
         try (Connection con = sql2o.open()){
@@ -38,7 +41,7 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
 
     }
 
-    // Conseguir coordinador por su id
+    @Override
     public CoordinadorEntity conseguirPorId(Integer id) {
         String sql = "SELECT * FROM coordinador WHERE idCoordinador = :idCoordinador";
 
@@ -49,8 +52,8 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
         }
     }
 
-    // Actualizar datos de un coordinador
-    public void Update(CoordinadorEntity coordinador) {
+    @Override
+    public void update(CoordinadorEntity coordinador) {
         String sql =
                 "UPDATE coordinador SET rutCoordinador = :rutCoordinador, nombreCoordinador = :nombreCoordinador, " +
                         "apellidoCoordinador = :apellidoCoordinador, contrasena = :contrasena, idInstitucion = :idInstitucion " +
@@ -69,8 +72,8 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
         }
     }
 
-    // Eliminar un Coordinador
-    public void Delete(Integer id) {
+    @Override
+    public void delete(long id) {
         String sql = "DELETE FROM coordinador WHERE idCoordinador = :idCoordinador";
 
         try (Connection con = sql2o.open()) {

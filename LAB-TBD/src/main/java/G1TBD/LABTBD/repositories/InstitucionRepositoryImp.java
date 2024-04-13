@@ -11,8 +11,6 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
 
     private Sql2o sql2o;
 
-    public InstitucionRepositoryImp(Sql2o sql2o){this.sql2o = sql2o;}
-
     @Override
     public void create(InstitucionEntity institucion) {
         String sql =
@@ -27,7 +25,7 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
     }
 
     @Override
-    public List<InstitucionEntity> conseguirTodo(InstitucionEntity institucion) {
+    public List<InstitucionEntity> conseguirTodos(InstitucionEntity institucion) {
         try (Connection conn = sql2o.open()) {
             return conn.createQuery("SELECT * FROM Institucion ORDER BY idInstitucion ASC")
                     .executeAndFetch(InstitucionEntity.class);
@@ -59,11 +57,6 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
                     .addParameter("idInstitucion", id)
                     .executeUpdate();
         }
-
-
     }
-
-
-
 
 }
