@@ -1,86 +1,17 @@
 package G1TBD.LABTBD.repositories;
 
 import G1TBD.LABTBD.entities.TareaEntity;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-import org.sql2o.Connection;
-import org.sql2o.Sql2o;
 
-import java.awt.*;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
-@Repository
-public class TareaRepository {
-    @Autowired
-    private Sql2o sql2o;
+public interface TareaRepository {
+    public TareaEntity crearTarea(TareaEntity tarea);
 
-    // CREATE
-    public TareaEntity crearTarea(TareaEntity tarea) {
-        try (Connection conn = sql2o.open()) {
-            long idGenerado = (long) conn.createQuery("INSERT INTO Tarea (idEmergencia, tipoTarea, descripcion, estado) " +
-                            "VALUES (:idEmergencia, :tipoTarea, :descripcion, :estado)", true)
-                    .addParameter("idEmergencia", tarea.getIdEmergencia())
-                    .addParameter("tipoTarea", tarea.getTipoTarea())
-                    .addParameter("descripcion", tarea.getDescripcion())
-                    .addParameter("estado", tarea.isEstado())
-                    .executeUpdate()
-                    .getKey();
-            tarea.setIdTarea(idGenerado);
-            return tarea;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
-    }
+    public List<TareaEntity> obtenerTodasLasTareas();
 
-    // GET - ALL
-    public List<TareaEntity> obtenerTodasLasTareas() {
-        try(Connection conn = sql2o.open()) {
-            return conn.createQuery("SELECT * FROM Tarea")
-                    .executeAndFetch(TareaEntity.class);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
-    }
+    public TareaEntity obtenerPorId(long id);
 
-    // GET - BY ID
-    public TareaEntity obtenerPorId(long id) {
-        try(Connection conn = sql2o.open()) {
-            return conn.createQuery("SELECT * FROM Tarea WHERE idTarea = :id")
-                    .addParameter("id", id)
-                    .executeAndFetchFirst(TareaEntity.class);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
-    }
+    public void actualizarTarea(TareaEntity tarea);
 
-    // UPDATE
-    public void actualizarTarea(TareaEntity tarea) {
-        try (Connection conn = sql2o.open()) {
-            conn.createQuery("UPDATE Tarea SET idEmergencia = :idEmergencia, tipoTarea = :tipoTarea, descripcion = :descripcion, estado = :estado WHERE idTarea = :id")
-                    .addParameter("idEmergencia", tarea.getIdEmergencia())
-                    .addParameter("tipoTarea", tarea.getTipoTarea())
-                    .addParameter("descripcion", tarea.getDescripcion())
-                    .addParameter("estado", tarea.isEstado())
-                    .addParameter("id", tarea.getIdTarea())
-                    .executeUpdate();
-        }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    // DELETE
-    public void eliminarTarea(long id) {
-        try(Connection conn = sql2o.open()) {
-            conn.createQuery("DELETE FROM Tarea WHERE idTarea = :id")
-                    .addParameter("id", id)
-                    .executeUpdate();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
+    public void eliminarTarea(long id);
 }
