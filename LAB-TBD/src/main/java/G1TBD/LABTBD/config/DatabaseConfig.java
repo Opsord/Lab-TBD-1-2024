@@ -7,17 +7,20 @@ import org.sql2o.Sql2o;
 
 @Configuration
 public class DatabaseConfig {
-    @Value("jdbc:postgresql://localhost:5432/LabTBD-1-2024")
+    @Value("${spring.datasource.url}")
     private String dbUrl;
 
-    @Value("postgres")
+    @Value("${spring.datasource.name}")
     private String dbUser;
 
-    @Value("12345678")
-    private String dbPass;
-
+    @Value("${spring.datasource.password}")
+    private String dbPassword;
     @Bean
-    public Sql2o sql2o() {
-        return new Sql2o(dbUrl, dbUser, dbPass);
+    public Sql2o sql2o(){
+        return new Sql2o(dbUrl,dbUser,dbPassword);
+
     }
+
+
 }
+
