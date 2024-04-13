@@ -11,7 +11,7 @@ public interface VoluntarioRepository {
     // Actualizar datos de un voluntario
     void Update(VoluntarioEntity voluntario);
 
-    // Eliminar un Coordinador
+    // Eliminar un Voluntario
     void Delete(Integer id);
 
 }
