@@ -15,7 +15,7 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
     private Sql2o sql2o;
 
     @Override
-    public void create(EmergenciaAtributoEntity emergenciaAtributo) {
+    public void crearEmergenciaAtributo(EmergenciaAtributoEntity emergenciaAtributo) {
         try (Connection conn = sql2o.open()) {
             conn.createQuery("INSERT INTO EmergenciaAtributo (idEmergencia, idHabilidad, compatibilidad) " +
                     "VALUES (:idEmergencia, :idHabilidad, :compatibilidad)")
@@ -29,7 +29,7 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
     }
 
     @Override
-    public List<EmergenciaAtributoEntity> conseguirTodos() {
+    public List<EmergenciaAtributoEntity> obtenerTodosLosEmergenciaAtributo() {
         try (Connection conn = sql2o.open()) {
             return conn.createQuery("SELECT * FROM EmergenciaAtributo")
                     .executeAndFetch(EmergenciaAtributoEntity.class);
@@ -40,7 +40,7 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
     }
 
     @Override
-    public EmergenciaAtributoEntity obtenerPorId(Long id) {
+    public EmergenciaAtributoEntity obtenerEmergenciaAtributoPorId(long id) {
         try (Connection conn = sql2o.open()) {
             return conn.createQuery("SELECT * FROM EmergenciaAtributo WHERE idAtributo = :idAtributo")
                     .addParameter("idAtributo", id)
@@ -52,7 +52,7 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
     }
 
     @Override
-public void update(EmergenciaAtributoEntity emergenciaAtributo) {
+    public void actualizarEmergenciaAtributo(EmergenciaAtributoEntity emergenciaAtributo) {
         try (Connection con = sql2o.open()) {
             con.createQuery("UPDATE EmergenciaAtributo SET idEmergencia = :idEmergencia, idHabilidad = :idHabilidad, compatibilidad = :compatibilidad WHERE idAtributo = :idAtributo")
                     .addParameter("idEmergencia", emergenciaAtributo.getIdEmergencia())
@@ -66,12 +66,12 @@ public void update(EmergenciaAtributoEntity emergenciaAtributo) {
     }
 
     @Override
-    public void delete(EmergenciaAtributoEntity emergenciaAtributo){
+    public void eliminarEmergenciaAtributo(long id){
         String sql = "DELETE FROM EmergenciaAtributo WHERE idAtributo = :idAtributo";
 
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
-                    .addParameter("idAtributo", emergenciaAtributo.getIdAtributo())
+                    .addParameter("idAtributo", id)
                     .executeUpdate();
         }
     }

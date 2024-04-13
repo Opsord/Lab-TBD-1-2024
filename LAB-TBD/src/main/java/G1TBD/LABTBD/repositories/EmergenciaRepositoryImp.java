@@ -14,10 +14,8 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
     @Autowired
     private Sql2o sql2o;
 
-    public EmergenciaRepositoryImp(Sql2o sql2o){this.sql2o = sql2o;}
-
     @Override
-    public void create(EmergenciaEntity emergencia){
+    public void crearEmergencia(EmergenciaEntity emergencia){
         String sql =
                 "INSERT INTO Emergencia (estadoEmergencia, tituloEmergencia, descripcionEmergencia)"+
                         "VALUES (:estadoEmergencia, :tituloEmergencia, :descripcionEmergencia)";
@@ -34,7 +32,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
     }
 
     @Override
-    public List<EmergenciaEntity> conseguirTodos(){
+    public List<EmergenciaEntity> obtenerTodasLasEmergencias(){
         String sql = "SELECT * FROM emergencia";
 
         try (Connection con = sql2o.open()) {
@@ -43,7 +41,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
     }
 
     @Override
-    public EmergenciaEntity conseguirPorId(Integer id){
+    public EmergenciaEntity obtenerEmergenciaPorId(long id){
         String sql = "SELECT * FROM emergencia WHERE idEmergencia = :idEmergencia";
 
         try (Connection con = sql2o.open()) {
@@ -53,18 +51,18 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
         }
     }
 
+//    @Override
+//    public List<EmergenciaEntity> obtenerEmergenciaPorEstado(){
+//        String sql = "SELECT * FROM emergencia WHERE estadoEmergencia = true";
+//
+//        try (Connection con = sql2o.open()) {
+//            return con.createQuery(sql).executeAndFetch(EmergenciaEntity.class);
+//        }
+//    }
+
+
     @Override
-    public List<EmergenciaEntity> conseguirPorEmergenciasActivas(){
-        String sql = "SELECT * FROM emergencia WHERE estadoEmergencia = true";
-
-        try (Connection con = sql2o.open()) {
-            return con.createQuery(sql).executeAndFetch(EmergenciaEntity.class);
-        }
-    }
-
-
-    @Override
-    public void update(EmergenciaEntity emergencia){
+    public void actualizarEmergencia(EmergenciaEntity emergencia){
         String sql =
                 "UPDATE emergencia SET estadoEmergencia = :estadoEmergencia, tituloEmergencia = :tituloEmergencia, "+
                         "descripcionEmergencia = :descripcionEmergencia" +
@@ -82,7 +80,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
     }
 
     @Override
-    public void delete(Integer id){
+    public void eliminarEmergencia(long id){
         String sql =
                 "DELETE FROM emergencia WHERE idEmergencia = :idEmergencia";
 

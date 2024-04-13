@@ -14,7 +14,7 @@ public class VoluntarioAtributoRepositoryImp implements VoluntarioAtributoReposi
     private Sql2o sql2o;
 
     @Override
-    public void create(VoluntarioAtributoEntity voluntarioAtributo) {
+    public void crearVoluntarioAtributo(VoluntarioAtributoEntity voluntarioAtributo) {
         String sql =
                 "INSERT INTO VoluntarioAtributo (idVoluntarioAtributo, idVoluntario, idAtributo) " +
                         "VALUES (:idVoluntarioAtributo, :idVoluntario, :idAtributo)";
@@ -29,7 +29,7 @@ public class VoluntarioAtributoRepositoryImp implements VoluntarioAtributoReposi
     }
 
     @Override
-    public VoluntarioAtributoEntity conseguirPorId(Integer id) {
+    public VoluntarioAtributoEntity obtenerVoluntarioAtributoPorId(long id) {
         String sql = "SELECT * FROM VoluntarioAtributo WHERE idVoluntarioAtributo = :idVoluntarioAtributo";
 
         try (Connection con = sql2o.open()) {
@@ -40,7 +40,7 @@ public class VoluntarioAtributoRepositoryImp implements VoluntarioAtributoReposi
     }
 
     @Override
-    public void update(VoluntarioAtributoEntity voluntarioAtributo) {
+    public void actualizarVoluntarioAtributo(VoluntarioAtributoEntity voluntarioAtributo) {
         String sql =
                 "UPDATE VoluntarioAtributo SET idVoluntarioAtributo = :idVoluntarioAtributo, idVoluntario = :idVoluntario, idAtributo = :idAtributo" +
                         "WHERE idVoluntarioAtributo = :idVoluntarioAtributo";
@@ -55,7 +55,7 @@ public class VoluntarioAtributoRepositoryImp implements VoluntarioAtributoReposi
     }
 
     @Override
-    public void delete(Integer id) {
+    public void eliminarVoluntarioAtributo(long id) {
         String sql = "DELETE FROM VoluntarioAtributo WHERE idVoluntarioAtributo = :idVoluntarioAtributo";
 
         try (Connection con = sql2o.open()) {

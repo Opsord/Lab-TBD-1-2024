@@ -17,7 +17,7 @@ public class AtributoRepositoryImp implements AtributoRepository{
 
     // Crear un Atributo
     @Override
-    public void create(AtributoEntity atributo) {
+    public void crearAtributo(AtributoEntity atributo) {
         String sql =
                 "INSERT INTO atributo (atributo) " +
                         "VALUES (:atributo)";
@@ -31,7 +31,7 @@ public class AtributoRepositoryImp implements AtributoRepository{
     }
 
     @Override
-    public List<AtributoEntity> conseguirTodos() {
+    public List<AtributoEntity> obtenerTodosLosAtributos() {
         String sql = "SELECT * FROM atributo";
         try (Connection con = sql2o.open()) {
             return con.createQuery(sql).executeAndFetch(AtributoEntity.class);
@@ -39,7 +39,7 @@ public class AtributoRepositoryImp implements AtributoRepository{
     }
 
     @Override
-    public AtributoEntity conseguirPorId(long id) {
+    public AtributoEntity obtenerAtributoPorId(long id) {
         String sql = "SELECT * FROM atributo WHERE idAtributo = :idAtributo";
 
         try (Connection con = sql2o.open()) {
@@ -49,19 +49,19 @@ public class AtributoRepositoryImp implements AtributoRepository{
         }
     }
 
-    @Override
-    public AtributoEntity conseguirPorAtributo(String atributo) {
-        String sql = "SELECT * FROM atributo WHERE atributo = :atributo";
+//    @Override
+//    public AtributoEntity conseguirPorAtributo(String atributo) {
+//        String sql = "SELECT * FROM atributo WHERE atributo = :atributo";
+//
+//        try (Connection con = sql2o.open()) {
+//            return con.createQuery(sql)
+//                    .addParameter("atributo", atributo)
+//                    .executeAndFetchFirst(AtributoEntity.class);
+//        }
+//    }
 
-        try (Connection con = sql2o.open()) {
-            return con.createQuery(sql)
-                    .addParameter("atributo", atributo)
-                    .executeAndFetchFirst(AtributoEntity.class);
-        }
-    }
-
     @Override
-    public void update(AtributoEntity atributo) {
+    public void actualizarAtributo(AtributoEntity atributo) {
         String sql =
                 "UPDATE atributo SET atributo = :atributo " +
                         "WHERE idAtributo = :idAtributo";
@@ -76,7 +76,7 @@ public class AtributoRepositoryImp implements AtributoRepository{
     }
 
     @Override
-    public void delete(long id) {
+    public void eliminarAtributo(long id) {
         String sql = "DELETE FROM atributo WHERE idAtributo = :idAtributo";
 
         try (Connection con = sql2o.open()) {

@@ -13,6 +13,6 @@ public class TareaService {
     TareaRepositoryImp tareaRepository;
 
     public List<TareaEntity> obtenerTodasLasTareas() {
-        return tareaRepository.obtenerTodos();
+        return tareaRepository.obtenerTodasLasTareas();
     }
 }

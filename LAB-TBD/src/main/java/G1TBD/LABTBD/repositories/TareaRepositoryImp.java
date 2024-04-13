@@ -15,7 +15,7 @@ public class TareaRepositoryImp implements TareaRepository{
     private Sql2o sql2o;
 
     @Override
-    public TareaEntity create(TareaEntity tarea) {
+    public TareaEntity crearTarea(TareaEntity tarea) {
         try (Connection conn = sql2o.open()) {
             long idGenerado = (long) conn.createQuery("INSERT INTO Tarea (idEmergencia, tipoTarea, descripcion, estado) " +
                             "VALUES (:idEmergencia, :tipoTarea, :descripcion, :estado)", true)
@@ -34,7 +34,7 @@ public class TareaRepositoryImp implements TareaRepository{
     }
 
     @Override
-    public List<TareaEntity> obtenerTodos() {
+    public List<TareaEntity> obtenerTodasLasTareas() {
         try(Connection conn = sql2o.open()) {
             return conn.createQuery("SELECT * FROM Tarea")
                     .executeAndFetch(TareaEntity.class);
@@ -45,7 +45,7 @@ public class TareaRepositoryImp implements TareaRepository{
     }
 
     @Override
-    public TareaEntity obtenerPorId(long id) {
+    public TareaEntity obtenerTareaPorId(long id) {
         try(Connection conn = sql2o.open()) {
             return conn.createQuery("SELECT * FROM Tarea WHERE idTarea = :id")
                     .addParameter("id", id)
@@ -57,7 +57,7 @@ public class TareaRepositoryImp implements TareaRepository{
     }
 
     @Override
-    public void update(TareaEntity tarea) {
+    public void actualizarTarea(TareaEntity tarea) {
         try (Connection conn = sql2o.open()) {
             conn.createQuery("UPDATE Tarea SET idEmergencia = :idEmergencia, tipoTarea = :tipoTarea, descripcion = :descripcion, estado = :estado WHERE idTarea = :id")
                     .addParameter("idEmergencia", tarea.getIdEmergencia())
@@ -73,7 +73,7 @@ public class TareaRepositoryImp implements TareaRepository{
     }
 
     @Override
-    public void delete(long id) {
+    public void eliminarTarea(long id) {
         try(Connection conn = sql2o.open()) {
             conn.createQuery("DELETE FROM Tarea WHERE idTarea = :id")
                     .addParameter("id", id)

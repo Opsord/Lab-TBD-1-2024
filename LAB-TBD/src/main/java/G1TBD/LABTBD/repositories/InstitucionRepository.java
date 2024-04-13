@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface InstitucionRepository {
 
-    void create(InstitucionEntity institucion);
+    void crearInstitucion(InstitucionEntity institucion);
 
-    public List<InstitucionEntity> conseguirTodos(InstitucionEntity institucion);
+    public List<InstitucionEntity> obtenerTodasLasInstituciones(InstitucionEntity institucion);
 
-    void update(InstitucionEntity institucion);
+    void actualizarInstitucion(InstitucionEntity institucion);
 
-    void delete(Integer id);
+    void eliminarInstitucion(long id);
 }

@@ -4,11 +4,11 @@ import G1TBD.LABTBD.entities.VoluntarioAtributoEntity;
 
 public interface VoluntarioAtributoRepository {
 
-    void create(VoluntarioAtributoEntity voluntarioAtributo);
+    void crearVoluntarioAtributo(VoluntarioAtributoEntity voluntarioAtributo);
 
-    VoluntarioAtributoEntity conseguirPorId(Integer id);
+    VoluntarioAtributoEntity obtenerVoluntarioAtributoPorId(long id);
 
-    void update(VoluntarioAtributoEntity voluntarioAtributo);
+    void actualizarVoluntarioAtributo(VoluntarioAtributoEntity voluntarioAtributo);
 
-    void delete(Integer id);
+    void eliminarVoluntarioAtributo(long id);
 }

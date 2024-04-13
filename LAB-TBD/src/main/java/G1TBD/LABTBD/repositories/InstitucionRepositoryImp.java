@@ -12,7 +12,7 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
     private Sql2o sql2o;
 
     @Override
-    public void create(InstitucionEntity institucion) {
+    public void crearInstitucion(InstitucionEntity institucion) {
         String sql =
                 "INSERT INTO Intitucion (nombreInstitucion)" +
                         "VALUES (:nombreInstitucion)";
@@ -25,7 +25,7 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
     }
 
     @Override
-    public List<InstitucionEntity> conseguirTodos(InstitucionEntity institucion) {
+    public List<InstitucionEntity> obtenerTodasLasInstituciones(InstitucionEntity institucion) {
         try (Connection conn = sql2o.open()) {
             return conn.createQuery("SELECT * FROM Institucion ORDER BY idInstitucion ASC")
                     .executeAndFetch(InstitucionEntity.class);
@@ -36,7 +36,7 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
     }
 
     @Override
-    public void update(InstitucionEntity institucion) {
+    public void actualizarInstitucion(InstitucionEntity institucion) {
         String sql =
                 "UPDATE Institucion SET nombreInstitucion = :nombreInstitucion" +
                         "WHERE idInstitucion = :idInstitucion";
@@ -49,7 +49,7 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
     }
 
     @Override
-    public void delete(Integer id){
+    public void eliminarInstitucion(long id){
         String sql = "DELETE FROM Institucion WHERE idInstitucion = :idInstitucion";
 
         try (Connection con = sql2o.open()) {

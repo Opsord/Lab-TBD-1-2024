@@ -3,12 +3,12 @@ import G1TBD.LABTBD.entities.VoluntarioEntity;
 
 public interface VoluntarioRepository {
 
-    void create(VoluntarioEntity voluntario);
+    void crearVoluntario(VoluntarioEntity voluntario);
 
-    VoluntarioEntity conseguirPorId(Integer id);
+    VoluntarioEntity obtenerVoluntarioPorId(long id);
 
-    void update(VoluntarioEntity voluntario);
+    void actualizarVoluntario(VoluntarioEntity voluntario);
 
-    void delete(Integer id);
+    void eliminarVoluntario(long id);
 
 }
