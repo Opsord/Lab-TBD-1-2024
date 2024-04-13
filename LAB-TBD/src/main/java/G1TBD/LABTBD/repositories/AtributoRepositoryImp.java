@@ -24,7 +24,7 @@ public class AtributoRepositoryImp implements AtributoRepository{
 
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
-                    .addParameter("atributo", atributo.getAtributo())
+                    .addParameter("atributo", atributo.getTipoAtributo())
                     .executeUpdate();
             con.commit();
         }
@@ -50,7 +50,7 @@ public class AtributoRepositoryImp implements AtributoRepository{
     }
 
 //    @Override
-//    public AtributoEntity conseguirPorAtributo(String atributo) {
+//    public AtributoEntity obtenerPorTipoAtributo(String tipoAtributo) {
 //        String sql = "SELECT * FROM atributo WHERE atributo = :atributo";
 //
 //        try (Connection con = sql2o.open()) {
@@ -69,7 +69,7 @@ public class AtributoRepositoryImp implements AtributoRepository{
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
                     .addParameter("idAtributo", atributo.getIdAtributo())
-                    .addParameter("atributo", atributo.getAtributo())
+                    .addParameter("atributo", atributo.getTipoAtributo())
                     .executeUpdate();
             con.commit();
         }

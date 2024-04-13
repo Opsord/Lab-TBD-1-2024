@@ -12,7 +12,7 @@ public interface AtributoRepository {
 
     public AtributoEntity obtenerAtributoPorId(long id);
 
-//    public AtributoEntity conseguirPorAtributo(String atributo);
+//    public AtributoEntity obtenerPorTipoAtributo(String tipoAtributo);
 
     public void actualizarAtributo(AtributoEntity atributo);
 
