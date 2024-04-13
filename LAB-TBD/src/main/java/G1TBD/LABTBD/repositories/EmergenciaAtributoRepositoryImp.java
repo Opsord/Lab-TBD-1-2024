@@ -57,8 +57,8 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
 
     @Override
     public void actualizarEmergenciaAtributo(EmergenciaAtributoEntity emergenciaAtributo) {
-        try (Connection con = sql2o.open()) {
-            con.createQuery("UPDATE EmergenciaAtributo SET idEmergencia = :idEmergencia, idHabilidad = :idHabilidad, compatibilidad = :compatibilidad WHERE idAtributo = :idAtributo")
+        try (Connection conn = sql2o.open()) {
+            conn.createQuery("UPDATE EmergenciaAtributo SET idEmergencia = :idEmergencia, idHabilidad = :idHabilidad, compatibilidad = :compatibilidad WHERE idAtributo = :idAtributo")
                     .addParameter("idEmergencia", emergenciaAtributo.getIdEmergencia())
                     .addParameter("idHabilidad", emergenciaAtributo.getIdAtributo())
                     .addParameter("compatibilidad", emergenciaAtributo.isCompatibilidad())
@@ -73,8 +73,8 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
     public void eliminarEmergenciaAtributo(long id){
         String sql = "DELETE FROM EmergenciaAtributo WHERE idAtributo = :idAtributo";
 
-        try (Connection con = sql2o.open()) {
-            con.createQuery(sql)
+        try (Connection conn = sql2o.open()) {
+            conn.createQuery(sql)
                     .addParameter("idAtributo", id)
                     .executeUpdate();
         }

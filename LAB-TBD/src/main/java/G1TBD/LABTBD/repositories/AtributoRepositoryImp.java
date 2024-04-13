@@ -18,12 +18,11 @@ public class AtributoRepositoryImp implements AtributoRepository{
     // Crear un Atributo
     @Override
     public AtributoEntity crearAtributo(AtributoEntity atributo) {
-        String sql =
-                "INSERT INTO atributo (atributo) " +
-                        "VALUES (:atributo)";
+        String sql = "INSERT INTO atributo (atributo) " +
+                "VALUES (:atributo)";
 
-        try (Connection con = sql2o.open()) {
-            long id = (long) con.createQuery(sql)
+        try (Connection conn = sql2o.open()) {
+            long id = (long) conn.createQuery(sql)
                     .addParameter("atributo", atributo.getTipoAtributo())
                     .executeUpdate()
                     .getKey();
@@ -38,8 +37,12 @@ public class AtributoRepositoryImp implements AtributoRepository{
     @Override
     public List<AtributoEntity> obtenerTodosLosAtributos() {
         String sql = "SELECT * FROM atributo";
-        try (Connection con = sql2o.open()) {
-            return con.createQuery(sql).executeAndFetch(AtributoEntity.class);
+        try (Connection conn = sql2o.open()) {
+            return conn.createQuery(sql)
+                    .executeAndFetch(AtributoEntity.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 
@@ -47,10 +50,13 @@ public class AtributoRepositoryImp implements AtributoRepository{
     public AtributoEntity obtenerAtributoPorId(long id) {
         String sql = "SELECT * FROM atributo WHERE idAtributo = :idAtributo";
 
-        try (Connection con = sql2o.open()) {
-            return con.createQuery(sql)
+        try (Connection conn = sql2o.open()) {
+            return conn.createQuery(sql)
                     .addParameter("idAtributo", id)
                     .executeAndFetchFirst(AtributoEntity.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 
@@ -67,16 +73,15 @@ public class AtributoRepositoryImp implements AtributoRepository{
 
     @Override
     public void actualizarAtributo(AtributoEntity atributo) {
-        String sql =
-                "UPDATE atributo SET atributo = :atributo " +
-                        "WHERE idAtributo = :idAtributo";
+        String sql = "UPDATE atributo SET atributo = :atributo " +
+                "WHERE idAtributo = :idAtributo";
 
-        try (Connection con = sql2o.open()) {
-            con.createQuery(sql)
+        try (Connection conn = sql2o.open()) {
+            conn.createQuery(sql)
                     .addParameter("idAtributo", atributo.getIdAtributo())
                     .addParameter("atributo", atributo.getTipoAtributo())
                     .executeUpdate();
-            con.commit();
+            conn.commit();
         }
     }
 
@@ -84,11 +89,11 @@ public class AtributoRepositoryImp implements AtributoRepository{
     public void eliminarAtributo(long id) {
         String sql = "DELETE FROM atributo WHERE idAtributo = :idAtributo";
 
-        try (Connection con = sql2o.open()) {
-            con.createQuery(sql)
+        try (Connection conn = sql2o.open()) {
+            conn.createQuery(sql)
                     .addParameter("idAtributo", id)
                     .executeUpdate();
-            con.commit();
+            conn.commit();
         }
     }
 }
