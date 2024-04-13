@@ -63,7 +63,7 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
     }
 
     @Override
-    public void actualizarCoordinador(CoordinadorEntity coordinador) {
+    public boolean actualizarCoordinador(CoordinadorEntity coordinador) {
         String sql = "UPDATE coordinador SET rutCoordinador = :rutCoordinador, nombreCoordinador = :nombreCoordinador, " +
                 "apellidoCoordinador = :apellidoCoordinador, contrasena = :contrasena, idInstitucion = :idInstitucion " +
                 "WHERE idCoordinador = :idCoordinador";
@@ -78,11 +78,15 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
                     .addParameter("idinstitucion", coordinador.getIdInstitucion())
                     .executeUpdate();
             conn.commit();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
         }
     }
 
     @Override
-    public void eliminarCoordinador(long id) {
+    public boolean eliminarCoordinador(long id) {
         String sql = "DELETE FROM coordinador WHERE idCoordinador = :idCoordinador";
 
         try (Connection conn = sql2o.open()) {
@@ -90,6 +94,10 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
                     .addParameter("idcoordinador", id)
                     .executeUpdate();
             conn.commit();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
         }
     }
 }

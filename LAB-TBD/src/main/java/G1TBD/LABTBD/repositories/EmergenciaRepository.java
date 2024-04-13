@@ -15,7 +15,7 @@ public interface EmergenciaRepository {
 
 //    List<EmergenciaEntity> obtenerEmergenciaPorEstado();
 
-    void actualizarEmergencia(EmergenciaEntity emergencia);
+    boolean actualizarEmergencia(EmergenciaEntity emergencia);
 
-    void eliminarEmergencia(long id);
+    boolean eliminarEmergencia(long id);
 }

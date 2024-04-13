@@ -15,7 +15,6 @@ public class AtributoRepositoryImp implements AtributoRepository {
     @Autowired
     private Sql2o sql2o;
 
-    // Crear un Atributo
     @Override
     public AtributoEntity crearAtributo(AtributoEntity atributo) {
         String sql = "INSERT INTO atributo (atributo) " +
@@ -72,7 +71,7 @@ public class AtributoRepositoryImp implements AtributoRepository {
 //    }
 
     @Override
-    public void actualizarAtributo(AtributoEntity atributo) {
+    public boolean actualizarAtributo(AtributoEntity atributo) {
         String sql = "UPDATE atributo SET atributo = :atributo " +
                 "WHERE idAtributo = :idAtributo";
 
@@ -82,11 +81,15 @@ public class AtributoRepositoryImp implements AtributoRepository {
                     .addParameter("atributo", atributo.getTipoAtributo())
                     .executeUpdate();
             conn.commit();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
         }
     }
 
     @Override
-    public void eliminarAtributo(long id) {
+    public boolean eliminarAtributo(long id) {
         String sql = "DELETE FROM atributo WHERE idAtributo = :idAtributo";
 
         try (Connection conn = sql2o.open()) {
@@ -94,6 +97,10 @@ public class AtributoRepositoryImp implements AtributoRepository {
                     .addParameter("idAtributo", id)
                     .executeUpdate();
             conn.commit();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
         }
     }
 }

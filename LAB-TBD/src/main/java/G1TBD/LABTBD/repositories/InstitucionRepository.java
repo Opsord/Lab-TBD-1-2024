@@ -12,7 +12,7 @@ public interface InstitucionRepository {
 
     InstitucionEntity obtenerInstitucionPorId(long id);
 
-    void actualizarInstitucion(InstitucionEntity institucion);
+    boolean actualizarInstitucion(InstitucionEntity institucion);
 
-    void eliminarInstitucion(long id);
+    boolean eliminarInstitucion(long id);
 }

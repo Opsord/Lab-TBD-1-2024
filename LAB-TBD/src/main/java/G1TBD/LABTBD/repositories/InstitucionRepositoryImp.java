@@ -59,7 +59,7 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
     }
 
     @Override
-    public void actualizarInstitucion(InstitucionEntity institucion) {
+    public boolean actualizarInstitucion(InstitucionEntity institucion) {
         String sql = "UPDATE Institucion SET nombreInstitucion = :nombreInstitucion" +
                 "WHERE idInstitucion = :idInstitucion";
 
@@ -68,17 +68,27 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
                     .addParameter("idInstitucion", institucion.getIdInstitucion())
                     .addParameter("nombreInstitucion", institucion.getNombreInstitucion())
                     .executeUpdate();
+            conn.commit();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
         }
     }
 
     @Override
-    public void eliminarInstitucion(long id){
+    public boolean eliminarInstitucion(long id){
         String sql = "DELETE FROM Institucion WHERE idInstitucion = :idInstitucion";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
                     .addParameter("idInstitucion", id)
                     .executeUpdate();
+            conn.commit();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
         }
     }
 }

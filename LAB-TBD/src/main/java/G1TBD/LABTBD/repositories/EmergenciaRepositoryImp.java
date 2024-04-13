@@ -74,7 +74,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
 
 
     @Override
-    public void actualizarEmergencia(EmergenciaEntity emergencia){
+    public boolean actualizarEmergencia(EmergenciaEntity emergencia){
         String sql = "UPDATE emergencia SET estadoEmergencia = :estadoEmergencia, tituloEmergencia = :tituloEmergencia, "+
                 "descripcionEmergencia = :descripcionEmergencia" +
                 "WHERE idEmergencia = :idEmergencia";
@@ -87,11 +87,15 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
                     .addParameter("descripcionEmergencia", emergencia.getDescripcionEmergencia())
                     .executeUpdate();
             conn.commit();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
         }
     }
 
     @Override
-    public void eliminarEmergencia(long id){
+    public boolean eliminarEmergencia(long id){
         String sql = "DELETE FROM emergencia WHERE idEmergencia = :idEmergencia";
 
         try (Connection conn = sql2o.open()){
@@ -99,6 +103,10 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
                     .addParameter("idEmergencia", id)
                     .executeUpdate();
             conn.commit();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
         }
     }
 }

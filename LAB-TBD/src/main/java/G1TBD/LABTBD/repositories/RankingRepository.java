@@ -12,7 +12,7 @@ public interface RankingRepository {
 
     RankingEntity obtenerRankingPorId(long id);
 
-    void actualizarRanking(RankingEntity ranking);
+    boolean actualizarRanking(RankingEntity ranking);
 
-    void eliminarRanking(long id);
+    boolean eliminarRanking(long id);
 }

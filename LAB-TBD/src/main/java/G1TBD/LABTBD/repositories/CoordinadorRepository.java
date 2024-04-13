@@ -12,7 +12,7 @@ public interface CoordinadorRepository {
 
     CoordinadorEntity obtenerCoordinadorPorId(long id);
 
-    void actualizarCoordinador(CoordinadorEntity coordinador);
+    boolean actualizarCoordinador(CoordinadorEntity coordinador);
 
-    void eliminarCoordinador(long id);
+    boolean eliminarCoordinador(long id);
 }

@@ -12,7 +12,7 @@ public interface VoluntarioAtributoRepository {
 
     VoluntarioAtributoEntity obtenerVoluntarioAtributoPorId(long id);
 
-    void actualizarVoluntarioAtributo(VoluntarioAtributoEntity voluntarioAtributo);
+    boolean actualizarVoluntarioAtributo(VoluntarioAtributoEntity voluntarioAtributo);
 
-    void eliminarVoluntarioAtributo(long id);
+    boolean eliminarVoluntarioAtributo(long id);
 }

@@ -74,6 +74,7 @@ public class TareaRepositoryImp implements TareaRepository{
                     .addParameter("estado", tarea.isEstado())
                     .addParameter("id", tarea.getIdTarea())
                     .executeUpdate();
+            conn.commit();
             return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -89,6 +90,7 @@ public class TareaRepositoryImp implements TareaRepository{
             conn.createQuery(sql)
                     .addParameter("id", id)
                     .executeUpdate();
+            conn.commit();
             return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());

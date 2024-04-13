@@ -62,7 +62,7 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
     }
 
     @Override
-    public void actualizarEmergenciaAtributo(EmergenciaAtributoEntity emergenciaAtributo) {
+    public boolean actualizarEmergenciaAtributo(EmergenciaAtributoEntity emergenciaAtributo) {
         String sql = "UPDATE EmergenciaAtributo SET idEmergencia = :idEmergencia, idHabilidad = :idHabilidad, compatibilidad = :compatibilidad WHERE idAtributo = :idAtributo";
 
         try (Connection conn = sql2o.open()) {
@@ -72,19 +72,27 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
                     .addParameter("compatibilidad", emergenciaAtributo.isCompatibilidad())
                     .addParameter("idAtributo", emergenciaAtributo.getIdAtributo())
                     .executeUpdate();
+            conn.commit();
+            return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return false;
         }
     }
 
     @Override
-    public void eliminarEmergenciaAtributo(long id){
+    public boolean eliminarEmergenciaAtributo(long id){
         String sql = "DELETE FROM EmergenciaAtributo WHERE idAtributo = :idAtributo";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
                     .addParameter("idAtributo", id)
                     .executeUpdate();
+            conn.commit();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
         }
     }
 }

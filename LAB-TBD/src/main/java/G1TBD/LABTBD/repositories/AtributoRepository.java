@@ -6,15 +6,15 @@ import java.util.List;
 
 public interface AtributoRepository {
 
-    public AtributoEntity crearAtributo(AtributoEntity atributo);
+    AtributoEntity crearAtributo(AtributoEntity atributo);
 
-    public List<AtributoEntity> obtenerTodosLosAtributos();
+    List<AtributoEntity> obtenerTodosLosAtributos();
 
-    public AtributoEntity obtenerAtributoPorId(long id);
+    AtributoEntity obtenerAtributoPorId(long id);
 
 //    public AtributoEntity obtenerPorTipoAtributo(String tipoAtributo);
 
-    public void actualizarAtributo(AtributoEntity atributo);
+    boolean actualizarAtributo(AtributoEntity atributo);
 
-    public void eliminarAtributo(long id);
+    boolean eliminarAtributo(long id);
 }

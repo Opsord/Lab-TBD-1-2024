@@ -61,7 +61,7 @@ public class RankingRepositoryImp implements RankingRepository{
     }
 
     @Override
-    public void actualizarRanking(RankingEntity ranking) {
+    public boolean actualizarRanking(RankingEntity ranking) {
         String sql = "UPDATE ranking SET idVoluntario = :idVoluntario, idTarea = :idTarea, valorRanking = :valorRanking " +
                 "WHERE idRanking = :idRanking";
 
@@ -73,11 +73,15 @@ public class RankingRepositoryImp implements RankingRepository{
                     .addParameter("valorRanking", ranking.getValorRanking())
                     .executeUpdate();
             conn.commit();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
         }
     }
 
     @Override
-    public void eliminarRanking(long id) {
+    public boolean eliminarRanking(long id) {
         String sql = "DELETE FROM ranking WHERE idRanking = :idRanking";
 
         try (Connection conn = sql2o.open()) {
@@ -85,6 +89,10 @@ public class RankingRepositoryImp implements RankingRepository{
                     .addParameter("idRanking", id)
                     .executeUpdate();
             conn.commit();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
         }
     }
 }

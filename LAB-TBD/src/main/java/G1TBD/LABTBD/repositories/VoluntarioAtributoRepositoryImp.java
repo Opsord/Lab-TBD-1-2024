@@ -63,7 +63,7 @@ public class VoluntarioAtributoRepositoryImp implements VoluntarioAtributoReposi
     }
 
     @Override
-    public void actualizarVoluntarioAtributo(VoluntarioAtributoEntity voluntarioAtributo) {
+    public boolean actualizarVoluntarioAtributo(VoluntarioAtributoEntity voluntarioAtributo) {
         String sql = "UPDATE VoluntarioAtributo SET idVoluntarioAtributo = :idVoluntarioAtributo, idVoluntario = :idVoluntario, idAtributo = :idAtributo" +
                 "WHERE idVoluntarioAtributo = :idVoluntarioAtributo";
 
@@ -73,17 +73,27 @@ public class VoluntarioAtributoRepositoryImp implements VoluntarioAtributoReposi
                     .addParameter("idVoluntario", voluntarioAtributo.getIdVoluntario())
                     .addParameter("idAtributo", voluntarioAtributo.getIdAtributo())
                     .executeUpdate();
+            conn.commit();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
         }
     }
 
     @Override
-    public void eliminarVoluntarioAtributo(long id) {
+    public boolean eliminarVoluntarioAtributo(long id) {
         String sql = "DELETE FROM VoluntarioAtributo WHERE idVoluntarioAtributo = :idVoluntarioAtributo";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
                     .addParameter("idVoluntarioAtributo", id)
                     .executeUpdate();
+            conn.commit();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
         }
     }
 }

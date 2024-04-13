@@ -65,7 +65,7 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
     }
 
     @Override
-    public void actualizarVoluntario(VoluntarioEntity voluntario) {
+    public boolean actualizarVoluntario(VoluntarioEntity voluntario) {
         String sql = "UPDATE Voluntario SET rutVoluntario = :rutVoluntario, nombreVoluntario = :nombreVoluntario, apellidoVoluntario = :apellidoVoluntario, " +
                 "edadVoluntario = :edadVoluntario, sexoVoluntario = :sexoVoluntario, contrasena = :contrasena, disponibilidad = :disponibilidad " +
                 "WHERE idVoluntario = :idVoluntario";
@@ -81,17 +81,28 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
                     .addParameter("contrasena", voluntario.getContrasena())
                     .addParameter("disponibilidad", voluntario.isDisponibilidad())
                     .executeUpdate();
+            conn.commit();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
         }
     }
 
     @Override
-    public void eliminarVoluntario(long id) {
+    public boolean eliminarVoluntario(long id) {
         String sql = "DELETE FROM Voluntario WHERE idVoluntario = :idVoluntario";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
                     .addParameter("idvoluntario", id)
                     .executeUpdate();
+            conn.commit();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
         }
     }
+
 }

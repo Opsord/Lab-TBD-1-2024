@@ -11,8 +11,8 @@ public interface VoluntarioRepository {
 
     VoluntarioEntity obtenerVoluntarioPorId(long id);
 
-    void actualizarVoluntario(VoluntarioEntity voluntario);
+    boolean actualizarVoluntario(VoluntarioEntity voluntario);
 
-    void eliminarVoluntario(long id);
+    boolean eliminarVoluntario(long id);
 
 }

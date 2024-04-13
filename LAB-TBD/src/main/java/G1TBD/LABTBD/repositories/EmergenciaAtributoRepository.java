@@ -12,7 +12,7 @@ public interface EmergenciaAtributoRepository {
 
     EmergenciaAtributoEntity obtenerEmergenciaAtributoPorId(long id);
 
-    void actualizarEmergenciaAtributo(EmergenciaAtributoEntity emergenciaAtributo);
+    boolean actualizarEmergenciaAtributo(EmergenciaAtributoEntity emergenciaAtributo);
 
-    void eliminarEmergenciaAtributo(long id);
+    boolean eliminarEmergenciaAtributo(long id);
 }
