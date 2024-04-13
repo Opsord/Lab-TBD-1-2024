@@ -1,21 +1,22 @@
 package G1TBD.LABTBD.repositories;
 
 import G1TBD.LABTBD.entities.CoordinadorEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
+import java.util.List;
+
+@Repository
 public class CoordinadorRepositoryImp implements CoordinadorRepository {
+    @Autowired
     private Sql2o sql2o;
 
-    public CoordinadorRepositoryImp(Sql2o sql2o) {
-        this.sql2o = sql2o;
-    }
-
     // Crear un Coordinador
-    @Override
     public void create(CoordinadorEntity coordinador) {
         String sql =
-                "INSERT INTO Coordinador (rutCoordinador, nombreCoordinador, apellidoCoordinador, contrasena, idInstitucion) " +
+                "INSERT INTO coordinador (rutCoordinador, nombreCoordinador, apellidoCoordinador, contrasena, idInstitucion) " +
                         "VALUES (:rutCoordinador, :nombreCoordinador, :apellidoCoordinador, :contrasena, :idInstitucion)";
 
         try (Connection con = sql2o.open()) {
@@ -26,13 +27,20 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
                     .addParameter("contrasena", coordinador.getContrasena())
                     .addParameter("idinstitucion", coordinador.getIdInstitucion())
                     .executeUpdate();
+            con.commit();
         }
+    }
+    public List<CoordinadorEntity> conseguirTodos(){
+        String sql = "SELECT * FROM coordinador";
+        try (Connection con = sql2o.open()){
+            return con.createQuery(sql).executeAndFetch(CoordinadorEntity.class);
+        }
+
     }
 
     // Conseguir coordinador por su id
-    @Override
     public CoordinadorEntity conseguirPorId(Integer id) {
-        String sql = "SELECT * FROM Coordinador WHERE idCoordinador = :idCoordinador";
+        String sql = "SELECT * FROM coordinador WHERE idCoordinador = :idCoordinador";
 
         try (Connection con = sql2o.open()) {
             return con.createQuery(sql)
@@ -42,10 +50,9 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
     }
 
     // Actualizar datos de un coordinador
-    @Override
     public void Update(CoordinadorEntity coordinador) {
         String sql =
-                "UPDATE Coordinador SET rutCoordinador = :rutCoordinador, nombreCoordinador = :nombreCoordinador, " +
+                "UPDATE coordinador SET rutCoordinador = :rutCoordinador, nombreCoordinador = :nombreCoordinador, " +
                         "apellidoCoordinador = :apellidoCoordinador, contrasena = :contrasena, idInstitucion = :idInstitucion " +
                         "WHERE idCoordinador = :idCoordinador";
 
@@ -58,18 +65,19 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
                     .addParameter("contrasena", coordinador.getContrasena())
                     .addParameter("idinstitucion", coordinador.getIdInstitucion())
                     .executeUpdate();
+            con.commit();
         }
     }
 
     // Eliminar un Coordinador
-    @Override
     public void Delete(Integer id) {
-        String sql = "DELETE FROM Coordinador WHERE idCoordinador = :idCoordinador";
+        String sql = "DELETE FROM coordinador WHERE idCoordinador = :idCoordinador";
 
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
                     .addParameter("idcoordinador", id)
                     .executeUpdate();
+            con.commit();
         }
     }
 }
