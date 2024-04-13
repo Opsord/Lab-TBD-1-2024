@@ -10,10 +10,12 @@ import org.sql2o.Sql2o;
 import java.util.List;
 
 @Repository
-public class AtributoRepositoryImp {
+public class AtributoRepositoryImp implements AtributoRepository{
     @Autowired
     private Sql2o sql2o;
+
     // Crear un Atributo
+    @Override
     public void create(AtributoEntity atributo) {
         String sql =
                 "INSERT INTO atributo (atributo) " +
@@ -27,7 +29,7 @@ public class AtributoRepositoryImp {
         }
     }
 
-    // Conseguir todos los Atributos
+    @Override
     public List<AtributoEntity> conseguirTodos() {
         String sql = "SELECT * FROM atributo";
         try (Connection con = sql2o.open()) {
@@ -35,7 +37,7 @@ public class AtributoRepositoryImp {
         }
     }
 
-    // Conseguir Atributo por su ID
+    @Override
     public AtributoEntity conseguirPorId(long id) {
         String sql = "SELECT * FROM atributo WHERE idAtributo = :idAtributo";
 
@@ -46,6 +48,7 @@ public class AtributoRepositoryImp {
         }
     }
 
+    @Override
     public AtributoEntity conseguirPorAtributo(String atributo) {
         String sql = "SELECT * FROM atributo WHERE atributo = :atributo";
 
@@ -56,7 +59,7 @@ public class AtributoRepositoryImp {
         }
     }
 
-    // Actualizar un Atributo
+    @Override
     public void update(AtributoEntity atributo) {
         String sql =
                 "UPDATE atributo SET atributo = :atributo " +
@@ -71,8 +74,8 @@ public class AtributoRepositoryImp {
         }
     }
 
-    // Eliminar un Atributo
-    public void delete(Integer id) {
+    @Override
+    public void delete(long id) {
         String sql = "DELETE FROM atributo WHERE idAtributo = :idAtributo";
 
         try (Connection con = sql2o.open()) {
