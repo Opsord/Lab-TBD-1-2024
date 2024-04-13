@@ -12,7 +12,6 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
     private Sql2o sql2o;
 
     // Crear un Coordinador
-    @Override
     public void create(CoordinadorEntity coordinador) {
         String sql =
                 "INSERT INTO Coordinador (rutCoordinador, nombreCoordinador, apellidoCoordinador, contrasena, idInstitucion) " +
@@ -30,7 +29,6 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
     }
 
     // Conseguir coordinador por su id
-    @Override
     public CoordinadorEntity conseguirPorId(Integer id) {
         String sql = "SELECT * FROM Coordinador WHERE idCoordinador = :idCoordinador";
 
@@ -42,7 +40,6 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
     }
 
     // Actualizar datos de un coordinador
-    @Override
     public void Update(CoordinadorEntity coordinador) {
         String sql =
                 "UPDATE Coordinador SET rutCoordinador = :rutCoordinador, nombreCoordinador = :nombreCoordinador, " +
@@ -62,7 +59,6 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
     }
 
     // Eliminar un Coordinador
-    @Override
     public void Delete(Integer id) {
         String sql = "DELETE FROM Coordinador WHERE idCoordinador = :idCoordinador";
 
