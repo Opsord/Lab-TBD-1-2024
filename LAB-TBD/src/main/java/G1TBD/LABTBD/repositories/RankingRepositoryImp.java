@@ -37,6 +37,7 @@ public class RankingRepositoryImp implements RankingRepository{
     @Override
     public List<RankingEntity> obtenerTodosLosRanking() {
         String sql = "SELECT * FROM ranking";
+
         try (Connection conn = sql2o.open()) {
             return conn.createQuery(sql).executeAndFetch(RankingEntity.class);
         } catch (Exception e) {

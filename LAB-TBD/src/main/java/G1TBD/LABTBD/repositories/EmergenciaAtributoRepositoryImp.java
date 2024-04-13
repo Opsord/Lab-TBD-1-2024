@@ -9,16 +9,18 @@ import org.sql2o.Sql2o;
 import java.util.List;
 
 @Repository
-public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoRepository{
+public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoRepository {
 
     @Autowired
     private Sql2o sql2o;
 
     @Override
     public EmergenciaAtributoEntity crearEmergenciaAtributo(EmergenciaAtributoEntity emergenciaAtributo) {
+        String sql = "INSERT INTO EmergenciaAtributo (idEmergencia, idHabilidad, compatibilidad) " +
+                "VALUES (:idEmergencia, :idHabilidad, :compatibilidad)";
+
         try (Connection conn = sql2o.open()) {
-            long id = (long) conn.createQuery("INSERT INTO EmergenciaAtributo (idEmergencia, idHabilidad, compatibilidad) " +
-                    "VALUES (:idEmergencia, :idHabilidad, :compatibilidad)")
+            long id = (long) conn.createQuery(sql)
                     .addParameter("idEmergencia", emergenciaAtributo.getIdEmergencia())
                     .addParameter("idHabilidad", emergenciaAtributo.getIdAtributo())
                     .addParameter("compatibilidad", emergenciaAtributo.isCompatibilidad())
@@ -34,8 +36,10 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
 
     @Override
     public List<EmergenciaAtributoEntity> obtenerTodosLosEmergenciaAtributo() {
+        String sql = "SELECT * FROM EmergenciaAtributo";
+
         try (Connection conn = sql2o.open()) {
-            return conn.createQuery("SELECT * FROM EmergenciaAtributo")
+            return conn.createQuery(sql)
                     .executeAndFetch(EmergenciaAtributoEntity.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -45,8 +49,10 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
 
     @Override
     public EmergenciaAtributoEntity obtenerEmergenciaAtributoPorId(long id) {
+        String sql = "SELECT * FROM EmergenciaAtributo WHERE idAtributo = :idAtributo";
+
         try (Connection conn = sql2o.open()) {
-            return conn.createQuery("SELECT * FROM EmergenciaAtributo WHERE idAtributo = :idAtributo")
+            return conn.createQuery(sql)
                     .addParameter("idAtributo", id)
                     .executeAndFetchFirst(EmergenciaAtributoEntity.class);
         } catch (Exception e) {
@@ -57,8 +63,10 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
 
     @Override
     public void actualizarEmergenciaAtributo(EmergenciaAtributoEntity emergenciaAtributo) {
+        String sql = "UPDATE EmergenciaAtributo SET idEmergencia = :idEmergencia, idHabilidad = :idHabilidad, compatibilidad = :compatibilidad WHERE idAtributo = :idAtributo";
+
         try (Connection conn = sql2o.open()) {
-            conn.createQuery("UPDATE EmergenciaAtributo SET idEmergencia = :idEmergencia, idHabilidad = :idHabilidad, compatibilidad = :compatibilidad WHERE idAtributo = :idAtributo")
+            conn.createQuery(sql)
                     .addParameter("idEmergencia", emergenciaAtributo.getIdEmergencia())
                     .addParameter("idHabilidad", emergenciaAtributo.getIdAtributo())
                     .addParameter("compatibilidad", emergenciaAtributo.isCompatibilidad())

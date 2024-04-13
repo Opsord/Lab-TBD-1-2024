@@ -10,7 +10,7 @@ import org.sql2o.Sql2o;
 import java.util.List;
 
 @Repository
-public class AtributoRepositoryImp implements AtributoRepository{
+public class AtributoRepositoryImp implements AtributoRepository {
 
     @Autowired
     private Sql2o sql2o;

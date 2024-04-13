@@ -16,9 +16,11 @@ public class TareaRepositoryImp implements TareaRepository{
 
     @Override
     public TareaEntity crearTarea(TareaEntity tarea) {
+        String sql = "INSERT INTO Tarea (idEmergencia, tipoTarea, descripcion, estado) " +
+                "VALUES (:idEmergencia, :tipoTarea, :descripcion, :estado)";
+
         try (Connection conn = sql2o.open()) {
-            long id = (long) conn.createQuery("INSERT INTO Tarea (idEmergencia, tipoTarea, descripcion, estado) " +
-                            "VALUES (:idEmergencia, :tipoTarea, :descripcion, :estado)")
+            long id = (long) conn.createQuery(sql)
                     .addParameter("idEmergencia", tarea.getIdEmergencia())
                     .addParameter("tipoTarea", tarea.getTipoTarea())
                     .addParameter("descripcion", tarea.getDescripcion())
@@ -35,8 +37,10 @@ public class TareaRepositoryImp implements TareaRepository{
 
     @Override
     public List<TareaEntity> obtenerTodasLasTareas() {
+        String sql = "SELECT * FROM Tarea";
+
         try(Connection conn = sql2o.open()) {
-            return conn.createQuery("SELECT * FROM Tarea")
+            return conn.createQuery(sql)
                     .executeAndFetch(TareaEntity.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -46,8 +50,10 @@ public class TareaRepositoryImp implements TareaRepository{
 
     @Override
     public TareaEntity obtenerTareaPorId(long id) {
+        String sql = "SELECT * FROM Tarea WHERE idTarea = :id";
+
         try(Connection conn = sql2o.open()) {
-            return conn.createQuery("SELECT * FROM Tarea WHERE idTarea = :id")
+            return conn.createQuery(sql)
                     .addParameter("id", id)
                     .executeAndFetchFirst(TareaEntity.class);
         } catch (Exception e) {
@@ -58,8 +64,10 @@ public class TareaRepositoryImp implements TareaRepository{
 
     @Override
     public boolean actualizarTarea(TareaEntity tarea) {
+        String sql = "UPDATE Tarea SET idEmergencia = :idEmergencia, tipoTarea = :tipoTarea, descripcion = :descripcion, estado = :estado WHERE idTarea = :id";
+
         try (Connection conn = sql2o.open()) {
-            conn.createQuery("UPDATE Tarea SET idEmergencia = :idEmergencia, tipoTarea = :tipoTarea, descripcion = :descripcion, estado = :estado WHERE idTarea = :id")
+            conn.createQuery(sql)
                     .addParameter("idEmergencia", tarea.getIdEmergencia())
                     .addParameter("tipoTarea", tarea.getTipoTarea())
                     .addParameter("descripcion", tarea.getDescripcion())
@@ -75,8 +83,10 @@ public class TareaRepositoryImp implements TareaRepository{
 
     @Override
     public boolean eliminarTarea(long id) {
+        String sql = "DELETE FROM Tarea WHERE idTarea = :id";
+
         try(Connection conn = sql2o.open()) {
-            conn.createQuery("DELETE FROM Tarea WHERE idTarea = :id")
+            conn.createQuery(sql)
                     .addParameter("id", id)
                     .executeUpdate();
             return true;
