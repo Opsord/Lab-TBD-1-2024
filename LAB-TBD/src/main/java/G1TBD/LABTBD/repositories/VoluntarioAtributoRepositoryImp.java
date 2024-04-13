@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
+import java.util.List;
+
 @Repository
 public class VoluntarioAtributoRepositoryImp implements VoluntarioAtributoRepository{
 
@@ -15,12 +17,11 @@ public class VoluntarioAtributoRepositoryImp implements VoluntarioAtributoReposi
 
     @Override
     public VoluntarioAtributoEntity crearVoluntarioAtributo(VoluntarioAtributoEntity voluntarioAtributo) {
-        String sql =
-                "INSERT INTO VoluntarioAtributo (idVoluntarioAtributo, idVoluntario, idAtributo) " +
-                        "VALUES (:idVoluntarioAtributo, :idVoluntario, :idAtributo)";
+        String sql = "INSERT INTO VoluntarioAtributo (idVoluntarioAtributo, idVoluntario, idAtributo) " +
+                "VALUES (:idVoluntarioAtributo, :idVoluntario, :idAtributo)";
 
-        try (Connection con = sql2o.open()) {
-            long id = (long) con.createQuery(sql)
+        try (Connection conn = sql2o.open()) {
+            long id = (long) conn.createQuery(sql)
                     .addParameter("idVoluntarioAtributo", voluntarioAtributo.getIdVoluntarioAtributo())
                     .addParameter("idVoluntario", voluntarioAtributo.getIdVoluntario())
                     .addParameter("idAtributo", voluntarioAtributo.getIdAtributo())
@@ -35,24 +36,39 @@ public class VoluntarioAtributoRepositoryImp implements VoluntarioAtributoReposi
     }
 
     @Override
+    public List<VoluntarioAtributoEntity> obtenerTodosLosVoluntarioAtributo() {
+        String sql = "SELECT * FROM VoluntarioAtributo";
+
+        try (Connection conn = sql2o.open()) {
+            return conn.createQuery(sql)
+                    .executeAndFetch(VoluntarioAtributoEntity.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
     public VoluntarioAtributoEntity obtenerVoluntarioAtributoPorId(long id) {
         String sql = "SELECT * FROM VoluntarioAtributo WHERE idVoluntarioAtributo = :idVoluntarioAtributo";
 
-        try (Connection con = sql2o.open()) {
-            return con.createQuery(sql)
+        try (Connection conn = sql2o.open()) {
+            return conn.createQuery(sql)
                     .addParameter("idvoluntarioatributo", id)
                     .executeAndFetchFirst(VoluntarioAtributoEntity.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 
     @Override
     public void actualizarVoluntarioAtributo(VoluntarioAtributoEntity voluntarioAtributo) {
-        String sql =
-                "UPDATE VoluntarioAtributo SET idVoluntarioAtributo = :idVoluntarioAtributo, idVoluntario = :idVoluntario, idAtributo = :idAtributo" +
-                        "WHERE idVoluntarioAtributo = :idVoluntarioAtributo";
+        String sql = "UPDATE VoluntarioAtributo SET idVoluntarioAtributo = :idVoluntarioAtributo, idVoluntario = :idVoluntario, idAtributo = :idAtributo" +
+                "WHERE idVoluntarioAtributo = :idVoluntarioAtributo";
 
-        try (Connection con = sql2o.open()) {
-            con.createQuery(sql)
+        try (Connection conn = sql2o.open()) {
+            conn.createQuery(sql)
                     .addParameter("idVoluntarioAtributo", voluntarioAtributo.getIdVoluntarioAtributo())
                     .addParameter("idVoluntario", voluntarioAtributo.getIdVoluntario())
                     .addParameter("idAtributo", voluntarioAtributo.getIdAtributo())
@@ -64,8 +80,8 @@ public class VoluntarioAtributoRepositoryImp implements VoluntarioAtributoReposi
     public void eliminarVoluntarioAtributo(long id) {
         String sql = "DELETE FROM VoluntarioAtributo WHERE idVoluntarioAtributo = :idVoluntarioAtributo";
 
-        try (Connection con = sql2o.open()) {
-            con.createQuery(sql)
+        try (Connection conn = sql2o.open()) {
+            conn.createQuery(sql)
                     .addParameter("idVoluntarioAtributo", id)
                     .executeUpdate();
         }

@@ -17,12 +17,11 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
 
     @Override
     public EmergenciaEntity crearEmergencia(EmergenciaEntity emergencia){
-        String sql =
-                "INSERT INTO Emergencia (estadoEmergencia, tituloEmergencia, descripcionEmergencia)"+
-                        "VALUES (:estadoEmergencia, :tituloEmergencia, :descripcionEmergencia)";
+        String sql = "INSERT INTO Emergencia (estadoEmergencia, tituloEmergencia, descripcionEmergencia)" +
+                "VALUES (:estadoEmergencia, :tituloEmergencia, :descripcionEmergencia)";
 
-        try (Connection con = sql2o.open()) {
-            long id = (long) con.createQuery(sql)
+        try (Connection conn = sql2o.open()) {
+            long id = (long) conn.createQuery(sql)
                     .addParameter("estadoEmergencia", emergencia.isEstadoEmergencia())
                     .addParameter("tituloEmergencia", emergencia.getTituloEmergencia())
                     .addParameter("descripcionEmergencia", emergencia.getDescripcionEmergencia())
@@ -40,8 +39,12 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
     public List<EmergenciaEntity> obtenerTodasLasEmergencias(){
         String sql = "SELECT * FROM emergencia";
 
-        try (Connection con = sql2o.open()) {
-            return con.createQuery(sql).executeAndFetch(EmergenciaEntity.class);
+        try (Connection conn = sql2o.open()) {
+            return conn.createQuery(sql)
+                    .executeAndFetch(EmergenciaEntity.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 
@@ -49,11 +52,15 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
     public EmergenciaEntity obtenerEmergenciaPorId(long id){
         String sql = "SELECT * FROM emergencia WHERE idEmergencia = :idEmergencia";
 
-        try (Connection con = sql2o.open()) {
-            return con.createQuery(sql)
+        try (Connection conn = sql2o.open()) {
+            return conn.createQuery(sql)
                     .addParameter("idEmergencia", id)
                     .executeAndFetchFirst(EmergenciaEntity.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
         }
+
     }
 
 //    @Override
@@ -68,34 +75,30 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
 
     @Override
     public void actualizarEmergencia(EmergenciaEntity emergencia){
-        String sql =
-                "UPDATE emergencia SET estadoEmergencia = :estadoEmergencia, tituloEmergencia = :tituloEmergencia, "+
-                        "descripcionEmergencia = :descripcionEmergencia" +
-                        "WHERE idEmergencia = :idEmergencia";
+        String sql = "UPDATE emergencia SET estadoEmergencia = :estadoEmergencia, tituloEmergencia = :tituloEmergencia, "+
+                "descripcionEmergencia = :descripcionEmergencia" +
+                "WHERE idEmergencia = :idEmergencia";
 
-        try (Connection con = sql2o.open()) {
-            con.createQuery(sql)
+        try (Connection conn = sql2o.open()) {
+            conn.createQuery(sql)
                     .addParameter("idEmergencia", emergencia.getIdEmergencia())
                     .addParameter("estadoEmergencia", emergencia.isEstadoEmergencia())
                     .addParameter("tituloEmergencia", emergencia.getTituloEmergencia())
                     .addParameter("descripcionEmergencia", emergencia.getDescripcionEmergencia())
                     .executeUpdate();
-            con.commit();
+            conn.commit();
         }
     }
 
     @Override
     public void eliminarEmergencia(long id){
-        String sql =
-                "DELETE FROM emergencia WHERE idEmergencia = :idEmergencia";
+        String sql = "DELETE FROM emergencia WHERE idEmergencia = :idEmergencia";
 
-        try (Connection con = sql2o.open()){
-            con.createQuery(sql)
+        try (Connection conn = sql2o.open()){
+            conn.createQuery(sql)
                     .addParameter("idEmergencia", id)
                     .executeUpdate();
-            con.commit();
+            conn.commit();
         }
     }
-
-
 }

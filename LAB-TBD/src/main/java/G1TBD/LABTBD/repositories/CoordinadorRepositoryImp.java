@@ -16,12 +16,11 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
 
     @Override
     public CoordinadorEntity crearCoordinador(CoordinadorEntity coordinador) {
-        String sql =
-                "INSERT INTO coordinador (rutCoordinador, nombreCoordinador, apellidoCoordinador, contrasena, idInstitucion) " +
-                        "VALUES (:rutCoordinador, :nombreCoordinador, :apellidoCoordinador, :contrasena, :idInstitucion)";
+        String sql = "INSERT INTO coordinador (rutCoordinador, nombreCoordinador, apellidoCoordinador, contrasena, idInstitucion) " +
+                "VALUES (:rutCoordinador, :nombreCoordinador, :apellidoCoordinador, :contrasena, :idInstitucion)";
 
-        try (Connection con = sql2o.open()) {
-            long id = (long) con.createQuery(sql)
+        try (Connection conn = sql2o.open()) {
+            long id = (long) conn.createQuery(sql)
                     .addParameter("rutcoordinador", coordinador.getRutCoordinador())
                     .addParameter("nombrecoordinador", coordinador.getNombreCoordinador())
                     .addParameter("apellidocoordinador", coordinador.getApellidoCoordinador())
@@ -40,32 +39,37 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
     @Override
     public List<CoordinadorEntity> obtenerTodosLosCoordinadores(){
         String sql = "SELECT * FROM coordinador";
-        try (Connection con = sql2o.open()){
-            return con.createQuery(sql).executeAndFetch(CoordinadorEntity.class);
+        try (Connection conn = sql2o.open()){
+            return conn.createQuery(sql)
+                    .executeAndFetch(CoordinadorEntity.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
         }
-
     }
 
     @Override
     public CoordinadorEntity obtenerCoordinadorPorId(long id) {
         String sql = "SELECT * FROM coordinador WHERE idCoordinador = :idCoordinador";
 
-        try (Connection con = sql2o.open()) {
-            return con.createQuery(sql)
-                    .addParameter("idcoordinador", id)
+        try (Connection conn = sql2o.open()) {
+            return conn.createQuery(sql)
+                    .addParameter("idCoordinador", id)
                     .executeAndFetchFirst(CoordinadorEntity.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 
     @Override
     public void actualizarCoordinador(CoordinadorEntity coordinador) {
-        String sql =
-                "UPDATE coordinador SET rutCoordinador = :rutCoordinador, nombreCoordinador = :nombreCoordinador, " +
-                        "apellidoCoordinador = :apellidoCoordinador, contrasena = :contrasena, idInstitucion = :idInstitucion " +
-                        "WHERE idCoordinador = :idCoordinador";
+        String sql = "UPDATE coordinador SET rutCoordinador = :rutCoordinador, nombreCoordinador = :nombreCoordinador, " +
+                "apellidoCoordinador = :apellidoCoordinador, contrasena = :contrasena, idInstitucion = :idInstitucion " +
+                "WHERE idCoordinador = :idCoordinador";
 
-        try (Connection con = sql2o.open()) {
-            con.createQuery(sql)
+        try (Connection conn = sql2o.open()) {
+            conn.createQuery(sql)
                     .addParameter("idcoordinador", coordinador.getIdCoordinador())
                     .addParameter("rutcoordinador", coordinador.getRutCoordinador())
                     .addParameter("nombrecoordinador", coordinador.getNombreCoordinador())
@@ -73,7 +77,7 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
                     .addParameter("contrasena", coordinador.getContrasena())
                     .addParameter("idinstitucion", coordinador.getIdInstitucion())
                     .executeUpdate();
-            con.commit();
+            conn.commit();
         }
     }
 
@@ -81,11 +85,11 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
     public void eliminarCoordinador(long id) {
         String sql = "DELETE FROM coordinador WHERE idCoordinador = :idCoordinador";
 
-        try (Connection con = sql2o.open()) {
-            con.createQuery(sql)
+        try (Connection conn = sql2o.open()) {
+            conn.createQuery(sql)
                     .addParameter("idcoordinador", id)
                     .executeUpdate();
-            con.commit();
+            conn.commit();
         }
     }
 }

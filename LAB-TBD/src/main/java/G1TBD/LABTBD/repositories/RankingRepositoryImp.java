@@ -16,12 +16,11 @@ public class RankingRepositoryImp implements RankingRepository{
 
     @Override
     public RankingEntity crearRanking(RankingEntity ranking) {
-        String sql =
-                "INSERT INTO ranking (idVoluntario, idTarea, valorRanking) " +
-                        "VALUES (:idVoluntario, :idTarea, :valorRanking)";
+        String sql = "INSERT INTO ranking (idVoluntario, idTarea, valorRanking) " +
+                "VALUES (:idVoluntario, :idTarea, :valorRanking)";
 
-        try (Connection con = sql2o.open()) {
-            long id = (long) con.createQuery(sql)
+        try (Connection conn = sql2o.open()) {
+            long id = (long) conn.createQuery(sql)
                     .addParameter("idVoluntario", ranking.getIdVoluntario())
                     .addParameter("idTarea", ranking.getIdTarea())
                     .addParameter("valorRanking", ranking.getValorRanking())
@@ -38,8 +37,11 @@ public class RankingRepositoryImp implements RankingRepository{
     @Override
     public List<RankingEntity> obtenerTodosLosRanking() {
         String sql = "SELECT * FROM ranking";
-        try (Connection con = sql2o.open()) {
-            return con.createQuery(sql).executeAndFetch(RankingEntity.class);
+        try (Connection conn = sql2o.open()) {
+            return conn.createQuery(sql).executeAndFetch(RankingEntity.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 
@@ -47,27 +49,29 @@ public class RankingRepositoryImp implements RankingRepository{
     public RankingEntity obtenerRankingPorId(long id) {
         String sql = "SELECT * FROM ranking WHERE idRanking = :idRanking";
 
-        try (Connection con = sql2o.open()) {
-            return con.createQuery(sql)
+        try (Connection conn = sql2o.open()) {
+            return conn.createQuery(sql)
                     .addParameter("idRanking", id)
                     .executeAndFetchFirst(RankingEntity.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 
     @Override
     public void actualizarRanking(RankingEntity ranking) {
-        String sql =
-                "UPDATE ranking SET idVoluntario = :idVoluntario, idTarea = :idTarea, valorRanking = :valorRanking " +
-                        "WHERE idRanking = :idRanking";
+        String sql = "UPDATE ranking SET idVoluntario = :idVoluntario, idTarea = :idTarea, valorRanking = :valorRanking " +
+                "WHERE idRanking = :idRanking";
 
-        try (Connection con = sql2o.open()) {
-            con.createQuery(sql)
+        try (Connection conn = sql2o.open()) {
+            conn.createQuery(sql)
                     .addParameter("idRanking", ranking.getIdRanking())
                     .addParameter("idVoluntario", ranking.getIdVoluntario())
                     .addParameter("idTarea", ranking.getIdTarea())
                     .addParameter("valorRanking", ranking.getValorRanking())
                     .executeUpdate();
-            con.commit();
+            conn.commit();
         }
     }
 
@@ -75,11 +79,11 @@ public class RankingRepositoryImp implements RankingRepository{
     public void eliminarRanking(long id) {
         String sql = "DELETE FROM ranking WHERE idRanking = :idRanking";
 
-        try (Connection con = sql2o.open()) {
-            con.createQuery(sql)
+        try (Connection conn = sql2o.open()) {
+            conn.createQuery(sql)
                     .addParameter("idRanking", id)
                     .executeUpdate();
-            con.commit();
+            conn.commit();
         }
     }
 }
