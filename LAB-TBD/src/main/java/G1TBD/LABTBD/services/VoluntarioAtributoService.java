@@ -12,7 +12,7 @@ public class VoluntarioAtributoService {
     @Autowired
     private VoluntarioAtributoRepository voluntarioAtributoRepository;
 
-    public VoluntarioAtributoEntity crearVoluntariAtributo(VoluntarioAtributoEntity voluntarioAtributo) {
+    public VoluntarioAtributoEntity crearVoluntarioAtributo(VoluntarioAtributoEntity voluntarioAtributo) {
         return voluntarioAtributoRepository.crearVoluntarioAtributo(voluntarioAtributo);
     }
 
