@@ -18,27 +18,27 @@ public class RankingController {
 
     @PostMapping("/crearRanking")
     public String crearRanking(RankingEntity ranking) {
-        rankingRepository.crearRanking(ranking);
+        rankingRepository.crear(ranking);
         return "redirect:/ranking"; // Ajusta según la ruta deseada
     }
 
     @GetMapping("/obtenerTodosLosRanking")
     public List<RankingEntity> obtenerTodosLosRanking() {
-        return rankingRepository.obtenerTodosLosRanking();
+        return rankingRepository.obtenerTodos();
     }
 
     @GetMapping("/obtenerRankingPorId")
     public RankingEntity obtenerRankingPorId(long id) {
-        return rankingRepository.obtenerRankingPorId(id);
+        return rankingRepository.obtenerPorId(id);
     }
 
     @PostMapping("/actualizarRanking")
     public boolean actualizarRanking(RankingEntity ranking) {
-        return rankingRepository.actualizarRanking(ranking);
+        return rankingRepository.actualizar(ranking);
     }
 
     @PostMapping("/eliminarRanking")
     public boolean eliminarRanking(long id) {
-        return rankingRepository.eliminarRanking(id);
+        return rankingRepository.eliminar(id);
     }
 }
