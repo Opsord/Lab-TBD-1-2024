@@ -14,22 +14,22 @@ public class AtributoService {
     private AtributoRepositoryImp atributoRepository;
 
     public AtributoEntity crearAtributo(AtributoEntity atributo) {
-        return atributoRepository.crearAtributo(atributo);
+        return atributoRepository.crear(atributo);
     }
 
     public List<AtributoEntity> obtenerTodosLosAtributos() {
-        return atributoRepository.obtenerTodosLosAtributos();
+        return atributoRepository.obtenerTodos();
     }
 
     public AtributoEntity obtenerAtributoPorId(long id) {
-        return atributoRepository.obtenerAtributoPorId(id);
+        return atributoRepository.obtenerPorId(id);
     }
 
     public boolean actualizarAtributo(AtributoEntity atributo) {
-        return atributoRepository.actualizarAtributo(atributo);
+        return atributoRepository.actualizar(atributo);
     }
 
     public boolean eliminarAtributo(long id) {
-        return atributoRepository.eliminarAtributo(id);
+        return atributoRepository.eliminar(id);
     }
 }
