@@ -14,22 +14,22 @@ public class CoordinadorService {
     private CoordinadorRepository coordinadorRepository;
 
     public CoordinadorEntity crearCoordinador(CoordinadorEntity coordinador) {
-        return coordinadorRepository.crearCoordinador(coordinador);
+        return coordinadorRepository.crear(coordinador);
     }
 
     public List<CoordinadorEntity> obtenerTodosLosCoordinadores() {
-        return coordinadorRepository.obtenerTodosLosCoordinadores();
+        return coordinadorRepository.obtenerTodos();
     }
 
     public CoordinadorEntity obtenerCoordinadorPorId(long id) {
-        return coordinadorRepository.obtenerCoordinadorPorId(id);
+        return coordinadorRepository.obtenerPorId(id);
     }
 
     public boolean actualizarCoordinador(CoordinadorEntity coordinador) {
-        return coordinadorRepository.actualizarCoordinador(coordinador);
+        return coordinadorRepository.actualizar(coordinador);
     }
 
     public boolean eliminarCoordinador(long id) {
-        return coordinadorRepository.eliminarCoordinador(id);
+        return coordinadorRepository.eliminar(id);
     }
 }

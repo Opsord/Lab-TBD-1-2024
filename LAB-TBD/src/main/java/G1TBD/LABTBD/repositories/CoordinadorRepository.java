@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface CoordinadorRepository {
 
-    CoordinadorEntity crearCoordinador(CoordinadorEntity coordinador);
+    CoordinadorEntity crear(CoordinadorEntity coordinador);
 
-    List<CoordinadorEntity> obtenerTodosLosCoordinadores();
+    List<CoordinadorEntity> obtenerTodos();
 
-    CoordinadorEntity obtenerCoordinadorPorId(long id);
+    CoordinadorEntity obtenerPorId(long id);
 
-    boolean actualizarCoordinador(CoordinadorEntity coordinador);
+    boolean actualizar(CoordinadorEntity coordinador);
 
-    boolean eliminarCoordinador(long id);
+    boolean eliminar(long id);
 }

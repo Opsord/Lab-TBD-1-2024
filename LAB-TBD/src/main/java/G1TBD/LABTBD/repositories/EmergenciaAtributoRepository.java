@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface EmergenciaAtributoRepository {
 
-    EmergenciaAtributoEntity crearEmergenciaAtributo(EmergenciaAtributoEntity emergenciaAtributo);
+    EmergenciaAtributoEntity crear(EmergenciaAtributoEntity emergenciaAtributo);
 
-    List<EmergenciaAtributoEntity> obtenerTodosLosEmergenciaAtributo();
+    List<EmergenciaAtributoEntity> obtenerTodos();
 
     EmergenciaAtributoEntity obtenerEmergenciaAtributoPorId(long id);
 

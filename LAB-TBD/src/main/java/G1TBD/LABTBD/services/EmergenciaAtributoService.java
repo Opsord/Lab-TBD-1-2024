@@ -13,11 +13,11 @@ public class EmergenciaAtributoService {
     private EmergenciaAtributoRepository emergenciaAtributoRepository;
 
     public EmergenciaAtributoEntity crearEmergenciaAtributo(EmergenciaAtributoEntity emergenciaAtributo) {
-        return emergenciaAtributoRepository.crearEmergenciaAtributo(emergenciaAtributo);
+        return emergenciaAtributoRepository.crear(emergenciaAtributo);
     }
 
     public List<EmergenciaAtributoEntity> obtenerTodasLasEmergenciaAtributo() {
-        return emergenciaAtributoRepository.obtenerTodosLosEmergenciaAtributo();
+        return emergenciaAtributoRepository.obtenerTodos();
     }
 
     public EmergenciaAtributoEntity obtenerEmergenciaAtributoPorId(long id) {

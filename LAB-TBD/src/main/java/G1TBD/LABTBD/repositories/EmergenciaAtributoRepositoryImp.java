@@ -15,7 +15,7 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
     private Sql2o sql2o;
 
     @Override
-    public EmergenciaAtributoEntity crearEmergenciaAtributo(EmergenciaAtributoEntity emergenciaAtributo) {
+    public EmergenciaAtributoEntity crear(EmergenciaAtributoEntity emergenciaAtributo) {
         String sql = "INSERT INTO EmergenciaAtributo (idEmergencia, idHabilidad, compatibilidad) " +
                 "VALUES (:idEmergencia, :idHabilidad, :compatibilidad)";
 
@@ -35,7 +35,7 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
     }
 
     @Override
-    public List<EmergenciaAtributoEntity> obtenerTodosLosEmergenciaAtributo() {
+    public List<EmergenciaAtributoEntity> obtenerTodos() {
         String sql = "SELECT * FROM EmergenciaAtributo";
 
         try (Connection conn = sql2o.open()) {

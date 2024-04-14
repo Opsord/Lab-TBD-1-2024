@@ -15,7 +15,7 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
     private Sql2o sql2o;
 
     @Override
-    public CoordinadorEntity crearCoordinador(CoordinadorEntity coordinador) {
+    public CoordinadorEntity crear(CoordinadorEntity coordinador) {
         String sql = "INSERT INTO coordinador (rutCoordinador, nombreCoordinador, apellidoCoordinador, contrasena, idInstitucion) " +
                 "VALUES (:rutCoordinador, :nombreCoordinador, :apellidoCoordinador, :contrasena, :idInstitucion)";
 
@@ -37,7 +37,7 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
     }
 
     @Override
-    public List<CoordinadorEntity> obtenerTodosLosCoordinadores(){
+    public List<CoordinadorEntity> obtenerTodos(){
         String sql = "SELECT * FROM coordinador";
         try (Connection conn = sql2o.open()){
             return conn.createQuery(sql)
@@ -49,7 +49,7 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
     }
 
     @Override
-    public CoordinadorEntity obtenerCoordinadorPorId(long id) {
+    public CoordinadorEntity obtenerPorId(long id) {
         String sql = "SELECT * FROM coordinador WHERE idCoordinador = :idCoordinador";
 
         try (Connection conn = sql2o.open()) {
@@ -63,7 +63,7 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
     }
 
     @Override
-    public boolean actualizarCoordinador(CoordinadorEntity coordinador) {
+    public boolean actualizar(CoordinadorEntity coordinador) {
         String sql = "UPDATE coordinador SET rutCoordinador = :rutCoordinador, nombreCoordinador = :nombreCoordinador, " +
                 "apellidoCoordinador = :apellidoCoordinador, contrasena = :contrasena, idInstitucion = :idInstitucion " +
                 "WHERE idCoordinador = :idCoordinador";
@@ -86,7 +86,7 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
     }
 
     @Override
-    public boolean eliminarCoordinador(long id) {
+    public boolean eliminar(long id) {
         String sql = "DELETE FROM coordinador WHERE idCoordinador = :idCoordinador";
 
         try (Connection conn = sql2o.open()) {
