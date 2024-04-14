@@ -1,21 +1,21 @@
 package G1TBD.LABTBD.repositories;
 
 import G1TBD.LABTBD.entities.EmergenciaEntity;
-import G1TBD.LABTBD.entities.InstitucionEntity;
 
 import java.util.List;
 
 public interface EmergenciaRepository {
 
-    EmergenciaEntity crearEmergencia(EmergenciaEntity emergencia);
+    EmergenciaEntity crear(EmergenciaEntity emergencia);
 
-    List<EmergenciaEntity> obtenerTodasLasEmergencias();
+    List<EmergenciaEntity> obtenerTodos();
 
-    EmergenciaEntity obtenerEmergenciaPorId(long id);
+    EmergenciaEntity obtenerPorId(long id);
 
 //    List<EmergenciaEntity> obtenerEmergenciaPorEstado();
 
-    boolean actualizarEmergencia(EmergenciaEntity emergencia);
+    boolean actualizar(EmergenciaEntity emergencia);
 
-    boolean eliminarEmergencia(long id);
+    boolean eliminar(long id);
 }
+

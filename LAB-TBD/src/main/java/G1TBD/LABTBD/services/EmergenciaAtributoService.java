@@ -21,14 +21,14 @@ public class EmergenciaAtributoService {
     }
 
     public EmergenciaAtributoEntity obtenerEmergenciaAtributoPorId(long id) {
-        return emergenciaAtributoRepository.obtenerEmergenciaAtributoPorId(id);
+        return emergenciaAtributoRepository.obtenerPorId(id);
     }
 
     public boolean actualizarEmergenciaAtributo(EmergenciaAtributoEntity voluntarioAtributo) {
-        return emergenciaAtributoRepository.actualizarEmergenciaAtributo(voluntarioAtributo);
+        return emergenciaAtributoRepository.actualizar(voluntarioAtributo);
     }
 
     public boolean eliminarEmargenciaAtributo(long id) {
-        return emergenciaAtributoRepository.eliminarEmergenciaAtributo(id);
+        return emergenciaAtributoRepository.eliminar(id);
     }
 }

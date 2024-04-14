@@ -10,9 +10,9 @@ public interface EmergenciaAtributoRepository {
 
     List<EmergenciaAtributoEntity> obtenerTodos();
 
-    EmergenciaAtributoEntity obtenerEmergenciaAtributoPorId(long id);
+    EmergenciaAtributoEntity obtenerPorId(long id);
 
-    boolean actualizarEmergenciaAtributo(EmergenciaAtributoEntity emergenciaAtributo);
+    boolean actualizar(EmergenciaAtributoEntity emergenciaAtributo);
 
-    boolean eliminarEmergenciaAtributo(long id);
+    boolean eliminar(long id);
 }

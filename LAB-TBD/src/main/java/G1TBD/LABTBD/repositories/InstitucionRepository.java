@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface InstitucionRepository {
 
-    InstitucionEntity crearInstitucion(InstitucionEntity institucion);
+    InstitucionEntity crear(InstitucionEntity institucion);
 
-    List<InstitucionEntity> obtenerTodasLasInstituciones();
+    List<InstitucionEntity> obtenerTodos();
 
-    InstitucionEntity obtenerInstitucionPorId(long id);
+    InstitucionEntity obtenerPorId(long id);
 
-    boolean actualizarInstitucion(InstitucionEntity institucion);
+    boolean actualizar(InstitucionEntity institucion);
 
-    boolean eliminarInstitucion(long id);
+    boolean eliminar(long id);
 }

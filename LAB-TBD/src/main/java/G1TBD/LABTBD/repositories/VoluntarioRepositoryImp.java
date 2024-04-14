@@ -14,7 +14,7 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
     private Sql2o sql2o;
 
     @Override
-    public VoluntarioEntity crearVoluntario(VoluntarioEntity voluntario) {
+    public VoluntarioEntity crear(VoluntarioEntity voluntario) {
         String sql = "INSERT INTO Voluntario (rutVoluntario, nombreVoluntario, apellidoVoluntario, edadVoluntario, sexoVoluntario, contrasena, disponibilidad) " +
                 "VALUES (:rutVoluntario, :nombreVoluntario, :apellidoVoluntario, :edadVoluntario, :sexoVoluntario, :contrasena, :disponibilidad)";
 
@@ -38,7 +38,7 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
     }
 
     @Override
-    public List<VoluntarioEntity> obtenerTodosLosVoluntarios() {
+    public List<VoluntarioEntity> obtenerTodos() {
         String sql = "SELECT * FROM Voluntario";
 
         try (Connection conn = sql2o.open()) {
@@ -51,7 +51,7 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
     }
 
     @Override
-    public VoluntarioEntity obtenerVoluntarioPorId(long id) {
+    public VoluntarioEntity obtenerPorId(long id) {
         String sql = "SELECT * FROM Voluntario WHERE idVoluntario = :idVoluntario";
 
         try (Connection conn = sql2o.open()) {
@@ -65,7 +65,7 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
     }
 
     @Override
-    public boolean actualizarVoluntario(VoluntarioEntity voluntario) {
+    public boolean actualizar(VoluntarioEntity voluntario) {
         String sql = "UPDATE Voluntario SET rutVoluntario = :rutVoluntario, nombreVoluntario = :nombreVoluntario, apellidoVoluntario = :apellidoVoluntario, " +
                 "edadVoluntario = :edadVoluntario, sexoVoluntario = :sexoVoluntario, contrasena = :contrasena, disponibilidad = :disponibilidad " +
                 "WHERE idVoluntario = :idVoluntario";
@@ -90,7 +90,7 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
     }
 
     @Override
-    public boolean eliminarVoluntario(long id) {
+    public boolean eliminar(long id) {
         String sql = "DELETE FROM Voluntario WHERE idVoluntario = :idVoluntario";
 
         try (Connection conn = sql2o.open()) {

@@ -14,22 +14,22 @@ public class InstitucionService {
     private InstitucionRepository institucionRepository;
 
     public InstitucionEntity crearInstitucion(InstitucionEntity institucion) {
-        return institucionRepository.crearInstitucion(institucion);
+        return institucionRepository.crear(institucion);
     }
 
     public List<InstitucionEntity> obtenerTodasLasInstituciones() {
-        return institucionRepository.obtenerTodasLasInstituciones();
+        return institucionRepository.obtenerTodos();
     }
 
     public InstitucionEntity obtenerInstitucionPorId(long id) {
-        return institucionRepository.obtenerInstitucionPorId(id);
+        return institucionRepository.obtenerPorId(id);
     }
 
     public boolean actualizarInstitucion(InstitucionEntity institucion) {
-        return institucionRepository.actualizarInstitucion(institucion);
+        return institucionRepository.actualizar(institucion);
     }
 
     public boolean eliminarInstitucion(long id) {
-        return institucionRepository.eliminarInstitucion(id);
+        return institucionRepository.eliminar(id);
     }
 }

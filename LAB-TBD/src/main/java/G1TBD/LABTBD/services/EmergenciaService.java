@@ -14,7 +14,7 @@ public class EmergenciaService {
     private EmergenciaRepository emergenciaRepository;
 
     public EmergenciaEntity crearEmergencia(EmergenciaEntity emergencia) {
-        return emergenciaRepository.crearEmergencia(emergencia);
+        return emergenciaRepository.crear(emergencia);
     }
 
     public List<EmergenciaEntity> obtenerTodasLasEmergencias() {
@@ -22,14 +22,14 @@ public class EmergenciaService {
     }
 
     public EmergenciaEntity obtenerEmergenciaPorId(long id) {
-        return emergenciaRepository.obtenerEmergenciaPorId(id);
+        return emergenciaRepository.obtenerPorId(id);
     }
 
     public boolean actualizarEmergencia(EmergenciaEntity emergencia) {
-        return emergenciaRepository.actualizarEmergencia(emergencia);
+        return emergenciaRepository.actualizar(emergencia);
     }
 
     public boolean eliminarEmergencia(long id) {
-        return emergenciaRepository.eliminarEmergencia(id);
+        return emergenciaRepository.eliminar(id);
     }
 }

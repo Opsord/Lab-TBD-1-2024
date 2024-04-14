@@ -16,7 +16,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
     private Sql2o sql2o;
 
     @Override
-    public EmergenciaEntity crearEmergencia(EmergenciaEntity emergencia){
+    public EmergenciaEntity crear(EmergenciaEntity emergencia){
         String sql = "INSERT INTO Emergencia (estadoEmergencia, tituloEmergencia, descripcionEmergencia)" +
                 "VALUES (:estadoEmergencia, :tituloEmergencia, :descripcionEmergencia)";
 
@@ -49,7 +49,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
     }
 
     @Override
-    public EmergenciaEntity obtenerEmergenciaPorId(long id){
+    public EmergenciaEntity obtenerPorId(long id){
         String sql = "SELECT * FROM emergencia WHERE idEmergencia = :idEmergencia";
 
         try (Connection conn = sql2o.open()) {
@@ -74,7 +74,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
 
 
     @Override
-    public boolean actualizarEmergencia(EmergenciaEntity emergencia){
+    public boolean actualizar(EmergenciaEntity emergencia){
         String sql = "UPDATE emergencia SET estadoEmergencia = :estadoEmergencia, tituloEmergencia = :tituloEmergencia, "+
                 "descripcionEmergencia = :descripcionEmergencia" +
                 "WHERE idEmergencia = :idEmergencia";
@@ -95,7 +95,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
     }
 
     @Override
-    public boolean eliminarEmergencia(long id){
+    public boolean eliminar(long id){
         String sql = "DELETE FROM emergencia WHERE idEmergencia = :idEmergencia";
 
         try (Connection conn = sql2o.open()){

@@ -1,7 +1,6 @@
 package G1TBD.LABTBD.controllers;
 
 import G1TBD.LABTBD.entities.EmergenciaAtributoEntity;
-import G1TBD.LABTBD.entities.InstitucionEntity;
 import G1TBD.LABTBD.repositories.EmergenciaAtributoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,17 +27,17 @@ public class EmergenciaAtributoController {
     }
     @GetMapping("/porId")
     public EmergenciaAtributoEntity obtenerEmergenciaAtributoPorId(long id){
-        return emergenciaAtributoRepository.obtenerEmergenciaAtributoPorId(id);
+        return emergenciaAtributoRepository.obtenerPorId(id);
     }
 
     @PostMapping("/actualizar")
     public boolean actualizarEmergenciaAtributo(EmergenciaAtributoEntity emergenciaAtributo){
-        return emergenciaAtributoRepository.actualizarEmergenciaAtributo(emergenciaAtributo);
+        return emergenciaAtributoRepository.actualizar(emergenciaAtributo);
 
     }
     @PostMapping("/eliminar")
     public boolean eliminarEmergenciaAtributo(long id){
-        return emergenciaAtributoRepository.eliminarEmergenciaAtributo(id);
+        return emergenciaAtributoRepository.eliminar(id);
     }
 
 

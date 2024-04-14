@@ -15,7 +15,7 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
     private Sql2o sql2o;
 
     @Override
-    public InstitucionEntity crearInstitucion(InstitucionEntity institucion) {
+    public InstitucionEntity crear(InstitucionEntity institucion) {
         String sql = "INSERT INTO institucion (nombreInstitucion)" +
                 "VALUES (:nombreInstitucion)";
         try (Connection conn = sql2o.open()) {
@@ -32,7 +32,7 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
     }
 
     @Override
-    public List<InstitucionEntity> obtenerTodasLasInstituciones() {
+    public List<InstitucionEntity> obtenerTodos() {
         String sql = "SELECT * FROM Institucion ORDER BY idInstitucion ASC";
 
         try (Connection conn = sql2o.open()) {
@@ -45,7 +45,7 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
     }
 
     @Override
-    public InstitucionEntity obtenerInstitucionPorId(long id) {
+    public InstitucionEntity obtenerPorId(long id) {
         String sql = "SELECT * FROM Institucion WHERE idInstitucion = :idInstitucion";
 
         try (Connection conn = sql2o.open()) {
@@ -59,7 +59,7 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
     }
 
     @Override
-    public boolean actualizarInstitucion(InstitucionEntity institucion) {
+    public boolean actualizar(InstitucionEntity institucion) {
         String sql = "UPDATE Institucion SET nombreInstitucion = :nombreInstitucion" +
                 "WHERE idInstitucion = :idInstitucion";
 
@@ -77,7 +77,7 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
     }
 
     @Override
-    public boolean eliminarInstitucion(long id){
+    public boolean eliminar(long id){
         String sql = "DELETE FROM Institucion WHERE idInstitucion = :idInstitucion";
 
         try (Connection conn = sql2o.open()) {

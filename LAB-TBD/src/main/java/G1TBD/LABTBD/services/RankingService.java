@@ -14,22 +14,22 @@ public class RankingService {
     private RankingRepository rankingRepository;
 
     public RankingEntity crearRanking(RankingEntity ranking) {
-        return rankingRepository.crearRanking(ranking);
+        return rankingRepository.crear(ranking);
     }
 
     public List<RankingEntity> obtenerTodosLosRankings() {
-        return rankingRepository.obtenerTodosLosRanking();
+        return rankingRepository.obtenerTodos();
     }
 
     public RankingEntity obtenerRankingPorId(long id) {
-        return rankingRepository.obtenerRankingPorId(id);
+        return rankingRepository.obtenerPorId(id);
     }
 
     public boolean actualizarRanking(RankingEntity ranking) {
-        return rankingRepository.actualizarRanking(ranking);
+        return rankingRepository.actualizar(ranking);
     }
 
     public boolean eliminarRanking(long id) {
-        return rankingRepository.eliminarRanking(id);
+        return rankingRepository.eliminar(id);
     }
 }

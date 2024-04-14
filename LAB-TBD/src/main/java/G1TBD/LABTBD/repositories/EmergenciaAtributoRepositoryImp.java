@@ -48,7 +48,7 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
     }
 
     @Override
-    public EmergenciaAtributoEntity obtenerEmergenciaAtributoPorId(long id) {
+    public EmergenciaAtributoEntity obtenerPorId(long id) {
         String sql = "SELECT * FROM EmergenciaAtributo WHERE idAtributo = :idAtributo";
 
         try (Connection conn = sql2o.open()) {
@@ -62,7 +62,7 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
     }
 
     @Override
-    public boolean actualizarEmergenciaAtributo(EmergenciaAtributoEntity emergenciaAtributo) {
+    public boolean actualizar(EmergenciaAtributoEntity emergenciaAtributo) {
         String sql = "UPDATE EmergenciaAtributo SET idEmergencia = :idEmergencia, idHabilidad = :idHabilidad, compatibilidad = :compatibilidad WHERE idAtributo = :idAtributo";
 
         try (Connection conn = sql2o.open()) {
@@ -81,7 +81,7 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
     }
 
     @Override
-    public boolean eliminarEmergenciaAtributo(long id){
+    public boolean eliminar(long id){
         String sql = "DELETE FROM EmergenciaAtributo WHERE idAtributo = :idAtributo";
 
         try (Connection conn = sql2o.open()) {

@@ -14,22 +14,22 @@ public class VoluntarioService {
     private VoluntarioRepository voluntarioRepository;
 
     public VoluntarioEntity crearVoluntario(VoluntarioEntity voluntario) {
-        return voluntarioRepository.crearVoluntario(voluntario);
+        return voluntarioRepository.crear(voluntario);
     }
 
     public List<VoluntarioEntity> obtenerTodosLosVoluntarios() {
-        return voluntarioRepository.obtenerTodosLosVoluntarios();
+        return voluntarioRepository.obtenerTodos();
     }
 
     public VoluntarioEntity obtenerVoluntarioPorId(long id) {
-        return voluntarioRepository.obtenerVoluntarioPorId(id);
+        return voluntarioRepository.obtenerPorId(id);
     }
 
     public boolean actualizarVoluntario(VoluntarioEntity voluntario) {
-        return voluntarioRepository.actualizarVoluntario(voluntario);
+        return voluntarioRepository.actualizar(voluntario);
     }
 
     public boolean eliminarVoluntario(long id) {
-        return voluntarioRepository.eliminarVoluntario(id);
+        return voluntarioRepository.eliminar(id);
     }
 }

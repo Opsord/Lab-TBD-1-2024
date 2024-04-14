@@ -5,14 +5,14 @@ import java.util.List;
 
 public interface VoluntarioRepository {
 
-    VoluntarioEntity crearVoluntario(VoluntarioEntity voluntario);
+    VoluntarioEntity crear(VoluntarioEntity voluntario);
 
-    List<VoluntarioEntity> obtenerTodosLosVoluntarios();
+    List<VoluntarioEntity> obtenerTodos();
 
-    VoluntarioEntity obtenerVoluntarioPorId(long id);
+    VoluntarioEntity obtenerPorId(long id);
 
-    boolean actualizarVoluntario(VoluntarioEntity voluntario);
+    boolean actualizar(VoluntarioEntity voluntario);
 
-    boolean eliminarVoluntario(long id);
+    boolean eliminar(long id);
 
 }

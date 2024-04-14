@@ -15,7 +15,7 @@ public class RankingRepositoryImp implements RankingRepository{
     private Sql2o sql2o;
 
     @Override
-    public RankingEntity crearRanking(RankingEntity ranking) {
+    public RankingEntity crear(RankingEntity ranking) {
         String sql = "INSERT INTO ranking (idVoluntario, idTarea, valorRanking) " +
                 "VALUES (:idVoluntario, :idTarea, :valorRanking)";
 
@@ -35,7 +35,7 @@ public class RankingRepositoryImp implements RankingRepository{
     }
 
     @Override
-    public List<RankingEntity> obtenerTodosLosRanking() {
+    public List<RankingEntity> obtenerTodos() {
         String sql = "SELECT * FROM ranking";
 
         try (Connection conn = sql2o.open()) {
@@ -47,7 +47,7 @@ public class RankingRepositoryImp implements RankingRepository{
     }
 
     @Override
-    public RankingEntity obtenerRankingPorId(long id) {
+    public RankingEntity obtenerPorId(long id) {
         String sql = "SELECT * FROM ranking WHERE idRanking = :idRanking";
 
         try (Connection conn = sql2o.open()) {
@@ -61,7 +61,7 @@ public class RankingRepositoryImp implements RankingRepository{
     }
 
     @Override
-    public boolean actualizarRanking(RankingEntity ranking) {
+    public boolean actualizar(RankingEntity ranking) {
         String sql = "UPDATE ranking SET idVoluntario = :idVoluntario, idTarea = :idTarea, valorRanking = :valorRanking " +
                 "WHERE idRanking = :idRanking";
 
@@ -81,7 +81,7 @@ public class RankingRepositoryImp implements RankingRepository{
     }
 
     @Override
-    public boolean eliminarRanking(long id) {
+    public boolean eliminar(long id) {
         String sql = "DELETE FROM ranking WHERE idRanking = :idRanking";
 
         try (Connection conn = sql2o.open()) {

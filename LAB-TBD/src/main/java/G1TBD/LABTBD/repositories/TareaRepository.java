@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface TareaRepository {
 
-    TareaEntity crearTarea(TareaEntity tarea);
+    TareaEntity crear(TareaEntity tarea);
 
-    List<TareaEntity> obtenerTodasLasTareas();
+    List<TareaEntity> obtenerTodos();
 
-    TareaEntity obtenerTareaPorId(long id);
+    TareaEntity obtenerPorId(long id);
 
-    boolean actualizarTarea(TareaEntity tarea);
+    boolean actualizar(TareaEntity tarea);
 
-    boolean eliminarTarea(long id);
+    boolean eliminar(long id);
 }

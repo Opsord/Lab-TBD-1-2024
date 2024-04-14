@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface VoluntarioAtributoRepository {
 
-    VoluntarioAtributoEntity crearVoluntarioAtributo(VoluntarioAtributoEntity voluntarioAtributo);
+    VoluntarioAtributoEntity crear(VoluntarioAtributoEntity voluntarioAtributo);
 
-    List<VoluntarioAtributoEntity> obtenerTodosLosVoluntarioAtributo();
+    List<VoluntarioAtributoEntity> obtenerTodos();
 
-    VoluntarioAtributoEntity obtenerVoluntarioAtributoPorId(long id);
+    VoluntarioAtributoEntity obtenerPorId(long id);
 
-    boolean actualizarVoluntarioAtributo(VoluntarioAtributoEntity voluntarioAtributo);
+    boolean actualizar(VoluntarioAtributoEntity voluntarioAtributo);
 
-    boolean eliminarVoluntarioAtributo(long id);
+    boolean eliminar(long id);
 }

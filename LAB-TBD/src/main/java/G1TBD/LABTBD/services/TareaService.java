@@ -14,22 +14,22 @@ public class TareaService {
     TareaRepositoryImp tareaRepository;
 
     public TareaEntity crearTarea(TareaEntity tarea) {
-        return tareaRepository.crearTarea(tarea);
+        return tareaRepository.crear(tarea);
     }
 
     public List<TareaEntity> obtenerTodasLasTareas() {
-        return tareaRepository.obtenerTodasLasTareas();
+        return tareaRepository.obtenerTodos();
     }
 
     public TareaEntity obtenerTareaPorId(long id) {
-        return tareaRepository.obtenerTareaPorId(id);
+        return tareaRepository.obtenerPorId(id);
     }
 
     public boolean actualizarTarea(TareaEntity tarea) {
-        return tareaRepository.actualizarTarea(tarea);
+        return tareaRepository.actualizar(tarea);
     }
 
     public boolean eliminarTarea(long id) {
-        return tareaRepository.eliminarTarea(id);
+        return tareaRepository.eliminar(id);
     }
 }

@@ -15,7 +15,7 @@ public class TareaRepositoryImp implements TareaRepository{
     private Sql2o sql2o;
 
     @Override
-    public TareaEntity crearTarea(TareaEntity tarea) {
+    public TareaEntity crear(TareaEntity tarea) {
         String sql = "INSERT INTO Tarea (idEmergencia, tipoTarea, descripcion, estado) " +
                 "VALUES (:idEmergencia, :tipoTarea, :descripcion, :estado)";
 
@@ -36,7 +36,7 @@ public class TareaRepositoryImp implements TareaRepository{
     }
 
     @Override
-    public List<TareaEntity> obtenerTodasLasTareas() {
+    public List<TareaEntity> obtenerTodos() {
         String sql = "SELECT * FROM Tarea";
 
         try(Connection conn = sql2o.open()) {
@@ -49,7 +49,7 @@ public class TareaRepositoryImp implements TareaRepository{
     }
 
     @Override
-    public TareaEntity obtenerTareaPorId(long id) {
+    public TareaEntity obtenerPorId(long id) {
         String sql = "SELECT * FROM Tarea WHERE idTarea = :id";
 
         try(Connection conn = sql2o.open()) {
@@ -63,7 +63,7 @@ public class TareaRepositoryImp implements TareaRepository{
     }
 
     @Override
-    public boolean actualizarTarea(TareaEntity tarea) {
+    public boolean actualizar(TareaEntity tarea) {
         String sql = "UPDATE Tarea SET idEmergencia = :idEmergencia, tipoTarea = :tipoTarea, descripcion = :descripcion, estado = :estado WHERE idTarea = :id";
 
         try (Connection conn = sql2o.open()) {
@@ -83,7 +83,7 @@ public class TareaRepositoryImp implements TareaRepository{
     }
 
     @Override
-    public boolean eliminarTarea(long id) {
+    public boolean eliminar(long id) {
         String sql = "DELETE FROM Tarea WHERE idTarea = :id";
 
         try(Connection conn = sql2o.open()) {
