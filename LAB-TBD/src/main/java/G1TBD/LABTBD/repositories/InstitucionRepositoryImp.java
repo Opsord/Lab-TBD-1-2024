@@ -32,7 +32,7 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
     }
 
     @Override
-    public List<InstitucionEntity> obtenerTodasLasInstituciones(InstitucionEntity institucion) {
+    public List<InstitucionEntity> obtenerTodasLasInstituciones() {
         String sql = "SELECT * FROM Institucion ORDER BY idInstitucion ASC";
 
         try (Connection conn = sql2o.open()) {

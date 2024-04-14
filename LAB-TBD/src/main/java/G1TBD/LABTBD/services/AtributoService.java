@@ -11,7 +11,7 @@ import java.util.List;
 public class AtributoService {
 
     @Autowired
-    AtributoRepositoryImp atributoRepository;
+    private AtributoRepositoryImp atributoRepository;
 
     public AtributoEntity crearAtributo(AtributoEntity atributo) {
         return atributoRepository.crearAtributo(atributo);

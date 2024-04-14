@@ -8,7 +8,7 @@ public interface InstitucionRepository {
 
     InstitucionEntity crearInstitucion(InstitucionEntity institucion);
 
-    List<InstitucionEntity> obtenerTodasLasInstituciones(InstitucionEntity institucion);
+    List<InstitucionEntity> obtenerTodasLasInstituciones();
 
     InstitucionEntity obtenerInstitucionPorId(long id);
 
