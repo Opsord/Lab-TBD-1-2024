@@ -34,13 +34,15 @@ public class TareaController {
     }
 
     @PostMapping("/actualizar")
-    public boolean actualizarTarea(TareaEntity tarea) {
-        return tareaService.actualizarTarea(tarea);
+    public String actualizarTarea(TareaEntity tarea) {
+        tareaService.actualizarTarea(tarea);
+        return "redirect:/tareas";
     }
 
     @PostMapping("/eliminar")
-    public boolean eliminarTarea(long id) {
-        return tareaService.eliminarTarea(id);
+    public String eliminarTarea(long id) {
+        tareaService.eliminarTarea(id);
+        return "redirect:/tareas";
     }
 
 }

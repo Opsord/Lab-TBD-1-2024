@@ -34,12 +34,14 @@ public class InstitucionController {
     }
 
     @PostMapping("/actualizar")
-    public boolean actualizarInstitucion(InstitucionEntity institucion) {
-        return institucionService.actualizarInstitucion(institucion);
+    public String actualizarInstitucion(InstitucionEntity institucion) {
+        institucionService.actualizarInstitucion(institucion);
+        return "redirect:/instituciones";
     }
 
     @PostMapping("/eliminar")
-    public boolean eliminarInstitucion(long id) {
-        return institucionService.eliminarInstitucion(id);
+    public String eliminarInstitucion(long id) {
+        institucionService.eliminarInstitucion(id);
+        return "redirect:/instituciones";
     }
 }
