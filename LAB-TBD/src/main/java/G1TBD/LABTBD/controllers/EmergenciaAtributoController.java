@@ -18,12 +18,12 @@ public class EmergenciaAtributoController {
     private EmergenciaAtributoRepository emergenciaAtributoRepository;
     @PostMapping("/crear")
     public String crearInstitucion(EmergenciaAtributoEntity emergenciaAtributo) {
-        emergenciaAtributoRepository.crearEmergenciaAtributo(emergenciaAtributo);
+        emergenciaAtributoRepository.crear(emergenciaAtributo);
         return "redirect:/emergenciaAtributo";
     }
     @GetMapping("/todo")
     public List<EmergenciaAtributoEntity> obtenerTodasEmergenciaAtributo(){
-        return emergenciaAtributoRepository.obtenerTodosLosEmergenciaAtributo();
+        return emergenciaAtributoRepository.obtenerTodos();
 
     }
     @GetMapping("/porId")
