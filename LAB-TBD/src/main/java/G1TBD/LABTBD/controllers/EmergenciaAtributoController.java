@@ -1,7 +1,7 @@
 package G1TBD.LABTBD.controllers;
 
 import G1TBD.LABTBD.entities.EmergenciaAtributoEntity;
-import G1TBD.LABTBD.repositories.EmergenciaAtributoRepository;
+import G1TBD.LABTBD.services.EmergenciaAtributoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,34 +13,36 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "http://localhost:8080/emergenciaAtributo")
 public class EmergenciaAtributoController {
+
     @Autowired
-    private EmergenciaAtributoRepository emergenciaAtributoRepository;
+    private EmergenciaAtributoService emergenciaAtributoService;
+
+    String homeLinkRedirect = "redirect:/emergenciaAtributo";
+
     @PostMapping("/crear")
-    public String crearInstitucion(EmergenciaAtributoEntity emergenciaAtributo) {
-        emergenciaAtributoRepository.crear(emergenciaAtributo);
-        return "redirect:/emergenciaAtributo";
+    public String crear(EmergenciaAtributoEntity emergenciaAtributo) {
+        emergenciaAtributoService.crear(emergenciaAtributo);
+        return homeLinkRedirect;
     }
+
     @GetMapping("/todo")
     public List<EmergenciaAtributoEntity> obtenerTodasEmergenciaAtributo(){
-        return emergenciaAtributoRepository.obtenerTodos();
-
+        return emergenciaAtributoService.obtenerTodos();
     }
+
     @GetMapping("/porId")
     public EmergenciaAtributoEntity obtenerEmergenciaAtributoPorId(long id){
-        return emergenciaAtributoRepository.obtenerPorId(id);
+        return emergenciaAtributoService.obtenerPorId(id);
     }
 
     @PostMapping("/actualizar")
     public boolean actualizarEmergenciaAtributo(EmergenciaAtributoEntity emergenciaAtributo){
-        return emergenciaAtributoRepository.actualizar(emergenciaAtributo);
-
+        return emergenciaAtributoService.actualizar(emergenciaAtributo);
     }
+
     @PostMapping("/eliminar")
     public boolean eliminarEmergenciaAtributo(long id){
-        return emergenciaAtributoRepository.eliminar(id);
+        return emergenciaAtributoService.eliminar(id);
     }
-
-
-
 
 }

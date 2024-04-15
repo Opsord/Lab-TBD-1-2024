@@ -13,33 +13,36 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "http://localhost:8080/voluntarios")
 public class VoluntarioController {
+
     @Autowired
     private VoluntarioService voluntarioService;
 
+    String homeLinkRedirect = "redirect:/voluntarios";
+
     @PostMapping("/crear")
     public String crearVoluntario(VoluntarioEntity voluntario) {
-        voluntarioService.crearVoluntario(voluntario);
-        return "redirect:/voluntarios";
+        voluntarioService.crear(voluntario);
+        return homeLinkRedirect;
     }
 
     @GetMapping("/todo")
     public List<VoluntarioEntity> obtenerTodosLosVoluntarios() {
-        return voluntarioService.obtenerTodosLosVoluntarios();
+        return voluntarioService.obtenerTodos();
     }
 
     @GetMapping("/porId")
     public VoluntarioEntity obtenerVoluntarioPorId(long id) {
-        return voluntarioService.obtenerVoluntarioPorId(id);
+        return voluntarioService.obtenerPorId(id);
     }
 
     @PostMapping("/actualizar")
     public boolean actualizarVoluntario(VoluntarioEntity voluntario) {
-        return voluntarioService.actualizarVoluntario(voluntario);
+        return voluntarioService.actualizar(voluntario);
     }
 
     @PostMapping("/eliminar")
     public boolean eliminarVoluntario(long id) {
-        return voluntarioService.eliminarVoluntario(id);
+        return voluntarioService.eliminar(id);
     }
 
 }

@@ -13,23 +13,23 @@ public class TareaService {
     @Autowired
     TareaRepositoryImp tareaRepository;
 
-    public TareaEntity crearTarea(TareaEntity tarea) {
+    public TareaEntity crear(TareaEntity tarea) {
         return tareaRepository.crear(tarea);
     }
 
-    public List<TareaEntity> obtenerTodasLasTareas() {
+    public List<TareaEntity> obtenerTodos() {
         return tareaRepository.obtenerTodos();
     }
 
-    public TareaEntity obtenerTareaPorId(long id) {
+    public TareaEntity obtenerPorId(long id) {
         return tareaRepository.obtenerPorId(id);
     }
 
-    public boolean actualizarTarea(TareaEntity tarea) {
+    public boolean actualizar(TareaEntity tarea) {
         return tareaRepository.actualizar(tarea);
     }
 
-    public boolean eliminarTarea(long id) {
+    public boolean eliminar(long id) {
         return tareaRepository.eliminar(id);
     }
 }

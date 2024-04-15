@@ -9,26 +9,27 @@ import java.util.List;
 
 @Service
 public class EmergenciaAtributoService {
+    
     @Autowired
     private EmergenciaAtributoRepository emergenciaAtributoRepository;
 
-    public EmergenciaAtributoEntity crearEmergenciaAtributo(EmergenciaAtributoEntity emergenciaAtributo) {
+    public EmergenciaAtributoEntity crear(EmergenciaAtributoEntity emergenciaAtributo) {
         return emergenciaAtributoRepository.crear(emergenciaAtributo);
     }
 
-    public List<EmergenciaAtributoEntity> obtenerTodasLasEmergenciaAtributo() {
+    public List<EmergenciaAtributoEntity> obtenerTodos() {
         return emergenciaAtributoRepository.obtenerTodos();
     }
 
-    public EmergenciaAtributoEntity obtenerEmergenciaAtributoPorId(long id) {
+    public EmergenciaAtributoEntity obtenerPorId(long id) {
         return emergenciaAtributoRepository.obtenerPorId(id);
     }
 
-    public boolean actualizarEmergenciaAtributo(EmergenciaAtributoEntity voluntarioAtributo) {
+    public boolean actualizar(EmergenciaAtributoEntity voluntarioAtributo) {
         return emergenciaAtributoRepository.actualizar(voluntarioAtributo);
     }
 
-    public boolean eliminarEmargenciaAtributo(long id) {
+    public boolean eliminar(long id) {
         return emergenciaAtributoRepository.eliminar(id);
     }
 }

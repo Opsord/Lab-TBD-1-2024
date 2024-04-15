@@ -13,23 +13,23 @@ public class InstitucionService {
     @Autowired
     private InstitucionRepository institucionRepository;
 
-    public InstitucionEntity crearInstitucion(InstitucionEntity institucion) {
+    public InstitucionEntity crear(InstitucionEntity institucion) {
         return institucionRepository.crear(institucion);
     }
 
-    public List<InstitucionEntity> obtenerTodasLasInstituciones() {
+    public List<InstitucionEntity> obtenerTodos() {
         return institucionRepository.obtenerTodos();
     }
 
-    public InstitucionEntity obtenerInstitucionPorId(long id) {
+    public InstitucionEntity obtenerPorId(long id) {
         return institucionRepository.obtenerPorId(id);
     }
 
-    public boolean actualizarInstitucion(InstitucionEntity institucion) {
+    public boolean actualizar(InstitucionEntity institucion) {
         return institucionRepository.actualizar(institucion);
     }
 
-    public boolean eliminarInstitucion(long id) {
+    public boolean eliminar(long id) {
         return institucionRepository.eliminar(id);
     }
 }

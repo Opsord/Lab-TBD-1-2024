@@ -13,23 +13,23 @@ public class AtributoService {
     @Autowired
     private AtributoRepositoryImp atributoRepository;
 
-    public AtributoEntity crearAtributo(AtributoEntity atributo) {
+    public AtributoEntity crear(AtributoEntity atributo) {
         return atributoRepository.crear(atributo);
     }
 
-    public List<AtributoEntity> obtenerTodosLosAtributos() {
+    public List<AtributoEntity> obtenerTodos() {
         return atributoRepository.obtenerTodos();
     }
 
-    public AtributoEntity obtenerAtributoPorId(long id) {
+    public AtributoEntity obtenerPorId(long id) {
         return atributoRepository.obtenerPorId(id);
     }
 
-    public boolean actualizarAtributo(AtributoEntity atributo) {
+    public boolean actualizar(AtributoEntity atributo) {
         return atributoRepository.actualizar(atributo);
     }
 
-    public boolean eliminarAtributo(long id) {
+    public boolean eliminar(long id) {
         return atributoRepository.eliminar(id);
     }
 }

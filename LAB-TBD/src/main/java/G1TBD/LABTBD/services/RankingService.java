@@ -13,23 +13,23 @@ public class RankingService {
     @Autowired
     private RankingRepository rankingRepository;
 
-    public RankingEntity crearRanking(RankingEntity ranking) {
+    public RankingEntity crear(RankingEntity ranking) {
         return rankingRepository.crear(ranking);
     }
 
-    public List<RankingEntity> obtenerTodosLosRankings() {
+    public List<RankingEntity> obtenerTodos() {
         return rankingRepository.obtenerTodos();
     }
 
-    public RankingEntity obtenerRankingPorId(long id) {
+    public RankingEntity obtenerPorId(long id) {
         return rankingRepository.obtenerPorId(id);
     }
 
-    public boolean actualizarRanking(RankingEntity ranking) {
+    public boolean actualizar(RankingEntity ranking) {
         return rankingRepository.actualizar(ranking);
     }
 
-    public boolean eliminarRanking(long id) {
+    public boolean eliminar(long id) {
         return rankingRepository.eliminar(id);
     }
 }

@@ -13,23 +13,23 @@ public class VoluntarioService {
     @Autowired
     private VoluntarioRepository voluntarioRepository;
 
-    public VoluntarioEntity crearVoluntario(VoluntarioEntity voluntario) {
+    public VoluntarioEntity crear(VoluntarioEntity voluntario) {
         return voluntarioRepository.crear(voluntario);
     }
 
-    public List<VoluntarioEntity> obtenerTodosLosVoluntarios() {
+    public List<VoluntarioEntity> obtenerTodos() {
         return voluntarioRepository.obtenerTodos();
     }
 
-    public VoluntarioEntity obtenerVoluntarioPorId(long id) {
+    public VoluntarioEntity obtenerPorId(long id) {
         return voluntarioRepository.obtenerPorId(id);
     }
 
-    public boolean actualizarVoluntario(VoluntarioEntity voluntario) {
+    public boolean actualizar(VoluntarioEntity voluntario) {
         return voluntarioRepository.actualizar(voluntario);
     }
 
-    public boolean eliminarVoluntario(long id) {
+    public boolean eliminar(long id) {
         return voluntarioRepository.eliminar(id);
     }
 }

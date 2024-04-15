@@ -16,31 +16,31 @@ public class AtributoController {
     @Autowired
     private AtributoService atributoService;
 
+    String homeLinkRedirect = "redirect:/atributos";
+
     @PostMapping("/crear")
     public String crearAtributo(AtributoEntity atributo) {
-        atributoService.crearAtributo(atributo);
-        return "redirect:/atributos";
+        atributoService.crear(atributo);
+        return homeLinkRedirect;
     }
 
     @PostMapping("/todo")
     public List<AtributoEntity> obtenerTodosLosAtributos() {
-        return atributoService.obtenerTodosLosAtributos();
+        return atributoService.obtenerTodos();
     }
 
     @PostMapping("/porId")
     public AtributoEntity obtenerAtributoPorId(long id) {
-        return atributoService.obtenerAtributoPorId(id);
+        return atributoService.obtenerPorId(id);
     }
 
     @PostMapping("/actualizar")
-    public String  actualizarAtributo(AtributoEntity atributo) {
-        atributoService.actualizarAtributo(atributo);
-        return "redirect:/atributos";
+    public boolean actualizarAtributo(AtributoEntity atributo) {
+        return atributoService.actualizar(atributo);
     }
 
     @PostMapping("/eliminar")
-    public String eliminarAtributo(long id) {
-        atributoService.eliminarAtributo(id);
-        return "redirect:/atributos";
+    public boolean eliminarAtributo(long id) {
+        return atributoService.eliminar(id);
     }
 }

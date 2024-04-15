@@ -17,31 +17,31 @@ public class CoordinadorController {
     @Autowired
     private CoordinadorService coordinadorService;
 
+    String homeLinkRedirect = "redirect:/coordinadores";
+
     @PostMapping("/crear")
     public String crearCoordinador(CoordinadorEntity coordinador) {
-        coordinadorService.crearCoordinador(coordinador);
-        return "redirect:/coordinadores";
+        coordinadorService.crear(coordinador);
+        return homeLinkRedirect;
     }
 
     @GetMapping("/todo")
     public List<CoordinadorEntity> obtenerTodosLosCoordinadores() {
-        return coordinadorService.obtenerTodosLosCoordinadores();
+        return coordinadorService.obtenerTodos();
     }
 
     @GetMapping("/porId")
     public CoordinadorEntity obtenerCoordinadorPorId(long id) {
-        return coordinadorService.obtenerCoordinadorPorId(id);
+        return coordinadorService.obtenerPorId(id);
     }
 
     @PostMapping("/actualizar")
-    public String actualizarCoordinador(CoordinadorEntity coordinador) {
-        coordinadorService.actualizarCoordinador(coordinador);
-        return "redirect:/coordinadores";
+    public boolean actualizarCoordinador(CoordinadorEntity coordinador) {
+        return coordinadorService.actualizar(coordinador);
     }
 
     @PostMapping("/eliminar")
-    public String eliminarCoordinador(long id) {
-        coordinadorService.eliminarCoordinador(id);
-        return "redirect:/coordinadores";
+    public boolean eliminarCoordinador(long id) {
+        return coordinadorService.eliminar(id);
     }
 }

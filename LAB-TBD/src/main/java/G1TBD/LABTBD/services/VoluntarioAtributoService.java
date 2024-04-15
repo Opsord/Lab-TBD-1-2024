@@ -9,26 +9,27 @@ import java.util.List;
 
 @Service
 public class VoluntarioAtributoService {
+
     @Autowired
     private VoluntarioAtributoRepository voluntarioAtributoRepository;
 
-    public VoluntarioAtributoEntity crearVoluntarioAtributo(VoluntarioAtributoEntity voluntarioAtributo) {
+    public VoluntarioAtributoEntity crear(VoluntarioAtributoEntity voluntarioAtributo) {
         return voluntarioAtributoRepository.crear(voluntarioAtributo);
     }
 
-    public List<VoluntarioAtributoEntity> obtenerTodosLosVoluntarioAtributo() {
+    public List<VoluntarioAtributoEntity> obtenerTodos() {
         return voluntarioAtributoRepository.obtenerTodos();
     }
 
-    public VoluntarioAtributoEntity obtenerVoluntarioAtributoPorId(long id) {
+    public VoluntarioAtributoEntity obtenerPorId(long id) {
         return voluntarioAtributoRepository.obtenerPorId(id);
     }
 
-    public boolean actualizarVoluntarioAtributo(VoluntarioAtributoEntity voluntarioAtributo) {
+    public boolean actualizar(VoluntarioAtributoEntity voluntarioAtributo) {
         return voluntarioAtributoRepository.actualizar(voluntarioAtributo);
     }
 
-    public boolean eliminarVoluntarioAtributo(long id) {
+    public boolean eliminar(long id) {
         return voluntarioAtributoRepository.eliminar(id);
     }
 }

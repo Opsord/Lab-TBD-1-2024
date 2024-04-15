@@ -17,31 +17,31 @@ public class InstitucionController {
     @Autowired
     private InstitucionService institucionService;
 
+    String homeLinkRedirect = "redirect:/instituciones";
+
     @PostMapping("/crear")
     public String crearInstitucion(InstitucionEntity institucion) {
-        institucionService.crearInstitucion(institucion);
-        return "redirect:/instituciones";
+        institucionService.crear(institucion);
+        return homeLinkRedirect;
     }
 
     @GetMapping("/todo")
     public List<InstitucionEntity> obtenerTodasLasInstituciones() {
-        return institucionService.obtenerTodasLasInstituciones();
+        return institucionService.obtenerTodos();
     }
 
     @GetMapping("/porId")
     public InstitucionEntity obtenerInstitucionPorId(long id) {
-        return institucionService.obtenerInstitucionPorId(id);
+        return institucionService.obtenerPorId(id);
     }
 
     @PostMapping("/actualizar")
-    public String actualizarInstitucion(InstitucionEntity institucion) {
-        institucionService.actualizarInstitucion(institucion);
-        return "redirect:/instituciones";
+    public boolean actualizarInstitucion(InstitucionEntity institucion) {
+        return institucionService.actualizar(institucion);
     }
 
     @PostMapping("/eliminar")
-    public String eliminarInstitucion(long id) {
-        institucionService.eliminarInstitucion(id);
-        return "redirect:/instituciones";
+    public boolean eliminarInstitucion(long id) {
+        return institucionService.eliminar(id);
     }
 }

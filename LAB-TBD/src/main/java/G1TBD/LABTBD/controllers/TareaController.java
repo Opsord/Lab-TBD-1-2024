@@ -17,32 +17,32 @@ public class TareaController {
     @Autowired
     private TareaService tareaService;
 
+    String homeLinkRedirect = "redirect:/tareas";
+
     @PostMapping("/crear")
     public String crearTarea(TareaEntity tarea) {
-        tareaService.crearTarea(tarea);
-        return "redirect:/tareas";
+        tareaService.crear(tarea);
+        return homeLinkRedirect;
     }
 
     @GetMapping("/todo")
     public List<TareaEntity> obtenerTodasLasTareas() {
-        return tareaService.obtenerTodasLasTareas();
+        return tareaService.obtenerTodos();
     }
 
     @GetMapping("/porId")
     public TareaEntity obtenerTareaPorId(long id) {
-        return tareaService.obtenerTareaPorId(id);
+        return tareaService.obtenerPorId(id);
     }
 
     @PostMapping("/actualizar")
-    public String actualizarTarea(TareaEntity tarea) {
-        tareaService.actualizarTarea(tarea);
-        return "redirect:/tareas";
+    public boolean actualizarTarea(TareaEntity tarea) {
+        return tareaService.actualizar(tarea);
     }
 
     @PostMapping("/eliminar")
-    public String eliminarTarea(long id) {
-        tareaService.eliminarTarea(id);
-        return "redirect:/tareas";
+    public boolean eliminarTarea(long id) {
+        return tareaService.eliminar(id);
     }
 
 }

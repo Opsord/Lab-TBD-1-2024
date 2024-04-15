@@ -13,23 +13,23 @@ public class EmergenciaService {
     @Autowired
     private EmergenciaRepository emergenciaRepository;
 
-    public EmergenciaEntity crearEmergencia(EmergenciaEntity emergencia) {
+    public EmergenciaEntity crear(EmergenciaEntity emergencia) {
         return emergenciaRepository.crear(emergencia);
     }
 
-    public List<EmergenciaEntity> obtenerTodasLasEmergencias() {
-        return emergenciaRepository.obtenerTodasLasEmergencias();
+    public List<EmergenciaEntity> obtenerTodos() {
+        return emergenciaRepository.obtenerTodos();
     }
 
-    public EmergenciaEntity obtenerEmergenciaPorId(long id) {
+    public EmergenciaEntity obtenerPorId(long id) {
         return emergenciaRepository.obtenerPorId(id);
     }
 
-    public boolean actualizarEmergencia(EmergenciaEntity emergencia) {
+    public boolean actualizar(EmergenciaEntity emergencia) {
         return emergenciaRepository.actualizar(emergencia);
     }
 
-    public boolean eliminarEmergencia(long id) {
+    public boolean eliminar(long id) {
         return emergenciaRepository.eliminar(id);
     }
 }

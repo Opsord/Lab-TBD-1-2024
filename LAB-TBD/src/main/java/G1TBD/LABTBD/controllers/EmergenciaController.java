@@ -16,31 +16,31 @@ public class EmergenciaController {
     @Autowired
     private EmergenciaService emergenciaService;
 
+    String homeLinkRedirect = "redirect:/emergencias";
+
     @PostMapping("/crear")
     public String crearEmergencia(EmergenciaEntity emergencia) {
-        emergenciaService.crearEmergencia(emergencia);
-        return "redirect:/emergencias";
+        emergenciaService.crear(emergencia);
+        return homeLinkRedirect;
     }
 
     @PostMapping("/todo")
     public List<EmergenciaEntity> obtenerTodasLasEmergencias() {
-        return emergenciaService.obtenerTodasLasEmergencias();
+        return emergenciaService.obtenerTodos();
     }
 
     @PostMapping("/porId")
     public EmergenciaEntity obtenerEmergenciaPorId(long id) {
-        return emergenciaService.obtenerEmergenciaPorId(id);
+        return emergenciaService.obtenerPorId(id);
     }
 
     @PostMapping("/actualizar")
-    public String actualizarEmergencia(EmergenciaEntity emergencia) {
-        emergenciaService.actualizarEmergencia(emergencia);
-        return "redirect:/emergencias";
+    public boolean actualizarEmergencia(EmergenciaEntity emergencia) {
+        return emergenciaService.actualizar(emergencia);
     }
 
     @PostMapping("/eliminar")
-    public String eliminarEmergencia(long id) {
-        emergenciaService.eliminarEmergencia(id);
-        return "redirect:/emergencias";
+    public boolean eliminarEmergencia(long id) {
+        return emergenciaService.eliminar(id);
     }
 }
