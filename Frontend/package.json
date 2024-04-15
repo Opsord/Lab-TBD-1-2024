@@ -12,6 +12,8 @@
     "axios": "^1.6.8",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "eslint": "^9.0.0",
+    "eslint-plugin-vue": "^9.25.0",
     "lucide-vue-next": "^0.368.0",
     "radix-vue": "^1.7.0",
     "tailwind-merge": "^2.2.2",
