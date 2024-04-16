@@ -18,7 +18,7 @@ public class EmergenciaService {
     }
 
     public List<EmergenciaEntity> obtenerTodos() {
-        return emergenciaRepository.obtenerTodos();
+        return emergenciaRepository.obtenerTodasLasEmergencias();
     }
 
     public EmergenciaEntity obtenerPorId(long id) {
