@@ -20,28 +20,28 @@ public class VoluntarioController {
     String homeLinkRedirect = "redirect:/voluntarios";
 
     @PostMapping("/crear")
-    public String crearVoluntario(VoluntarioEntity voluntario) {
+    public String crear(VoluntarioEntity voluntario) {
         voluntarioService.crear(voluntario);
         return homeLinkRedirect;
     }
 
     @GetMapping("/todo")
-    public List<VoluntarioEntity> obtenerTodosLosVoluntarios() {
+    public List<VoluntarioEntity> obtenerTodos() {
         return voluntarioService.obtenerTodos();
     }
 
     @GetMapping("/porId")
-    public VoluntarioEntity obtenerVoluntarioPorId(long id) {
+    public VoluntarioEntity obtenerPorId(long id) {
         return voluntarioService.obtenerPorId(id);
     }
 
     @PostMapping("/actualizar")
-    public boolean actualizarVoluntario(VoluntarioEntity voluntario) {
+    public boolean actualizar(VoluntarioEntity voluntario) {
         return voluntarioService.actualizar(voluntario);
     }
 
     @PostMapping("/eliminar")
-    public boolean eliminarVoluntario(long id) {
+    public boolean eliminar(long id) {
         return voluntarioService.eliminar(id);
     }
 

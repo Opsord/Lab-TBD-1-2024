@@ -20,28 +20,28 @@ public class CoordinadorController {
     String homeLinkRedirect = "redirect:/coordinadores";
 
     @PostMapping("/crear")
-    public String crearCoordinador(CoordinadorEntity coordinador) {
+    public String crear(CoordinadorEntity coordinador) {
         coordinadorService.crear(coordinador);
         return homeLinkRedirect;
     }
 
     @GetMapping("/todo")
-    public List<CoordinadorEntity> obtenerTodosLosCoordinadores() {
+    public List<CoordinadorEntity> obtenerTodos() {
         return coordinadorService.obtenerTodos();
     }
 
     @GetMapping("/porId")
-    public CoordinadorEntity obtenerCoordinadorPorId(long id) {
+    public CoordinadorEntity obtenerPorId(long id) {
         return coordinadorService.obtenerPorId(id);
     }
 
     @PostMapping("/actualizar")
-    public boolean actualizarCoordinador(CoordinadorEntity coordinador) {
+    public boolean actualizar(CoordinadorEntity coordinador) {
         return coordinadorService.actualizar(coordinador);
     }
 
     @PostMapping("/eliminar")
-    public boolean eliminarCoordinador(long id) {
+    public boolean eliminar(long id) {
         return coordinadorService.eliminar(id);
     }
 }

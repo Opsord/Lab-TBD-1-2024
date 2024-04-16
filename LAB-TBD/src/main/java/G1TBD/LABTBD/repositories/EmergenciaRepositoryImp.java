@@ -36,7 +36,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
     }
 
     @Override
-    public List<EmergenciaEntity> obtenerTodasLasEmergencias(){
+    public List<EmergenciaEntity> obtenerTodos(){
         String sql = "SELECT * FROM emergencia";
 
         try (Connection conn = sql2o.open()) {

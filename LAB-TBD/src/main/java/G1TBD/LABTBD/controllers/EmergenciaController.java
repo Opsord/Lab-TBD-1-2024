@@ -19,28 +19,28 @@ public class EmergenciaController {
     String homeLinkRedirect = "redirect:/emergencias";
 
     @PostMapping("/crear")
-    public String crearEmergencia(EmergenciaEntity emergencia) {
+    public String crear(EmergenciaEntity emergencia) {
         emergenciaService.crear(emergencia);
         return homeLinkRedirect;
     }
 
     @PostMapping("/todo")
-    public List<EmergenciaEntity> obtenerTodasLasEmergencias() {
+    public List<EmergenciaEntity> obtenerTodos() {
         return emergenciaService.obtenerTodos();
     }
 
     @PostMapping("/porId")
-    public EmergenciaEntity obtenerEmergenciaPorId(long id) {
+    public EmergenciaEntity obtenerPorId(long id) {
         return emergenciaService.obtenerPorId(id);
     }
 
     @PostMapping("/actualizar")
-    public boolean actualizarEmergencia(EmergenciaEntity emergencia) {
+    public boolean actualizar(EmergenciaEntity emergencia) {
         return emergenciaService.actualizar(emergencia);
     }
 
     @PostMapping("/eliminar")
-    public boolean eliminarEmergencia(long id) {
+    public boolean eliminar(long id) {
         return emergenciaService.eliminar(id);
     }
 }

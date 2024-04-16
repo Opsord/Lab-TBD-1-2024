@@ -20,28 +20,28 @@ public class InstitucionController {
     String homeLinkRedirect = "redirect:/instituciones";
 
     @PostMapping("/crear")
-    public String crearInstitucion(InstitucionEntity institucion) {
+    public String crear(InstitucionEntity institucion) {
         institucionService.crear(institucion);
         return homeLinkRedirect;
     }
 
     @GetMapping("/todo")
-    public List<InstitucionEntity> obtenerTodasLasInstituciones() {
+    public List<InstitucionEntity> obtenerTodos() {
         return institucionService.obtenerTodos();
     }
 
     @GetMapping("/porId")
-    public InstitucionEntity obtenerInstitucionPorId(long id) {
+    public InstitucionEntity obtenerPorId(long id) {
         return institucionService.obtenerPorId(id);
     }
 
     @PostMapping("/actualizar")
-    public boolean actualizarInstitucion(InstitucionEntity institucion) {
+    public boolean actualizar(InstitucionEntity institucion) {
         return institucionService.actualizar(institucion);
     }
 
     @PostMapping("/eliminar")
-    public boolean eliminarInstitucion(long id) {
+    public boolean eliminar(long id) {
         return institucionService.eliminar(id);
     }
 }

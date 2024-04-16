@@ -20,28 +20,28 @@ public class TareaController {
     String homeLinkRedirect = "redirect:/tareas";
 
     @PostMapping("/crear")
-    public String crearTarea(TareaEntity tarea) {
+    public String crear(TareaEntity tarea) {
         tareaService.crear(tarea);
         return homeLinkRedirect;
     }
 
     @GetMapping("/todo")
-    public List<TareaEntity> obtenerTodasLasTareas() {
+    public List<TareaEntity> obtenerTodos() {
         return tareaService.obtenerTodos();
     }
 
     @GetMapping("/porId")
-    public TareaEntity obtenerTareaPorId(long id) {
+    public TareaEntity obtenerPorId(long id) {
         return tareaService.obtenerPorId(id);
     }
 
     @PostMapping("/actualizar")
-    public boolean actualizarTarea(TareaEntity tarea) {
+    public boolean actualizar(TareaEntity tarea) {
         return tareaService.actualizar(tarea);
     }
 
     @PostMapping("/eliminar")
-    public boolean eliminarTarea(long id) {
+    public boolean eliminar(long id) {
         return tareaService.eliminar(id);
     }
 

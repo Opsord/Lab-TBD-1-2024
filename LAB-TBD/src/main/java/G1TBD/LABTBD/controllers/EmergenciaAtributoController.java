@@ -26,22 +26,22 @@ public class EmergenciaAtributoController {
     }
 
     @GetMapping("/todo")
-    public List<EmergenciaAtributoEntity> obtenerTodasEmergenciaAtributo(){
+    public List<EmergenciaAtributoEntity> obtenerTodos(){
         return emergenciaAtributoService.obtenerTodos();
     }
 
     @GetMapping("/porId")
-    public EmergenciaAtributoEntity obtenerEmergenciaAtributoPorId(long id){
+    public EmergenciaAtributoEntity obtenerPorId(long id){
         return emergenciaAtributoService.obtenerPorId(id);
     }
 
     @PostMapping("/actualizar")
-    public boolean actualizarEmergenciaAtributo(EmergenciaAtributoEntity emergenciaAtributo){
+    public boolean actualizar(EmergenciaAtributoEntity emergenciaAtributo){
         return emergenciaAtributoService.actualizar(emergenciaAtributo);
     }
 
     @PostMapping("/eliminar")
-    public boolean eliminarEmergenciaAtributo(long id){
+    public boolean eliminar(long id){
         return emergenciaAtributoService.eliminar(id);
     }
 
