@@ -4,13 +4,18 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 </script>
 
 <template>
-    <Tabs default-value="account" class="w-[400px]">
+
+    <Tabs default-value="account">
         <TabsList>
             <TabsTrigger value="inicio">
-                Inicio
+                <RouterLink to="/">Inicio</RouterLink>
+
             </TabsTrigger>
             <TabsTrigger value="ingreso">
-                Ingreso de Emergencia
+
+                <RouterLink to="/crearEmergencia">
+                    Ingreso de Emergencia
+                </RouterLink>
             </TabsTrigger>
             <TabsTrigger value="emergencias">
                 Emergencias Activas
