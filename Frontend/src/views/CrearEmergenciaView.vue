@@ -20,6 +20,10 @@ const formModel = ref({
     tipoAtributo: '',
 
 });
+// Tengo como idea para marcar los que no necesitan
+// Solo agregar otro textbox donde se indica que NO se necesita
+// El input de atributo será separado por commas
+// Para mandar a backend, tomo estos dos datos del json, si viene de SI, marcar con 1 sino 0
 
 function onSubmit() {
     console.log('Form submitted!', JSON.stringify(formModel.value, null, 2))
