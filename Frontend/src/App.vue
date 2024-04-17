@@ -1,6 +1,4 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 import './assets/base.css'
 import MainTabs from "./components/MainTabs.vue"
 import NavBar from './components/NavBar.vue';
@@ -21,14 +19,12 @@ import NavBar from './components/NavBar.vue';
     </div> -->
 
     <NavBar />
+    <div class="flex flex-col h-svh w-auto bg-zinc-900 text-zinc-200 p-4 flex-grow">
+      <div class="flex justify-center items-center">
+        <MainTabs />
+      </div>
+      <RouterView />
+    </div>
   </main>
-  <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav> -->
 
 </template>
