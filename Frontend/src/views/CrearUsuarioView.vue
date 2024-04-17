@@ -28,7 +28,7 @@ function onSubmit() {
 }
 </script>
 <template>
-    <div class="flex flex-col justify-center items-center align-middle h-full  ">
+    <div class="flex flex-col justify-center items-center align-middle">
         <form class=" space-y-4" @submit="onSubmit">
             <FormField name="nombre">
                 <FormItem>

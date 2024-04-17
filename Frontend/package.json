@@ -17,6 +17,7 @@
     "eslint": "^9.0.0",
     "eslint-plugin-vue": "^9.25.0",
     "lucide-vue-next": "^0.368.0",
+    "oh-vue-icons": "^1.0.0-rc3",
     "radix-vue": "^1.7.0",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
