@@ -34,12 +34,12 @@ public class CoordinadorController {
     }
 
     @PutMapping("/actualizar")
-    public boolean actualizar(CoordinadorEntity coordinador) {
+    public boolean actualizar(@RequestBody CoordinadorEntity coordinador) {
         return coordinadorService.actualizar(coordinador);
     }
 
-    @DeleteMapping("/eliminar")
-    public boolean eliminar(long id) {
+    @DeleteMapping("/eliminar/{id}")
+    public boolean eliminar(@PathVariable long id) {
         return coordinadorService.eliminar(id);
     }
 }

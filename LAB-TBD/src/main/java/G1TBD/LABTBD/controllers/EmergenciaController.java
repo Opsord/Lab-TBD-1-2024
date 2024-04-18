@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/emergencias")
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:8090/emergencia")
 public class EmergenciaController {
 
     @Autowired
@@ -35,7 +35,7 @@ public class EmergenciaController {
     }
 
     @PutMapping("/actualizar")
-    public boolean actualizar(EmergenciaEntity emergencia) {
+    public boolean actualizar(@RequestBody EmergenciaEntity emergencia) {
         return emergenciaService.actualizar(emergencia);
     }
 

@@ -28,7 +28,7 @@ public class TareaController {
         return tareaService.obtenerTodos();
     }
 
-    @GetMapping("/porId/{id]")
+    @GetMapping("/porId/{id}")
     public TareaEntity obtenerPorId(@PathVariable long id) {
         return tareaService.obtenerPorId(id);
     }

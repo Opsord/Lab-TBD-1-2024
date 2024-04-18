@@ -37,7 +37,7 @@ public class VoluntarioAtributoController {
         return voluntarioAtributoService.actualizar(voluntarioAtributo);
     }
 
-    @DeleteMapping("/eliminar")
+    @DeleteMapping("/eliminar{id}")
     public boolean eliminar(@PathVariable long id) {
         return voluntarioAtributoService.eliminar(id);
     }

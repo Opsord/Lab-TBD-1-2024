@@ -36,7 +36,7 @@ public class EmergenciaAtributoController {
     }
 
     @PutMapping("/actualizar")
-    public boolean actualizar(@ReEmergenciaAtributoEntity emergenciaAtributo){
+    public boolean actualizar(@RequestBody EmergenciaAtributoEntity emergenciaAtributo){
         return emergenciaAtributoService.actualizar(emergenciaAtributo);
     }
 
