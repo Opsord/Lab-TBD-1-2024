@@ -10,10 +10,10 @@ public class DatabaseContext {
     @Value("${spring.datasource.url}")
     private String dbUrl;
 
-    @Value("lab1tbd")
+    @Value("${spring.datasource.username}")
     private String dbUser;
 
-    @Value("12345678")
+    @Value("${spring.datasource.password}")
     private String dbPassword;
 
     @Bean
