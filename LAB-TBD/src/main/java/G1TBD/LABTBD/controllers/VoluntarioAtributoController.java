@@ -3,13 +3,11 @@ package G1TBD.LABTBD.controllers;
 import G1TBD.LABTBD.entities.VoluntarioAtributoEntity;
 import G1TBD.LABTBD.services.VoluntarioAtributoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
+@RequestMapping("/voluntarioatributo")
 @CrossOrigin(origins = "http://localhost:8080/voluntarioatributos")
 public class VoluntarioAtributoController {
 

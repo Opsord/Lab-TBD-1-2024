@@ -3,10 +3,7 @@ package G1TBD.LABTBD.controllers;
 import G1TBD.LABTBD.entities.EmergenciaAtributoEntity;
 import G1TBD.LABTBD.services.EmergenciaAtributoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
