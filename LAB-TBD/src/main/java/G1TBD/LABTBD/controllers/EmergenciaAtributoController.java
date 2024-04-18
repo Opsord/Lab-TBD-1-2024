@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@RequestMapping("/emergenciaAtributo")
 @CrossOrigin(origins = "http://localhost:8080/emergenciaAtributo")
 public class EmergenciaAtributoController {
 
