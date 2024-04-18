@@ -45,7 +45,7 @@ VALUES
     (17, 9, 1),
     (18, 9, 2), 
     (19, 10, 7), 
-    (20, 10, 3),
+    (20, 10, 3);
 
 --Poblacion de la tabla Institucion
 INSERT INTO Institucion (idInstitucion, nombreInstitucion) 
