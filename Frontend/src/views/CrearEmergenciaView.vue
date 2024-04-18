@@ -12,12 +12,14 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
 
 import { ref } from 'vue';
+import { Textarea } from "@/components/ui/textarea"
 
 const formModel = ref({
     tituloEmergencia: '',
     estadoEmergencia: true,
     descripcionEmergencia: '',
     tipoAtributo: '',
+    tipoAtributoIncompatibles: '',
 
 });
 // Tengo como idea para marcar los que no necesitan
@@ -30,8 +32,8 @@ function onSubmit() {
 }
 </script>
 <template>
-    <div class="flex flex-col items-center">
-        <form class=" space-y-4" @submit="onSubmit">
+    <div class="flex align-middle items-center justify-center mt-16">
+        <form class=" space-y-4 flex flex-col" @submit="onSubmit">
             <FormField name="titulo">
                 <FormItem>
                     <FormLabel>Titulo:</FormLabel>
@@ -47,6 +49,29 @@ function onSubmit() {
                     <FormLabel>Descripción:</FormLabel>
                     <FormControl>
                         <Input type="text" placeholder="Descripción" v-model="formModel.descripcionEmergencia" />
+                    </FormControl>
+                    <FormMessage />
+                </FormItem>
+            </FormField>
+
+
+            <FormField name="atributos">
+                <FormItem>
+                    <FormLabel>Habilidades requeridas:</FormLabel>
+                    <FormControl>
+                        <Textarea type="text" placeholder="Ingrese separado por comas"
+                            v-model="formModel.tipoAtributo" />
+                    </FormControl>
+                    <FormMessage />
+                </FormItem>
+            </FormField>
+
+            <FormField name="atributos">
+                <FormItem>
+                    <FormLabel>Atributos no compatibles:</FormLabel>
+                    <FormControl>
+                        <Textarea type="text" placeholder="Ingrese separado por comas"
+                            v-model="formModel.tipoAtributoIncompatibles" />
                     </FormControl>
                     <FormMessage />
                 </FormItem>
