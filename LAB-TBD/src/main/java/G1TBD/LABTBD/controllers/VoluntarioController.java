@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/voluntario")
-@CrossOrigin(origins = "http://localhost:8080/voluntarios")
+@CrossOrigin(origins = "http://localhost:8090/voluntarios")
 public class VoluntarioController {
 
     @Autowired
@@ -28,18 +28,18 @@ public class VoluntarioController {
         return voluntarioService.obtenerTodos();
     }
 
-    @GetMapping("/porId")
-    public VoluntarioEntity obtenerPorId(long id) {
+    @GetMapping("/porId/{id}")
+    public VoluntarioEntity obtenerPorId(@PathVariable long id) {
         return voluntarioService.obtenerPorId(id);
     }
 
-    @PostMapping("/actualizar")
-    public boolean actualizar(VoluntarioEntity voluntario) {
+    @PutMapping("/actualizar")
+    public boolean actualizar(@RequestBody VoluntarioEntity voluntario) {
         return voluntarioService.actualizar(voluntario);
     }
 
-    @PostMapping("/eliminar")
-    public boolean eliminar(long id) {
+    @DeleteMapping("/eliminar/{id}")
+    public boolean eliminar(@PathVariable long id) {
         return voluntarioService.eliminar(id);
     }
 

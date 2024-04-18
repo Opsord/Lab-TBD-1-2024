@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @RestController
 @RequestMapping("/voluntarioatributo")
-@CrossOrigin(origins = "http://localhost:8080/voluntarioatributos")
+@CrossOrigin(origins = "http://localhost:8090/voluntarioatributos")
 public class VoluntarioAtributoController {
 
     @Autowired
@@ -27,18 +27,18 @@ public class VoluntarioAtributoController {
         return voluntarioAtributoService.obtenerTodos();
     }
 
-    @GetMapping("/porId")
-    public VoluntarioAtributoEntity obtenerPorId(long id) {
+    @GetMapping("/porId/{id}")
+    public VoluntarioAtributoEntity obtenerPorId(@PathVariable long id) {
         return voluntarioAtributoService.obtenerPorId(id);
     }
 
-    @PostMapping("/actualizar")
-    public boolean actualizar(VoluntarioAtributoEntity voluntarioAtributo) {
+    @PutMapping("/actualizar")
+    public boolean actualizar(@RequestBody VoluntarioAtributoEntity voluntarioAtributo) {
         return voluntarioAtributoService.actualizar(voluntarioAtributo);
     }
 
-    @PostMapping("/eliminar")
-    public boolean eliminar(long id) {
+    @DeleteMapping("/eliminar")
+    public boolean eliminar(@PathVariable long id) {
         return voluntarioAtributoService.eliminar(id);
     }
 }

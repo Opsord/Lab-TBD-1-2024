@@ -3,16 +3,14 @@ package G1TBD.LABTBD.controllers;
 import G1TBD.LABTBD.entities.EmergenciaEntity;
 import G1TBD.LABTBD.services.EmergenciaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/emergencia")
-@CrossOrigin(origins = "http://localhost:8080/emergencias")
+@RequestMapping("/emergencias")
+@CrossOrigin("*")
 public class EmergenciaController {
 
     @Autowired
@@ -20,29 +18,30 @@ public class EmergenciaController {
 
     String homeLinkRedirect = "redirect:/emergencias";
 
-    @PostMapping("/crear")
+    @GetMapping("/crear")
     public String crear(EmergenciaEntity emergencia) {
         emergenciaService.crear(emergencia);
         return homeLinkRedirect;
     }
 
-    @PostMapping("/todo")
+    @GetMapping("/todo")
     public List<EmergenciaEntity> obtenerTodos() {
         return emergenciaService.obtenerTodos();
     }
 
-    @PostMapping("/porId")
-    public EmergenciaEntity obtenerPorId(long id) {
+    @GetMapping("/porId/{id}")
+    public EmergenciaEntity obtenerPorId(@PathVariable long id) {
         return emergenciaService.obtenerPorId(id);
     }
 
-    @PostMapping("/actualizar")
+    @PutMapping("/actualizar")
     public boolean actualizar(EmergenciaEntity emergencia) {
         return emergenciaService.actualizar(emergencia);
     }
 
-    @PostMapping("/eliminar")
-    public boolean eliminar(long id) {
+    @DeleteMapping("/eliminar/{id}")
+    public boolean eliminar(@PathVariable Long id) {
         return emergenciaService.eliminar(id);
     }
+
 }

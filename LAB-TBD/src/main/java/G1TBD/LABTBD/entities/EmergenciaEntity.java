@@ -1,5 +1,6 @@
 package G1TBD.LABTBD.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -7,11 +8,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class EmergenciaEntity {
 
-
     private long idEmergencia;
     private boolean estadoEmergencia;
     private String tituloEmergencia;
     private String descripcionEmergencia;
+    private long idCoordinador;
 
     public EmergenciaEntity(boolean estadoEmergencia, String tituloEmergencia, String descripcionEmergencia ) {
         this.estadoEmergencia = estadoEmergencia;

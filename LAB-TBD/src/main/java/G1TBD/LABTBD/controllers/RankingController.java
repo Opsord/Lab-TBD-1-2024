@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/ranking")
-@CrossOrigin(origins = "http://localhost:8080/ranking")
+@CrossOrigin(origins = "http://localhost:8090/ranking")
 public class RankingController {
 
     @Autowired
@@ -28,18 +28,18 @@ public class RankingController {
         return rankingService.obtenerTodos();
     }
 
-    @GetMapping("/obtenerRankingPorId")
-    public RankingEntity obtenerPorId(long id) {
+    @GetMapping("/obtenerRankingPorId/{id}")
+    public RankingEntity obtenerPorId(@PathVariable long id) {
         return rankingService.obtenerPorId(id);
     }
 
-    @PostMapping("/actualizarRanking")
-    public boolean actualizar(RankingEntity ranking) {
+    @PutMapping("/actualizarRanking")
+    public boolean actualizar(@RequestBody RankingEntity ranking) {
         return rankingService.actualizar(ranking);
     }
 
-    @PostMapping("/eliminarRanking")
-    public boolean eliminar(long id) {
+    @DeleteMapping("/eliminarRanking/{id}")
+    public boolean eliminar(@PathVariable long id) {
         return rankingService.eliminar(id);
     }
 }

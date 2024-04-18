@@ -3,14 +3,13 @@ package G1TBD.LABTBD.controllers;
 import G1TBD.LABTBD.entities.AtributoEntity;
 import G1TBD.LABTBD.services.AtributoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
 @RequestMapping("/atributos")
-@CrossOrigin(origins = "http://localhost:8080/atributos")
+@CrossOrigin(origins = "http://localhost:8090/atributos")
     
     
 public class AtributoController {
@@ -26,23 +25,24 @@ public class AtributoController {
         return homeLinkRedirect;
     }
 
-    @PostMapping("/todo")
+    @GetMapping("/todo")
     public List<AtributoEntity> obtenerTodos() {
         return atributoService.obtenerTodos();
     }
 
-    @PostMapping("/porId")
-    public AtributoEntity obtenerPorId(long id) {
+    @GetMapping("/porId/{id}")
+    public AtributoEntity obtenerPorId(@PathVariable long id) {
         return atributoService.obtenerPorId(id);
     }
 
-    @PostMapping("/actualizar")
-    public boolean actualizar(AtributoEntity atributo) {
+    @PutMapping("/actualizar")
+    public boolean actualizar(@RequestBody AtributoEntity atributo) {
         return atributoService.actualizar(atributo);
     }
 
-    @PostMapping("/eliminar")
-    public boolean eliminar(long id) {
+    @DeleteMapping("/eliminar/{id}")
+    public boolean eliminar(@PathVariable long id) {
         return atributoService.eliminar(id);
     }
+
 }

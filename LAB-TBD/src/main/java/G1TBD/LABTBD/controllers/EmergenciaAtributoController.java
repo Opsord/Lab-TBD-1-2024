@@ -1,15 +1,17 @@
 package G1TBD.LABTBD.controllers;
 
 import G1TBD.LABTBD.entities.EmergenciaAtributoEntity;
+import G1TBD.LABTBD.entities.EmergenciaEntity;
 import G1TBD.LABTBD.services.EmergenciaAtributoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/emergenciaAtributo")
-@CrossOrigin(origins = "http://localhost:8080/emergenciaAtributo")
+@CrossOrigin(origins = "http://localhost:8090/emergenciaAtributo")
 public class EmergenciaAtributoController {
 
     @Autowired
@@ -28,19 +30,27 @@ public class EmergenciaAtributoController {
         return emergenciaAtributoService.obtenerTodos();
     }
 
-    @GetMapping("/porId")
-    public EmergenciaAtributoEntity obtenerPorId(long id){
+    @GetMapping("/porId/{id}")
+    public EmergenciaAtributoEntity obtenerPorId(@PathVariable long id){
         return emergenciaAtributoService.obtenerPorId(id);
     }
 
-    @PostMapping("/actualizar")
-    public boolean actualizar(EmergenciaAtributoEntity emergenciaAtributo){
+    @PutMapping("/actualizar")
+    public boolean actualizar(@ReEmergenciaAtributoEntity emergenciaAtributo){
         return emergenciaAtributoService.actualizar(emergenciaAtributo);
     }
 
-    @PostMapping("/eliminar")
-    public boolean eliminar(long id){
+    @DeleteMapping("/eliminar/{id}")
+    public boolean eliminar(@PathVariable long id){
         return emergenciaAtributoService.eliminar(id);
     }
+
+    /*
+    @GetMapping("/emergencia/completa")
+    public List<EmergenciaEntity> getAllEmergenciasCompletadas(){
+        return emergenciaAtributoService.findAllCompletedEmergency();
+    }
+
+     */
 
 }

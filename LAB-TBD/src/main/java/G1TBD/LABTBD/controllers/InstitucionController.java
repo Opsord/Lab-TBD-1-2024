@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/institucion")
-@CrossOrigin(origins = "http://localhost:8080/instituciones")
+@CrossOrigin(origins = "http://localhost:8090/instituciones")
 public class InstitucionController {
 
     @Autowired
@@ -28,18 +28,18 @@ public class InstitucionController {
         return institucionService.obtenerTodos();
     }
 
-    @GetMapping("/porId")
-    public InstitucionEntity obtenerPorId(long id) {
+    @GetMapping("/porId/{id}")
+    public InstitucionEntity obtenerPorId(@PathVariable long id) {
         return institucionService.obtenerPorId(id);
     }
 
-    @PostMapping("/actualizar")
-    public boolean actualizar(InstitucionEntity institucion) {
+    @PutMapping("/actualizar")
+    public boolean actualizar(@RequestBody InstitucionEntity institucion) {
         return institucionService.actualizar(institucion);
     }
 
-    @PostMapping("/eliminar")
-    public boolean eliminar(long id) {
+    @DeleteMapping("/eliminar/{id}")
+    public boolean eliminar(@PathVariable long id) {
         return institucionService.eliminar(id);
     }
 }

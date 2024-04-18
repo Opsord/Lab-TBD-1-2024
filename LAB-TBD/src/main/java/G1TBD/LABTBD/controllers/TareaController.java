@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/tarea")
-@CrossOrigin(origins = "http://localhost:8080/tareas")
+@CrossOrigin(origins = "http://localhost:8090/tareas")
 public class TareaController {
 
     @Autowired
@@ -28,18 +28,18 @@ public class TareaController {
         return tareaService.obtenerTodos();
     }
 
-    @GetMapping("/porId")
-    public TareaEntity obtenerPorId(long id) {
+    @GetMapping("/porId/{id]")
+    public TareaEntity obtenerPorId(@PathVariable long id) {
         return tareaService.obtenerPorId(id);
     }
 
-    @PostMapping("/actualizar")
-    public boolean actualizar(TareaEntity tarea) {
+    @PutMapping("/actualizar")
+    public boolean actualizar(@RequestBody TareaEntity tarea) {
         return tareaService.actualizar(tarea);
     }
 
-    @PostMapping("/eliminar")
-    public boolean eliminar(long id) {
+    @DeleteMapping("/eliminar/{id}")
+    public boolean eliminar(@PathVariable long id) {
         return tareaService.eliminar(id);
     }
 
