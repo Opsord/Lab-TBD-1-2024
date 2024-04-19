@@ -73,10 +73,28 @@ CREATE TABLE Ranking (
     FOREIGN KEY (idTarea) REFERENCES Tarea(idTarea)
 );
 
+--Indexes
+
+CREATE INDEX idx_voluntarioatributo_idvoluntario ON Voluntario_Atributo (idVoluntario);
+CREATE INDEX idx_voluntarioatributo_idatributo ON Voluntario_Atributo (idAtributo);
+
+CREATE INDEX idx_coordinador_idinstitucion ON Coordinador (idInstitucion);
+
+CREATE INDEX idx_emergencia_idcoordinador ON Emergencia (idCoordinador);
+
+CREATE INDEX idx_emergenciaatributo_idemergencia ON Emergencia_Atributo (idEmergencia);
+CREATE INDEX idx_emergenciaatributo_idatributo ON Emergencia_Atributo (idAtributo);
+
+CREATE INDEX idx_tarea_idemergencia ON Tarea (idEmergencia);
+
+CREATE INDEX idx_ranking_idvoluntario ON Ranking (idVoluntario);
+CREATE INDEX idx_ranking_idtarea ON Ranking (idTarea);
+
+
 
 --Trigger para Coordinador
 
-CREATE TABLE coordindor_disparador(
+CREATE TABLE coordinador_disparador(
  idTrigger SERIAL PRIMARY KEY,
  rutCoordinador varchar(12),
  nombreCoordinador varchar(255),
@@ -84,7 +102,6 @@ CREATE TABLE coordindor_disparador(
  fecha_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
  operacion TEXT
 );
-
 
 
 --Insert
@@ -267,7 +284,7 @@ CREATE TABLE emergenciaAtributo_disparador (
     idAtributo INT,
     compatibilidad BOOLEAN,
     fecha_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    operacion
+    operacion TEXT
 );
 
 
