@@ -86,12 +86,14 @@ CREATE TABLE coordindor_disparador(
  operacion TEXT
 );
 
+
+
 --Insert
 CREATE OR REPLACE FUNCTION coordinador_insert_trigger_funcion()
 RETURNS TRIGGER AS $$
 BEGIN
-    INSERT INTO coordinador_disparador (id_trigger, rut_coordinador, nombre_coordinador, apellido_coordinador, contrasena, operacion)
-    VALUES (NEW.idTrigger, NEW.rutCoordinador, NEW.nombreCoordinador, NEW.apellidoCoordinador, NEW.contrasena, 'INSERT');
+    INSERT INTO coordinador_disparador (id_trigger, rut_coordinador, nombre_coordinador, apellido_coordinador, contrasena,fecha_hora, operacion)
+    VALUES (NEW.idTrigger, NEW.rutCoordinador, NEW.nombreCoordinador, NEW.apellidoCoordinador, NEW.contrasena,  CURRENT_TIMESTAMP, 'INSERT');
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
@@ -106,8 +108,8 @@ EXECUTE FUNCTION coordinador_insert_trigger_funcion();
 CREATE OR REPLACE FUNCTION coordinador_update_trigger_funcion()
 RETURNS TRIGGER AS $$
 BEGIN
-    INSERT INTO coordinador_disparador (id_trigger, rut_coordinador, nombre_coordinador, apellido_coordinador, contrasena, operacion)
-    VALUES (New.idTrigger, NEW.rutCoordinador, NEW.nombreCoordinador, NEW.apellidoCoordinador, NEW.contrasena, 'UPDATE');
+    INSERT INTO coordinador_disparador (id_trigger, rut_coordinador, nombre_coordinador, apellido_coordinador, contrasena,fecha_hora, operacion)
+    VALUES (New.idTrigger, NEW.rutCoordinador, NEW.nombreCoordinador, NEW.apellidoCoordinador, NEW.contrasena, CURRENT_TIMESTAMP, 'UPDATE');
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
@@ -122,8 +124,8 @@ EXECUTE FUNCTION coordinador_update_trigger_funcion();
 CREATE OR REPLACE FUNCTION coordinador_delete_trigger_funcion()
 RETURNS TRIGGER AS $$
 BEGIN
-    INSERT INTO coordinador_disparador (id_trigger, rut_coordinador, nombre_coordinador, apellido_coordinador, contrasena, operacion)
-    VALUES (OLD.idTrigger, OLD.rutCoordinador, OLD.nombreCoordinador, OLD.apellidoCoordinador, OLD.contrasena, 'DELETE');
+    INSERT INTO coordinador_disparador (id_trigger, rut_coordinador, nombre_coordinador, apellido_coordinador, contrasena,fecha_hora, operacion)
+    VALUES (OLD.idTrigger, OLD.rutCoordinador, OLD.nombreCoordinador, OLD.apellidoCoordinador, OLD.contrasena, CURRENT_TIMESTAMP, 'DELETE');
     RETURN OLD;
 END;
 $$ LANGUAGE plpgsql;
@@ -132,3 +134,4 @@ CREATE TRIGGER delete_trigger_coordinador
 AFTER DELETE ON coordinador
 FOR EACH ROW
 EXECUTE FUNCTION coordinador_delete_trigger_funcion();
+
