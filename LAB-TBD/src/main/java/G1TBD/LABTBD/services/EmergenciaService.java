@@ -1,11 +1,12 @@
 package G1TBD.LABTBD.services;
 
+import G1TBD.LABTBD.dtos.datosEmergencia;
 import G1TBD.LABTBD.entities.EmergenciaEntity;
 import G1TBD.LABTBD.repositories.EmergenciaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.*;
 
 @Service
 public class EmergenciaService {
@@ -31,5 +32,22 @@ public class EmergenciaService {
 
     public boolean eliminar(long id) {
         return emergenciaRepository.eliminar(id);
+    }
+
+
+
+    public List<EmergenciaEntity> emergenciasFinalizadas(){
+        return emergenciaRepository.encontrarEmergenciasFinalizadas();
+    }
+
+
+/*
+    public List<datosEmergencia> datosEmergencias() {
+        r
+    }
+
+ */
+    public List<EmergenciaEntity> datosEmergencias() {
+        return emergenciasFinalizadas();
     }
 }

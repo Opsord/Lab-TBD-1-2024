@@ -109,4 +109,21 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
             return false;
         }
     }
+
+
+    @Override
+    public List<EmergenciaEntity> encontrarEmergenciasFinalizadas(){
+        try (Connection connection = sql2o.open()) {
+            String sql = "SELECT e.* " +
+                    "FROM Emergencia e " +
+                    "WHERE e.estadoEmergencia = false";
+
+            return connection.createQuery(sql)
+                    .executeAndFetch(EmergenciaEntity.class);
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
+            return null;
+        }
+    }
+
 }

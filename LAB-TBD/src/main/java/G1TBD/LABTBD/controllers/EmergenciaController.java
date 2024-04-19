@@ -44,4 +44,9 @@ public class EmergenciaController {
         return emergenciaService.eliminar(id);
     }
 
+    @GetMapping("/finalizadas")
+    public List<EmergenciaEntity> obtenerFinalizadas() {
+        return emergenciaService.emergenciasFinalizadas();
+    }
+
 }

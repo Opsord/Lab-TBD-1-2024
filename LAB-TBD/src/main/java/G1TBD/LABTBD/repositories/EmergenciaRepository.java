@@ -17,5 +17,7 @@ public interface EmergenciaRepository {
     boolean actualizar(EmergenciaEntity emergencia);
 
     boolean eliminar(long id);
+
+    List<EmergenciaEntity> encontrarEmergenciasFinalizadas();
 }
 
