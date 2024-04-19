@@ -194,3 +194,66 @@ CREATE TRIGGER after_delete_voluntario
 AFTER DELETE ON voluntario
 FOR EACH ROW
 EXECUTE FUNCTION voluntario_delete_trigger_funcion();
+
+
+
+-- Trigger para Emergencia
+
+CREATE TABLE emergencia_disparador (
+    idTrigger SERIAL PRIMARY KEY,
+    idEmergencia INT,
+    estadoEmergencia BOOLEAN,
+    tituloEmergencia VARCHAR(100),
+    descripcionEmergencia TEXT,
+    idCoordinador INT,
+    fecha_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    operacion TEXT
+);
+
+
+-- INSERT
+CREATE OR REPLACE FUNCTION emergencia_delete_trigger_funcion()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO emergencia_disparador (idEmergencia, estadoEmergencia, tituloEmergencia, descripcionEmergencia, idCoordinador,hora_fecha,operacion)
+    VALUES (NEW.idEmergencia, NEW.estadoEmergencia, NEW.tituloEmergencia, NEW.descripcionEmergencia, NEW.idCoordinador,CURRENT_TIMESTAMP, 'INSERT' );
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER insert_trigger_emergencia
+AFTER INSERT ON Emergencia
+FOR EACH ROW
+EXECUTE FUNCTION emergencia_delete_trigger_funcion();
+
+
+-- UPDATE
+CREATE OR REPLACE FUNCTION emergencia_update_trigger_funcion()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO emergenciaTrigger (idEmergencia, estadoEmergencia, tituloEmergencia, descripcionEmergencia, idCoordinador, fecha_hora,operacion)
+    VALUES (NEW.idEmergencia, NEW.estadoEmergencia, NEW.tituloEmergencia, NEW.descripcionEmergencia, NEW.idCoordinador,CURRENT_TIMESTAMP, 'UPDATE');
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER update_trigger_emergencia
+AFTER UPDATE ON Emergencia
+FOR EACH ROW
+EXECUTE FUNCTION emergencia_update_trigger_funcion();
+
+
+--DELETE
+CREATE OR REPLACE FUNCTION emergencia_delete_trigger_funcion()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO RegistroTrigger (idEmergencia, estadoEmergencia, tituloEmergencia, descripcionEmergencia, idCoordinador,fecha_hora,operacion)
+    VALUES (OLD.idEmergencia, OLD.estadoEmergencia, OLD.tituloEmergencia, OLD.descripcionEmergencia, OLD.idCoordinador, CURRENT_TIMESTAMP, 'DELETE');
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER delete_trigger_emergencia
+AFTER DELETE ON Emergencia
+FOR EACH ROW
+EXECUTE FUNCTION emergencia_delete_trigger_funcion();
