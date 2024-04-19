@@ -230,7 +230,7 @@ EXECUTE FUNCTION emergencia_delete_trigger_funcion();
 CREATE OR REPLACE FUNCTION emergencia_update_trigger_funcion()
 RETURNS TRIGGER AS $$
 BEGIN
-    INSERT INTO emergenciaTrigger (idEmergencia, estadoEmergencia, tituloEmergencia, descripcionEmergencia, idCoordinador, fecha_hora,operacion)
+    INSERT INTO emergencia_disparador (idEmergencia, estadoEmergencia, tituloEmergencia, descripcionEmergencia, idCoordinador, fecha_hora,operacion)
     VALUES (NEW.idEmergencia, NEW.estadoEmergencia, NEW.tituloEmergencia, NEW.descripcionEmergencia, NEW.idCoordinador,CURRENT_TIMESTAMP, 'UPDATE');
     RETURN NEW;
 END;
@@ -246,7 +246,7 @@ EXECUTE FUNCTION emergencia_update_trigger_funcion();
 CREATE OR REPLACE FUNCTION emergencia_delete_trigger_funcion()
 RETURNS TRIGGER AS $$
 BEGIN
-    INSERT INTO RegistroTrigger (idEmergencia, estadoEmergencia, tituloEmergencia, descripcionEmergencia, idCoordinador,fecha_hora,operacion)
+    INSERT INTO emergencia_disparador (idEmergencia, estadoEmergencia, tituloEmergencia, descripcionEmergencia, idCoordinador,fecha_hora,operacion)
     VALUES (OLD.idEmergencia, OLD.estadoEmergencia, OLD.tituloEmergencia, OLD.descripcionEmergencia, OLD.idCoordinador, CURRENT_TIMESTAMP, 'DELETE');
     RETURN OLD;
 END;
