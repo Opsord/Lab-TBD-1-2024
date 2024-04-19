@@ -21,11 +21,11 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
 
         try (Connection conn = sql2o.open()) {
             long id = (long) conn.createQuery(sql)
-                    .addParameter("rutcoordinador", coordinador.getRutCoordinador())
-                    .addParameter("nombrecoordinador", coordinador.getNombreCoordinador())
-                    .addParameter("apellidocoordinador", coordinador.getApellidoCoordinador())
+                    .addParameter("rutCoordinador", coordinador.getRutCoordinador())
+                    .addParameter("nombreCoordinador", coordinador.getNombreCoordinador())
+                    .addParameter("apellidoCoordinador", coordinador.getApellidoCoordinador())
                     .addParameter("contrasena", coordinador.getContrasena())
-                    .addParameter("idinstitucion", coordinador.getIdInstitucion())
+                    .addParameter("idInstitucion", coordinador.getIdInstitucion())
                     .executeUpdate()
                     .getKey();
             coordinador.setIdCoordinador(id);
@@ -70,7 +70,7 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
-                    .addParameter("idcoordinador", coordinador.getIdCoordinador())
+                    .addParameter("idCoordinador", coordinador.getIdCoordinador())
                     .addParameter("rutcoordinador", coordinador.getRutCoordinador())
                     .addParameter("nombrecoordinador", coordinador.getNombreCoordinador())
                     .addParameter("apellidocoordinador", coordinador.getApellidoCoordinador())

@@ -18,7 +18,7 @@ public class InstitucionController {
     String homeLinkRedirect = "redirect:/instituciones";
 
     @PostMapping("/crear")
-    public String crear(InstitucionEntity institucion) {
+    public String crear(@RequestBody InstitucionEntity institucion) {
         institucionService.crear(institucion);
         return homeLinkRedirect;
     }

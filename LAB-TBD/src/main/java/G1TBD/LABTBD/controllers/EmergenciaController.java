@@ -19,7 +19,7 @@ public class EmergenciaController {
     String homeLinkRedirect = "redirect:/emergencias";
 
     @GetMapping("/crear")
-    public String crear(EmergenciaEntity emergencia) {
+    public String crear(@RequestBody EmergenciaEntity emergencia) {
         emergenciaService.crear(emergencia);
         return homeLinkRedirect;
     }

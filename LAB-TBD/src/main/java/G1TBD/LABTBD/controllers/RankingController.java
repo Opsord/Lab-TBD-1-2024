@@ -18,7 +18,7 @@ public class RankingController {
     String homeLinkRedirect = "redirect:/ranking";
 
     @PostMapping("/crearRanking")
-    public String crear(RankingEntity ranking) {
+    public String crear(@RequestBody RankingEntity ranking) {
         rankingService.crear(ranking);
         return homeLinkRedirect;
     }

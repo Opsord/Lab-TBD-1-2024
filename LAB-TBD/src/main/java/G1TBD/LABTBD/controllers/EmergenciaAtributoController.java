@@ -20,7 +20,7 @@ public class EmergenciaAtributoController {
     String homeLinkRedirect = "redirect:/emergenciaAtributo";
 
     @PostMapping("/crear")
-    public String crear(EmergenciaAtributoEntity emergenciaAtributo) {
+    public String crear(@RequestBody EmergenciaAtributoEntity emergenciaAtributo) {
         emergenciaAtributoService.crear(emergenciaAtributo);
         return homeLinkRedirect;
     }

@@ -18,7 +18,7 @@ public class TareaController {
     String homeLinkRedirect = "redirect:/tareas";
 
     @PostMapping("/crear")
-    public String crear(TareaEntity tarea) {
+    public String crear(@RequestBody TareaEntity tarea) {
         tareaService.crear(tarea);
         return homeLinkRedirect;
     }
