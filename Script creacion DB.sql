@@ -135,3 +135,62 @@ AFTER DELETE ON coordinador
 FOR EACH ROW
 EXECUTE FUNCTION coordinador_delete_trigger_funcion();
 
+--Trigger para voluntario
+
+CREATE TABLE voluntario_disparador (
+    idTrigger SERIAL PRIMARY KEY,
+    nombreVoluntario VARCHAR(100),
+    rutVoluntario VARCHAR(20),
+    edadVoluntario INT,
+    contrasena VARCHAR(100),
+    disponibilidad BOOLEAN,
+    fecha_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    operacion TEXT
+);
+
+
+-- Insert
+CREATE OR REPLACE FUNCTION voluntario_insert_trigger_funcion()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO voluntario_disparador(idTrigger, nombreVoluntario, rutVoluntario, edadVoluntario, contrasena, disponibilidad,fecha_hora,operacion)
+    VALUES (New.idTrigger,NEW.nombreVoluntario, NEW.rutVoluntario, NEW.edadVoluntario, NEW.contrasena, NEW.disponibilidad,CURRENT_TIMESTAMP,'INSERT');
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER insert_trigger_voluntario
+AFTER INSERT ON voluntario
+FOR EACH ROW
+EXECUTE FUNCTION voluntario_insert_trigger_funcion();
+
+
+--Update
+CREATE OR REPLACE FUNCTION voluntario_update_trigger_funcion()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO RegistroTrigger (idTrigger, nombreVoluntario, rutVoluntario, edadVoluntario, contrasena, disponibilidad,fecha_hora,operacion)
+    VALUES (NEW.idTrigger, NEW.nombreVoluntario, NEW.rutVoluntario, NEW.edadVoluntario, NEW.contrasena, NEW.disponibilidad,CURRENT_TIMESTAMP,'UPDATE');
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER update_trigger_voluntario
+AFTER UPDATE ON voluntario
+FOR EACH ROW
+EXECUTE FUNCTION voluntario_update_trigger_funcion();
+
+--Delete
+CREATE OR REPLACE FUNCTION voluntario_delete_trigger_funcion()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO RegistroTrigger (idTrigger, nombreVoluntario, rutVoluntario, edadVoluntario, contrasena, disponibilidad, fecha_hora, operacion)
+    VALUES (OLD.idTrigger, OLD.nombreVoluntario, OLD.rutVoluntario, OLD.edadVoluntario, OLD.contrasena, OLD.disponibilidad,CURRENT_TIMESTAMP,'DELETE');
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER after_delete_voluntario
+AFTER DELETE ON voluntario
+FOR EACH ROW
+EXECUTE FUNCTION voluntario_delete_trigger_funcion();
