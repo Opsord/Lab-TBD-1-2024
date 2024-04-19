@@ -22,7 +22,7 @@ public class AtributoRepositoryImp implements AtributoRepository {
 
         try (Connection conn = sql2o.open()) {
             long id = (long) conn.createQuery(sql)
-                    .addParameter("atributo", atributo.getTipoAtributo())
+                    .addParameter("atributo", atributo.getAtributo())
                     .executeUpdate()
                     .getKey();
             atributo.setIdAtributo(id);
@@ -78,7 +78,7 @@ public class AtributoRepositoryImp implements AtributoRepository {
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
                     .addParameter("idAtributo", atributo.getIdAtributo())
-                    .addParameter("atributo", atributo.getTipoAtributo())
+                    .addParameter("atributo", atributo.getAtributo())
                     .executeUpdate();
             conn.commit();
             return true;

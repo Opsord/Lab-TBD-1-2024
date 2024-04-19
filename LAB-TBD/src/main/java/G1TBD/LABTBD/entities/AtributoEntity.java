@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AtributoEntity {
     private long idAtributo;
-    private String tipoAtributo;
+    private String atributo;
 
-    public AtributoEntity(String tipoAtributo) {
-        this.tipoAtributo = tipoAtributo;
+    public AtributoEntity(String atributo) {
+        this.atributo = atributo;
     }
 }

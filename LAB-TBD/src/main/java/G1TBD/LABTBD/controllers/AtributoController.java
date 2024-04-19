@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @RestController
 @RequestMapping("/atributos")
-@CrossOrigin(origins = "http://localhost:8090/atributos")
+@CrossOrigin
     
     
 public class AtributoController {

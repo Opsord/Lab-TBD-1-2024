@@ -13,7 +13,9 @@ import { Button } from '@/components/ui/button';
 
 import { ref } from 'vue';
 import { Textarea } from "@/components/ui/textarea"
+import ScrollArea from '@/components/ui/scroll-area/ScrollArea.vue';
 
+// Separar esto en reqeust para emregencias y otro para los atributos
 const formModel = ref({
     tituloEmergencia: '',
     estadoEmergencia: true,
@@ -22,6 +24,23 @@ const formModel = ref({
     tipoAtributoIncompatibles: '',
 
 });
+
+import axios from 'axios'
+import { onMounted } from 'vue'
+
+const atributos = ref(null)
+
+async function fetchAtributos() {
+    try {
+        const response = await axios.get('http://localhost:8090/atributos/todo');
+        atributos.value = response.data; // Make sure to adjust this according to the actual structure of your response
+    } catch (error) {
+        console.error('There was an error fetching the user data:', error);
+    }
+}
+
+// If you want to fetch data when the component mounts
+onMounted(fetchAtributos);
 // Tengo como idea para marcar los que no necesitan
 // Solo agregar otro textbox donde se indica que NO se necesita
 // El input de atributo será separado por commas
@@ -65,6 +84,21 @@ function onSubmit() {
                     <FormMessage />
                 </FormItem>
             </FormField>
+
+
+            <h1>Habilidad de los voluntarios actuales:</h1>
+            <div>
+                <ScrollArea class="h-[100px]">
+                    <div v-if="atributos && atributos.length">
+                        <li v-for="data in atributos" :key="data.idAtributo">
+                            * {{ data.atributo }}
+                        </li>
+                    </div>
+
+
+                </ScrollArea>
+            </div>
+
 
             <FormField name="atributos">
                 <FormItem>

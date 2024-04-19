@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/emergencias")
-@CrossOrigin(origins = "http://localhost:8090/emergencia")
+@CrossOrigin
 public class EmergenciaController {
 
     @Autowired
