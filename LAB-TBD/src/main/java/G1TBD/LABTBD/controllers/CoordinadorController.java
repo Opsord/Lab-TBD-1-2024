@@ -3,6 +3,7 @@ package G1TBD.LABTBD.controllers;
 import G1TBD.LABTBD.entities.CoordinadorEntity;
 import G1TBD.LABTBD.services.CoordinadorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,10 +19,12 @@ public class CoordinadorController {
     String homeLinkRedirect = "redirect:/coordinadores";
 
     @PostMapping("/crear")
-    public String crear(CoordinadorEntity coordinador) {
+    public String crear(@RequestBody CoordinadorEntity coordinador) {
+        System.out.println(coordinador);
         coordinadorService.crear(coordinador);
         return homeLinkRedirect;
     }
+
 
     @GetMapping("/todo")
     public List<CoordinadorEntity> obtenerTodos() {

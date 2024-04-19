@@ -20,7 +20,7 @@ public class AtributoController {
     String homeLinkRedirect = "redirect:/atributos";
 
     @PostMapping("/crear")
-    public String crear(AtributoEntity atributo) {
+    public String crear(@RequestBody AtributoEntity atributo) {
         atributoService.crear(atributo);
         return homeLinkRedirect;
     }

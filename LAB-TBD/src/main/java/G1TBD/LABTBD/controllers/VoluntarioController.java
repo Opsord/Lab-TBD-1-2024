@@ -18,7 +18,7 @@ public class VoluntarioController {
     String homeLinkRedirect = "redirect:/voluntarios";
 
     @PostMapping("/crear")
-    public String crear(VoluntarioEntity voluntario) {
+    public String crear(@RequestBody VoluntarioEntity voluntario) {
         voluntarioService.crear(voluntario);
         return homeLinkRedirect;
     }
