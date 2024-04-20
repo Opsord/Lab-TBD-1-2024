@@ -327,7 +327,7 @@ EXECUTE FUNCTION emergencia_atributo_update_trigger_funcion();
 CREATE OR REPLACE FUNCTION emergencia_atributo_delete_trigger_funcion()
 RETURNS TRIGGER AS $$
 BEGIN
-    INSERT INTO emergenciaAtributo_disparador(idEmergenciaAtributo, idEmergencia, idAtributo, compatibilidad, fecha_ora, operacion)
+    INSERT INTO emergenciaAtributo_disparador(idEmergenciaAtributo, idEmergencia, idAtributo, compatibilidad, fecha_hora, operacion)
     VALUES (OLD.idEmergenciaAtributo, OLD.idEmergencia, OLD.idAtributo, OLD.compatibilidad, CURRENT_TIMESTAMP,'DELETE');
     RETURN OLD;
 END;
