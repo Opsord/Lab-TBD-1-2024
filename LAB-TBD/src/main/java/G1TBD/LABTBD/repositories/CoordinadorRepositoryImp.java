@@ -16,7 +16,7 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
 
     @Override
     public CoordinadorEntity crear(CoordinadorEntity coordinador) {
-        String sql = "INSERT INTO coordinador (rutCoordinador, nombreCoordinador, apellidoCoordinador, contrasena, idInstitucion) " +
+        String sql = "INSERT INTO Coordinador (rutCoordinador, nombreCoordinador, apellidoCoordinador, contrasena, idInstitucion) " +
                 "VALUES (:rutCoordinador, :nombreCoordinador, :apellidoCoordinador, :contrasena, :idInstitucion)";
 
         try (Connection conn = sql2o.open()) {
@@ -38,7 +38,7 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
 
     @Override
     public List<CoordinadorEntity> obtenerTodos(){
-        String sql = "SELECT * FROM coordinador";
+        String sql = "SELECT * FROM Coordinador";
         try (Connection conn = sql2o.open()){
             return conn.createQuery(sql)
                     .executeAndFetch(CoordinadorEntity.class);
@@ -50,7 +50,7 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
 
     @Override
     public CoordinadorEntity obtenerPorId(long id) {
-        String sql = "SELECT * FROM coordinador WHERE idCoordinador = :idCoordinador";
+        String sql = "SELECT * FROM Coordinador WHERE idCoordinador = :idCoordinador";
 
         try (Connection conn = sql2o.open()) {
             return conn.createQuery(sql)
@@ -64,7 +64,7 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
 
     @Override
     public boolean actualizar(CoordinadorEntity coordinador) {
-        String sql = "UPDATE coordinador SET rutCoordinador = :rutCoordinador, nombreCoordinador = :nombreCoordinador, " +
+        String sql = "UPDATE Coordinador SET rutCoordinador = :rutCoordinador, nombreCoordinador = :nombreCoordinador, " +
                 "apellidoCoordinador = :apellidoCoordinador, contrasena = :contrasena, idInstitucion = :idInstitucion " +
                 "WHERE idCoordinador = :idCoordinador";
 
@@ -87,7 +87,7 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
 
     @Override
     public boolean eliminar(long id) {
-        String sql = "DELETE FROM coordinador WHERE idCoordinador = :idCoordinador";
+        String sql = "DELETE FROM Coordinador WHERE idCoordinador = :idCoordinador";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
