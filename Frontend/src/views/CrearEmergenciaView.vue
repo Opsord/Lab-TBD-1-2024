@@ -51,7 +51,7 @@ function onSubmit() {
 }
 </script>
 <template>
-    <div class="flex align-middle items-center justify-center mt-16">
+    <div class="flex align-middle items-center justify-center mt-16 ">
         <form class=" space-y-4 flex flex-col" @submit="onSubmit">
             <FormField name="titulo">
                 <FormItem>
@@ -121,7 +121,7 @@ function onSubmit() {
                     <FormMessage />
                 </FormItem>
             </FormField>
-            <Button variant="secondary" type="submit">
+            <Button variant="ghost" class="border border-zinc-600" type="submit">
                 Enviar
             </Button>
         </form>

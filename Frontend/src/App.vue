@@ -9,16 +9,9 @@ import SideBar from './components/SideBar.vue';
 
   <main>
     <NavBar />
-    <div class="grid grid-cols-6">
-      <div class="col-span-1">
-        <SideBar />
-      </div>
-      <div class="col-span-5">
-        <div class="h-svh w-auto bg-zinc-900 text-zinc-200 p-4 flex flex-col flex-grow">
-          <MainTabs />
-          <RouterView />
-        </div>
-      </div>
+    <div class="h-svh w-auto bg-zinc-50 text-zinc-900 flex flex-col flex-grow">
+      <MainTabs />
+      <RouterView />
     </div>
   </main>
 </template>
