@@ -57,30 +57,19 @@ public class EmergenciaService {
 
  */
 
-    public datosEmergencia datosEmergencias() {
-        List<EmergenciaEntity> emergenciasFinalizadas = emergenciasFinalizadas();
-        List<UUID> ides = new ArrayList<>();
-        List<TareaEntity> tareas = new ArrayList<>();
-        for(EmergenciaEntity emergencia : emergenciasFinalizadas){
-            ides.add(emergencia.getIdEmergencia());
-        }
-        int cantidadTareasTotal = 0;
-        int cantidadVoluntariosTotal = 0;
-        for(UUID id : ides){
-            List<TareaEntity> tareasPorEmergencia = tareaService.obtenerTareasPorIdEmergencia(id);
-            if(tareasPorEmergencia != null) {
-                tareas.addAll(tareasPorEmergencia);
-                cantidadTareasTotal += tareasPorEmergencia.size();
-                // Supongamos que hay un método para obtener la cantidad de voluntarios para una emergencia
-                cantidadVoluntariosTotal += 5;
+     public List<datosEmergencia> datosEmergencias() {
+            List<EmergenciaEntity> emergenciasFinalizadas = emergenciasFinalizadas();
+            List<Integer> ides = new ArrayList<>();
+            List<datosEmergencia> DatosDeLasEmergencias = new ArrayList<>();
+            for (EmergenciaEntity emergencia : emergenciasFinalizadas) {
+                ides.add((int) emergencia.getIdEmergencia());
             }
-        }
-
-        datosEmergencia datosEmergenciaa = new datosEmergencia();
-        datosEmergenciaa.setTituloEmergencia("a");
-        datosEmergenciaa.setCantidadTareas(cantidadTareasTotal);
-        datosEmergenciaa.setCantidadVoluntarios(cantidadVoluntariosTotal);
-        return datosEmergenciaa;
+            for (Integer id : ides) {
+                List<TareaEntity> tareasPorEmergencia = tareaService.obtenerTareasPorIdEmergencia(id);
+                datosEmergencia datosEmergenciaa = new datosEmergencia("a",tareasPorEmergencia.size(),5);
+                DatosDeLasEmergencias.add(datosEmergenciaa);
+            }
+            return DatosDeLasEmergencias;
     }
 
 
