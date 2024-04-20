@@ -4,7 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 </script>
 
 <template>
-    <div class="flex flex-row justify-center align-middle bg-gray-50 shadow mb-4">
+    <div class="flex flex-row justify-center align-middle bg-gray-50 border-b border-gray-200">
         <Tabs default-value="account">
             <TabsList>
                 <TabsTrigger value="inicio">

@@ -12,7 +12,7 @@ import { store } from './store.js';
     <NavBar />
     <!-- <MainTabs v-if="store.token != null"/> -->
     <MainTabs />
-    <div class="h-svh w-auto text-zinc-900 flex flex-col flex-grow">
+    <div class="flex flex-col flex-grow text-zinc-900">
       <RouterView />
     </div>
   </main>

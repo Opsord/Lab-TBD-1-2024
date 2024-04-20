@@ -1,6 +1,6 @@
 <template>
-    <div class="flex flex-col justify-center items-center gap-8 m-auto w-1/5">
-        <div class="flex flex-col justify-center items-center gap-6">
+    <div class="flex flex-col gap-8 mx-auto my-20 w-1/5">
+        <div class="flex flex-col items-center gap-6">
             <img class="w-24 h-24" src="../assets/logo-sistema.png" alt="">
             <h2 class=" text-lg font-bold text-teal-600">¡Es un buen día para ayudar!</h2>
         </div>
