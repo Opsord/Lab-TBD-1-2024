@@ -8,7 +8,7 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 import java.util.List;
-import java.util.concurrent.ExecutionException;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 @Repository
@@ -21,23 +21,28 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
 
     @Override
     public EmergenciaEntity crear(EmergenciaEntity emergencia){
-        String sql = "INSERT INTO Emergencia (estadoEmergencia, tituloEmergencia, descripcionEmergencia)" +
-                "VALUES (:estadoEmergencia, :tituloEmergencia, :descripcionEmergencia)";
+        String sql = "INSERT INTO Emergencia (idEmergencia, estadoEmergencia, tituloEmergencia, descripcionEmergencia)" +
+                "VALUES (:idEmergencia, :estadoEmergencia, :tituloEmergencia, :descripcionEmergencia)";
+
+        String idEmergencia = UUID.randomUUID().toString();
 
         try (Connection conn = sql2o.open()) {
-            long id = (long) conn.createQuery(sql)
+            conn.createQuery(sql)
+                    .addParameter("idEmergencia", idEmergencia)
                     .addParameter("estadoEmergencia", emergencia.isEstadoEmergencia())
                     .addParameter("tituloEmergencia", emergencia.getTituloEmergencia())
                     .addParameter("descripcionEmergencia", emergencia.getDescripcionEmergencia())
-                    .executeUpdate()
-                    .getKey();
-            emergencia.setIdEmergencia(id);
+                    .executeUpdate();
+
+            emergencia.setIdEmergencia(UUID.fromString(idEmergencia));
+
             return emergencia;
         } catch (Exception e) {
             logger.severe("Error al crear emergencia: " + e.getMessage());
             return null;
         }
     }
+
 
     @Override
     public List<EmergenciaEntity> obtenerTodos(){
@@ -48,7 +53,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
                     .executeAndFetch(EmergenciaEntity.class);
         } catch (Exception e) {
             logger.severe("Error al obtener todas las emergencias: " + e.getMessage());
-            return null;
+            return Collections.emptyList();
         }
     }
 

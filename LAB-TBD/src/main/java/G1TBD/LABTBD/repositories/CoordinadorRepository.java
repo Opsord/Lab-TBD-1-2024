@@ -10,9 +10,9 @@ public interface CoordinadorRepository {
 
     List<CoordinadorEntity> obtenerTodos();
 
-    CoordinadorEntity obtenerPorId(long id);
+    CoordinadorEntity obtenerPorRut(String rut);
 
     boolean actualizar(CoordinadorEntity coordinador);
 
-    boolean eliminar(long id);
+    boolean eliminar(String rut);
 }

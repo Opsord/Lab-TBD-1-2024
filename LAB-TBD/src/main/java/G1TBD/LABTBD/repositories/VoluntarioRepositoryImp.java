@@ -22,7 +22,7 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
                 "VALUES (:rutVoluntario, :nombreVoluntario, :apellidoVoluntario, :edadVoluntario, :sexoVoluntario, :email, :contrasena, :disponibilidad)";
 
         try (Connection conn = sql2o.open()) {
-            long id = (long) conn.createQuery(sql)
+            conn.createQuery(sql)
                     .addParameter("rutVoluntario", voluntario.getRutVoluntario())
                     .addParameter("nombreVoluntario", voluntario.getNombreVoluntario())
                     .addParameter("apellidoVoluntario", voluntario.getApellidoVoluntario())
@@ -31,9 +31,7 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
                     .addParameter("email", voluntario.getEmail())
                     .addParameter("contrasena", voluntario.getContrasena())
                     .addParameter("disponibilidad", voluntario.isDisponibilidad())
-                    .executeUpdate()
-                    .getKey();
-            voluntario.setIdVoluntario(id);
+                    .executeUpdate();
             return voluntario;
         } catch (Exception e) {
             logger.severe("Error al crear voluntario: " + e.getMessage());
@@ -55,15 +53,16 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
     }
 
     @Override
-    public VoluntarioEntity obtenerPorId(long id) {
-        String sql = "SELECT * FROM Voluntario WHERE idVoluntario = :idVoluntario";
+    public VoluntarioEntity obtenerPorRut(String rut) {
+        String sql = "SELECT * FROM Voluntario WHERE rutVoluntario = :rutVoluntario";
 
         try (Connection conn = sql2o.open()) {
-            return conn.createQuery(sql)
-                    .addParameter("idVoluntario", id)
-                    .executeAndFetchFirst(VoluntarioEntity.class);
+            List<VoluntarioEntity> voluntarios = conn.createQuery(sql)
+                    .addParameter("rutVoluntario", rut)
+                    .executeAndFetch(VoluntarioEntity.class);
+            return voluntarios.isEmpty() ? null : voluntarios.get(0);
         } catch (Exception e) {
-            logger.severe("Error al obtener voluntario por id: " + e.getMessage());
+            logger.severe("Error al obtener voluntario por rut: " + e.getMessage());
             return null;
         }
     }
@@ -72,15 +71,14 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
     public boolean actualizar(VoluntarioEntity voluntario) {
         String sql = "UPDATE Voluntario SET rutVoluntario = :rutVoluntario, nombreVoluntario = :nombreVoluntario, apellidoVoluntario = :apellidoVoluntario, " +
                 "edadVoluntario = :edadVoluntario, sexoVoluntario = :sexoVoluntario, email = :email, contrasena = :contrasena, disponibilidad = :disponibilidad " +
-                "WHERE idVoluntario = :idVoluntario";
+                "WHERE rutVoluntario = :rutVoluntario";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
-                    .addParameter("idVoluntario", voluntario.getIdVoluntario())
                     .addParameter("rutVoluntario", voluntario.getRutVoluntario())
                     .addParameter("nombreVoluntario", voluntario.getNombreVoluntario())
                     .addParameter("apellidoVoluntario", voluntario.getApellidoVoluntario())
-                    .addParameter("edadVoluntario", voluntario.getContrasena())
+                    .addParameter("edadVoluntario", voluntario.getEdadVoluntario())
                     .addParameter("sexoVoluntario", voluntario.isSexoVoluntario())
                     .addParameter("email", voluntario.getEmail())
                     .addParameter("contrasena", voluntario.getContrasena())
@@ -94,13 +92,14 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
         }
     }
 
+
     @Override
-    public boolean eliminar(long id) {
-        String sql = "DELETE FROM Voluntario WHERE idVoluntario = :idVoluntario";
+    public boolean eliminar(String rut) {
+        String sql = "DELETE FROM Voluntario WHERE rutVoluntario = :rutVoluntario";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
-                    .addParameter("idVoluntario", id)
+                    .addParameter("rutVoluntario", rut)
                     .executeUpdate();
             conn.commit();
             return true;

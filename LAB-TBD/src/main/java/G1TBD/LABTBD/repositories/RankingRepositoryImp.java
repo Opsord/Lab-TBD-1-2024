@@ -23,14 +23,18 @@ public class RankingRepositoryImp implements RankingRepository{
         String sql = "INSERT INTO Ranking (idVoluntario, idTarea, valorRanking) " +
                 "VALUES (:idVoluntario, :idTarea, :valorRanking)";
 
+        String idRanking = java.util.UUID.randomUUID().toString();
+
         try (Connection conn = sql2o.open()) {
-            long id = (long) conn.createQuery(sql)
-                    .addParameter("idVoluntario", ranking.getIdVoluntario())
+            conn.createQuery(sql)
+                    .addParameter("idRanking", idRanking)
+                    .addParameter("idVoluntario", ranking.getRutVoluntario())
                     .addParameter("idTarea", ranking.getIdTarea())
                     .addParameter("valorRanking", ranking.getValorRanking())
-                    .executeUpdate()
-                    .getKey();
-            ranking.setIdRanking(id);
+                    .executeUpdate();
+
+            ranking.setIdRanking(java.util.UUID.fromString(idRanking));
+
             return ranking;
         } catch (Exception e) {
             logger.severe("Error al crear ranking: " + e.getMessage());
@@ -72,7 +76,7 @@ public class RankingRepositoryImp implements RankingRepository{
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
                     .addParameter("idRanking", ranking.getIdRanking())
-                    .addParameter("idVoluntario", ranking.getIdVoluntario())
+                    .addParameter("idVoluntario", ranking.getRutVoluntario())
                     .addParameter("idTarea", ranking.getIdTarea())
                     .addParameter("valorRanking", ranking.getValorRanking())
                     .executeUpdate();

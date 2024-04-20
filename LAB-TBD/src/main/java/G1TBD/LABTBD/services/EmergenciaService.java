@@ -59,14 +59,14 @@ public class EmergenciaService {
 
     public datosEmergencia datosEmergencias() {
         List<EmergenciaEntity> emergenciasFinalizadas = emergenciasFinalizadas();
-        List<Integer> ides = new ArrayList<>();
+        List<UUID> ides = new ArrayList<>();
         List<TareaEntity> tareas = new ArrayList<>();
         for(EmergenciaEntity emergencia : emergenciasFinalizadas){
-            ides.add((int) emergencia.getIdEmergencia());
+            ides.add(emergencia.getIdEmergencia());
         }
         int cantidadTareasTotal = 0;
         int cantidadVoluntariosTotal = 0;
-        for(Integer id : ides){
+        for(UUID id : ides){
             List<TareaEntity> tareasPorEmergencia = tareaService.obtenerTareasPorIdEmergencia(id);
             if(tareasPorEmergencia != null) {
                 tareas.addAll(tareasPorEmergencia);

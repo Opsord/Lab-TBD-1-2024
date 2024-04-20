@@ -3,13 +3,13 @@ package G1TBD.LABTBD.entities;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Data
 @NoArgsConstructor
 public class AtributoEntity {
-    private long idAtributo;
+
+    private UUID idAtributo;
     private String atributo;
 
-    public AtributoEntity(String atributo) {
-        this.atributo = atributo;
-    }
 }

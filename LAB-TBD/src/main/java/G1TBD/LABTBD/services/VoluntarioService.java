@@ -21,15 +21,15 @@ public class VoluntarioService {
         return voluntarioRepository.obtenerTodos();
     }
 
-    public VoluntarioEntity obtenerPorId(long id) {
-        return voluntarioRepository.obtenerPorId(id);
+    public VoluntarioEntity obtenerPorRut(String rut) {
+        return voluntarioRepository.obtenerPorRut(rut);
     }
 
     public boolean actualizar(VoluntarioEntity voluntario) {
         return voluntarioRepository.actualizar(voluntario);
     }
 
-    public boolean eliminar(long id) {
-        return voluntarioRepository.eliminar(id);
+    public boolean eliminar(String rut) {
+        return voluntarioRepository.eliminar(rut);
     }
 }

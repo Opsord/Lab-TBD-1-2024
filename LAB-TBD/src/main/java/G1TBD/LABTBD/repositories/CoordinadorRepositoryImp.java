@@ -1,7 +1,6 @@
 package G1TBD.LABTBD.repositories;
 
 import G1TBD.LABTBD.entities.CoordinadorEntity;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
@@ -14,7 +13,6 @@ import java.util.logging.Logger;
 public class CoordinadorRepositoryImp implements CoordinadorRepository {
 
     private static final Logger logger = Logger.getLogger(CoordinadorRepositoryImp.class.getName());
-    private static final org.slf4j.Logger log = LoggerFactory.getLogger(CoordinadorRepositoryImp.class);
 
     @Autowired
     private Sql2o sql2o;
@@ -25,16 +23,14 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
                 "VALUES (:rutCoordinador, :nombreCoordinador, :apellidoCoordinador, :email, :contrasena, :idInstitucion)";
 
         try (Connection conn = sql2o.open()) {
-            long id = (long) conn.createQuery(sql)
+            conn.createQuery(sql)
                     .addParameter("rutCoordinador", coordinador.getRutCoordinador())
                     .addParameter("nombreCoordinador", coordinador.getNombreCoordinador())
                     .addParameter("apellidoCoordinador", coordinador.getApellidoCoordinador())
                     .addParameter("email", coordinador.getEmail())
                     .addParameter("contrasena", coordinador.getContrasena())
                     .addParameter("idInstitucion", coordinador.getIdInstitucion())
-                    .executeUpdate()
-                    .getKey();
-            coordinador.setIdCoordinador(id);
+                    .executeUpdate();
             return coordinador;
         } catch (Exception e) {
             logger.severe("Error al crear coordinador: " + e.getMessage());
@@ -55,15 +51,19 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
     }
 
     @Override
-    public CoordinadorEntity obtenerPorId(long id) {
-        String sql = "SELECT * FROM Coordinador WHERE idCoordinador = :idCoordinador";
+    public CoordinadorEntity obtenerPorRut(String rut) {
+        String sql = "SELECT * FROM Coordinador WHERE rutCoordinador = :rutCoordinador";
 
         try (Connection conn = sql2o.open()) {
-            return conn.createQuery(sql)
-                    .addParameter("idCoordinador", id)
-                    .executeAndFetchFirst(CoordinadorEntity.class);
+            List<CoordinadorEntity> coordinadores = conn.createQuery(sql)
+                    .addParameter("rutCoordinador", rut)
+                    .executeAndFetch(CoordinadorEntity.class);
+            if (coordinadores.isEmpty()) {
+                return null;
+            }
+            return coordinadores.get(0);
         } catch (Exception e) {
-            logger.severe("Error al obtener coordinador por id: " + e.getMessage());
+            logger.severe("Error al obtener coordinador por rut: " + e.getMessage());
             return null;
         }
     }
@@ -72,11 +72,10 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
     public boolean actualizar(CoordinadorEntity coordinador) {
         String sql = "UPDATE Coordinador SET rutCoordinador = :rutCoordinador, nombreCoordinador = :nombreCoordinador, " +
                 "apellidoCoordinador = :apellidoCoordinador, email = :email, contrasena = :contrasena, idInstitucion = :idInstitucion " +
-                "WHERE idCoordinador = :idCoordinador";
+                "WHERE rutCoordinador = :rutCoordinador";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
-                    .addParameter("idCoordinador", coordinador.getIdCoordinador())
                     .addParameter("rutCoordinador", coordinador.getRutCoordinador())
                     .addParameter("nombreCoordinador", coordinador.getNombreCoordinador())
                     .addParameter("apellidoCoordinador", coordinador.getApellidoCoordinador())
@@ -93,12 +92,12 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
     }
 
     @Override
-    public boolean eliminar(long id) {
-        String sql = "DELETE FROM Coordinador WHERE idCoordinador = :idCoordinador";
+    public boolean eliminar(String rut) {
+        String sql = "DELETE FROM Coordinador WHERE rutCoordinador = :rutCoordinador";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
-                    .addParameter("idCoordinador", id)
+                    .addParameter("rutCoordinador", rut)
                     .executeUpdate();
             conn.commit();
             return true;

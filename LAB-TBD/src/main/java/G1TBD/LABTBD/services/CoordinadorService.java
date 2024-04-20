@@ -21,15 +21,15 @@ public class CoordinadorService {
         return coordinadorRepository.obtenerTodos();
     }
 
-    public CoordinadorEntity obtenerPorId(long id) {
-        return coordinadorRepository.obtenerPorId(id);
+    public CoordinadorEntity obtenerPorRut(String rut) {
+        return coordinadorRepository.obtenerPorRut(rut);
     }
 
     public boolean actualizar(CoordinadorEntity coordinador) {
         return coordinadorRepository.actualizar(coordinador);
     }
 
-    public boolean eliminar(long id) {
-        return coordinadorRepository.eliminar(id);
+    public boolean eliminar(String rut) {
+        return coordinadorRepository.eliminar(rut);
     }
 }

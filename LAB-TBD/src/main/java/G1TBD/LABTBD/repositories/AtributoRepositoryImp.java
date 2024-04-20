@@ -9,6 +9,7 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 @Repository
@@ -24,13 +25,18 @@ public class AtributoRepositoryImp implements AtributoRepository {
         String sql = "INSERT INTO Atributo (atributo) " +
                 "VALUES (:atributo)";
 
+        String idAtributo = UUID.randomUUID().toString();
+
         try (Connection conn = sql2o.open()) {
-            long id = (long) conn.createQuery(sql)
+            conn.createQuery(sql)
+                    .addParameter("idAtributo", idAtributo)
                     .addParameter("atributo", atributo.getAtributo())
-                    .executeUpdate()
-                    .getKey();
-            atributo.setIdAtributo(id);
+                    .executeUpdate();
+
+            atributo.setIdAtributo(UUID.fromString(idAtributo));
+
             return atributo;
+
         } catch (Exception e) {
             logger.severe("Error al crear atributo: " + e.getMessage());
             return null;

@@ -7,6 +7,7 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 @Repository
@@ -21,13 +22,19 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
     public InstitucionEntity crear(InstitucionEntity institucion) {
         String sql = "INSERT INTO Institucion (nombreInstitucion)" +
                 "VALUES (:nombreInstitucion)";
+
+        String idInstitucion = UUID.randomUUID().toString();
+
         try (Connection conn = sql2o.open()) {
-            long id = (long) conn.createQuery(sql)
+            conn.createQuery(sql)
+                    .addParameter("idInstitucion", idInstitucion)
                     .addParameter("nombreInstitucion", institucion.getNombreInstitucion())
-                    .executeUpdate()
-                    .getKey();
-            institucion.setIdInstitucion(id);
+                    .executeUpdate();
+
+            institucion.setIdInstitucion(UUID.fromString(idInstitucion));
+
             return institucion;
+
         } catch (Exception e) {
             logger.severe("Error al crear institucion: " + e.getMessage());
             return null;

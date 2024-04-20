@@ -4,20 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Data
 @NoArgsConstructor
 public class EmergenciaEntity {
 
-    private long idEmergencia;
+    private UUID idEmergencia;
     private boolean estadoEmergencia;
     private String tituloEmergencia;
     private String descripcionEmergencia;
-    private long idCoordinador;
-
-    public EmergenciaEntity(boolean estadoEmergencia, String tituloEmergencia, String descripcionEmergencia ) {
-        this.estadoEmergencia = estadoEmergencia;
-        this.tituloEmergencia = tituloEmergencia;
-        this.descripcionEmergencia = descripcionEmergencia;
-    }
+    private long rutCoordinador;
 
 }

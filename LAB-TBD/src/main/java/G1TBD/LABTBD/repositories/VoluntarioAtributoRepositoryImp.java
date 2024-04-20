@@ -1,7 +1,6 @@
 package G1TBD.LABTBD.repositories;
 
 import G1TBD.LABTBD.entities.VoluntarioAtributoEntity;
-import G1TBD.LABTBD.entities.VoluntarioEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
@@ -20,17 +19,20 @@ public class VoluntarioAtributoRepositoryImp implements VoluntarioAtributoReposi
 
     @Override
     public VoluntarioAtributoEntity crear(VoluntarioAtributoEntity voluntarioAtributo) {
-        String sql = "INSERT INTO Voluntario_Atributo (idVoluntarioAtributo, idVoluntario, idAtributo) " +
+        String sql = "INSERT INTO Voluntario_Atributo (idVoluntarioAtributo, rutVoluntario, idAtributo) " +
                 "VALUES (:idVoluntarioAtributo, :idVoluntario, :idAtributo)";
 
+        String idVoluntarioAtributo = java.util.UUID.randomUUID().toString();
+
         try (Connection conn = sql2o.open()) {
-            long id = (long) conn.createQuery(sql)
-                    .addParameter("idVoluntarioAtributo", voluntarioAtributo.getIdVoluntarioAtributo())
-                    .addParameter("idVoluntario", voluntarioAtributo.getIdVoluntario())
+            conn.createQuery(sql)
+                    .addParameter("idVoluntarioAtributo", idVoluntarioAtributo)
+                    .addParameter("rutVoluntario", voluntarioAtributo.getRutVoluntario())
                     .addParameter("idAtributo", voluntarioAtributo.getIdAtributo())
-                    .executeUpdate()
-                    .getKey();
-            voluntarioAtributo.setIdVoluntarioAtributo(id);
+                    .executeUpdate();
+
+            voluntarioAtributo.setIdVoluntarioAtributo(java.util.UUID.fromString(idVoluntarioAtributo));
+
             return voluntarioAtributo;
         } catch (Exception e) {
             logger.severe("Error al crear voluntarioAtributo: " + e.getMessage());
@@ -67,13 +69,13 @@ public class VoluntarioAtributoRepositoryImp implements VoluntarioAtributoReposi
 
     @Override
     public boolean actualizar(VoluntarioAtributoEntity voluntarioAtributo) {
-        String sql = "UPDATE Voluntario_Atributo SET idVoluntarioAtributo = :idVoluntarioAtributo, idVoluntario = :idVoluntario, idAtributo = :idAtributo" +
+        String sql = "UPDATE Voluntario_Atributo SET idVoluntarioAtributo = :idVoluntarioAtributo, rutVoluntario = :rutVoluntario, idAtributo = :idAtributo" +
                 "WHERE idVoluntarioAtributo = :idVoluntarioAtributo";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
                     .addParameter("idVoluntarioAtributo", voluntarioAtributo.getIdVoluntarioAtributo())
-                    .addParameter("idVoluntario", voluntarioAtributo.getIdVoluntario())
+                    .addParameter("rutVoluntario", voluntarioAtributo.getRutVoluntario())
                     .addParameter("idAtributo", voluntarioAtributo.getIdAtributo())
                     .executeUpdate();
             conn.commit();

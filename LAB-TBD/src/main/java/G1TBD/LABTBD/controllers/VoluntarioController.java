@@ -28,9 +28,9 @@ public class VoluntarioController {
         return voluntarioService.obtenerTodos();
     }
 
-    @GetMapping("/porId/{id}")
-    public VoluntarioEntity obtenerPorId(@PathVariable long id) {
-        return voluntarioService.obtenerPorId(id);
+    @GetMapping("/porRut/{rut}")
+    public VoluntarioEntity obtenerPorRut(@PathVariable String rut) {
+        return voluntarioService.obtenerPorRut(rut);
     }
 
     @PutMapping("/actualizar")
@@ -38,9 +38,9 @@ public class VoluntarioController {
         return voluntarioService.actualizar(voluntario);
     }
 
-    @DeleteMapping("/eliminar/{id}")
-    public boolean eliminar(@PathVariable long id) {
-        return voluntarioService.eliminar(id);
+    @DeleteMapping("/eliminar/{rut}")
+    public boolean eliminar(@PathVariable String rut) {
+        return voluntarioService.eliminar(rut);
     }
 
 }

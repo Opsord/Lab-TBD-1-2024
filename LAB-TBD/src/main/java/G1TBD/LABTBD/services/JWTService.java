@@ -19,7 +19,7 @@ public class JWTService {
 
     public String generateTokenForVoluntario(VoluntarioEntity voluntario) {
         return Jwts.builder()
-                .setSubject(voluntario.email)
+                .setSubject(voluntario.getEmail())
                 .claim("type", "voluntario")
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 3600000))

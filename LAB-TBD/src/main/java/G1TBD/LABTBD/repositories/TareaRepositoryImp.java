@@ -8,6 +8,7 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 @Repository
@@ -23,16 +24,21 @@ public class TareaRepositoryImp implements TareaRepository{
         String sql = "INSERT INTO Tarea (idEmergencia, tipoTarea, descripcion, estado) " +
                 "VALUES (:idEmergencia, :tipoTarea, :descripcion, :estado)";
 
-        try (Connection conn = sql2o.open()) {
-            long id = (long) conn.createQuery(sql)
+        String idTarea = java.util.UUID.randomUUID().toString();
+
+        try(Connection conn = sql2o.open()) {
+            conn.createQuery(sql)
+                    .addParameter("idTarea", idTarea)
                     .addParameter("idEmergencia", tarea.getIdEmergencia())
                     .addParameter("tipoTarea", tarea.getTipoTarea())
                     .addParameter("descripcion", tarea.getDescripcion())
                     .addParameter("estado", tarea.isEstado())
-                    .executeUpdate()
-                    .getKey();
-            tarea.setIdTarea(id);
+                    .executeUpdate();
+
+            tarea.setIdTarea(java.util.UUID.fromString(idTarea));
+
             return tarea;
+
         } catch (Exception e) {
             logger.severe("Error al crear tarea: " + e.getMessage());
             return null;
@@ -102,9 +108,8 @@ public class TareaRepositoryImp implements TareaRepository{
         }
     }
 
-
     @Override
-    public List<TareaEntity> obtenerTareasPorIdEmergencia(long idEmergencia) {
+    public List<TareaEntity> obtenerTareasPorIdEmergencia(UUID idEmergencia) {
         String sql = "SELECT * FROM Tarea WHERE idEmergencia = :idEmergencia";
 
         try(Connection conn = sql2o.open()) {
@@ -113,7 +118,7 @@ public class TareaRepositoryImp implements TareaRepository{
                     .executeAndFetch(TareaEntity.class);
         } catch (Exception e) {
             logger.severe("Error al obtener tareas por id de emergencia: " + e.getMessage());
-            return null;
+            return Collections.emptyList();
         }
     }
 

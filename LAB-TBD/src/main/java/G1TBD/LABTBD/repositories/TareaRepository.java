@@ -3,6 +3,7 @@ package G1TBD.LABTBD.repositories;
 import G1TBD.LABTBD.entities.TareaEntity;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface TareaRepository {
 
@@ -16,5 +17,5 @@ public interface TareaRepository {
 
     boolean eliminar(long id);
 
-    List<TareaEntity> obtenerTareasPorIdEmergencia(long idEmergencia);
+    List<TareaEntity> obtenerTareasPorIdEmergencia(UUID idEmergencia);
 }

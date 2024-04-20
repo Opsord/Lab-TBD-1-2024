@@ -24,15 +24,19 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
         String sql = "INSERT INTO Emergencia_Atributo (idEmergencia, idAtributo, compatibilidad) " +
                 "VALUES (:idEmergencia, :idAtributo, :compatibilidad)";
 
+        String idAtributo = java.util.UUID.randomUUID().toString();
+
         try (Connection conn = sql2o.open()) {
-            long id = (long) conn.createQuery(sql)
+            conn.createQuery(sql)
                     .addParameter("idEmergencia", emergenciaAtributo.getIdEmergencia())
                     .addParameter("idAtributo", emergenciaAtributo.getIdAtributo())
                     .addParameter("compatibilidad", emergenciaAtributo.isCompatibilidad())
-                    .executeUpdate()
-                    .getKey();
-            emergenciaAtributo.setIdEmergenciaAtributo(id);
+                    .executeUpdate();
+
+            emergenciaAtributo.setIdAtributo(java.util.UUID.fromString(idAtributo));
+
             return emergenciaAtributo;
+
         } catch (Exception e) {
             logger.severe("Error al crear emergenciaAtributo: " + e.getMessage());
             return null;

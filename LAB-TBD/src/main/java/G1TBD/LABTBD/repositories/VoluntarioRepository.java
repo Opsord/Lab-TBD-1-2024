@@ -9,10 +9,10 @@ public interface VoluntarioRepository {
 
     List<VoluntarioEntity> obtenerTodos();
 
-    VoluntarioEntity obtenerPorId(long id);
+    VoluntarioEntity obtenerPorRut(String rut);
 
     boolean actualizar(VoluntarioEntity voluntario);
 
-    boolean eliminar(long id);
+    boolean eliminar(String rut);
 
 }

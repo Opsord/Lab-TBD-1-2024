@@ -5,6 +5,7 @@ import G1TBD.LABTBD.services.CoordinadorService;
 import G1TBD.LABTBD.services.JWTService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +22,9 @@ public class CoordinadorController {
     private JWTService jwtService;
 
     @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
     private CoordinadorService coordinadorService;
 
     String homeLinkRedirect = "redirect:/coordinadores";
@@ -32,15 +36,14 @@ public class CoordinadorController {
         return homeLinkRedirect;
     }
 
-
     @GetMapping("/todo")
     public List<CoordinadorEntity> obtenerTodos() {
         return coordinadorService.obtenerTodos();
     }
 
-    @GetMapping("/porId/{id}")
-    public CoordinadorEntity obtenerPorId(@PathVariable long id) {
-        return coordinadorService.obtenerPorId(id);
+    @GetMapping("/porRut/{rut}")
+    public CoordinadorEntity obtenerPorRut(@PathVariable String rut) {
+        return coordinadorService.obtenerPorRut(rut);
     }
 
     @PutMapping("/actualizar")
@@ -48,8 +51,8 @@ public class CoordinadorController {
         return coordinadorService.actualizar(coordinador);
     }
 
-    @DeleteMapping("/eliminar/{id}")
-    public boolean eliminar(@PathVariable long id) {
-        return coordinadorService.eliminar(id);
+    @DeleteMapping("/eliminar/{rut}")
+    public boolean eliminar(@PathVariable String rut) {
+        return coordinadorService.eliminar(rut);
     }
 }
