@@ -1,15 +1,19 @@
 package G1TBD.LABTBD.repositories;
 
 import G1TBD.LABTBD.entities.RankingEntity;
+import java.util.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @Repository
 public class RankingRepositoryImp implements RankingRepository{
+
+    private static final Logger logger = Logger.getLogger(RankingRepositoryImp.class.getName());
 
     @Autowired
     private Sql2o sql2o;
@@ -29,7 +33,7 @@ public class RankingRepositoryImp implements RankingRepository{
             ranking.setIdRanking(id);
             return ranking;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al crear ranking: " + e.getMessage());
             return null;
         }
     }
@@ -41,8 +45,8 @@ public class RankingRepositoryImp implements RankingRepository{
         try (Connection conn = sql2o.open()) {
             return conn.createQuery(sql).executeAndFetch(RankingEntity.class);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return null;
+            logger.severe("Error al obtener todos los rankings: " + e.getMessage());
+            return Collections.emptyList();
         }
     }
 
@@ -55,7 +59,7 @@ public class RankingRepositoryImp implements RankingRepository{
                     .addParameter("idRanking", id)
                     .executeAndFetchFirst(RankingEntity.class);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al obtener ranking por id: " + e.getMessage());
             return null;
         }
     }
@@ -75,7 +79,7 @@ public class RankingRepositoryImp implements RankingRepository{
             conn.commit();
             return true;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al actualizar ranking: " + e.getMessage());
             return false;
         }
     }
@@ -91,7 +95,7 @@ public class RankingRepositoryImp implements RankingRepository{
             conn.commit();
             return true;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al eliminar ranking: " + e.getMessage());
             return false;
         }
     }

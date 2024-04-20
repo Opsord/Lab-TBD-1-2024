@@ -8,9 +8,12 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @Repository
 public class VoluntarioAtributoRepositoryImp implements VoluntarioAtributoRepository{
+
+    private static final Logger logger = Logger.getLogger(VoluntarioAtributoRepositoryImp.class.getName());
 
     @Autowired
     private Sql2o sql2o;
@@ -30,7 +33,7 @@ public class VoluntarioAtributoRepositoryImp implements VoluntarioAtributoReposi
             voluntarioAtributo.setIdVoluntarioAtributo(id);
             return voluntarioAtributo;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al crear voluntarioAtributo: " + e.getMessage());
             return null;
         }
     }
@@ -43,7 +46,7 @@ public class VoluntarioAtributoRepositoryImp implements VoluntarioAtributoReposi
             return conn.createQuery(sql)
                     .executeAndFetch(VoluntarioAtributoEntity.class);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al obtener todos los voluntarioAtributo: " + e.getMessage());
             return null;
         }
     }
@@ -57,7 +60,7 @@ public class VoluntarioAtributoRepositoryImp implements VoluntarioAtributoReposi
                     .addParameter("idVoluntarioAtributo", id)
                     .executeAndFetchFirst(VoluntarioAtributoEntity.class);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al obtener voluntarioAtributo por id: " + e.getMessage());
             return null;
         }
     }
@@ -76,7 +79,7 @@ public class VoluntarioAtributoRepositoryImp implements VoluntarioAtributoReposi
             conn.commit();
             return true;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al actualizar voluntarioAtributo: " + e.getMessage());
             return false;
         }
     }
@@ -92,7 +95,7 @@ public class VoluntarioAtributoRepositoryImp implements VoluntarioAtributoReposi
             conn.commit();
             return true;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al eliminar voluntarioAtributo: " + e.getMessage());
             return false;
         }
     }

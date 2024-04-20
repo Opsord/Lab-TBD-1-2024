@@ -1,6 +1,7 @@
 package G1TBD.LABTBD.repositories;
 
 import G1TBD.LABTBD.entities.EmergenciaEntity;
+import java.util.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
@@ -8,9 +9,12 @@ import org.sql2o.Sql2o;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.logging.Logger;
 
 @Repository
 public class EmergenciaRepositoryImp implements EmergenciaRepository {
+
+    private static final Logger logger = Logger.getLogger(EmergenciaRepositoryImp.class.getName());
 
     @Autowired
     private Sql2o sql2o;
@@ -30,7 +34,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
             emergencia.setIdEmergencia(id);
             return emergencia;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al crear emergencia: " + e.getMessage());
             return null;
         }
     }
@@ -43,7 +47,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
             return conn.createQuery(sql)
                     .executeAndFetch(EmergenciaEntity.class);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al obtener todas las emergencias: " + e.getMessage());
             return null;
         }
     }
@@ -57,7 +61,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
                     .addParameter("idEmergencia", id)
                     .executeAndFetchFirst(EmergenciaEntity.class);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al obtener emergencia por id: " + e.getMessage());
             return null;
         }
 
@@ -89,7 +93,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
             conn.commit();
             return true;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al actualizar emergencia: " + e.getMessage());
             return false;
         }
     }
@@ -105,7 +109,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
             conn.commit();
             return true;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al eliminar emergencia: " + e.getMessage());
             return false;
         }
     }
@@ -121,8 +125,8 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
             return connection.createQuery(sql)
                     .executeAndFetch(EmergenciaEntity.class);
         } catch (Exception exception) {
-            System.out.println(exception.getMessage());
-            return null;
+            logger.severe("Error al obtener emergencias finalizadas: " + exception.getMessage());
+            return Collections.emptyList();
         }
     }
 

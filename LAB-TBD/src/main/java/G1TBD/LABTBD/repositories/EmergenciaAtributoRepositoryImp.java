@@ -1,15 +1,20 @@
 package G1TBD.LABTBD.repositories;
 
 import G1TBD.LABTBD.entities.EmergenciaAtributoEntity;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @Repository
 public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoRepository {
+
+    private static final Logger logger = Logger.getLogger(EmergenciaAtributoRepositoryImp.class.getName());
+    private static final org.slf4j.Logger log = LoggerFactory.getLogger(EmergenciaAtributoRepositoryImp.class);
 
     @Autowired
     private Sql2o sql2o;
@@ -29,7 +34,7 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
             emergenciaAtributo.setIdEmergenciaAtributo(id);
             return emergenciaAtributo;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al crear emergenciaAtributo: " + e.getMessage());
             return null;
         }
     }
@@ -42,7 +47,7 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
             return conn.createQuery(sql)
                     .executeAndFetch(EmergenciaAtributoEntity.class);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al obtener todos los emergenciaAtributo: " + e.getMessage());
             return null;
         }
     }
@@ -56,7 +61,7 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
                     .addParameter("idAtributo", id)
                     .executeAndFetchFirst(EmergenciaAtributoEntity.class);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al obtener emergenciaAtributo por id: " + e.getMessage());
             return null;
         }
     }
@@ -74,7 +79,7 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
             conn.commit();
             return true;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al actualizar emergenciaAtributo: " + e.getMessage());
             return false;
         }
     }
@@ -90,7 +95,7 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
             conn.commit();
             return true;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al eliminar emergenciaAtributo: " + e.getMessage());
             return false;
         }
     }

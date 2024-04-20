@@ -1,15 +1,20 @@
 package G1TBD.LABTBD.repositories;
 
 import G1TBD.LABTBD.entities.CoordinadorEntity;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @Repository
 public class CoordinadorRepositoryImp implements CoordinadorRepository {
+
+    private static final Logger logger = Logger.getLogger(CoordinadorRepositoryImp.class.getName());
+    private static final org.slf4j.Logger log = LoggerFactory.getLogger(CoordinadorRepositoryImp.class);
 
     @Autowired
     private Sql2o sql2o;
@@ -32,7 +37,7 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
             coordinador.setIdCoordinador(id);
             return coordinador;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al crear coordinador: " + e.getMessage());
             return null;
         }
     }
@@ -44,7 +49,7 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
             return conn.createQuery(sql)
                     .executeAndFetch(CoordinadorEntity.class);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al obtener todos los coordinadores: " + e.getMessage());
             return null;
         }
     }
@@ -58,7 +63,7 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
                     .addParameter("idCoordinador", id)
                     .executeAndFetchFirst(CoordinadorEntity.class);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al obtener coordinador por id: " + e.getMessage());
             return null;
         }
     }
@@ -82,7 +87,7 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
             conn.commit();
             return true;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al actualizar coordinador: " + e.getMessage());
             return false;
         }
     }
@@ -98,7 +103,7 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
             conn.commit();
             return true;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al eliminar coordinador: " + e.getMessage());
             return false;
         }
     }

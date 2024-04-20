@@ -6,9 +6,12 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @Repository
 public class VoluntarioRepositoryImp implements  VoluntarioRepository{
+
+    private static final Logger logger = Logger.getLogger(VoluntarioRepositoryImp.class.getName());
 
     @Autowired
     private Sql2o sql2o;
@@ -33,7 +36,7 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
             voluntario.setIdVoluntario(id);
             return voluntario;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al crear voluntario: " + e.getMessage());
             return null;
         }
     }
@@ -46,7 +49,7 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
             return conn.createQuery(sql)
                     .executeAndFetch(VoluntarioEntity.class);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al obtener todos los voluntarios: " + e.getMessage());
             return null;
         }
     }
@@ -60,7 +63,7 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
                     .addParameter("idVoluntario", id)
                     .executeAndFetchFirst(VoluntarioEntity.class);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al obtener voluntario por id: " + e.getMessage());
             return null;
         }
     }
@@ -86,7 +89,7 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
             conn.commit();
             return true;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al actualizar voluntario: " + e.getMessage());
             return false;
         }
     }
@@ -102,7 +105,7 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
             conn.commit();
             return true;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al eliminar voluntario: " + e.getMessage());
             return false;
         }
     }

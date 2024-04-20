@@ -7,9 +7,12 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @Repository
 public class InstitucionRepositoryImp implements InstitucionRepository {
+
+    private static final Logger logger = Logger.getLogger(InstitucionRepositoryImp.class.getName());
 
     @Autowired
     private Sql2o sql2o;
@@ -26,7 +29,7 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
             institucion.setIdInstitucion(id);
             return institucion;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al crear institucion: " + e.getMessage());
             return null;
         }
     }
@@ -39,7 +42,7 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
             return conn.createQuery(sql)
                     .executeAndFetch(InstitucionEntity.class);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al obtener todas las instituciones: " + e.getMessage());
             return null;
         }
     }
@@ -53,7 +56,7 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
                     .addParameter("idInstitucion", id)
                     .executeAndFetchFirst(InstitucionEntity.class);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al obtener institucion por id: " + e.getMessage());
             return null;
         }
     }
@@ -71,7 +74,7 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
             conn.commit();
             return true;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al actualizar institucion: " + e.getMessage());
             return false;
         }
     }
@@ -87,7 +90,7 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
             conn.commit();
             return true;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al eliminar institucion: " + e.getMessage());
             return false;
         }
     }

@@ -2,15 +2,19 @@ package G1TBD.LABTBD.repositories;
 
 
 import G1TBD.LABTBD.entities.AtributoEntity;
+import java.util.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @Repository
 public class AtributoRepositoryImp implements AtributoRepository {
+
+    private static final Logger  logger = Logger.getLogger(AtributoRepositoryImp.class.getName());
 
     @Autowired
     private Sql2o sql2o;
@@ -28,7 +32,7 @@ public class AtributoRepositoryImp implements AtributoRepository {
             atributo.setIdAtributo(id);
             return atributo;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al crear atributo: " + e.getMessage());
             return null;
         }
     }
@@ -40,8 +44,8 @@ public class AtributoRepositoryImp implements AtributoRepository {
             return conn.createQuery(sql)
                     .executeAndFetch(AtributoEntity.class);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return null;
+            logger.severe("Error al obtener todos los atributos: " + e.getMessage());
+            return Collections.emptyList();
         }
     }
 
@@ -54,7 +58,7 @@ public class AtributoRepositoryImp implements AtributoRepository {
                     .addParameter("idAtributo", id)
                     .executeAndFetchFirst(AtributoEntity.class);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al obtener atributo por id: " + e.getMessage());
             return null;
         }
     }
@@ -83,7 +87,7 @@ public class AtributoRepositoryImp implements AtributoRepository {
             conn.commit();
             return true;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al actualizar atributo: " + e.getMessage());
             return false;
         }
     }
@@ -99,7 +103,7 @@ public class AtributoRepositoryImp implements AtributoRepository {
             conn.commit();
             return true;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.severe("Error al eliminar atributo: " + e.getMessage());
             return false;
         }
     }
