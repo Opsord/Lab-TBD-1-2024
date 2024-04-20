@@ -57,9 +57,9 @@ VALUES
 --Poblacion de la tabla Coordinador
 INSERT INTO Coordinador (idCoordinador, rutCoordinador, nombreCoordinador, apellidoCoordinador, contrasena, idInstitucion)
 VALUES 
-    (1, '12341678-9', 'María', 'García', 'pass1234', 1),
-    (2, '98761432-1', 'Carlos', 'Rodríguez', 'contrdawa1', 2),
-    (3, '13553344-5', 'Ana', 'López', '123454321', 3);
+    (1, '1234678-9', 'María', 'García', 'pass1234', 1),
+    (2, '9871432-1', 'Carlos', 'Rodríguez', 'contrdawa1', 2),
+    (3, '1353344-5', 'Ana', 'López', '123454321', 3);
 
 --Poblacion de la tabla Emergencia
 INSERT INTO Emergencia (idEmergencia, estadoEmergencia, tituloEmergencia, descripcionEmergencia, idCoordinador)
