@@ -53,7 +53,7 @@ public class EmergenciaController {
     }
 
     @GetMapping("/datosEmergencias")
-    public datosEmergencia obtenerDatosEmergencias() {
+    public List<datosEmergencia> obtenerDatosEmergencias() {
         return emergenciaService.datosEmergencias();
     }
 
