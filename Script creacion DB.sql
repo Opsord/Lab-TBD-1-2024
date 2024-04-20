@@ -1,6 +1,6 @@
 CREATE TABLE Voluntario (
     idVoluntario BIGSERIAL PRIMARY KEY,
-    rutVoluntario VARCHAR(12) NOT NULL,
+    rutVoluntario VARCHAR(20) NOT NULL,
     nombreVoluntario VARCHAR(255) NOT NULL,
     apellidoVoluntario VARCHAR(255) NOT NULL,
     edadVoluntario INT NOT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE Institucion (
 
 CREATE TABLE Coordinador (
     idCoordinador BIGSERIAL PRIMARY KEY,
-    rutCoordinador VARCHAR(12) NOT NULL,
+    rutCoordinador VARCHAR(20) NOT NULL,
     nombreCoordinador VARCHAR(255) NOT NULL,
     apellidoCoordinador VARCHAR(255) NOT NULL,  
     contrasena VARCHAR(255) NOT NULL,
@@ -96,7 +96,7 @@ CREATE INDEX idx_ranking_idtarea ON Ranking (idTarea);
 
 CREATE TABLE coordinador_disparador(
  idTrigger SERIAL PRIMARY KEY,
- rutCoordinador varchar(12),
+ rutCoordinador varchar(20),
  nombreCoordinador varchar(255),
  contrasena varchar(255),
  fecha_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
