@@ -20,13 +20,18 @@ const formModel = ref({
     tituloEmergencia: '',
     estadoEmergencia: true,
     descripcionEmergencia: '',
-    tipoAtributo: '',
-    tipoAtributoIncompatibles: '',
-
 });
+
+const habilidadModel = ref(
+    [
+
+    ]
+
+)
 
 import axios from 'axios'
 import { onMounted } from 'vue'
+import { Compass } from 'lucide-vue-next';
 
 const atributos = ref(null)
 
@@ -73,44 +78,40 @@ function onSubmit() {
                 </FormItem>
             </FormField>
 
-
-            <FormField name="atributos">
-                <FormItem>
-                    <FormLabel>Habilidades requeridas:</FormLabel>
-                    <FormControl>
-                        <Textarea type="text" placeholder="Ingrese separado por comas"
-                            v-model="formModel.tipoAtributo" />
-                    </FormControl>
-                    <FormMessage />
-                </FormItem>
-            </FormField>
-
-
-            <h1>Habilidad de los voluntarios actuales:</h1>
+            <h1>Habilidades de los voluntarios actuales:</h1>
             <div>
-                <ScrollArea class="h-[100px]">
+                <ScrollArea class="h-[150px] w-[400px]">
                     <div v-if="atributos && atributos.length">
-                        <li v-for="data in atributos" :key="data.idAtributo">
+                        <li v-for="data in atributos.filter(item => !habilidadModel.some(seleccionado => seleccionado.idAtributo === item.idAtributo))"
+                            :key="data.idAtributo" class=" break-inside-auto">
                             * {{ data.atributo }}
+                            <Button type="button"
+                                v-on:click="habilidadModel.push({ idAtributo: data.idAtributo, compatibilidad: 1 })">
+                                ✅
+                            </Button>
+                            <Button type="button"
+                                v-on:click="habilidadModel.push({ idAtributo: data.idAtributo, compatibilidad: 0 })">
+                                ❌
+                            </Button>
                         </li>
                     </div>
-
-
                 </ScrollArea>
             </div>
-
-
-            <FormField name="atributos">
-                <FormItem>
-                    <FormLabel>Atributos no compatibles:</FormLabel>
-                    <FormControl>
-                        <Textarea type="text" placeholder="Ingrese separado por comas"
-                            v-model="formModel.tipoAtributoIncompatibles" />
-                    </FormControl>
-                    <FormMessage />
-                </FormItem>
-            </FormField>
-
+            <h1>Habilidades seleccionadas:</h1>
+            <div>
+                <ScrollArea class="h-[200px] w-[400px] flex flex-col">
+                    <div v-if="habilidadModel && habilidadModel.length">
+                        <li v-for="data in habilidadModel" :key="data.idAtributo" class=" break-inside-auto flex">
+                            * {{ atributos[data.idAtributo - 1].atributo }}
+                            <p v-if="data.compatibilidad === 0" class="text-red-400">&nbsp;Incompatible
+                            </p>
+                            <Button type="button" v-on:click="habilidadModel.pop(this)">
+                                ❌
+                            </Button>
+                        </li>
+                    </div>
+                </ScrollArea>
+            </div>
             <FormField name="activa" type="checkbox" v-model="formModel.disponibilidad">
                 <FormItem class="flex flex-row items-center align-middle space-x-2">
                     <FormLabel>¿Marcar como activa?</FormLabel>
