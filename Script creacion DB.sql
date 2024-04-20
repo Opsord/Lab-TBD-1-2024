@@ -228,7 +228,7 @@ CREATE TABLE emergencia_disparador (
 
 
 -- INSERT
-CREATE OR REPLACE FUNCTION emergencia_delete_trigger_funcion()
+CREATE OR REPLACE FUNCTION emergencia_insert_trigger_funcion()
 RETURNS TRIGGER AS $$
 BEGIN
     INSERT INTO emergencia_disparador (idEmergencia, estadoEmergencia, tituloEmergencia, descripcionEmergencia, idCoordinador,hora_fecha,operacion)
@@ -240,7 +240,7 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER insert_trigger_emergencia
 AFTER INSERT ON Emergencia
 FOR EACH ROW
-EXECUTE FUNCTION emergencia_delete_trigger_funcion();
+EXECUTE FUNCTION emergencia_insert_trigger_funcion();
 
 
 -- UPDATE
