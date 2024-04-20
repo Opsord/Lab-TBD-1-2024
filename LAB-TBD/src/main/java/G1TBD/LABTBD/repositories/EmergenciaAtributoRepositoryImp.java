@@ -16,7 +16,7 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
 
     @Override
     public EmergenciaAtributoEntity crear(EmergenciaAtributoEntity emergenciaAtributo) {
-        String sql = "INSERT INTO EmergenciaAtributo (idEmergencia, idAtributo, compatibilidad) " +
+        String sql = "INSERT INTO Emergencia_Atributo (idEmergencia, idAtributo, compatibilidad) " +
                 "VALUES (:idEmergencia, :idAtributo, :compatibilidad)";
 
         try (Connection conn = sql2o.open()) {
@@ -36,7 +36,7 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
 
     @Override
     public List<EmergenciaAtributoEntity> obtenerTodos() {
-        String sql = "SELECT * FROM EmergenciaAtributo";
+        String sql = "SELECT * FROM Emergencia_Atributo";
 
         try (Connection conn = sql2o.open()) {
             return conn.createQuery(sql)
@@ -49,7 +49,7 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
 
     @Override
     public EmergenciaAtributoEntity obtenerPorId(long id) {
-        String sql = "SELECT * FROM EmergenciaAtributo WHERE idAtributo = :idAtributo";
+        String sql = "SELECT * FROM Emergencia_Atributo WHERE idAtributo = :idAtributo";
 
         try (Connection conn = sql2o.open()) {
             return conn.createQuery(sql)
@@ -63,7 +63,7 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
 
     @Override
     public boolean actualizar(EmergenciaAtributoEntity emergenciaAtributo) {
-        String sql = "UPDATE EmergenciaAtributo SET idEmergencia = :idEmergencia, compatibilidad = :compatibilidad WHERE idAtributo = :idAtributo";
+        String sql = "UPDATE Emergencia_Atributo SET idEmergencia = :idEmergencia, compatibilidad = :compatibilidad WHERE idAtributo = :idAtributo";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
@@ -81,7 +81,7 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
 
     @Override
     public boolean eliminar(long id){
-        String sql = "DELETE FROM EmergenciaAtributo WHERE idAtributo = :idAtributo";
+        String sql = "DELETE FROM Emergencia_Atributo WHERE idAtributo = :idAtributo";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
