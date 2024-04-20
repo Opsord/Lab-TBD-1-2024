@@ -23,7 +23,7 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
                     .addParameter("rutVoluntario", voluntario.getRutVoluntario())
                     .addParameter("nombreVoluntario", voluntario.getNombreVoluntario())
                     .addParameter("apellidoVoluntario", voluntario.getApellidoVoluntario())
-                    .addParameter("edadVoluntario", voluntario.getContrasena())
+                    .addParameter("edadVoluntario", voluntario.getEdadVoluntario())
                     .addParameter("sexoVoluntario", voluntario.isSexoVoluntario())
                     .addParameter("contrasena", voluntario.getContrasena())
                     .addParameter("disponibilidad", voluntario.isDisponibilidad())
@@ -56,7 +56,7 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
 
         try (Connection conn = sql2o.open()) {
             return conn.createQuery(sql)
-                    .addParameter("idvoluntario", id)
+                    .addParameter("idVoluntario", id)
                     .executeAndFetchFirst(VoluntarioEntity.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -72,7 +72,7 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
-                    .addParameter("idvoluntario", voluntario.getIdVoluntario())
+                    .addParameter("idVoluntario", voluntario.getIdVoluntario())
                     .addParameter("rutVoluntario", voluntario.getRutVoluntario())
                     .addParameter("nombreVoluntario", voluntario.getNombreVoluntario())
                     .addParameter("apellidoVoluntario", voluntario.getApellidoVoluntario())
@@ -95,7 +95,7 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
-                    .addParameter("idvoluntario", id)
+                    .addParameter("idVoluntario", id)
                     .executeUpdate();
             conn.commit();
             return true;

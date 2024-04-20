@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/emergencias")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:8090/emergencias")
 public class EmergenciaController {
 
     @Autowired
@@ -18,7 +18,7 @@ public class EmergenciaController {
 
     String homeLinkRedirect = "redirect:/emergencias";
 
-    @GetMapping("/crear")
+    @PostMapping("/crear")
     public String crear(@RequestBody EmergenciaEntity emergencia) {
         emergenciaService.crear(emergencia);
         return homeLinkRedirect;
@@ -48,5 +48,6 @@ public class EmergenciaController {
     public List<EmergenciaEntity> obtenerFinalizadas() {
         return emergenciaService.emergenciasFinalizadas();
     }
+
 
 }

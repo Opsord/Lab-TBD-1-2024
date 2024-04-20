@@ -54,7 +54,7 @@ public class VoluntarioAtributoRepositoryImp implements VoluntarioAtributoReposi
 
         try (Connection conn = sql2o.open()) {
             return conn.createQuery(sql)
-                    .addParameter("idvoluntarioatributo", id)
+                    .addParameter("idVoluntarioAtributo", id)
                     .executeAndFetchFirst(VoluntarioAtributoEntity.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
