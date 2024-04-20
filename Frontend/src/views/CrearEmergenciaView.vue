@@ -21,12 +21,7 @@ const formModel = ref({
     descripcionEmergencia: '',
 });
 
-const habilidadModel = ref(
-    [
-
-    ]
-
-)
+const habilidadModel = ref([])
 
 import axios from 'axios'
 import { onMounted } from 'vue'
@@ -36,17 +31,31 @@ const atributos = ref(null)
 async function fetchAtributos() {
     try {
         const response = await axios.get('http://localhost:8090/atributos/todo');
-        atributos.value = response.data; // Make sure to adjust this according to the actual structure of your response
+        atributos.value = response.data;
     } catch (error) {
         console.error('There was an error fetching the user data:', error);
     }
 }
 
-// If you want to fetch data when the component mounts
+async function createEmergency(emergency) {
+    try {
+
+        const response = await axios.post('http://localhost:8090/emergencias/crear', emergency, { headers: { 'Content-Type': 'application/json' } })
+        console.log(response)
+
+    } catch (err) {
+        console.log(err)
+
+    }
+}
+
+// Hacemos fetch cuando se monta el componente
 onMounted(fetchAtributos);
 
-function onSubmit() {
+async function onSubmit() {
+    await createEmergency(formModel.value)
     console.log('Form submitted!', JSON.stringify(formModel.value, null, 2))
+    console.log('atributo submitted!', JSON.stringify(habilidadModel.value, null, 2))
 }
 </script>
 <template>
@@ -116,7 +125,7 @@ function onSubmit() {
                     <FormMessage />
                 </FormItem>
             </FormField>
-            <Button variant="ghost" class="border border-zinc-600" type="submit">
+            <Button variant="ghost" class="border border-zinc-600" type="button" v-on:click="onSubmit()">
                 Enviar
             </Button>
         </form>
