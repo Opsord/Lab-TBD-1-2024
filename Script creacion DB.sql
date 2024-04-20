@@ -231,7 +231,7 @@ CREATE TABLE emergencia_disparador (
 CREATE OR REPLACE FUNCTION emergencia_insert_trigger_funcion()
 RETURNS TRIGGER AS $$
 BEGIN
-    INSERT INTO emergencia_disparador (idEmergencia, estadoEmergencia, tituloEmergencia, descripcionEmergencia, idCoordinador,hora_fecha,operacion)
+    INSERT INTO emergencia_disparador (idEmergencia, estadoEmergencia, tituloEmergencia, descripcionEmergencia, idCoordinador,fecha_hora,operacion)
     VALUES (NEW.idEmergencia, NEW.estadoEmergencia, NEW.tituloEmergencia, NEW.descripcionEmergencia, NEW.idCoordinador,CURRENT_TIMESTAMP, 'INSERT' );
     RETURN NEW;
 END;
