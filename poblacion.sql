@@ -93,7 +93,9 @@ VALUES
     (2, 2, 'Control de fuga de gas', 'Gestionar la contención y control de la fuga de gas en el edificio residencial.', false),
     (3, 3, 'Rescate de personas atrapadas', 'Realizar operaciones de rescate para ayudar a las personas atrapadas por la inundación.', true),
     (4, 4, 'Atención médica a heridos', 'Brindar atención médica a los heridos en el accidente de tráfico múltiple.', true),
-    (5, 5, 'Despeje de la carretera', 'Organizar y llevar a cabo el despeje de la carretera bloqueada por el deslizamiento de tierra.', false);
+    (5, 5, 'Despeje de la carretera', 'Organizar y llevar a cabo el despeje de la carretera bloqueada por el deslizamiento de tierra.', false),
+    (6, 1, 'Suministro de alimentos', 'Distribuir alimentos y agua potable a los evacuados.', true),
+    (7, 2, 'Apoyo psicológico a afectados', 'Brindar apoyo emocional y asistencia psicológica a las personas afectadas por la fuga de gas.', false);
 
 -- Población de la tabla Ranking
 INSERT INTO Ranking (idRanking, idVoluntario, idTarea, valorRanking)
