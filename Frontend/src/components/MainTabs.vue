@@ -4,8 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 </script>
 
 <template>
-
-    <div class="flex flex-row justify-center align-middle bg-zinc-50">
+    <div class="flex flex-row justify-center align-middle bg-gray-50 shadow mb-4">
         <Tabs default-value="account">
             <TabsList>
                 <TabsTrigger value="inicio">
@@ -13,12 +12,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
                 </TabsTrigger>
                 <TabsTrigger value="ingreso">
                     <RouterLink to="/crearEmergencia">
-                        Ingreso de Emergencia
+                        Registrar Emergencia
                     </RouterLink>
                 </TabsTrigger>
                 <TabsTrigger value="emergencias">
                     <RouterLink to="/verEmergencia">
-                        Ver Emergencia Activas
+                        Emergencias Activas
                     </RouterLink>
                 </TabsTrigger>
                 <TabsTrigger value="finalizadas">

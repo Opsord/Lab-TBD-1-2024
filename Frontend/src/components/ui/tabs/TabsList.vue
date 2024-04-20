@@ -19,7 +19,7 @@ const delegatedProps = computed(() => {
 
 <template>
   <TabsList v-bind="delegatedProps" :class="cn(
-    'inline-flex h-10 items-center justify-center rounded-md bg-zinc-50 p-1 text-slate-500',
+    'inline-flex h-10 items-center justify-center rounded-md bg-zinc-50 p-1 text-slate-600',
     props.class
   )
     ">
