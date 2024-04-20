@@ -17,7 +17,7 @@ public class AtributoRepositoryImp implements AtributoRepository {
 
     @Override
     public AtributoEntity crear(AtributoEntity atributo) {
-        String sql = "INSERT INTO atributo (atributo) " +
+        String sql = "INSERT INTO Atributo (atributo) " +
                 "VALUES (:atributo)";
 
         try (Connection conn = sql2o.open()) {
@@ -35,7 +35,7 @@ public class AtributoRepositoryImp implements AtributoRepository {
 
     @Override
     public List<AtributoEntity> obtenerTodos() {
-        String sql = "SELECT * FROM atributo";
+        String sql = "SELECT * FROM Atributo";
         try (Connection conn = sql2o.open()) {
             return conn.createQuery(sql)
                     .executeAndFetch(AtributoEntity.class);
@@ -47,7 +47,7 @@ public class AtributoRepositoryImp implements AtributoRepository {
 
     @Override
     public AtributoEntity obtenerPorId(long id) {
-        String sql = "SELECT * FROM atributo WHERE idAtributo = :idAtributo";
+        String sql = "SELECT * FROM Atributo WHERE idAtributo = :idAtributo";
 
         try (Connection conn = sql2o.open()) {
             return conn.createQuery(sql)
@@ -61,7 +61,7 @@ public class AtributoRepositoryImp implements AtributoRepository {
 
 //    @Override
 //    public AtributoEntity obtenerPorTipoAtributo(String tipoAtributo) {
-//        String sql = "SELECT * FROM atributo WHERE atributo = :atributo";
+//        String sql = "SELECT * FROM Atributo WHERE atributo = :atributo";
 //
 //        try (Connection con = sql2o.open()) {
 //            return con.createQuery(sql)
@@ -72,7 +72,7 @@ public class AtributoRepositoryImp implements AtributoRepository {
 
     @Override
     public boolean actualizar(AtributoEntity atributo) {
-        String sql = "UPDATE atributo SET atributo = :atributo " +
+        String sql = "UPDATE Atributo SET atributo = :atributo " +
                 "WHERE idAtributo = :idAtributo";
 
         try (Connection conn = sql2o.open()) {
@@ -90,7 +90,7 @@ public class AtributoRepositoryImp implements AtributoRepository {
 
     @Override
     public boolean eliminar(long id) {
-        String sql = "DELETE FROM atributo WHERE idAtributo = :idAtributo";
+        String sql = "DELETE FROM Atributo WHERE idAtributo = :idAtributo";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
