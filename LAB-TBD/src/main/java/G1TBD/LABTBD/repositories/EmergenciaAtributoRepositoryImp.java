@@ -16,13 +16,13 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
 
     @Override
     public EmergenciaAtributoEntity crear(EmergenciaAtributoEntity emergenciaAtributo) {
-        String sql = "INSERT INTO EmergenciaAtributo (idEmergencia, idHabilidad, compatibilidad) " +
-                "VALUES (:idEmergencia, :idHabilidad, :compatibilidad)";
+        String sql = "INSERT INTO EmergenciaAtributo (idEmergencia, idAtributo, compatibilidad) " +
+                "VALUES (:idEmergencia, :idAtributo, :compatibilidad)";
 
         try (Connection conn = sql2o.open()) {
             long id = (long) conn.createQuery(sql)
                     .addParameter("idEmergencia", emergenciaAtributo.getIdEmergencia())
-                    .addParameter("idHabilidad", emergenciaAtributo.getIdAtributo())
+                    .addParameter("idAtributo", emergenciaAtributo.getIdAtributo())
                     .addParameter("compatibilidad", emergenciaAtributo.isCompatibilidad())
                     .executeUpdate()
                     .getKey();
@@ -63,12 +63,11 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
 
     @Override
     public boolean actualizar(EmergenciaAtributoEntity emergenciaAtributo) {
-        String sql = "UPDATE EmergenciaAtributo SET idEmergencia = :idEmergencia, idHabilidad = :idHabilidad, compatibilidad = :compatibilidad WHERE idAtributo = :idAtributo";
+        String sql = "UPDATE EmergenciaAtributo SET idEmergencia = :idEmergencia, compatibilidad = :compatibilidad WHERE idAtributo = :idAtributo";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
                     .addParameter("idEmergencia", emergenciaAtributo.getIdEmergencia())
-                    .addParameter("idHabilidad", emergenciaAtributo.getIdAtributo())
                     .addParameter("compatibilidad", emergenciaAtributo.isCompatibilidad())
                     .addParameter("idAtributo", emergenciaAtributo.getIdAtributo())
                     .executeUpdate();
