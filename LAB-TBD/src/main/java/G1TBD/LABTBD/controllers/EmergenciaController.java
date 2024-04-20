@@ -1,5 +1,6 @@
 package G1TBD.LABTBD.controllers;
 
+import G1TBD.LABTBD.dtos.datosEmergencia;
 import G1TBD.LABTBD.entities.EmergenciaEntity;
 import G1TBD.LABTBD.services.EmergenciaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,11 @@ public class EmergenciaController {
     @GetMapping("/finalizadas")
     public List<EmergenciaEntity> obtenerFinalizadas() {
         return emergenciaService.emergenciasFinalizadas();
+    }
+
+    @GetMapping("/datosEmergencias")
+    public datosEmergencia obtenerDatosEmergencias() {
+        return emergenciaService.datosEmergencias();
     }
 
 

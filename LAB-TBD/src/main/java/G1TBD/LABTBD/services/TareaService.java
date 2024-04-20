@@ -32,4 +32,6 @@ public class TareaService {
     public boolean eliminar(long id) {
         return tareaRepository.eliminar(id);
     }
+
+    public List<TareaEntity> obtenerTareasPorIdEmergencia(long idEmergencia){return tareaRepository.obtenerTareasPorIdEmergencia(idEmergencia);}
 }

@@ -97,4 +97,20 @@ public class TareaRepositoryImp implements TareaRepository{
             return false;
         }
     }
+
+
+    @Override
+    public List<TareaEntity> obtenerTareasPorIdEmergencia(long idEmergencia) {
+        String sql = "SELECT * FROM Tarea WHERE idEmergencia = :idEmergencia";
+
+        try(Connection conn = sql2o.open()) {
+            return conn.createQuery(sql)
+                    .addParameter("idEmergencia", idEmergencia)
+                    .executeAndFetch(TareaEntity.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
 }

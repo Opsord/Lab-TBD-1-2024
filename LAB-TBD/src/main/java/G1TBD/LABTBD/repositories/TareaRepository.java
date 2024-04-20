@@ -15,4 +15,6 @@ public interface TareaRepository {
     boolean actualizar(TareaEntity tarea);
 
     boolean eliminar(long id);
+
+    List<TareaEntity> obtenerTareasPorIdEmergencia(long idEmergencia);
 }
