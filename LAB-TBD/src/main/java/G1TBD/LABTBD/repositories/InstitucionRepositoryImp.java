@@ -16,7 +16,7 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
 
     @Override
     public InstitucionEntity crear(InstitucionEntity institucion) {
-        String sql = "INSERT INTO institucion (nombreInstitucion)" +
+        String sql = "INSERT INTO Institucion (nombreInstitucion)" +
                 "VALUES (:nombreInstitucion)";
         try (Connection conn = sql2o.open()) {
             long id = (long) conn.createQuery(sql)
