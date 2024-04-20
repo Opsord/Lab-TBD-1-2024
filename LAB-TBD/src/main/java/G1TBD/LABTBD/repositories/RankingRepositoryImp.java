@@ -16,7 +16,7 @@ public class RankingRepositoryImp implements RankingRepository{
 
     @Override
     public RankingEntity crear(RankingEntity ranking) {
-        String sql = "INSERT INTO ranking (idVoluntario, idTarea, valorRanking) " +
+        String sql = "INSERT INTO Ranking (idVoluntario, idTarea, valorRanking) " +
                 "VALUES (:idVoluntario, :idTarea, :valorRanking)";
 
         try (Connection conn = sql2o.open()) {
@@ -36,7 +36,7 @@ public class RankingRepositoryImp implements RankingRepository{
 
     @Override
     public List<RankingEntity> obtenerTodos() {
-        String sql = "SELECT * FROM ranking";
+        String sql = "SELECT * FROM Ranking";
 
         try (Connection conn = sql2o.open()) {
             return conn.createQuery(sql).executeAndFetch(RankingEntity.class);
@@ -48,7 +48,7 @@ public class RankingRepositoryImp implements RankingRepository{
 
     @Override
     public RankingEntity obtenerPorId(long id) {
-        String sql = "SELECT * FROM ranking WHERE idRanking = :idRanking";
+        String sql = "SELECT * FROM Ranking WHERE idRanking = :idRanking";
 
         try (Connection conn = sql2o.open()) {
             return conn.createQuery(sql)
@@ -62,7 +62,7 @@ public class RankingRepositoryImp implements RankingRepository{
 
     @Override
     public boolean actualizar(RankingEntity ranking) {
-        String sql = "UPDATE ranking SET idVoluntario = :idVoluntario, idTarea = :idTarea, valorRanking = :valorRanking " +
+        String sql = "UPDATE Ranking SET idVoluntario = :idVoluntario, idTarea = :idTarea, valorRanking = :valorRanking " +
                 "WHERE idRanking = :idRanking";
 
         try (Connection conn = sql2o.open()) {
@@ -82,7 +82,7 @@ public class RankingRepositoryImp implements RankingRepository{
 
     @Override
     public boolean eliminar(long id) {
-        String sql = "DELETE FROM ranking WHERE idRanking = :idRanking";
+        String sql = "DELETE FROM Ranking WHERE idRanking = :idRanking";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
