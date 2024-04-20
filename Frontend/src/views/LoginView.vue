@@ -20,14 +20,14 @@
                 </button>
                 <div class="flex justify-center gap-2 text-sm">
                     <span>¿Aún no tienes cuenta?</span>
-                    <a href="" class="font-bold text-teal-600 hover:underline">Registrate</a>
+                    <button class="font-bold text-teal-600 hover:underline" @click="redirectToRegister">Registrate</button>
                 </div>
             </form>
         </div>
     </div>
 </template>
 
-<script>
+<script setup>
 import { useRouter } from "vue-router";
 import { ref } from "vue";
 import { store } from "../store";
@@ -38,7 +38,19 @@ const router = useRouter();
 const correo = ref("");
 const contrasena = ref("");
 
-</script>
+const redirectToHome = async () => {
+    // Verificar datos validos
+    // Guardar valores ingresados
+    // Try-Catch
+    // Llamar backend
+    // Comprobar response
+    // Guardar autenticacion en store
+    // Router push
+}
 
-<style>
-</style>
+
+const redirectToRegister = () => {
+    console.log("Redirigiendo a /register");
+    router.push('/register');
+}
+</script>
