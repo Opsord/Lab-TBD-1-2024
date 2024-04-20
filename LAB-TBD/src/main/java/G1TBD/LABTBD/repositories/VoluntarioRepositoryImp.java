@@ -15,8 +15,8 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
 
     @Override
     public VoluntarioEntity crear(VoluntarioEntity voluntario) {
-        String sql = "INSERT INTO Voluntario (rutVoluntario, nombreVoluntario, apellidoVoluntario, edadVoluntario, sexoVoluntario, contrasena, disponibilidad) " +
-                "VALUES (:rutVoluntario, :nombreVoluntario, :apellidoVoluntario, :edadVoluntario, :sexoVoluntario, :contrasena, :disponibilidad)";
+        String sql = "INSERT INTO Voluntario (rutVoluntario, nombreVoluntario, apellidoVoluntario, edadVoluntario, sexoVoluntario, email, contrasena, disponibilidad) " +
+                "VALUES (:rutVoluntario, :nombreVoluntario, :apellidoVoluntario, :edadVoluntario, :sexoVoluntario, :email, :contrasena, :disponibilidad)";
 
         try (Connection conn = sql2o.open()) {
             long id = (long) conn.createQuery(sql)
@@ -25,6 +25,7 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
                     .addParameter("apellidoVoluntario", voluntario.getApellidoVoluntario())
                     .addParameter("edadVoluntario", voluntario.getEdadVoluntario())
                     .addParameter("sexoVoluntario", voluntario.isSexoVoluntario())
+                    .addParameter("email", voluntario.getEmail())
                     .addParameter("contrasena", voluntario.getContrasena())
                     .addParameter("disponibilidad", voluntario.isDisponibilidad())
                     .executeUpdate()
@@ -67,7 +68,7 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
     @Override
     public boolean actualizar(VoluntarioEntity voluntario) {
         String sql = "UPDATE Voluntario SET rutVoluntario = :rutVoluntario, nombreVoluntario = :nombreVoluntario, apellidoVoluntario = :apellidoVoluntario, " +
-                "edadVoluntario = :edadVoluntario, sexoVoluntario = :sexoVoluntario, contrasena = :contrasena, disponibilidad = :disponibilidad " +
+                "edadVoluntario = :edadVoluntario, sexoVoluntario = :sexoVoluntario, email = :email, contrasena = :contrasena, disponibilidad = :disponibilidad " +
                 "WHERE idVoluntario = :idVoluntario";
 
         try (Connection conn = sql2o.open()) {
@@ -78,6 +79,7 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
                     .addParameter("apellidoVoluntario", voluntario.getApellidoVoluntario())
                     .addParameter("edadVoluntario", voluntario.getContrasena())
                     .addParameter("sexoVoluntario", voluntario.isSexoVoluntario())
+                    .addParameter("email", voluntario.getEmail())
                     .addParameter("contrasena", voluntario.getContrasena())
                     .addParameter("disponibilidad", voluntario.isDisponibilidad())
                     .executeUpdate();

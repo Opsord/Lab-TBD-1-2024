@@ -12,6 +12,7 @@ public class VoluntarioEntity {
     private String apellidoVoluntario;
     private int edadVoluntario;
     private boolean sexoVoluntario;
+    public String email;
     private String contrasena;
     private boolean disponibilidad;
 
@@ -21,6 +22,7 @@ public class VoluntarioEntity {
         this.apellidoVoluntario = apellidoVoluntario;
         this.edadVoluntario = edadVoluntario;
         this.sexoVoluntario = sexoVoluntario;
+        this.email = email;
         this.contrasena = contrasena;
         this.disponibilidad = disponibilidad;
     }

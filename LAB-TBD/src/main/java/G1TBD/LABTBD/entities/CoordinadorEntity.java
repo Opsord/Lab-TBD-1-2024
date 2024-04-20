@@ -10,6 +10,7 @@ public class CoordinadorEntity {
     private String rutCoordinador;
     private String nombreCoordinador;
     private String apellidoCoordinador;
+    private String email;
     private String contrasena;
     private long idInstitucion;
 
@@ -17,6 +18,7 @@ public class CoordinadorEntity {
         this.rutCoordinador = rutCoordinador;
         this.nombreCoordinador = nombreCoordinador;
         this.apellidoCoordinador = apellidoCoordinador;
+        this.email = email;
         this.contrasena = contrasena;
         this.idInstitucion = idInstitucion;
     }

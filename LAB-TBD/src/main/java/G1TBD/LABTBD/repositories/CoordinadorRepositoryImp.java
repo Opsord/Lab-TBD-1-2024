@@ -16,14 +16,15 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
 
     @Override
     public CoordinadorEntity crear(CoordinadorEntity coordinador) {
-        String sql = "INSERT INTO Coordinador (rutCoordinador, nombreCoordinador, apellidoCoordinador, contrasena, idInstitucion) " +
-                "VALUES (:rutCoordinador, :nombreCoordinador, :apellidoCoordinador, :contrasena, :idInstitucion)";
+        String sql = "INSERT INTO Coordinador (rutCoordinador, nombreCoordinador, apellidoCoordinador, email, contrasena, idInstitucion) " +
+                "VALUES (:rutCoordinador, :nombreCoordinador, :apellidoCoordinador, :email, :contrasena, :idInstitucion)";
 
         try (Connection conn = sql2o.open()) {
             long id = (long) conn.createQuery(sql)
                     .addParameter("rutCoordinador", coordinador.getRutCoordinador())
                     .addParameter("nombreCoordinador", coordinador.getNombreCoordinador())
                     .addParameter("apellidoCoordinador", coordinador.getApellidoCoordinador())
+                    .addParameter("email", coordinador.getEmail())
                     .addParameter("contrasena", coordinador.getContrasena())
                     .addParameter("idInstitucion", coordinador.getIdInstitucion())
                     .executeUpdate()
@@ -65,7 +66,7 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
     @Override
     public boolean actualizar(CoordinadorEntity coordinador) {
         String sql = "UPDATE Coordinador SET rutCoordinador = :rutCoordinador, nombreCoordinador = :nombreCoordinador, " +
-                "apellidoCoordinador = :apellidoCoordinador, contrasena = :contrasena, idInstitucion = :idInstitucion " +
+                "apellidoCoordinador = :apellidoCoordinador, email = :email, contrasena = :contrasena, idInstitucion = :idInstitucion " +
                 "WHERE idCoordinador = :idCoordinador";
 
         try (Connection conn = sql2o.open()) {
@@ -74,6 +75,7 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
                     .addParameter("rutCoordinador", coordinador.getRutCoordinador())
                     .addParameter("nombreCoordinador", coordinador.getNombreCoordinador())
                     .addParameter("apellidoCoordinador", coordinador.getApellidoCoordinador())
+                    .addParameter("email", coordinador.getEmail())
                     .addParameter("contrasena", coordinador.getContrasena())
                     .addParameter("idInstitucion", coordinador.getIdInstitucion())
                     .executeUpdate();
