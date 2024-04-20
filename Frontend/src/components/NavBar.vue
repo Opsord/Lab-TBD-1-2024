@@ -1,10 +1,10 @@
 <template>
-    <div className="container-nav">
-        <div className="container-content">
+    <div class="container-nav">
+        <div class="container-content">
             <img src="../assets/logo-sistema.png" alt="">
             <span>Sistema de Emergencias<span>Región Metropolitana</span></span>
         </div>
-        <div className="container-content">
+        <div class="container-content">
             <img src="../assets/logo-usach.png" alt="">
         </div>
     </div>
