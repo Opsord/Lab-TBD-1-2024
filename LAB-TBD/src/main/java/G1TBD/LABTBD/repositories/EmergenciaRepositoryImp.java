@@ -37,7 +37,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
 
     @Override
     public List<EmergenciaEntity> obtenerTodos(){
-        String sql = "SELECT * FROM emergencia";
+        String sql = "SELECT * FROM Emergencia";
 
         try (Connection conn = sql2o.open()) {
             return conn.createQuery(sql)
@@ -50,7 +50,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
 
     @Override
     public EmergenciaEntity obtenerPorId(long id){
-        String sql = "SELECT * FROM emergencia WHERE idEmergencia = :idEmergencia";
+        String sql = "SELECT * FROM Emergencia WHERE idEmergencia = :idEmergencia";
 
         try (Connection conn = sql2o.open()) {
             return conn.createQuery(sql)
@@ -65,7 +65,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
 
 //    @Override
 //    public List<EmergenciaEntity> obtenerEmergenciaPorEstado(){
-//        String sql = "SELECT * FROM emergencia WHERE estadoEmergencia = true";
+//        String sql = "SELECT * FROM Emergencia WHERE estadoEmergencia = true";
 //
 //        try (Connection con = sql2o.open()) {
 //            return con.createQuery(sql).executeAndFetch(EmergenciaEntity.class);
@@ -75,7 +75,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
 
     @Override
     public boolean actualizar(EmergenciaEntity emergencia){
-        String sql = "UPDATE emergencia SET estadoEmergencia = :estadoEmergencia, tituloEmergencia = :tituloEmergencia, "+
+        String sql = "UPDATE Emergencia SET estadoEmergencia = :estadoEmergencia, tituloEmergencia = :tituloEmergencia, "+
                 "descripcionEmergencia = :descripcionEmergencia" +
                 "WHERE idEmergencia = :idEmergencia";
 
@@ -96,7 +96,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
 
     @Override
     public boolean eliminar(long id){
-        String sql = "DELETE FROM emergencia WHERE idEmergencia = :idEmergencia";
+        String sql = "DELETE FROM Emergencia WHERE idEmergencia = :idEmergencia";
 
         try (Connection conn = sql2o.open()){
             conn.createQuery(sql)
