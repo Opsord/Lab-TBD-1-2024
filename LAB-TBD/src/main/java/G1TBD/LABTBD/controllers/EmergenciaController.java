@@ -3,7 +3,9 @@ package G1TBD.LABTBD.controllers;
 import G1TBD.LABTBD.dtos.datosEmergencia;
 import G1TBD.LABTBD.entities.EmergenciaEntity;
 import G1TBD.LABTBD.services.EmergenciaService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,9 +22,9 @@ public class EmergenciaController {
     String homeLinkRedirect = "redirect:/emergencias";
 
     @PostMapping("/crear")
-    public String crear(@RequestBody EmergenciaEntity emergencia) {
-        emergenciaService.crear(emergencia);
-        return homeLinkRedirect;
+    public ResponseEntity<EmergenciaEntity> crear(@RequestBody EmergenciaEntity emergencia) {
+        EmergenciaEntity emergenciaCreada = emergenciaService.crear(emergencia);
+        return new ResponseEntity<>(emergenciaCreada, HttpStatus.CREATED);
     }
 
     @GetMapping("/todo")

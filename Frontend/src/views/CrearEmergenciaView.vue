@@ -37,25 +37,33 @@ async function fetchAtributos() {
     }
 }
 
-async function createEmergency(emergency) {
+async function crearEmergencia(emergency) {
     try {
 
         const response = await axios.post('http://localhost:8090/emergencias/crear', emergency, { headers: { 'Content-Type': 'application/json' } })
-        console.log(response)
+        return response.data.idEmergencia
 
     } catch (err) {
         console.log(err)
 
     }
 }
+async function createAtributoEmergencia(idEmergencia) {
+    try {
+        const response = await axios.post('http://localhost:8090/emergenciaAtributo/crear', habilidadModel, { headers: { 'Content-Type': 'application/json' } })
+        return response.data
 
+    } catch (err) {
+        console.log(err)
+
+    }
+}
 // Hacemos fetch cuando se monta el componente
 onMounted(fetchAtributos);
 
 async function onSubmit() {
-    await createEmergency(formModel.value)
-    console.log('Form submitted!', JSON.stringify(formModel.value, null, 2))
-    console.log('atributo submitted!', JSON.stringify(habilidadModel.value, null, 2))
+    const idEmergencia = await crearEmergencia(formModel.value)
+    const atributosCreaddos = await createAtributoEmergencia(idEmergencia)
 }
 </script>
 <template>

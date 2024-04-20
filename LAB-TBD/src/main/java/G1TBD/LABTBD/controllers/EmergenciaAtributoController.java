@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/emergenciaAtributo")
-@CrossOrigin(origins = "http://localhost:8090/emergenciaAtributo")
+@CrossOrigin
 public class EmergenciaAtributoController {
 
     @Autowired
