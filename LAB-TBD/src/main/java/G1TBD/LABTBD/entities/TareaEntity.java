@@ -9,8 +9,8 @@ import java.util.UUID;
 @NoArgsConstructor
 public class TareaEntity {
 
-    private UUID idTarea;
-    private UUID idEmergencia;
+    private long idTarea;
+    private long idEmergencia;
     private String tipoTarea;
     private String descripcion;
     private boolean estado;

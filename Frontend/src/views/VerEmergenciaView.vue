@@ -1,8 +1,6 @@
 <template>
     <div class=" bg-green-500">
         <h1>Esto es ver emergencia</h1>
-        <h1>Esto es ver emergencia</h1>
-
         <div v-if="user && user.length">
             <li v-for="data in user" :key="data.idEmergencia">
                 {{ data.tituloEmergencia }}

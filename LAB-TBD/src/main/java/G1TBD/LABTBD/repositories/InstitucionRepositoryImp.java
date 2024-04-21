@@ -23,15 +23,13 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
         String sql = "INSERT INTO Institucion (nombreInstitucion)" +
                 "VALUES (:nombreInstitucion)";
 
-        String idInstitucion = UUID.randomUUID().toString();
-
         try (Connection conn = sql2o.open()) {
-            conn.createQuery(sql)
-                    .addParameter("idInstitucion", idInstitucion)
+            long id = (long) conn.createQuery(sql)
                     .addParameter("nombreInstitucion", institucion.getNombreInstitucion())
-                    .executeUpdate();
+                    .executeUpdate()
+                    .getKey();
 
-            institucion.setIdInstitucion(UUID.fromString(idInstitucion));
+            institucion.setIdInstitucion(id);
 
             return institucion;
 
@@ -74,10 +72,11 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
                 "WHERE idInstitucion = :idInstitucion";
 
         try (Connection conn = sql2o.open()) {
-            conn.createQuery(sql)
+            long id = (long) conn.createQuery(sql)
                     .addParameter("idInstitucion", institucion.getIdInstitucion())
                     .addParameter("nombreInstitucion", institucion.getNombreInstitucion())
-                    .executeUpdate();
+                    .executeUpdate()
+                    .getKey();
             conn.commit();
             return true;
         } catch (Exception e) {

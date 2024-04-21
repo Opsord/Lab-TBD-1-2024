@@ -9,7 +9,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class AtributoEntity {
 
-    private UUID idAtributo;
+    private long idAtributo;
     private String atributo;
 
 }

@@ -25,16 +25,14 @@ public class AtributoRepositoryImp implements AtributoRepository {
         String sql = "INSERT INTO Atributo (atributo) " +
                 "VALUES (:atributo)";
 
-        String idAtributo = UUID.randomUUID().toString();
 
         try (Connection conn = sql2o.open()) {
-            conn.createQuery(sql)
-                    .addParameter("idAtributo", idAtributo)
+            long id = (long) conn.createQuery(sql)
                     .addParameter("atributo", atributo.getAtributo())
-                    .executeUpdate();
+                    .executeUpdate()
+                    .getKey();
 
-            atributo.setIdAtributo(UUID.fromString(idAtributo));
-
+            atributo.setIdAtributo(id);
             return atributo;
 
         } catch (Exception e) {

@@ -9,9 +9,9 @@ import java.util.UUID;
 @NoArgsConstructor
 public class EmergenciaAtributoEntity {
 
-    private UUID idEmergenciaAtributo;
-    private UUID idEmergencia;
-    private UUID idAtributo;
+    private long idEmergenciaAtributo;
+    private long idEmergencia;
+    private long idAtributo;
     private boolean compatibilidad;
 
 }

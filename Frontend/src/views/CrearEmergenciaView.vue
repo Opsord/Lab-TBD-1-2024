@@ -25,7 +25,6 @@ const habilidadModel = ref([])
 
 import axios from 'axios'
 import { onMounted } from 'vue'
-import { identity } from '@vueuse/core';
 
 const atributos = ref(null)
 

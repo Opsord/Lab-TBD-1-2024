@@ -26,14 +26,14 @@ public class RankingRepositoryImp implements RankingRepository{
         String idRanking = java.util.UUID.randomUUID().toString();
 
         try (Connection conn = sql2o.open()) {
-            conn.createQuery(sql)
-                    .addParameter("idRanking", idRanking)
+            long id = (long) conn.createQuery(sql)
                     .addParameter("idVoluntario", ranking.getRutVoluntario())
                     .addParameter("idTarea", ranking.getIdTarea())
                     .addParameter("valorRanking", ranking.getValorRanking())
-                    .executeUpdate();
+                    .executeUpdate()
+                            .getKey();
 
-            ranking.setIdRanking(java.util.UUID.fromString(idRanking));
+            ranking.setIdRanking(id);
 
             return ranking;
         } catch (Exception e) {

@@ -25,6 +25,10 @@ public class EmergenciaService {
         return emergenciaRepository.obtenerTodos();
     }
 
+    public List<EmergenciaEntity> obtenerTodasActivas() {
+        return emergenciaRepository.obtenerTodasActivas();
+    }
+
     public EmergenciaEntity obtenerPorId(long id) {
         return emergenciaRepository.obtenerPorId(id);
     }
@@ -53,20 +57,20 @@ public class EmergenciaService {
      * 
      */
 
-    public List<datosEmergencia> datosEmergencias() {
-        List<EmergenciaEntity> emergenciasFinalizadas = emergenciasFinalizadas();
-        List<UUID> ides = new ArrayList<>();
-        List<datosEmergencia> datosEmergencias = new ArrayList<>();
-        for (EmergenciaEntity emergencia : emergenciasFinalizadas) {
-            ides.add(emergencia.getIdEmergencia());
-        }
-        for (UUID id : ides) {
-            List<TareaEntity> tareasPorEmergencia = tareaService.obtenerTareasPorIdEmergencia(id);
-            datosEmergencia datosEmergenciaa = new datosEmergencia("a", tareasPorEmergencia.size(), 5);
-            datosEmergencias.add(datosEmergenciaa);
-        }
-        return datosEmergencias;
-    }
+//    public List<datosEmergencia> datosEmergencias() {
+//        List<EmergenciaEntity> emergenciasFinalizadas = emergenciasFinalizadas();
+//        List<UUID> ides = new ArrayList<>();
+//        List<datosEmergencia> datosEmergencias = new ArrayList<>();
+//        for (EmergenciaEntity emergencia : emergenciasFinalizadas) {
+//            ides.add(emergencia.getIdEmergencia());
+//        }
+//        for (UUID id : ides) {
+//            List<TareaEntity> tareasPorEmergencia = tareaService.obtenerTareasPorIdEmergencia(id);
+//            datosEmergencia datosEmergenciaa = new datosEmergencia("a", tareasPorEmergencia.size(), 5);
+//            datosEmergencias.add(datosEmergenciaa);
+//        }
+//        return datosEmergencias;
+//    }
 
     /*
      * 

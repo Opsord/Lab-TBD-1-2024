@@ -19,19 +19,17 @@ public class VoluntarioAtributoRepositoryImp implements VoluntarioAtributoReposi
 
     @Override
     public VoluntarioAtributoEntity crear(VoluntarioAtributoEntity voluntarioAtributo) {
-        String sql = "INSERT INTO Voluntario_Atributo (idVoluntarioAtributo, rutVoluntario, idAtributo) " +
-                "VALUES (:idVoluntarioAtributo, :idVoluntario, :idAtributo)";
-
-        String idVoluntarioAtributo = java.util.UUID.randomUUID().toString();
+        String sql = "INSERT INTO Voluntario_Atributo ( rutVoluntario, idAtributo)" +
+                "VALUES (:idVoluntario, :idAtributo)";
 
         try (Connection conn = sql2o.open()) {
-            conn.createQuery(sql)
-                    .addParameter("idVoluntarioAtributo", idVoluntarioAtributo)
+            long id = (long) conn.createQuery(sql)
                     .addParameter("rutVoluntario", voluntarioAtributo.getRutVoluntario())
                     .addParameter("idAtributo", voluntarioAtributo.getIdAtributo())
-                    .executeUpdate();
+                    .executeUpdate()
+                    .getKey();
 
-            voluntarioAtributo.setIdVoluntarioAtributo(java.util.UUID.fromString(idVoluntarioAtributo));
+            voluntarioAtributo.setIdVoluntarioAtributo(id);
 
             return voluntarioAtributo;
         } catch (Exception e) {

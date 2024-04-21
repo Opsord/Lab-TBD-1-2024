@@ -9,9 +9,9 @@ import java.util.UUID;
 @NoArgsConstructor
 public class RankingEntity {
 
-    private UUID idRanking;
+    private long idRanking;
     private String rutVoluntario;
-    private UUID idTarea;
+    private long idTarea;
     private Integer valorRanking;
 
 }

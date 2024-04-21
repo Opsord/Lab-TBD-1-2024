@@ -27,15 +27,15 @@ public class TareaRepositoryImp implements TareaRepository{
         String idTarea = java.util.UUID.randomUUID().toString();
 
         try(Connection conn = sql2o.open()) {
-            conn.createQuery(sql)
-                    .addParameter("idTarea", idTarea)
+            long id = (long) conn.createQuery(sql)
                     .addParameter("idEmergencia", tarea.getIdEmergencia())
                     .addParameter("tipoTarea", tarea.getTipoTarea())
                     .addParameter("descripcion", tarea.getDescripcion())
                     .addParameter("estado", tarea.isEstado())
-                    .executeUpdate();
+                    .executeUpdate()
+                            .getKey();
 
-            tarea.setIdTarea(java.util.UUID.fromString(idTarea));
+            tarea.setIdTarea(id);
 
             return tarea;
 

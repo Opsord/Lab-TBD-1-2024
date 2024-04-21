@@ -9,8 +9,8 @@ import java.util.UUID;
 @NoArgsConstructor
 public class VoluntarioAtributoEntity {
 
-    private UUID idVoluntarioAtributo;
+    private long idVoluntarioAtributo;
     private String rutVoluntario;
-    private UUID idAtributo;
+    private long idAtributo;
 
 }

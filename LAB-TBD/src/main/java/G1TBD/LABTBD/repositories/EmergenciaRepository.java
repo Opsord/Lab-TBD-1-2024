@@ -9,6 +9,7 @@ public interface EmergenciaRepository {
     EmergenciaEntity crear(EmergenciaEntity emergencia);
 
     List<EmergenciaEntity> obtenerTodos();
+    List<EmergenciaEntity> obtenerTodasActivas();
 
     EmergenciaEntity obtenerPorId(long id);
 

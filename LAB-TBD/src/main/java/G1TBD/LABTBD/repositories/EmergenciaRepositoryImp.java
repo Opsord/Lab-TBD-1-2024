@@ -21,21 +21,18 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
 
     @Override
     public EmergenciaEntity crear(EmergenciaEntity emergencia){
-        String sql = "INSERT INTO Emergencia (idEmergencia, estadoEmergencia, tituloEmergencia, descripcionEmergencia)" +
-                "VALUES (:idEmergencia, :estadoEmergencia, :tituloEmergencia, :descripcionEmergencia)";
-
-        String idEmergencia = UUID.randomUUID().toString();
+        String sql = "INSERT INTO Emergencia (estadoEmergencia, tituloEmergencia, descripcionEmergencia)" +
+                "VALUES (:estadoEmergencia, :tituloEmergencia, :descripcionEmergencia)";
 
         try (Connection conn = sql2o.open()) {
-            conn.createQuery(sql)
-                    .addParameter("idEmergencia", idEmergencia)
+            long id = (long) conn.createQuery(sql)
                     .addParameter("estadoEmergencia", emergencia.isEstadoEmergencia())
                     .addParameter("tituloEmergencia", emergencia.getTituloEmergencia())
                     .addParameter("descripcionEmergencia", emergencia.getDescripcionEmergencia())
-                    .executeUpdate();
+                    .executeUpdate()
+                    .getKey();
 
-            emergencia.setIdEmergencia(UUID.fromString(idEmergencia));
-
+            emergencia.setIdEmergencia(id);
             return emergencia;
         } catch (Exception e) {
             logger.severe("Error al crear emergencia: " + e.getMessage());
@@ -47,6 +44,17 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
     @Override
     public List<EmergenciaEntity> obtenerTodos(){
         String sql = "SELECT * FROM Emergencia";
+
+        try (Connection conn = sql2o.open()) {
+            return conn.createQuery(sql)
+                    .executeAndFetch(EmergenciaEntity.class);
+        } catch (Exception e) {
+            logger.severe("Error al obtener todas las emergencias: " + e.getMessage());
+            return Collections.emptyList();
+        }
+    }
+    public List<EmergenciaEntity> obtenerTodasActivas(){
+        String sql = "SELECT * FROM Emergencia WHERE estadoemergencia = true";
 
         try (Connection conn = sql2o.open()) {
             return conn.createQuery(sql)
