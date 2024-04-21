@@ -8,6 +8,15 @@
             <form>
                 <div class="grid gap-5 grid-cols-2">
                     <div class="flex flex-col gap-2">
+                        <label for="sexo" class="text-sm">Rol</label>
+                        <select class="px-3 py-2 border border-gray-400 rounded text-sm">
+                            <option value="">Rol</option>
+                            <option value="">Coordinador</option>
+                            <option value="">Voluntario</option>    
+                        </select>
+                    </div>
+                    <div></div>
+                    <div class="flex flex-col gap-2">
                         <label for="nombre" class="text-sm">Nombre</label>
                         <input type="text" class="px-3 py-2 border border-gray-400 rounded text-sm" placeholder="Nombre usuario">
                     </div>
@@ -45,9 +54,9 @@
                             </select>
                         </div>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <label for="disponibilidad" class="mr-auto text-sm">¿Estás disponible?</label>
-                        <div class="flex items-center space-x-2 mr-4">
+                    <div class="flex items-end gap-6 my-1">
+                        <label for="disponibilidad" class="text-sm">¿Estás disponible?</label>
+                        <div class="flex items-center space-x-2">
                             <input type="radio" name="disponibilidad">
                             <label for="disponibilidad-si" class="text-sm">Sí</label>
                         </div>
@@ -56,7 +65,6 @@
                             <label for="disponibilidad-no" class="text-sm">No</label>
                         </div>
                     </div>
-                    <div></div>
                     <div class="col-span-2 flex justify-center">
                         <button class="w-fit px-8 py-2 bg-amber-500 text-white font-medium uppercase tracking-widest rounded-full hover:bg-amber-600">
                         Registrarse
