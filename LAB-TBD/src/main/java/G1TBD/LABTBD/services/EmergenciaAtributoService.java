@@ -5,6 +5,7 @@ import G1TBD.LABTBD.repositories.EmergenciaAtributoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,6 +17,17 @@ public class EmergenciaAtributoService {
     public EmergenciaAtributoEntity crear(EmergenciaAtributoEntity emergenciaAtributo) {
         return emergenciaAtributoRepository.crear(emergenciaAtributo);
     }
+
+    public List<EmergenciaAtributoEntity> crearVarios(List<EmergenciaAtributoEntity> emergenciasAtributo) {
+        List<EmergenciaAtributoEntity> emergenciasCreadas = new ArrayList<>();
+        for (EmergenciaAtributoEntity emergenciaAtributo : emergenciasAtributo) {
+            EmergenciaAtributoEntity emergenciaCreada = crear(emergenciaAtributo);
+            emergenciasCreadas.add(emergenciaCreada);
+        }
+        return emergenciasCreadas;
+    }
+
+
 
     public List<EmergenciaAtributoEntity> obtenerTodos() {
         return emergenciaAtributoRepository.obtenerTodos();

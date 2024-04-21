@@ -25,6 +25,7 @@ const habilidadModel = ref([])
 
 import axios from 'axios'
 import { onMounted } from 'vue'
+import { identity } from '@vueuse/core';
 
 const atributos = ref(null)
 
@@ -49,8 +50,12 @@ async function crearEmergencia(emergency) {
     }
 }
 async function createAtributoEmergencia(idEmergencia) {
+    console.log(idEmergencia)
+    const newModel = habilidadModel.value.map(habilidad => {
+        return { ...habilidad, idEmergencia: idEmergencia }
+    })
     try {
-        const response = await axios.post('http://localhost:8090/emergenciaAtributo/crear', habilidadModel, { headers: { 'Content-Type': 'application/json' } })
+        const response = await axios.post('http://localhost:8090/emergenciaAtributo/crearVarios', newModel, { headers: { 'Content-Type': 'application/json' } })
         return response.data
 
     } catch (err) {
@@ -65,6 +70,7 @@ async function onSubmit() {
     const idEmergencia = await crearEmergencia(formModel.value)
     const atributosCreaddos = await createAtributoEmergencia(idEmergencia)
 }
+
 </script>
 <template>
     <div class="flex align-middle items-center justify-center mt-16 ">

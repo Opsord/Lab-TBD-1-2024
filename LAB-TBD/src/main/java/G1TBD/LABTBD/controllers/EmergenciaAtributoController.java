@@ -3,6 +3,8 @@ package G1TBD.LABTBD.controllers;
 import G1TBD.LABTBD.entities.EmergenciaAtributoEntity;
 import G1TBD.LABTBD.services.EmergenciaAtributoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +23,16 @@ public class EmergenciaAtributoController {
     public String crear(@RequestBody EmergenciaAtributoEntity emergenciaAtributo) {
         emergenciaAtributoService.crear(emergenciaAtributo);
         return homeLinkRedirect;
+    }
+
+    @PostMapping("/crearVarios")
+    public ResponseEntity<List<EmergenciaAtributoEntity>> crearVarios(@RequestBody List<EmergenciaAtributoEntity> emergenciasAtributo) {
+        List<EmergenciaAtributoEntity> creadas = emergenciaAtributoService.crearVarios(emergenciasAtributo);
+        if (creadas != null && !creadas.isEmpty()) {
+            return new ResponseEntity<>(creadas, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping("/todo")
