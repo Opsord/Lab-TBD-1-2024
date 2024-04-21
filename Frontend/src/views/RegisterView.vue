@@ -18,30 +18,30 @@
                     <div></div>
                     <div class="flex flex-col gap-2">
                         <label for="nombre" class="text-sm">Nombre</label>
-                        <input type="text" class="px-3 py-2 border border-gray-400 rounded text-sm" placeholder="Nombre usuario">
+                        <Input v-model="nombre" type="text" placeholder="Nombre usuario"/>
                     </div>
                     <div class="flex flex-col gap-2">
                         <label for="apellido" class="text-sm">Apellido</label>
-                        <input type="text" class="px-3 py-2 border border-gray-400 rounded text-sm" placeholder="Apellido usuario">
+                        <Input v-model="apellido" type="text" placeholder="Apellido usuario"/>
                     </div>
                     <div class="flex flex-col gap-2">
                         <label for="correo" class="text-sm">Correo electrónico</label>
-                        <input type="email" class="px-3 py-2 border border-gray-400 rounded text-sm" placeholder="usuario@email.com">
+                        <Input v-model="email" type="email" placeholder="usuario@email.com"/>
                     </div>
                     <div class="flex flex-col gap-2">
                         <label for="contrasena" class="text-sm">Contraseña</label>
-                        <input type="password" class="px-3 py-2 border border-gray-400 rounded text-sm" placeholder="********">
+                        <Input v-model="contrasena" type="password" placeholder="********"/>
                     </div>
                     <div class="flex flex-col gap-2">
                         <label for="rut" class="text-sm">RUT</label>
-                        <input type="text" class="px-3 py-2 border border-gray-400 rounded text-sm" placeholder="12.345.678-9">
+                        <Input v-model="rut" type="text" placeholder="12.345.678-9"/>
                     </div>
                     <div class="flex justify-between">
                         <div class="flex flex-col gap-2">
                             <label for="edad" class="text-sm">Edad</label>
                             <select class="w-32 px-3 py-2 border border-gray-400 rounded text-sm">
                                 <option value="">Edad</option>
-                                <option value=""></option>
+                                <option v-for="edad in edades" :key="edad" :value="edad">{{ edad }}</option>
                             </select>
                         </div>
                         <div class="flex flex-col gap-2">
@@ -74,19 +74,24 @@
 
 <script setup>
 import { useRouter } from "vue-router";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import axios from 'axios';
 import ButtonPrimary from '../components/ButtonPrimary.vue';
+import Input from "../components/Input.vue";
 
 const router = useRouter();
 
-const redirectToLogin = () => {
-    // Falta logica
-    console.log("Redirigiendo a /");
-    router.push('/');
-}
+const edades = ref([]);
+
+onMounted(() => {
+    for (let i = 18; i <= 60; i++) {
+        edades.value.push(i);
+    }
+});
+
 /* 
 Formulario Register - Inputs
+- rol
 - rut
 - nombre
 - apellido
@@ -95,7 +100,21 @@ Formulario Register - Inputs
 - email
 - contrasena
 - disponibilidad
-
-+ Asumiendo que solo se pueden registrar voluntarios
 */
+
+const rol = ref("");
+const nombre = ref("");
+const apellido = ref("");
+const email = ref("");
+const contrasena = ref("");
+const rut = ref("");
+const edad = ref("");
+const sexo = ref("");
+const disponibilidad = ref("");
+
+const redirectToLogin = () => {
+    // Falta logica
+    console.log("Redirigiendo a /");
+    router.push('/');
+}
 </script>

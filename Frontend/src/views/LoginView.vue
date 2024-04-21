@@ -8,12 +8,12 @@
             <h2 class="mb-8 text-center">Por favor, ingresa tus datos</h2>
             <form class="space-y-5">
                 <div class="flex flex-col gap-2">
-                    <label for="correo" class="text-sm">Correo electrónico</label>
-                    <input v-model="correo" type="email" class="px-3 py-2 border border-gray-400 rounded text-sm" placeholder="usuario@email.com"/>
+                    <label for="email" class="text-sm">Correo electrónico</label>
+                    <Input v-model="email" type="email" placeholder="usuario@email.com"/>
                 </div>
                 <div class="flex flex-col gap-2">
                     <label for="contrasena" class="text-sm">Contraseña</label>
-                    <input v-model="contrasena" type="password" class="px-3 py-2 border border-gray-400 rounded text-sm" placeholder="********">
+                    <Input v-model="contrasena" type="password" placeholder="********"/>
                 </div>
                 <ButtonPrimary @click="redirectToHome" buttonText="Ingresar"/>
                 <div class="flex justify-center gap-2 text-sm">
@@ -31,10 +31,11 @@ import { ref } from "vue";
 import { store } from "../store";
 import axios from 'axios';
 import ButtonPrimary from '../components/ButtonPrimary.vue';
+import Input from "../components/Input.vue";
 
 const router = useRouter();
 
-const correo = ref("");
+const email = ref("");
 const contrasena = ref("");
 
 const redirectToHome = async () => {
@@ -45,7 +46,6 @@ const redirectToHome = async () => {
     // Comprobar response
     // Guardar autenticacion en store
     // Router push
-
     console.log("Redirigiendo a /home");
     router.push('/home');
 }
