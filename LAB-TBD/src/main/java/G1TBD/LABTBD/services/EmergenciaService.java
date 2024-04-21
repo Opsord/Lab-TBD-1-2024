@@ -59,17 +59,17 @@ public class EmergenciaService {
 
      public List<datosEmergencia> datosEmergencias() {
             List<EmergenciaEntity> emergenciasFinalizadas = emergenciasFinalizadas();
-            List<Integer> ides = new ArrayList<>();
-            List<datosEmergencia> DatosDeLasEmergencias = new ArrayList<>();
+            List<UUID> ides = new ArrayList<>();
+            List<datosEmergencia> datosEmergencias = new ArrayList<>();
             for (EmergenciaEntity emergencia : emergenciasFinalizadas) {
-                ides.add((int) emergencia.getIdEmergencia());
+                ides.add(emergencia.getIdEmergencia());
             }
-            for (Integer id : ides) {
+            for (UUID id : ides) {
                 List<TareaEntity> tareasPorEmergencia = tareaService.obtenerTareasPorIdEmergencia(id);
                 datosEmergencia datosEmergenciaa = new datosEmergencia("a",tareasPorEmergencia.size(),5);
-                DatosDeLasEmergencias.add(datosEmergenciaa);
+                datosEmergencias.add(datosEmergenciaa);
             }
-            return DatosDeLasEmergencias;
+            return datosEmergencias;
     }
 
 

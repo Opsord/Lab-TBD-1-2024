@@ -1,7 +1,6 @@
 package G1TBD.LABTBD.repositories;
 
 import G1TBD.LABTBD.entities.EmergenciaAtributoEntity;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
@@ -14,7 +13,6 @@ import java.util.logging.Logger;
 public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoRepository {
 
     private static final Logger logger = Logger.getLogger(EmergenciaAtributoRepositoryImp.class.getName());
-    private static final org.slf4j.Logger log = LoggerFactory.getLogger(EmergenciaAtributoRepositoryImp.class);
 
     @Autowired
     private Sql2o sql2o;
@@ -89,7 +87,7 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
     }
 
     @Override
-    public boolean eliminar(long id){
+    public boolean eliminar(long id) {
         String sql = "DELETE FROM Emergencia_Atributo WHERE idAtributo = :idAtributo";
 
         try (Connection conn = sql2o.open()) {
