@@ -65,23 +65,26 @@
                             <label for="disponibilidad-no" class="text-sm">No</label>
                         </div>
                     </div>
-                    <div class="col-span-2 flex justify-center">
-                        <button class="w-fit px-8 py-2 bg-amber-500 text-white font-medium uppercase tracking-widest rounded-full hover:bg-amber-600">
-                        Registrarse
-                        </button>
-                    </div>
+                    <ButtonPrimary @click="redirectToLogin" buttonText="Registrarse"/>
                 </div>
             </form>
         </div>
     </div>
 </template>
 
-<script>
+<script setup>
 import { useRouter } from "vue-router";
 import { ref } from "vue";
 import axios from 'axios';
+import ButtonPrimary from '../components/ButtonPrimary.vue';
 
 const router = useRouter();
+
+const redirectToLogin = () => {
+    // Falta logica
+    console.log("Redirigiendo a /");
+    router.push('/');
+}
 /* 
 Formulario Register - Inputs
 - rut

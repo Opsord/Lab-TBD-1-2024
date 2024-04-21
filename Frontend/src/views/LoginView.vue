@@ -15,11 +15,7 @@
                     <label for="contrasena" class="text-sm">Contraseña</label>
                     <input v-model="contrasena" type="password" class="px-3 py-2 border border-gray-400 rounded text-sm" placeholder="********">
                 </div>
-                <div class="col-span-2 flex justify-center">
-                    <button class="w-fit px-8 py-2 bg-amber-500 text-white font-medium uppercase tracking-widest rounded-full hover:bg-amber-600">
-                        Ingresar
-                    </button>
-                </div>
+                <ButtonPrimary @click="redirectToHome" buttonText="Ingresar"/>
                 <div class="flex justify-center gap-2 text-sm">
                     <span>¿Aún no tienes cuenta?</span>
                     <button class="font-bold text-teal-600 hover:underline" @click="redirectToRegister">Registrate</button>
@@ -34,6 +30,7 @@ import { useRouter } from "vue-router";
 import { ref } from "vue";
 import { store } from "../store";
 import axios from 'axios';
+import ButtonPrimary from '../components/ButtonPrimary.vue';
 
 const router = useRouter();
 
@@ -48,6 +45,9 @@ const redirectToHome = async () => {
     // Comprobar response
     // Guardar autenticacion en store
     // Router push
+
+    console.log("Redirigiendo a /home");
+    router.push('/home');
 }
 
 
