@@ -2,9 +2,7 @@ package G1TBD.LABTBD.controllers;
 
 import G1TBD.LABTBD.entities.CoordinadorEntity;
 import G1TBD.LABTBD.services.CoordinadorService;
-import G1TBD.LABTBD.services.JWTService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,9 +14,6 @@ import java.util.logging.Logger;
 public class CoordinadorController {
 
     private static final Logger logger = Logger.getLogger(CoordinadorController.class.getName());
-
-    @Autowired
-    private JWTService jwtService;
 
     @Autowired
     private CoordinadorService coordinadorService;
