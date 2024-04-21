@@ -4,7 +4,6 @@ import G1TBD.LABTBD.dtos.datosEmergencia;
 import G1TBD.LABTBD.entities.EmergenciaEntity;
 import G1TBD.LABTBD.entities.TareaEntity;
 import G1TBD.LABTBD.repositories.EmergenciaRepository;
-import G1TBD.LABTBD.repositories.TareaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,82 +37,73 @@ public class EmergenciaService {
         return emergenciaRepository.eliminar(id);
     }
 
-
-
-    public List<EmergenciaEntity> emergenciasFinalizadas(){
+    public List<EmergenciaEntity> emergenciasFinalizadas() {
         return emergenciaRepository.encontrarEmergenciasFinalizadas();
     }
 
+    /*
+     * public List<datosEmergencia> datosEmergencias() {
+     * List<EmergenciaEntity> emergenciasFinalizadas = emergenciasFinalizadas();
+     * List<Integer> ides = new ArrayList<>();
+     * for(EmergenciaEntity emergencia : emergenciasFinalizadas){
+     * ides.add(emergencia.getIdEmergencia());
+     * }
+     * return ides;
+     * }
+     * 
+     */
 
-/*
     public List<datosEmergencia> datosEmergencias() {
         List<EmergenciaEntity> emergenciasFinalizadas = emergenciasFinalizadas();
-        List<Integer> ides = new ArrayList<>();
-        for(EmergenciaEntity emergencia : emergenciasFinalizadas){
+        List<UUID> ides = new ArrayList<>();
+        List<datosEmergencia> datosEmergencias = new ArrayList<>();
+        for (EmergenciaEntity emergencia : emergenciasFinalizadas) {
             ides.add(emergencia.getIdEmergencia());
         }
-        return ides;
-    }
-
- */
-
-     public List<datosEmergencia> datosEmergencias() {
-            List<EmergenciaEntity> emergenciasFinalizadas = emergenciasFinalizadas();
-            List<UUID> ides = new ArrayList<>();
-            List<datosEmergencia> datosEmergencias = new ArrayList<>();
-            for (EmergenciaEntity emergencia : emergenciasFinalizadas) {
-                ides.add(emergencia.getIdEmergencia());
-            }
-            for (UUID id : ides) {
-                List<TareaEntity> tareasPorEmergencia = tareaService.obtenerTareasPorIdEmergencia(id);
-                datosEmergencia datosEmergenciaa = new datosEmergencia("a",tareasPorEmergencia.size(),5);
-                datosEmergencias.add(datosEmergenciaa);
-            }
-            return datosEmergencias;
-    }
-
-
-
-/*
-
-    public datosEmergencia datosEmergencias() {
-        List<EmergenciaEntity> emergenciasFinalizadas = emergenciasFinalizadas();
-        List<Integer> ides = new ArrayList<>();
-        List<TareaEntity> tareas = new ArrayList<>();
-        for(EmergenciaEntity emergencia : emergenciasFinalizadas){
-            ides.add((int) emergencia.getIdEmergencia());
-        }
-        int cantidadTareasTotal = 0;
-        int cantidadVoluntariosTotal = 0;
-        for(Integer id : ides){
+        for (UUID id : ides) {
             List<TareaEntity> tareasPorEmergencia = tareaService.obtenerTareasPorIdEmergencia(id);
-            if(tareasPorEmergencia != null) {
-                tareas.addAll(tareasPorEmergencia);
-                cantidadTareasTotal += tareasPorEmergencia.size();
-                // Supongamos que hay un método para obtener la cantidad de voluntarios para una emergencia
-                cantidadVoluntariosTotal += 5;
-            }
+            datosEmergencia datosEmergenciaa = new datosEmergencia("a", tareasPorEmergencia.size(), 5);
+            datosEmergencias.add(datosEmergenciaa);
         }
-
-        datosEmergencia datosEmergenciaa = new datosEmergencia();
-        datosEmergenciaa.setTituloEmergencia("a");
-        datosEmergenciaa.setCantidadTareas(cantidadTareasTotal);
-        datosEmergenciaa.setCantidadVoluntarios(cantidadVoluntariosTotal);
-        return datosEmergenciaa;
+        return datosEmergencias;
     }
 
- */
+    /*
+     * 
+     * public datosEmergencia datosEmergencias() {
+     * List<EmergenciaEntity> emergenciasFinalizadas = emergenciasFinalizadas();
+     * List<Integer> ides = new ArrayList<>();
+     * List<TareaEntity> tareas = new ArrayList<>();
+     * for(EmergenciaEntity emergencia : emergenciasFinalizadas){
+     * ides.add((int) emergencia.getIdEmergencia());
+     * }
+     * int cantidadTareasTotal = 0;
+     * int cantidadVoluntariosTotal = 0;
+     * for(Integer id : ides){
+     * List<TareaEntity> tareasPorEmergencia =
+     * tareaService.obtenerTareasPorIdEmergencia(id);
+     * if(tareasPorEmergencia != null) {
+     * tareas.addAll(tareasPorEmergencia);
+     * cantidadTareasTotal += tareasPorEmergencia.size();
+     * // Supongamos que hay un método para obtener la cantidad de voluntarios para
+     * una emergencia
+     * cantidadVoluntariosTotal += 5;
+     * }
+     * }
+     * 
+     * datosEmergencia datosEmergenciaa = new datosEmergencia();
+     * datosEmergenciaa.setTituloEmergencia("a");
+     * datosEmergenciaa.setCantidadTareas(cantidadTareasTotal);
+     * datosEmergenciaa.setCantidadVoluntarios(cantidadVoluntariosTotal);
+     * return datosEmergenciaa;
+     * }
+     * 
+     */
 
-
-
-
-
-
-
-/*
-    public List<EmergenciaEntity> datosEmergencias() {
-        return emergenciasFinalizadas();
-    }
-
- */
+    /*
+     * public List<EmergenciaEntity> datosEmergencias() {
+     * return emergenciasFinalizadas();
+     * }
+     * 
+     */
 }

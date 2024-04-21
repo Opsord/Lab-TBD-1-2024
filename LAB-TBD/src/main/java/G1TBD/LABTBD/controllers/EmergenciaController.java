@@ -3,7 +3,6 @@ package G1TBD.LABTBD.controllers;
 import G1TBD.LABTBD.dtos.datosEmergencia;
 import G1TBD.LABTBD.entities.EmergenciaEntity;
 import G1TBD.LABTBD.services.EmergenciaService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -56,6 +55,5 @@ public class EmergenciaController {
     public List<datosEmergencia> obtenerDatosEmergencias() {
         return emergenciaService.datosEmergencias();
     }
-
 
 }

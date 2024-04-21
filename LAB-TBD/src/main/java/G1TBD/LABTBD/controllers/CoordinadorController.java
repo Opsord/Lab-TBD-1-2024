@@ -3,7 +3,6 @@ package G1TBD.LABTBD.controllers;
 import G1TBD.LABTBD.entities.CoordinadorEntity;
 import G1TBD.LABTBD.services.CoordinadorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

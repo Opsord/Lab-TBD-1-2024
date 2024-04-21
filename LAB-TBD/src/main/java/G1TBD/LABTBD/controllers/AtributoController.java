@@ -3,15 +3,14 @@ package G1TBD.LABTBD.controllers;
 import G1TBD.LABTBD.entities.AtributoEntity;
 import G1TBD.LABTBD.services.AtributoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @RestController
 @RequestMapping("/atributos")
 @CrossOrigin
-    
-    
+
 public class AtributoController {
 
     @Autowired
