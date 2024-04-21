@@ -27,33 +27,42 @@
                         <label for="rut" class="text-sm">RUT</label>
                         <input type="text" class="px-3 py-2 border border-gray-400 rounded text-sm" placeholder="12.345.678-9">
                     </div>
+                    <div class="flex justify-between">
+                        <div class="flex flex-col gap-2">
+                            <label for="edad" class="text-sm">Edad</label>
+                            <select class="w-32 px-3 py-2 border border-gray-400 rounded text-sm">
+                                <option value="">Edad</option>
+                                <option value=""></option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <label for="sexo" class="text-sm">Sexo</label>
+                            <select class="w-32 px-3 py-2 border border-gray-400 rounded text-sm">
+                                <option value="">Sexo</option>
+                                <option value="">Masculino</option>
+                                <option value="">Femenino</option>
+                                <option value="">No binario</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <label for="disponibilidad" class="mr-auto text-sm">¿Estás disponible?</label>
+                        <div class="flex items-center space-x-2 mr-4">
+                            <input type="radio" name="disponibilidad">
+                            <label for="disponibilidad-si" class="text-sm">Sí</label>
+                        </div>
+                        <div class="flex items-center space-x-2">   
+                            <input type="radio" name="disponibilidad">
+                            <label for="disponibilidad-no" class="text-sm">No</label>
+                        </div>
+                    </div>
+                    <div></div>
+                    <div class="col-span-2 flex justify-center">
+                        <button class="w-fit px-8 py-2 bg-amber-500 text-white font-medium uppercase tracking-widest rounded-full hover:bg-amber-600">
+                        Registrarse
+                        </button>
+                    </div>
                 </div>
-                <div class="mb-6">
-                    <label for="sexo" class="text-sm">Sexo</label>
-                    <input type="radio" name="sexo">
-                    <label for="masculino" class="text-sm">Masculino</label>
-                    <input type="radio" name="sexo">
-                    <label for="femenino" class="text-sm">Femenino</label>
-                    <input type="radio" name="sexo">
-                    <label for="no-binario" class="text-sm">No binario</label>
-                </div>
-                <div class="mb-6">
-                    <label for="edad" class="text-sm">Edad</label>
-                    <select>
-                        <option value="">Seleccionar</option>
-                        <option value=""></option>
-                    </select>
-                </div>
-                <div class="mb-6">
-                    <label for="disponibilidad" class="text-sm">Disponibilidad</label>
-                    <input type="radio" name="disponibilidad">
-                    <label for="disponibilidad-si" class="text-sm">Sí</label>
-                    <input type="radio" name="disponibilidad">
-                    <label for="disponibilidad-no" class="text-sm">No</label>
-                </div>
-                <button class="col-span-2 w-full px-3 py-2 bg-amber-500 text-white font-medium uppercase tracking-widest rounded-full hover:bg-amber-600">
-                    Registrarse
-                </button>
             </form>
         </div>
     </div>
