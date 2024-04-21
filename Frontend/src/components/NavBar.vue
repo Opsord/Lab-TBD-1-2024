@@ -1,45 +1,11 @@
 <template>
-    <div class="container-nav">
-        <div class="container-content">
-            <img src="../assets/logo-sistema.png" alt="">
-            <span>Sistema de Emergencias<span>Región Metropolitana</span></span>
+    <div class="flex justify-around py-1 border-b border-gray-200">
+        <div class="flex items-center gap-8">
+            <img class="h-20" src="../assets/logo-sistema.png" alt="">
+            <span class="flex flex-col uppercase text-2xl font-bold">Sistema de Emergencias<span class=" text-lg tracking-widest">Región Metropolitana</span></span>
         </div>
         <div class="container-content">
-            <img src="../assets/logo-usach.png" alt="">
+            <img class="h-20" src="../assets/logo-usach.png" alt="">
         </div>
     </div>
 </template>
-
-<style scoped>
-
-.container-nav {
-    display: flex;
-    justify-content: space-around;
-    padding: 5px 0;
-    border-bottom: 1px solid whitesmoke;
-}
-
-.container-content {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-}
-
-img {
-    height: 80px;
-}
-
-span {
-    display: flex;
-    flex-direction: column;
-    text-transform: uppercase;
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-span:first-child {
-    font-size: 1.1rem;
-    letter-spacing: 5px; 
-}
-
-</style>

@@ -1,6 +1,6 @@
 <template>
-    <div class="flex flex-col justify-center items-center gap-8 m-auto w-1/5">
-        <div class="flex flex-col justify-center items-center gap-6">
+    <div class="flex flex-col gap-8 mx-auto my-20 w-1/5">
+        <div class="flex flex-col items-center gap-6">
             <img class="w-24 h-24" src="../assets/logo-sistema.png" alt="">
             <h2 class=" text-lg font-bold text-teal-600">¡Es un buen día para ayudar!</h2>
         </div>
@@ -15,30 +15,44 @@
                     <label for="contrasena" class="text-sm">Contraseña</label>
                     <input v-model="contrasena" type="password" class="px-3 py-2 border border-gray-400 rounded text-sm" placeholder="********">
                 </div>
-                <button class="w-full px-3 py-2 bg-amber-500 text-white font-medium uppercase tracking-widest rounded-full hover:bg-amber-600">
-                    Ingresar
-                </button>
+                <ButtonPrimary @click="redirectToHome" buttonText="Ingresar"/>
                 <div class="flex justify-center gap-2 text-sm">
                     <span>¿Aún no tienes cuenta?</span>
-                    <a href="" class="font-bold text-teal-600 hover:underline">Registrate</a>
+                    <button class="font-bold text-teal-600 hover:underline" @click="redirectToRegister">Registrate</button>
                 </div>
             </form>
         </div>
     </div>
 </template>
 
-<script>
+<script setup>
 import { useRouter } from "vue-router";
 import { ref } from "vue";
 import { store } from "../store";
 import axios from 'axios';
+import ButtonPrimary from '../components/ButtonPrimary.vue';
 
 const router = useRouter();
 
 const correo = ref("");
 const contrasena = ref("");
 
-</script>
+const redirectToHome = async () => {
+    // Verificar datos validos
+    // Guardar valores ingresados
+    // Try-Catch
+    // Llamar backend
+    // Comprobar response
+    // Guardar autenticacion en store
+    // Router push
 
-<style>
-</style>
+    console.log("Redirigiendo a /home");
+    router.push('/home');
+}
+
+
+const redirectToRegister = () => {
+    console.log("Redirigiendo a /register");
+    router.push('/register');
+}
+</script>
