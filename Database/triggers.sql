@@ -1,4 +1,4 @@
-m--Trigger para Coordinador
+--Trigger para Coordinador
 
 CREATE TABLE coordinador_disparador(
  idTrigger SERIAL PRIMARY KEY,
