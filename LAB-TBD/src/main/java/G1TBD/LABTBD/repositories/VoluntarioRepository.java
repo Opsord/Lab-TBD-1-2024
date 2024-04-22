@@ -17,4 +17,6 @@ public interface VoluntarioRepository {
 
     boolean eliminar(String rut);
 
+    List<VoluntarioEntity> obtenerPorEmergencia(long idEmergencia);
+
 }
