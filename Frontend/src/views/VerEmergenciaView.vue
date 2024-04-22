@@ -71,7 +71,7 @@ async function fetchVoluntarios() {
 }
 
 async function fetchVoluntariosData() {
-    const voluntarioGet = "http://localhost:8090/voluntario/porId/";
+    const voluntarioGet = "http://localhost:8090/voluntarios/porId/";
     if (emergencia.value && emergencia.value.length > 0) {
         try {
             const fetchPromises = emergencia.value.map(async (emergenciaEach) => {

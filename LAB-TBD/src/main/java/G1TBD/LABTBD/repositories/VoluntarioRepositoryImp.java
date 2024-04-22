@@ -26,8 +26,8 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
                     .addParameter("rut", voluntario.getRut())
-                    .addParameter("nombre", voluntario.getNombre())
-                    .addParameter("apellido", voluntario.getApellido())
+                    .addParameter("nombre", voluntario.getNombreVoluntario())
+                    .addParameter("apellido", voluntario.getApellidoVoluntario())
                     .addParameter("edadVoluntario", voluntario.getEdadVoluntario())
                     .addParameter("sexoVoluntario", voluntario.isSexoVoluntario())
                     .addParameter("email", voluntario.getEmail())
@@ -109,8 +109,8 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
                     .addParameter("rut", voluntario.getRut())
-                    .addParameter("nombre", voluntario.getNombre())
-                    .addParameter("apellido", voluntario.getApellido())
+                    .addParameter("nombre", voluntario.getNombreVoluntario())
+                    .addParameter("apellido", voluntario.getApellidoVoluntario())
                     .addParameter("edadVoluntario", voluntario.getEdadVoluntario())
                     .addParameter("sexoVoluntario", voluntario.isSexoVoluntario())
                     .addParameter("email", voluntario.getEmail())
