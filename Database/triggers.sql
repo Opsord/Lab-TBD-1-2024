@@ -1,4 +1,4 @@
---Trigger para Coordinador
+m--Trigger para Coordinador
 
 CREATE TABLE coordinador_disparador(
  idTrigger SERIAL PRIMARY KEY,
@@ -15,7 +15,7 @@ CREATE TABLE coordinador_disparador(
 CREATE OR REPLACE FUNCTION coordinador_insert_trigger_funcion()
 RETURNS TRIGGER AS $$
 BEGIN
-    INSERT INTO coordinador_disparador (rut, nombre, contrasena,fecha_hora, operacion)
+    INSERT INTO coordinador_disparador (rut, email,nombre, contrasena,fecha_hora, operacion)
     VALUES (NEW.rut, NEW.email, NEW.nombre, NEW.contrasena,  CURRENT_TIMESTAMP, 'INSERT');
     RETURN NEW;
 END;
@@ -77,7 +77,7 @@ CREATE TABLE voluntario_disparador (
 CREATE OR REPLACE FUNCTION voluntario_insert_trigger_funcion()
 RETURNS TRIGGER AS $$
 BEGIN
-    INSERT INTO voluntario_disparador(nombre, rut, edadVoluntario, contrasena, disponibilidad,fecha_hora,operacion)
+    INSERT INTO voluntario_disparador(nombre, email, rut,edadVoluntario, contrasena, disponibilidad,fecha_hora,operacion)
     VALUES (NEW.nombre, NEW.email, NEW.rut, NEW.edadVoluntario, NEW.contrasena, NEW.disponibilidad,CURRENT_TIMESTAMP,'INSERT');
     RETURN NEW;
 END;
