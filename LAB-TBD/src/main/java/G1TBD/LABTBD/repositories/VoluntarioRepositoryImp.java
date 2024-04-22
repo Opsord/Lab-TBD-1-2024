@@ -71,11 +71,11 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
     }
     @Override
     public VoluntarioEntity obtenerPorId(long id) {
-        String sql = "SELECT * FROM Voluntario WHERE idvoluntario = :idvoluntario";
+        String sql = "SELECT * FROM Voluntario WHERE idVoluntario = :idvoluntario";
 
         try (Connection conn = sql2o.open()) {
             List<VoluntarioEntity> voluntarios = conn.createQuery(sql)
-                    .addParameter("idvoluntario", id)
+                    .addParameter("idVoluntario", id)
                     .executeAndFetch(VoluntarioEntity.class);
             return voluntarios.isEmpty() ? null : voluntarios.get(0);
         } catch (Exception e) {
@@ -144,9 +144,9 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
     @Override
     public List<VoluntarioEntity> obtenerPorEmergencia(long idEmergencia) {
         String sql = "SELECT v.* FROM Voluntario v " +
-                "JOIN VoluntarioAtributo va ON v.rutVoluntario = va.rutVoluntario " +
+                "JOIN Voluntario_Atributo va ON v.idVoluntario = va.idVoluntario " +
                 "JOIN Atributo a ON va.idAtributo = a.idAtributo " +
-                "JOIN EmergenciaAtributo ea ON va.idAtributo = ea.idAtributo " +
+                "JOIN Emergencia_Atributo ea ON va.idAtributo = ea.idAtributo " +
                 "JOIN Emergencia e ON ea.idEmergencia = e.idEmergencia " +
                 "WHERE e.idEmergencia = :idEmergencia";
 

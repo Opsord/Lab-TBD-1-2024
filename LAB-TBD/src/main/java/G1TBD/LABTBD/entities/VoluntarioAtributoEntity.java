@@ -10,7 +10,7 @@ import java.util.UUID;
 public class VoluntarioAtributoEntity {
 
     private long idVoluntarioAtributo;
-    private String rutVoluntario;
+    private long idVoluntario;
     private long idAtributo;
 
 }

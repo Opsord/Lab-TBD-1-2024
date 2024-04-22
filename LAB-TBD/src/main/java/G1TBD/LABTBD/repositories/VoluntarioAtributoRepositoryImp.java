@@ -19,12 +19,12 @@ public class VoluntarioAtributoRepositoryImp implements VoluntarioAtributoReposi
 
     @Override
     public VoluntarioAtributoEntity crear(VoluntarioAtributoEntity voluntarioAtributo) {
-        String sql = "INSERT INTO Voluntario_Atributo ( rutVoluntario, idAtributo)" +
+        String sql = "INSERT INTO Voluntario_Atributo ( idVoluntario, idAtributo)" +
                 "VALUES (:idVoluntario, :idAtributo)";
 
         try (Connection conn = sql2o.open()) {
             long id = (long) conn.createQuery(sql)
-                    .addParameter("rutVoluntario", voluntarioAtributo.getRutVoluntario())
+                    .addParameter("idVoluntario", voluntarioAtributo.getIdAtributo())
                     .addParameter("idAtributo", voluntarioAtributo.getIdAtributo())
                     .executeUpdate()
                     .getKey();
@@ -67,13 +67,13 @@ public class VoluntarioAtributoRepositoryImp implements VoluntarioAtributoReposi
 
     @Override
     public boolean actualizar(VoluntarioAtributoEntity voluntarioAtributo) {
-        String sql = "UPDATE Voluntario_Atributo SET idVoluntarioAtributo = :idVoluntarioAtributo, rutVoluntario = :rutVoluntario, idAtributo = :idAtributo" +
+        String sql = "UPDATE Voluntario_Atributo SET idVoluntarioAtributo = :idVoluntarioAtributo, idVoluntario = :idVoluntario, idAtributo = :idAtributo" +
                 "WHERE idVoluntarioAtributo = :idVoluntarioAtributo";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
                     .addParameter("idVoluntarioAtributo", voluntarioAtributo.getIdVoluntarioAtributo())
-                    .addParameter("rutVoluntario", voluntarioAtributo.getRutVoluntario())
+                    .addParameter("idVoluntario", voluntarioAtributo.getIdVoluntario())
                     .addParameter("idAtributo", voluntarioAtributo.getIdAtributo())
                     .executeUpdate();
             conn.commit();
