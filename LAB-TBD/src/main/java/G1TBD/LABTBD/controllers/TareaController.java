@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/tarea")
-@CrossOrigin(origins = "http://localhost:8090/tareas")
+@CrossOrigin
 public class TareaController {
 
     @Autowired
@@ -31,6 +31,12 @@ public class TareaController {
     @GetMapping("/porId/{id}")
     public TareaEntity obtenerPorId(@PathVariable long id) {
         return tareaService.obtenerPorId(id);
+    }
+
+
+    @GetMapping("/porIdEmergencia/{id}")
+    public List<TareaEntity> obtenerPorIdEmergencia(@PathVariable long id) {
+        return tareaService.obtenerPorIdEmergencia(id);
     }
 
     @PutMapping("/actualizar")

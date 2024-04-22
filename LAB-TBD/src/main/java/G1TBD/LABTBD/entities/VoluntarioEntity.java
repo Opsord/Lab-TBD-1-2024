@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class VoluntarioEntity {
 
+    private long idVoluntario;
     private String rutVoluntario;
     private String nombreVoluntario;
     private String apellidoVoluntario;

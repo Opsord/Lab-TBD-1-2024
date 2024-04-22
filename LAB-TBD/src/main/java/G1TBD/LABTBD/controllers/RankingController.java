@@ -33,6 +33,13 @@ public class RankingController {
         return rankingService.obtenerPorId(id);
     }
 
+
+    @GetMapping("/obtenerRankingPorIdTarea/{id}")
+    public List<RankingEntity> obtenerPorIdTarea(@PathVariable long id) {
+        return rankingService.obtenerPorIdTarea(id);
+    }
+
+
     @PutMapping("/actualizarRanking")
     public boolean actualizar(@RequestBody RankingEntity ranking) {
         return rankingService.actualizar(ranking);

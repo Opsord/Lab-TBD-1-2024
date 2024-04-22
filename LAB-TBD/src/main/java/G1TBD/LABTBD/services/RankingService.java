@@ -1,6 +1,7 @@
 package G1TBD.LABTBD.services;
 
 import G1TBD.LABTBD.entities.RankingEntity;
+import G1TBD.LABTBD.entities.TareaEntity;
 import G1TBD.LABTBD.repositories.RankingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,12 @@ public class RankingService {
     public RankingEntity obtenerPorId(long id) {
         return rankingRepository.obtenerPorId(id);
     }
+
+    public List<RankingEntity> obtenerPorIdTarea(long id) {
+        return rankingRepository.obtenerRankingPorIdTarea(id);
+    }
+
+
 
     public boolean actualizar(RankingEntity ranking) {
         return rankingRepository.actualizar(ranking);

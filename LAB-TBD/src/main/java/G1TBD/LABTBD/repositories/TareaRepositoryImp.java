@@ -109,7 +109,7 @@ public class TareaRepositoryImp implements TareaRepository{
     }
 
     @Override
-    public List<TareaEntity> obtenerTareasPorIdEmergencia(UUID idEmergencia) {
+    public List<TareaEntity> obtenerTareasPorIdEmergencia(long idEmergencia) {
         String sql = "SELECT * FROM Tarea WHERE idEmergencia = :idEmergencia";
 
         try(Connection conn = sql2o.open()) {

@@ -10,7 +10,7 @@ import java.util.UUID;
 public class RankingEntity {
 
     private long idRanking;
-    private String rutVoluntario;
+    private String idVoluntario;
     private long idTarea;
     private Integer valorRanking;
 

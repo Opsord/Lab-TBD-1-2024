@@ -66,6 +66,20 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
             return null;
         }
     }
+    @Override
+    public VoluntarioEntity obtenerPorId(long id) {
+        String sql = "SELECT * FROM Voluntario WHERE idvoluntario = :idvoluntario";
+
+        try (Connection conn = sql2o.open()) {
+            List<VoluntarioEntity> voluntarios = conn.createQuery(sql)
+                    .addParameter("idvoluntario", id)
+                    .executeAndFetch(VoluntarioEntity.class);
+            return voluntarios.isEmpty() ? null : voluntarios.get(0);
+        } catch (Exception e) {
+            logger.severe("Error al obtener voluntario por rut: " + e.getMessage());
+            return null;
+        }
+    }
 
     @Override
     public boolean actualizar(VoluntarioEntity voluntario) {

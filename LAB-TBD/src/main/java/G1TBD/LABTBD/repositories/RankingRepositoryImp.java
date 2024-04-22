@@ -2,6 +2,8 @@ package G1TBD.LABTBD.repositories;
 
 import G1TBD.LABTBD.entities.RankingEntity;
 import java.util.Collections;
+
+import G1TBD.LABTBD.entities.TareaEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
@@ -27,7 +29,7 @@ public class RankingRepositoryImp implements RankingRepository{
 
         try (Connection conn = sql2o.open()) {
             long id = (long) conn.createQuery(sql)
-                    .addParameter("idVoluntario", ranking.getRutVoluntario())
+                    .addParameter("idVoluntario", ranking.getIdVoluntario())
                     .addParameter("idTarea", ranking.getIdTarea())
                     .addParameter("valorRanking", ranking.getValorRanking())
                     .executeUpdate()
@@ -76,7 +78,7 @@ public class RankingRepositoryImp implements RankingRepository{
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
                     .addParameter("idRanking", ranking.getIdRanking())
-                    .addParameter("idVoluntario", ranking.getRutVoluntario())
+                    .addParameter("idVoluntario", ranking.getIdVoluntario())
                     .addParameter("idTarea", ranking.getIdTarea())
                     .addParameter("valorRanking", ranking.getValorRanking())
                     .executeUpdate();
@@ -101,6 +103,20 @@ public class RankingRepositoryImp implements RankingRepository{
         } catch (Exception e) {
             logger.severe("Error al eliminar ranking: " + e.getMessage());
             return false;
+        }
+    }
+
+    @Override
+    public List<RankingEntity> obtenerRankingPorIdTarea(long idTarea) {
+        String sql = "SELECT * FROM Ranking WHERE idTarea = :idTarea";
+
+        try(Connection conn = sql2o.open()) {
+            return conn.createQuery(sql)
+                    .addParameter("idTarea", idTarea)
+                    .executeAndFetch(RankingEntity.class);
+        } catch (Exception e) {
+            logger.severe("Error al obtener ranking por id de emergencia: " + e.getMessage());
+            return Collections.emptyList();
         }
     }
 }

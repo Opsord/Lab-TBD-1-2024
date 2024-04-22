@@ -33,6 +33,12 @@ public class VoluntarioController {
         return voluntarioService.obtenerPorRut(rut);
     }
 
+    @GetMapping("/porId/{id}")
+    public VoluntarioEntity obtenerPorId(@PathVariable long id) {
+        return voluntarioService.obtenerPorId(id);
+    }
+
+
     @PutMapping("/actualizar")
     public boolean actualizar(@RequestBody VoluntarioEntity voluntario) {
         return voluntarioService.actualizar(voluntario);

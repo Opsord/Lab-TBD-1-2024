@@ -17,5 +17,5 @@ public interface TareaRepository {
 
     boolean eliminar(long id);
 
-    List<TareaEntity> obtenerTareasPorIdEmergencia(UUID idEmergencia);
+    List<TareaEntity> obtenerTareasPorIdEmergencia(long idEmergencia);
 }

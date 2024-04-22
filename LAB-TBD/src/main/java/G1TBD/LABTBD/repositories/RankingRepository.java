@@ -15,4 +15,5 @@ public interface RankingRepository {
     boolean actualizar(RankingEntity ranking);
 
     boolean eliminar(long id);
+    public List<RankingEntity> obtenerRankingPorIdTarea(long idTarea);
 }

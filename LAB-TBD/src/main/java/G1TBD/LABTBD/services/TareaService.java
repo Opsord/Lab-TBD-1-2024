@@ -26,6 +26,11 @@ public class TareaService {
         return tareaRepository.obtenerPorId(id);
     }
 
+    public List<TareaEntity> obtenerPorIdEmergencia(long id) {
+        return tareaRepository.obtenerTareasPorIdEmergencia(id);
+    }
+
+
     public boolean actualizar(TareaEntity tarea) {
         return tareaRepository.actualizar(tarea);
     }
@@ -34,5 +39,5 @@ public class TareaService {
         return tareaRepository.eliminar(id);
     }
 
-    public List<TareaEntity> obtenerTareasPorIdEmergencia(UUID idEmergencia){return tareaRepository.obtenerTareasPorIdEmergencia(idEmergencia);}
+//    public List<TareaEntity> obtenerTareasPorIdEmergencia(UUID idEmergencia){return tareaRepository.obtenerTareasPorIdEmergencia(idEmergencia);}
 }
