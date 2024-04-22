@@ -24,28 +24,28 @@ VALUES
     (7, 'Capacidad para la búsqueda y localización de personas perdidas');
 
 --Poblacion de la tabla Voluntario_Atributo
-INSERT INTO Voluntario_Atributo (idVoluntarioAtributo, rutVoluntario, idAtributo)
+INSERT INTO Voluntario_Atributo (idVoluntarioAtributo, idVoluntario, idAtributo)
 VALUES 
-    (1, '12345678-9', 1),
-    (2, '12345678-9', 2),
-    (3, '98765432-1', 3),
-    (4, '98765432-1', 4), 
-    (5, '11223344-5', 5),
-    (6, '11223344-5', 6),
-    (7, '55443322-1', 7), 
-    (8, '55443322-1', 1), 
-    (9, '87654321-0', 4), 
-    (10, '87654321-0', 1), 
-    (11, '33221100-K', 6), 
-    (12, '33221100-K', 7), 
-    (13, '45678901-2', 1),
-    (14, '45678901-2', 2), 
-    (15, '99887766-3', 7), 
-    (16, '99887766-3', 3),
-    (17, '12454633-4', 1),
-    (18, '12454633-4', 2), 
-    (19, '44556677-5', 7), 
-    (20, '44556677-5', 3);
+    (1, 1, 1),
+    (2, 1, 2),
+    (3, 2, 3),
+    (4, 2, 4), 
+    (5, 3, 5),
+    (6, 3, 6),
+    (7, 4, 7), 
+    (8, 4, 1), 
+    (9, 5, 4), 
+    (10, 5, 1), 
+    (11, 6, 6), 
+    (12, 6, 7), 
+    (13, 7, 1),
+    (14, 7, 2), 
+    (15, 8, 7), 
+    (16, 8, 3),
+    (17, 9, 1),
+    (18, 9, 2), 
+    (19, 10, 7), 
+    (20, 10, 3);
 
 --Poblacion de la tabla Institucion
 INSERT INTO Institucion (idInstitucion, nombreInstitucion) 
