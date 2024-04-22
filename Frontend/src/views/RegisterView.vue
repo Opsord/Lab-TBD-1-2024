@@ -97,9 +97,9 @@ const apellido = ref("");
 const email = ref("");
 const contrasena = ref("");
 const rut = ref("");
-const edad = ref(0);
-const sexo = ref(false);
-const disponibilidad = ref(false);
+const edad = ref("");
+const sexo = ref("");
+const disponibilidad = ref("");
 const institucion = ref("");
 
 const instituciones = ref([]);
