@@ -30,7 +30,6 @@ public class TareaService {
         return tareaRepository.obtenerTareasPorIdEmergencia(id);
     }
 
-
     public boolean actualizar(TareaEntity tarea) {
         return tareaRepository.actualizar(tarea);
     }
