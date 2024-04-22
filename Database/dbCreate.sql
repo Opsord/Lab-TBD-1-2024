@@ -1,8 +1,9 @@
 CREATE TABLE Voluntario (
     idVoluntario BIGSERIAL PRIMARY KEY,
-    rutVoluntario VARCHAR(20) NOT NULL,
-    nombreVoluntario VARCHAR(255) NOT NULL,
-    apellidoVoluntario VARCHAR(255) NOT NULL,
+    rut VARCHAR(20) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    nombre VARCHAR(255) NOT NULL,
+    apellido VARCHAR(255) NOT NULL,
     edadVoluntario INT NOT NULL,
     sexoVoluntario BOOLEAN NOT NULL,
     contrasena VARCHAR(255) NOT NULL,
@@ -29,9 +30,10 @@ CREATE TABLE Institucion (
 
 CREATE TABLE Coordinador (
     idCoordinador BIGSERIAL PRIMARY KEY,
-    rutCoordinador VARCHAR(20) NOT NULL,
-    nombreCoordinador VARCHAR(255) NOT NULL,
-    apellidoCoordinador VARCHAR(255) NOT NULL,  
+    rut VARCHAR(20) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    nombre VARCHAR(255) NOT NULL,
+    apellido VARCHAR(255) NOT NULL,  
     contrasena VARCHAR(255) NOT NULL,
     idInstitucion BIGINT,
     FOREIGN KEY (idInstitucion) REFERENCES Institucion(idInstitucion)
@@ -96,8 +98,9 @@ CREATE INDEX idx_ranking_idtarea ON Ranking (idTarea);
 
 CREATE TABLE coordinador_disparador(
  idTrigger SERIAL PRIMARY KEY,
- rutCoordinador varchar(20),
- nombreCoordinador varchar(255),
+ rut varchar(20),
+ email varchar(255),
+ nombre varchar(255),
  contrasena varchar(255),
  fecha_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
  operacion TEXT
@@ -108,8 +111,8 @@ CREATE TABLE coordinador_disparador(
 CREATE OR REPLACE FUNCTION coordinador_insert_trigger_funcion()
 RETURNS TRIGGER AS $$
 BEGIN
-    INSERT INTO coordinador_disparador (rutCoordinador, nombreCoordinador, contrasena,fecha_hora, operacion)
-    VALUES (NEW.rutCoordinador, NEW.nombreCoordinador, NEW.contrasena,  CURRENT_TIMESTAMP, 'INSERT');
+    INSERT INTO coordinador_disparador (rut, nombre, contrasena,fecha_hora, operacion)
+    VALUES (NEW.rut, NEW.email, NEW.nombre, NEW.contrasena,  CURRENT_TIMESTAMP, 'INSERT');
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
@@ -124,8 +127,8 @@ EXECUTE FUNCTION coordinador_insert_trigger_funcion();
 CREATE OR REPLACE FUNCTION coordinador_update_trigger_funcion()
 RETURNS TRIGGER AS $$
 BEGIN
-    INSERT INTO coordinador_disparador (rutCoordinador, nombreCoordinador, contrasena,fecha_hora, operacion)
-    VALUES (NEW.rutCoordinador, NEW.nombreCoordinador,NEW.contrasena, CURRENT_TIMESTAMP, 'UPDATE');
+    INSERT INTO coordinador_disparador (rut, nombre, contrasena,fecha_hora, operacion)
+    VALUES (NEW.rut, NEW.email, NEW.nombre,NEW.contrasena, CURRENT_TIMESTAMP, 'UPDATE');
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
@@ -140,8 +143,8 @@ EXECUTE FUNCTION coordinador_update_trigger_funcion();
 CREATE OR REPLACE FUNCTION coordinador_delete_trigger_funcion()
 RETURNS TRIGGER AS $$
 BEGIN
-    INSERT INTO coordinador_disparador (rutCoordinador, nombreCoordinador, contrasena,fecha_hora, operacion)
-    VALUES (OLD.rutCoordinador, OLD.nombreCoordinador, OLD.contrasena, CURRENT_TIMESTAMP, 'DELETE');
+    INSERT INTO coordinador_disparador (rut, nombre, contrasena,fecha_hora, operacion)
+    VALUES (OLD.rut, OLD.email, OLD.nombre, OLD.contrasena, CURRENT_TIMESTAMP, 'DELETE');
     RETURN OLD;
 END;
 $$ LANGUAGE plpgsql;
@@ -155,8 +158,9 @@ EXECUTE FUNCTION coordinador_delete_trigger_funcion();
 
 CREATE TABLE voluntario_disparador (
     idTrigger SERIAL PRIMARY KEY,
-    nombreVoluntario VARCHAR(100),
-    rutVoluntario VARCHAR(20),
+    nombre VARCHAR(100),
+    rut VARCHAR(20),
+    email VARCHAR(255),
     edadVoluntario INT,
     contrasena VARCHAR(100),
     disponibilidad BOOLEAN,
@@ -169,8 +173,8 @@ CREATE TABLE voluntario_disparador (
 CREATE OR REPLACE FUNCTION voluntario_insert_trigger_funcion()
 RETURNS TRIGGER AS $$
 BEGIN
-    INSERT INTO voluntario_disparador(nombreVoluntario, rutVoluntario, edadVoluntario, contrasena, disponibilidad,fecha_hora,operacion)
-    VALUES (NEW.nombreVoluntario, NEW.rutVoluntario, NEW.edadVoluntario, NEW.contrasena, NEW.disponibilidad,CURRENT_TIMESTAMP,'INSERT');
+    INSERT INTO voluntario_disparador(nombre, rut, edadVoluntario, contrasena, disponibilidad,fecha_hora,operacion)
+    VALUES (NEW.nombre, NEW.rut, NEW.email, NEW.edadVoluntario, NEW.contrasena, NEW.disponibilidad,CURRENT_TIMESTAMP,'INSERT');
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
@@ -185,8 +189,8 @@ EXECUTE FUNCTION voluntario_insert_trigger_funcion();
 CREATE OR REPLACE FUNCTION voluntario_update_trigger_funcion()
 RETURNS TRIGGER AS $$
 BEGIN
-    INSERT INTO voluntario_disparador(nombreVoluntario, rutVoluntario, edadVoluntario, contrasena, disponibilidad,fecha_hora,operacion)
-    VALUES (NEW.nombreVoluntario, NEW.rutVoluntario, NEW.edadVoluntario, NEW.contrasena, NEW.disponibilidad,CURRENT_TIMESTAMP,'UPDATE');
+    INSERT INTO voluntario_disparador(nombre, rut, edadVoluntario, contrasena, disponibilidad,fecha_hora,operacion)
+    VALUES (NEW.nombre, NEW.rut, NEW.email, NEW.edadVoluntario, NEW.contrasena, NEW.disponibilidad,CURRENT_TIMESTAMP,'UPDATE');
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
@@ -200,8 +204,8 @@ EXECUTE FUNCTION voluntario_update_trigger_funcion();
 CREATE OR REPLACE FUNCTION voluntario_delete_trigger_funcion()
 RETURNS TRIGGER AS $$
 BEGIN
-    INSERT INTO voluntario_disparador(nombreVoluntario, rutVoluntario, edadVoluntario, contrasena, disponibilidad, fecha_hora, operacion)
-    VALUES (OLD.nombreVoluntario, OLD.rutVoluntario, OLD.edadVoluntario, OLD.contrasena, OLD.disponibilidad,CURRENT_TIMESTAMP,'DELETE');
+    INSERT INTO voluntario_disparador(nombre, rut, edadVoluntario, contrasena, disponibilidad, fecha_hora, operacion)
+    VALUES (OLD.nombre, OLD.rut, OLD.email, OLD.edadVoluntario, OLD.contrasena, OLD.disponibilidad,CURRENT_TIMESTAMP,'DELETE');
     RETURN OLD;
 END;
 $$ LANGUAGE plpgsql;
