@@ -1,5 +1,6 @@
 package G1TBD.LABTBD.repositories;
 
+import G1TBD.LABTBD.dtos.datosEmergencia;
 import G1TBD.LABTBD.entities.EmergenciaEntity;
 import java.util.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,18 +65,6 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
             return Collections.emptyList();
         }
     }
-    public List<EmergenciaEntity> obtenerTodasFinalizadas(){
-        String sql = "SELECT * FROM Emergencia WHERE estadoemergencia = false";
-
-        try (Connection conn = sql2o.open()) {
-            return conn.createQuery(sql)
-                    .executeAndFetch(EmergenciaEntity.class);
-        } catch (Exception e) {
-            logger.severe("Error al obtener todas las emergencias finalizadas: " + e.getMessage());
-            return Collections.emptyList();
-        }
-    }
-
 
     @Override
     public EmergenciaEntity obtenerPorId(long id){
@@ -154,5 +143,27 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
             return Collections.emptyList();
         }
     }
+    /*
+    @Override
+    public List<EmergenciaEntity> encontrarEmergenciasFinalizadas(){
+        try (Connection connection = sql2o.open()) {
+            String sql = "SELECT e.idEmergencia, COUNT(DISTINCT t.idTarea) AS cantidadTareas, COUNT(DISTINCT va.rutVoluntario) AS cantidadVoluntarios " +
+                    "FROM Emergencia e " +
+                    "LEFT JOIN Tarea t ON e.idEmergencia = t.idEmergencia " +
+                    "LEFT JOIN VoluntarioAtributo va ON t.rutVoluntario = va.rutVoluntario " +
+                    "WHERE e.estadoEmergencia = true " +
+                    "GROUP BY e.idEmergencia";
+
+            return connection.createQuery(sql)
+                    .executeAndFetch(EmergenciaEntity.class);
+        } catch (Exception exception) {
+            logger.severe("Error al obtener emergencias finalizadas: " + exception.getMessage());
+            return Collections.emptyList();
+        }
+    }
+
+     */
+
+
 
 }
