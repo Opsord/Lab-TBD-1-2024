@@ -31,7 +31,7 @@ EXECUTE FUNCTION coordinador_insert_trigger_funcion();
 CREATE OR REPLACE FUNCTION coordinador_update_trigger_funcion()
 RETURNS TRIGGER AS $$
 BEGIN
-    INSERT INTO coordinador_disparador (rut, nombre, contrasena,fecha_hora, operacion)
+    INSERT INTO coordinador_disparador (rut, email, nombre, contrasena,fecha_hora, operacion)
     VALUES (NEW.rut, NEW.email, NEW.nombre,NEW.contrasena, CURRENT_TIMESTAMP, 'UPDATE');
     RETURN NEW;
 END;
@@ -47,7 +47,7 @@ EXECUTE FUNCTION coordinador_update_trigger_funcion();
 CREATE OR REPLACE FUNCTION coordinador_delete_trigger_funcion()
 RETURNS TRIGGER AS $$
 BEGIN
-    INSERT INTO coordinador_disparador (rut, nombre, contrasena,fecha_hora, operacion)
+    INSERT INTO coordinador_disparador (rut, email,nombre, contrasena,fecha_hora, operacion)
     VALUES (OLD.rut, OLD.email, OLD.nombre, OLD.contrasena, CURRENT_TIMESTAMP, 'DELETE');
     RETURN OLD;
 END;
@@ -93,7 +93,7 @@ EXECUTE FUNCTION voluntario_insert_trigger_funcion();
 CREATE OR REPLACE FUNCTION voluntario_update_trigger_funcion()
 RETURNS TRIGGER AS $$
 BEGIN
-    INSERT INTO voluntario_disparador(nombre, rut, edadVoluntario, contrasena, disponibilidad,fecha_hora,operacion)
+    INSERT INTO voluntario_disparador(nombre, rut, email,edadVoluntario, contrasena, disponibilidad,fecha_hora,operacion)
     VALUES (NEW.nombre, NEW.rut, NEW.email, NEW.edadVoluntario, NEW.contrasena, NEW.disponibilidad,CURRENT_TIMESTAMP,'UPDATE');
     RETURN NEW;
 END;
@@ -108,7 +108,7 @@ EXECUTE FUNCTION voluntario_update_trigger_funcion();
 CREATE OR REPLACE FUNCTION voluntario_delete_trigger_funcion()
 RETURNS TRIGGER AS $$
 BEGIN
-    INSERT INTO voluntario_disparador(nombre, rut, edadVoluntario, contrasena, disponibilidad, fecha_hora, operacion)
+    INSERT INTO voluntario_disparador(nombre, rut, edadVoluntario,email, contrasena, disponibilidad, fecha_hora, operacion)
     VALUES (OLD.nombre, OLD.rut, OLD.email, OLD.edadVoluntario, OLD.contrasena, OLD.disponibilidad,CURRENT_TIMESTAMP,'DELETE');
     RETURN OLD;
 END;
