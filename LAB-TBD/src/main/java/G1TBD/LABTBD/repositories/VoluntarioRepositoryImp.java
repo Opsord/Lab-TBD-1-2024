@@ -71,7 +71,8 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
     }
     @Override
     public VoluntarioEntity obtenerPorId(long id) {
-        String sql = "SELECT * FROM Voluntario WHERE idVoluntario = :idvoluntario";
+//        String sql = "SELECT * FROM Voluntario WHERE idVoluntario = :idVoluntario";
+        String sql = "SELECT idVoluntario, rut, email, nombre AS nombreVoluntario, apellido AS apellidoVoluntario, edadVoluntario, sexoVoluntario, contrasena, disponibilidad, role FROM Voluntario WHERE idVoluntario = :idVoluntario";
 
         try (Connection conn = sql2o.open()) {
             List<VoluntarioEntity> voluntarios = conn.createQuery(sql)
@@ -79,7 +80,7 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
                     .executeAndFetch(VoluntarioEntity.class);
             return voluntarios.isEmpty() ? null : voluntarios.get(0);
         } catch (Exception e) {
-            logger.severe("Error al obtener voluntario por rut: " + e.getMessage());
+            logger.severe("Error al obtener voluntario por id: " + e.getMessage());
             return null;
         }
     }
