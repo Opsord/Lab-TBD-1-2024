@@ -10,6 +10,7 @@ public interface EmergenciaRepository {
 
     List<EmergenciaEntity> obtenerTodos();
     List<EmergenciaEntity> obtenerTodasActivas();
+    List<EmergenciaEntity> obtenerTodasFinalizadas();
 
     EmergenciaEntity obtenerPorId(long id);
 

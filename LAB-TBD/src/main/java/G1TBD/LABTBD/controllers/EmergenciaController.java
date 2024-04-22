@@ -34,11 +34,18 @@ public class EmergenciaController {
     public List<EmergenciaEntity> obtenerTodasActivas() {
         return emergenciaService.obtenerTodasActivas();
     }
+//    @GetMapping("/finalizadas")
+//    public List<EmergenciaEntity> obtenerTodasFinalizadas() {
+//        return emergenciaService.obtenerTodasFinalizadas();
+//    }
+
 
     @GetMapping("/porId/{id}")
     public EmergenciaEntity obtenerPorId(@PathVariable long id) {
         return emergenciaService.obtenerPorId(id);
     }
+
+
 
     @PutMapping("/actualizar")
     public boolean actualizar(@RequestBody EmergenciaEntity emergencia) {

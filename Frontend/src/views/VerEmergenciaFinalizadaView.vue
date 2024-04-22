@@ -1,16 +1,32 @@
 <template>
-    <div class=" bg-green-500 flex justify-center items-center align-middle">
+    <div class="flex justify-center items-center align-middle m-4">
         <div v-if="emergencia && emergencia.length">
-            <li v-for="data in emergencia" :key="data.idEmergencia">
-                <h1 class=" text-xl">{{ data.tituloEmergencia }}</h1>
-                <h2>{{ data.descripcionEmergencia }}</h2>
-                Tareas registrados:
-                <p v-for="tarea in data.tareas">
-                    {{ tarea.tipoTarea }}</p>
-                Voluntarios registradas:
-                <p v-for="voluntario in data.voluntarios">{{ voluntario.nombreVoluntario }} {{
-                    voluntario.apellidoVoluntario }}</p>
-            </li>
+            <div v-for="data in emergencia" :key="data.idEmergencia">
+                <Card>
+                    <CardHeader>
+                        <CardTitle>{{ data.tituloEmergencia }}</CardTitle>
+                        <CardDescription>
+                            Tareas registradas:
+                            <p v-for="tarea in data.tareas">
+                                {{ tarea.tipoTarea }}</p>
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        {{ data.descripcionEmergencia }}
+                    </CardContent>
+                    <CardFooter class=" whitespace-pre-line">
+                        <p>Voluntarios registrados:</p>
+                        <p v-for="voluntario in data.voluntarios">
+                            &nbsp;
+                            {{ voluntario.nombreVoluntario }} {{
+                                voluntario.apellidoVoluntario }}
+                        </p>
+
+                    </CardFooter>
+
+                </Card>
+
+            </div>
         </div>
     </div>
 </template>
@@ -21,6 +37,14 @@
 
 import axios from 'axios'
 import { ref, onMounted } from 'vue'
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
 
 const emergencia = ref(null)
 

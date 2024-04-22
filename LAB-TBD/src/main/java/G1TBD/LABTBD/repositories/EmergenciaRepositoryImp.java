@@ -64,6 +64,18 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
             return Collections.emptyList();
         }
     }
+    public List<EmergenciaEntity> obtenerTodasFinalizadas(){
+        String sql = "SELECT * FROM Emergencia WHERE estadoemergencia = false";
+
+        try (Connection conn = sql2o.open()) {
+            return conn.createQuery(sql)
+                    .executeAndFetch(EmergenciaEntity.class);
+        } catch (Exception e) {
+            logger.severe("Error al obtener todas las emergencias finalizadas: " + e.getMessage());
+            return Collections.emptyList();
+        }
+    }
+
 
     @Override
     public EmergenciaEntity obtenerPorId(long id){

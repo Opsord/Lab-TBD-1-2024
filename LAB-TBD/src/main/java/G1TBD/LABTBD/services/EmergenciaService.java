@@ -29,6 +29,11 @@ public class EmergenciaService {
         return emergenciaRepository.obtenerTodasActivas();
     }
 
+    public List<EmergenciaEntity> obtenerTodasFinalizadas() {
+        return emergenciaRepository.obtenerTodasFinalizadas();
+    }
+
+
     public EmergenciaEntity obtenerPorId(long id) {
         return emergenciaRepository.obtenerPorId(id);
     }
