@@ -9,50 +9,54 @@
                 <div class="grid gap-5 grid-cols-2">
                     <div class="flex flex-col gap-2">
                         <label for="rol" class="text-sm">Rol</label>
-                        <select  v-model="rol" class="px-3 py-2 border border-gray-400 rounded text-sm" required>
+                        <select v-model="rol" class="px-3 py-2 border border-gray-400 rounded text-sm" required>
                             <option value="">Rol</option>
                             <option value="Coordinador">Coordinador</option>
-                            <option value="Voluntario">Voluntario</option>    
+                            <option value="Voluntario">Voluntario</option>
                         </select>
                     </div>
                     <div class="flex flex-col gap-2">
-                        <label for="edad" class="text-sm">Institucion<span class="text-blue-700 ml-2">* Coordinador</span></label>
+                        <label for="edad" class="text-sm">Institucion<span class="text-blue-700 ml-2">*
+                                Coordinador</span></label>
                         <select v-model="institucion" class="px-3 py-2 border border-gray-400 rounded text-sm" required>
                             <option value="">Institucion</option>s
-                            <option v-for="institucion in instituciones" :key="institucion.idInstitucion" :value="institucion.idInstitucion">{{ institucion.nombreInstitucion }}</option>
+                            <option v-for="institucion in instituciones" :key="institucion.idInstitucion"
+                                :value="institucion.idInstitucion">{{ institucion.nombreInstitucion }}</option>
                         </select>
                     </div>
                     <div class="flex flex-col gap-2">
                         <label for="nombre" class="text-sm">Nombre</label>
-                        <Input v-model="nombre" type="text" placeholder="Nombre usuario"/>
+                        <Input v-model="nombre" type="text" placeholder="Nombre usuario" />
                     </div>
                     <div class="flex flex-col gap-2">
                         <label for="apellido" class="text-sm">Apellido</label>
-                        <Input v-model="apellido" type="text" placeholder="Apellido usuario"/>
+                        <Input v-model="apellido" type="text" placeholder="Apellido usuario" />
                     </div>
                     <div class="flex flex-col gap-2">
                         <label for="email" class="text-sm">Correo electrónico</label>
-                        <Input v-model="email" type="email" placeholder="usuario@email.com"/>
+                        <Input v-model="email" type="email" placeholder="usuario@email.com" />
                     </div>
                     <div class="flex flex-col gap-2">
                         <label for="contrasena" class="text-sm">Contraseña</label>
-                        <Input v-model="contrasena" type="password" placeholder="********"/>
+                        <Input v-model="contrasena" type="password" placeholder="********" />
                     </div>
                     <div class="flex flex-col gap-2">
                         <label for="rut" class="text-sm">RUT</label>
-                        <Input v-model="rut" type="text" placeholder="12.345.678-9"/>
+                        <Input v-model="rut" type="text" placeholder="12.345.678-9" />
                     </div>
-                    <div class="flex justify-between">
+                    <div class="flex flex-col justify-between">
                         <div class="flex flex-col gap-2">
                             <label for="edad" class="text-sm">Edad</label>
-                            <select v-model="edad" class="w-32 px-3 py-2 border border-gray-400 rounded text-sm" required>
+                            <select v-model="edad" class="w-32 px-3 py-2 border border-gray-400 rounded text-sm"
+                                required>
                                 <option value="">Edad</option>
                                 <option v-for="edad in edades" :key="edad" :value="edad">{{ edad }}</option>
                             </select>
                         </div>
                         <div class="flex flex-col gap-2">
                             <label for="sexo" class="text-sm">Sexo</label>
-                            <select v-model="sexo" class="w-32 px-3 py-2 border border-gray-400 rounded text-sm" required>
+                            <select v-model="sexo" class="w-32 px-3 py-2 border border-gray-400 rounded text-sm"
+                                required>
                                 <option value="">Sexo</option>
                                 <option value="Masculino">Masculino</option>
                                 <option value="Femenino">Femenino</option>
@@ -61,17 +65,18 @@
                         </div>
                     </div>
                     <div class="flex items-end gap-4 my-1 flex-wrap">
-                        <label for="disponibilidad" class="w-full text-sm">¿Estás disponible?<span class="text-blue-700"> * Voluntario</span></label>
+                        <label for="disponibilidad" class="w-full text-sm">¿Estás disponible?<span
+                                class="text-blue-700"> * Voluntario</span></label>
                         <div class="flex items-center space-x-2">
-                            <input v-model="disponibilidad" type="radio" name="disponibilidad" :value=true required>
+                            <input v-model="disponibilidad" type="radio" name="disponibilidad" required>
                             <label for="disponibilidadsi" class="text-sm">Sí</label>
                         </div>
-                        <div class="flex items-center space-x-2">   
-                            <input v-model="disponibilidad" type="radio" name="disponibilidad" :value=false required>
+                        <div class="flex items-center space-x-2">
+                            <input v-model="disponibilidad" type="radio" name="disponibilidad" required>
                             <label for="disponibilidadno" class="text-sm">No</label>
                         </div>
                     </div>
-                    <ButtonPrimary @click="registerUser" buttonText="Registrarse"/>
+                    <ButtonPrimary @click="registerUser" buttonText="Registrarse" />
                 </div>
             </form>
         </div>
@@ -80,7 +85,7 @@
 
 <script setup>
 import { useRouter } from "vue-router";
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted } from "vue";
 import axios from 'axios';
 import ButtonPrimary from '../components/ButtonPrimary.vue';
 import Input from "../components/Input.vue";
@@ -93,18 +98,17 @@ const apellido = ref("");
 const email = ref("");
 const contrasena = ref("");
 const rut = ref("");
-const edad = ref(0);
+const edad = ref("");
 const sexo = ref("");
-const disponibilidad = ref(false);
+const disponibilidad = ref("");
 const institucion = ref("");
 
 const instituciones = ref([]);
 
 const getInstituciones = async () => {
     try {
-        /* const response = await axios.get('http://localhost:8090/instituciones/todo');
+        const response = await axios.get('http://localhost:8090/institucion/todo');
         instituciones.value = response.data;
-        console.log(response); */
     } catch (error) {
         console.error(error);
     }
@@ -118,90 +122,34 @@ for (let i = 18; i <= 60; i++) {
     edades.value.push(i);
 }
 
-const verificarRol = computed(() => {
-    return rol.value.trim() !== "";
-});
-
-const verificarInstitucion= computed(() => {
-    if(rol.value === 'Coordinador') {
-        return institucion.value.trim() !== "";
-    }
-    return true;
-});
-
-const verificarNombre = computed(() => {
-    return nombre.value.trim() !== "";
-});
-
-const verificarApellido = computed(() => {
-    return apellido.value.trim() !== "";
-});
-
-const verificarEmail = computed(() => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email.value);
-});
-
-const verificarContrasena = computed(() => {
-    const contrasenaRegex = /[a-zA-Z0-9]/;
-    return contrasenaRegex.test(contrasena.value) && contrasena.value.length >= 4;
-});
-
-const verificarRut = computed(() => {
-    const rutRegex = /^(\d{1,3}\.\d{3}\.\d{3}-\d{1}|\d{1,3}\.\d{3}\.\d{1}-\d{1}|\d{1,3}\.\d{3}-\d{1}|\d{1,3}-\d{1}|\d{1,3}\.\d{3}\.\d{3}-[0-9kK]{1})$/;
-    return rutRegex.test(rut.value);
-});
-
-const verificarEdad = computed(() => {
-    return edad.value.toString().trim() !== null;
-});
-
-const verificarSexo = computed(() => {
-    return sexo.value.trim() !== "";
-});
-
-const isRegisterFormValid = computed(() => {
-    return verificarRol.value && verificarInstitucion.value && verificarNombre.value && verificarApellido.value && verificarEmail.value && verificarContrasena.value && verificarRut.value && verificarEdad.value && verificarSexo.value;
-});
-
 const registerUser = async () => {
-    if(isRegisterFormValid.value) {
-        if(rol.value === "Voluntario") {
-            const data = {
-                rutVoluntario: rut.value,
-                nombreVoluntario: nombre.value,
-                apellidoVoluntario: apellido.value,
-                edadVoluntario: edad.value, 
-                sexoVoluntario: sexo.value,
-                email: email.value,
-                contrasena: contrasena.value,
-                disponibilidad: disponibilidad.value
-            }
-            /* 
-            try {
-                const response = await axios.post("http://localhost:8090/voluntarios/crear", data)
-                console.log(response);
-            } catch (error) {
-                console.log(error);
-            } */
-
-            console.log("Voluntario")
-            console.log(data);
-            redirectToLogin();
-        } 
-        else if (rol.value === "Coordinador") {
-            const data = {
-                rutCoordinador: rut.value,
-                nombreCoordinador: nombre.value,
-                apellidoCoordinador: apellido.value,
-                email: email.value,
-                contrasena: contrasena.value,
-                idInstitucion: institucion.value
-            }
-            console.log("Coordinador")
-            console.log(data);
-            redirectToLogin();
+    if (rol.value === "Voluntario") {
+        const data = {
+            rutVoluntario: rut.value,
+            nombreVoluntario: nombre.value,
+            apellidoVoluntario: apellido.value,
+            edadVoluntario: edad.value,
+            sexoVoluntario: sexo.value,
+            email: email.value,
+            contrasena: contrasena.value,
+            disponibilidad: disponibilidad.value
         }
+        console.log("Voluntario")
+        console.log(data);
+        redirectToLogin();
+    }
+    else if (rol.value === "Coordinador") {
+        const data = {
+            rutCoordinador: rut.value,
+            nombreCoordinador: nombre.value,
+            apellidoCoordinador: apellido.value,
+            email: email.value,
+            contrasena: contrasena.value,
+            idInstitucion: institucion.value
+        }
+        console.log("Coordinador")
+        console.log(data);
+        redirectToLogin();
     }
 }
 

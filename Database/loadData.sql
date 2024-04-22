@@ -1,16 +1,16 @@
 --Poblacion de la tabla Voluntarios
-INSERT INTO Voluntario (idVoluntario, rutVoluntario, nombreVoluntario, apellidoVoluntario, edadVoluntario, sexoVoluntario, contrasena, disponibilidad)
+INSERT INTO Voluntario (idVoluntario, rut, email, nombre, apellido, edadVoluntario, sexoVoluntario, contrasena, disponibilidad, role)
 VALUES 
-    (1, '12345678-9', 'Juan', 'Pérez', 25, true, 'contraseña123', true),
-    (2, '98765432-1', 'María', 'González', 30, false, 'clave456', false),
-    (3, '11223344-5', 'Carlos', 'López', 40, true, 'pass1234', true),
-    (4, '55443322-1', 'Ana', 'Martínez', 28, false, '123456', true),
-    (5, '87654321-0', 'Pedro', 'Sánchez', 35, true, 'p@$$w0rd', false),
-    (6, '33221100-K', 'Laura', 'Rodríguez', 22, false, 'laura123', true),
-    (7, '45678901-2', 'Diego', 'Hernández', 27, true, 'd1ego789', false),
-    (8, '99887766-3', 'Sofía', 'Gómez', 33, false, 'sofia321', true),
-    (9, '12454633-4', 'Miguel', 'Díaz', 29, true, 'diazmiguel', true),
-    (10, '44556677-5', 'Paula', 'Fernández', 26, false, 'fernandez', false);
+    (1, '12345678-9', 'juan@example.com', 'Juan', 'Pérez', 25, true, 'contraseña123', true, 'VOLUNTARIO'),
+    (2, '98765432-1', 'maria@example.com', 'María', 'González', 30, false, 'clave456', false, 'VOLUNTARIO'),
+    (3, '11223344-5', 'carlos@example.com', 'Carlos', 'López', 40, true, 'pass1234', true, 'VOLUNTARIO'),
+    (4, '55443322-1', 'ana@example.com', 'Ana', 'Martínez', 28, false, '123456', true, 'VOLUNTARIO'),
+    (5, '87654321-0', 'pedro@example.com', 'Pedro', 'Sánchez', 35, true, 'p@$$w0rd', false, 'VOLUNTARIO'),
+    (6, '33221100-K', 'laura@example.com', 'Laura', 'Rodríguez', 22, false, 'laura123', true, 'VOLUNTARIO'),
+    (7, '45678901-2', 'diego@example.com', 'Diego', 'Hernández', 27, true, 'd1ego789', false, 'VOLUNTARIO'),
+    (8, '99887766-3', 'sofia@example.com', 'Sofía', 'Gómez', 33, false, 'sofia321', true, 'VOLUNTARIO'),
+    (9, '12454633-4', 'miguel@example.com', 'Miguel', 'Díaz', 29, true, 'diazmiguel', true, 'VOLUNTARIO'),
+    (10, '44556677-5', 'paula@example.com', 'Paula', 'Fernández', 26, false, 'fernandez', false, 'VOLUNTARIO');
 
 --Poblacion de la tabla Atributo
 INSERT INTO Atributo (idAtributo, atributo)
@@ -55,11 +55,11 @@ VALUES
     (3, 'Equipo de rescate de desastres naturales');
 
 --Poblacion de la tabla Coordinador
-INSERT INTO Coordinador (idCoordinador, rutCoordinador, nombreCoordinador, apellidoCoordinador, contrasena, idInstitucion)
+INSERT INTO Coordinador (idCoordinador, rut, email, nombre, apellido, contrasena, idInstitucion, role)
 VALUES 
-    (1, '1234678-9', 'María', 'García', 'pass1234', 1),
-    (2, '9871432-1', 'Carlos', 'Rodríguez', 'contrdawa1', 2),
-    (3, '1353344-5', 'Ana', 'López', '123454321', 3);
+    (1, '1234678-9', 'maria_coordinador@example.com', 'María', 'García', 'pass1234', 1, 'COORDINADOR'),
+    (2, '9871432-1', 'carlos_coordinador@example.com', 'Carlos', 'Rodríguez', 'contrdawa1', 2, 'COORDINADOR'),
+    (3, '1353344-5', 'ana_coordinador@example.com', 'Ana', 'López', '123454321', 3, 'COORDINADOR');
 
 --Poblacion de la tabla Emergencia
 INSERT INTO Emergencia (idEmergencia, estadoEmergencia, tituloEmergencia, descripcionEmergencia, idCoordinador)
