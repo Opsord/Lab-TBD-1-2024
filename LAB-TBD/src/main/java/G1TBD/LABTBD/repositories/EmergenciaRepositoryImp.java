@@ -128,7 +128,6 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
         }
     }
 
-
     @Override
     public List<EmergenciaEntity> encontrarEmergenciasFinalizadas(){
         try (Connection connection = sql2o.open()) {

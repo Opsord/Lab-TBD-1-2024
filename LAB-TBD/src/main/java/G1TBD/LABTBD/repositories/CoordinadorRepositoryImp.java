@@ -27,7 +27,7 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
                     .addParameter("rutCoordinador", coordinador.getRutCoordinador())
                     .addParameter("nombreCoordinador", coordinador.getNombreCoordinador())
                     .addParameter("apellidoCoordinador", coordinador.getApellidoCoordinador())
-                    .addParameter("email", coordinador.getEmailCoordinador())
+                    .addParameter("email", coordinador.getEmail())
                     .addParameter("contrasena", coordinador.getContrasena())
                     .addParameter("idInstitucion", coordinador.getIdInstitucion())
                     .executeUpdate();
@@ -79,7 +79,7 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
                     .addParameter("rutCoordinador", coordinador.getRutCoordinador())
                     .addParameter("nombreCoordinador", coordinador.getNombreCoordinador())
                     .addParameter("apellidoCoordinador", coordinador.getApellidoCoordinador())
-                    .addParameter("email", coordinador.getEmailCoordinador())
+                    .addParameter("email", coordinador.getEmail())
                     .addParameter("contrasena", coordinador.getContrasena())
                     .addParameter("idInstitucion", coordinador.getIdInstitucion())
                     .executeUpdate();

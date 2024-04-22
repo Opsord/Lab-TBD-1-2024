@@ -28,7 +28,7 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
                     .addParameter("apellidoVoluntario", voluntario.getApellidoVoluntario())
                     .addParameter("edadVoluntario", voluntario.getEdadVoluntario())
                     .addParameter("sexoVoluntario", voluntario.isSexoVoluntario())
-                    .addParameter("email", voluntario.getEmailVoluntario())
+                    .addParameter("email", voluntario.getEmail())
                     .addParameter("contrasena", voluntario.getContrasena())
                     .addParameter("disponibilidad", voluntario.isDisponibilidad())
                     .executeUpdate();
@@ -94,7 +94,7 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
                     .addParameter("apellidoVoluntario", voluntario.getApellidoVoluntario())
                     .addParameter("edadVoluntario", voluntario.getEdadVoluntario())
                     .addParameter("sexoVoluntario", voluntario.isSexoVoluntario())
-                    .addParameter("email", voluntario.getEmailVoluntario())
+                    .addParameter("email", voluntario.getEmail())
                     .addParameter("contrasena", voluntario.getContrasena())
                     .addParameter("disponibilidad", voluntario.isDisponibilidad())
                     .executeUpdate();
