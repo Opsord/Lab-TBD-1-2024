@@ -28,7 +28,7 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
                     .addParameter("apellidoVoluntario", voluntario.getApellidoVoluntario())
                     .addParameter("edadVoluntario", voluntario.getEdadVoluntario())
                     .addParameter("sexoVoluntario", voluntario.isSexoVoluntario())
-                    .addParameter("email", voluntario.getEmail())
+                    .addParameter("email", voluntario.getEmailVoluntario())
                     .addParameter("contrasena", voluntario.getContrasena())
                     .addParameter("disponibilidad", voluntario.isDisponibilidad())
                     .executeUpdate();
@@ -94,7 +94,7 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
                     .addParameter("apellidoVoluntario", voluntario.getApellidoVoluntario())
                     .addParameter("edadVoluntario", voluntario.getEdadVoluntario())
                     .addParameter("sexoVoluntario", voluntario.isSexoVoluntario())
-                    .addParameter("email", voluntario.getEmail())
+                    .addParameter("email", voluntario.getEmailVoluntario())
                     .addParameter("contrasena", voluntario.getContrasena())
                     .addParameter("disponibilidad", voluntario.isDisponibilidad())
                     .executeUpdate();
@@ -120,6 +120,25 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
         } catch (Exception e) {
             logger.severe("Error al eliminar voluntario: " + e.getMessage());
             return false;
+        }
+    }
+
+    @Override
+    public List<VoluntarioEntity> obtenerPorEmergencia(long idEmergencia) {
+        String sql = "SELECT v.* FROM Voluntario v " +
+                "JOIN VoluntarioAtributo va ON v.rutVoluntario = va.rutVoluntario " +
+                "JOIN Atributo a ON va.idAtributo = a.idAtributo " +
+                "JOIN EmergenciaAtributo ea ON va.idAtributo = ea.idAtributo " +
+                "JOIN Emergencia e ON ea.idEmergencia = e.idEmergencia " +
+                "WHERE e.idEmergencia = :idEmergencia";
+
+        try (Connection conn = sql2o.open()) {
+            return conn.createQuery(sql)
+                    .addParameter("idEmergencia", idEmergencia)
+                    .executeAndFetch(VoluntarioEntity.class);
+        } catch (Exception e) {
+            logger.severe("Error al obtener voluntarios por emergencia: " + e.getMessage());
+            return null;
         }
     }
 
