@@ -38,4 +38,6 @@ public class VoluntarioService {
     public boolean eliminar(String rut) {
         return voluntarioRepository.eliminar(rut);
     }
+
+    public List<VoluntarioEntity> obtenerPorIdEmergencia(long id){return voluntarioRepository.obtenerPorEmergencia(id);}
 }
