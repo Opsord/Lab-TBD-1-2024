@@ -58,9 +58,8 @@
                             <select v-model="sexo" class="w-32 px-3 py-2 border border-gray-400 rounded text-sm"
                                 required>
                                 <option value="">Sexo</option>
-                                <option value="Masculino">Masculino</option>
-                                <option value="Femenino">Femenino</option>
-                                <option value="No binario">No binario</option>
+                                <option :value="true">Masculino</option>
+                                <option :value="false">Femenino</option>
                             </select>
                         </div>
                     </div>
@@ -68,11 +67,11 @@
                         <label for="disponibilidad" class="w-full text-sm">¿Estás disponible?<span
                                 class="text-blue-700"> * Voluntario</span></label>
                         <div class="flex items-center space-x-2">
-                            <input v-model="disponibilidad" type="radio" name="disponibilidad" required>
+                            <input v-model="disponibilidad" type="radio" name="disponibilidad" :value="true" required>
                             <label for="disponibilidadsi" class="text-sm">Sí</label>
                         </div>
                         <div class="flex items-center space-x-2">
-                            <input v-model="disponibilidad" type="radio" name="disponibilidad" required>
+                            <input v-model="disponibilidad" type="radio" name="disponibilidad" :value="false" required>
                             <label for="disponibilidadno" class="text-sm">No</label>
                         </div>
                     </div>
@@ -98,9 +97,9 @@ const apellido = ref("");
 const email = ref("");
 const contrasena = ref("");
 const rut = ref("");
-const edad = ref("");
-const sexo = ref("");
-const disponibilidad = ref("");
+const edad = ref(0);
+const sexo = ref(false);
+const disponibilidad = ref(false);
 const institucion = ref("");
 
 const instituciones = ref([]);
@@ -125,31 +124,50 @@ for (let i = 18; i <= 60; i++) {
 const registerUser = async () => {
     if (rol.value === "Voluntario") {
         const data = {
-            rutVoluntario: rut.value,
+            rut: rut.value,
             nombreVoluntario: nombre.value,
             apellidoVoluntario: apellido.value,
             edadVoluntario: edad.value,
             sexoVoluntario: sexo.value,
             email: email.value,
             contrasena: contrasena.value,
-            disponibilidad: disponibilidad.value
+            disponibilidad: disponibilidad.value,
+            role: rol.value.toUpperCase()
         }
         console.log("Voluntario")
         console.log(data);
+
+        try {
+            const response = await axios.post('http://localhost:8090/voluntarios/crear', data);
+            console.log(response.data);
+            redirectToLogin();
+        } catch (error) {
+            console.log("Error al registar un nuevo voluntario", error);
+        }
+
         redirectToLogin();
     }
     else if (rol.value === "Coordinador") {
         const data = {
-            rutCoordinador: rut.value,
-            nombreCoordinador: nombre.value,
-            apellidoCoordinador: apellido.value,
+            rut: rut.value,
+            nombre: nombre.value,
+            apellido: apellido.value,
             email: email.value,
             contrasena: contrasena.value,
-            idInstitucion: institucion.value
+            idInstitucion: institucion.value,
+            role: rol.value.toUpperCase()
         }
+
         console.log("Coordinador")
         console.log(data);
-        redirectToLogin();
+
+        try {
+            const response = await axios.post('http://localhost:8090/coordinadores/crear', data);
+            console.log(response.data);
+            redirectToLogin();
+        } catch (error) {
+            console.log("Error al registar un nuevo coordinador", error);
+        }
     }
 }
 
