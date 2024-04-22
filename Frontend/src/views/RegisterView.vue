@@ -44,7 +44,7 @@
                         <label for="rut" class="text-sm">RUT</label>
                         <Input v-model="rut" type="text" placeholder="12.345.678-9" />
                     </div>
-                    <div class="flex justify-between">
+                    <div class="flex flex-col justify-between">
                         <div class="flex flex-col gap-2">
                             <label for="edad" class="text-sm">Edad</label>
                             <select v-model="edad" class="w-32 px-3 py-2 border border-gray-400 rounded text-sm"
