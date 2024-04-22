@@ -4,6 +4,7 @@ import G1TBD.LABTBD.entities.CoordinadorEntity;
 import G1TBD.LABTBD.entities.VoluntarioEntity;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+/*
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -12,6 +13,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+ */
 
 import G1TBD.LABTBD.repositories.CoordinadorRepository;
 import G1TBD.LABTBD.repositories.VoluntarioRepository;
@@ -24,6 +27,7 @@ public class AppConfig {
     private final VoluntarioRepository voluntarioRepository;
     private final CoordinadorRepository coordinadorRepository;
 
+    /*
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
@@ -57,6 +61,8 @@ public class AppConfig {
         return new BCryptPasswordEncoder();
     }
 
+
+     */
 
 
 }

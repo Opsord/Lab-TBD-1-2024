@@ -5,9 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+/*
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+ */
 
 import java.util.Collection;
 import java.util.List;
@@ -16,7 +19,8 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class VoluntarioEntity implements UserDetails {
+public class VoluntarioEntity {
+//public class VoluntarioEntity implements UserDetails {
 
     private long idVoluntario;
     private String rut;
@@ -29,6 +33,7 @@ public class VoluntarioEntity implements UserDetails {
     private boolean disponibilidad;
     private Role role;
 
+    /*
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
@@ -63,5 +68,7 @@ public class VoluntarioEntity implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+     */
 
 }

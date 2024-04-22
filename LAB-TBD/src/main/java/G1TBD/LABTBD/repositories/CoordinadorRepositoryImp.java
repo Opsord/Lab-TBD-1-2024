@@ -19,8 +19,8 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
 
     @Override
     public CoordinadorEntity crear(CoordinadorEntity coordinador) {
-        String sql = "INSERT INTO Coordinador (rut, nombre, apellido, email, contrasena, idInstitucion) " +
-                "VALUES (:rut, :nombre, :apellido, :email, :contrasena, :idInstitucion)";
+        String sql = "INSERT INTO Coordinador (rut, nombre, apellido, email, contrasena, idInstitucion, role) " +
+                "VALUES (:rut, :nombre, :apellido, :email, :contrasena, :idInstitucion, :role)";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
@@ -30,6 +30,7 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
                     .addParameter("email", coordinador.getEmail())
                     .addParameter("contrasena", coordinador.getContrasena())
                     .addParameter("idInstitucion", coordinador.getIdInstitucion())
+                    .addParameter("role", coordinador.getRole())
                     .executeUpdate();
             return coordinador;
         } catch (Exception e) {

@@ -1,15 +1,17 @@
 package G1TBD.LABTBD.auth;
-
+/*
 import G1TBD.LABTBD.entities.VoluntarioEntity;
 import G1TBD.LABTBD.jwt.JwtService;
 import G1TBD.LABTBD.repositories.VoluntarioRepository;
 import G1TBD.LABTBD.user.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -75,4 +77,6 @@ public class AuthService {
                 .build();
     }
 
+
 }
+        */

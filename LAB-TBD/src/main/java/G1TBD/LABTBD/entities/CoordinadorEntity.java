@@ -3,16 +3,20 @@ package G1TBD.LABTBD.entities;
 import G1TBD.LABTBD.user.Role;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+/*
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+ */
 
 import java.util.Collection;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class CoordinadorEntity implements UserDetails{
+public class CoordinadorEntity {
+//public class CoordinadorEntity implements UserDetails{
 
     private long idCoordinador;
     private String rut;
@@ -21,9 +25,9 @@ public class CoordinadorEntity implements UserDetails{
     private String apellido;
     private String contrasena;
     private long idInstitucion;
-    Role role;
+    private Role role;
 
-
+    /*
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
@@ -31,7 +35,7 @@ public class CoordinadorEntity implements UserDetails{
 
     @Override
     public String getPassword() {
-        return "";
+        return contrasena;
     }
 
     @Override
@@ -58,5 +62,7 @@ public class CoordinadorEntity implements UserDetails{
     public boolean isEnabled() {
         return true;
     }
+
+     */
 
 }
