@@ -63,11 +63,11 @@
                     <div class="flex items-end gap-4 my-1 flex-wrap">
                         <label for="disponibilidad" class="w-full text-sm">¿Estás disponible?<span class="text-blue-700"> * Voluntario</span></label>
                         <div class="flex items-center space-x-2">
-                            <input v-model="disponibilidad" type="radio" name="disponibilidad" required>
+                            <input v-model="disponibilidad" type="radio" name="disponibilidad" :value=true required>
                             <label for="disponibilidadsi" class="text-sm">Sí</label>
                         </div>
                         <div class="flex items-center space-x-2">   
-                            <input v-model="disponibilidad" type="radio" name="disponibilidad" required>
+                            <input v-model="disponibilidad" type="radio" name="disponibilidad" :value=false required>
                             <label for="disponibilidadno" class="text-sm">No</label>
                         </div>
                     </div>
@@ -80,7 +80,7 @@
 
 <script setup>
 import { useRouter } from "vue-router";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import axios from 'axios';
 import ButtonPrimary from '../components/ButtonPrimary.vue';
 import Input from "../components/Input.vue";
@@ -93,17 +93,18 @@ const apellido = ref("");
 const email = ref("");
 const contrasena = ref("");
 const rut = ref("");
-const edad = ref("");
+const edad = ref(0);
 const sexo = ref("");
-const disponibilidad = ref("");
+const disponibilidad = ref(false);
 const institucion = ref("");
 
 const instituciones = ref([]);
 
 const getInstituciones = async () => {
     try {
-        const response = await axios.get('http://localhost:8090/instituciones/todo');
+        /* const response = await axios.get('http://localhost:8090/instituciones/todo');
         instituciones.value = response.data;
+        console.log(response); */
     } catch (error) {
         console.error(error);
     }
@@ -117,34 +118,90 @@ for (let i = 18; i <= 60; i++) {
     edades.value.push(i);
 }
 
+const verificarRol = computed(() => {
+    return rol.value.trim() !== "";
+});
+
+const verificarInstitucion= computed(() => {
+    if(rol.value === 'Coordinador') {
+        return institucion.value.trim() !== "";
+    }
+    return true;
+});
+
+const verificarNombre = computed(() => {
+    return nombre.value.trim() !== "";
+});
+
+const verificarApellido = computed(() => {
+    return apellido.value.trim() !== "";
+});
+
+const verificarEmail = computed(() => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email.value);
+});
+
+const verificarContrasena = computed(() => {
+    const contrasenaRegex = /[a-zA-Z0-9]/;
+    return contrasenaRegex.test(contrasena.value) && contrasena.value.length >= 4;
+});
+
+const verificarRut = computed(() => {
+    const rutRegex = /^(\d{1,3}\.\d{3}\.\d{3}-\d{1}|\d{1,3}\.\d{3}\.\d{1}-\d{1}|\d{1,3}\.\d{3}-\d{1}|\d{1,3}-\d{1}|\d{1,3}\.\d{3}\.\d{3}-[0-9kK]{1})$/;
+    return rutRegex.test(rut.value);
+});
+
+const verificarEdad = computed(() => {
+    return edad.value.toString().trim() !== null;
+});
+
+const verificarSexo = computed(() => {
+    return sexo.value.trim() !== "";
+});
+
+const isRegisterFormValid = computed(() => {
+    return verificarRol.value && verificarInstitucion.value && verificarNombre.value && verificarApellido.value && verificarEmail.value && verificarContrasena.value && verificarRut.value && verificarEdad.value && verificarSexo.value;
+});
+
 const registerUser = async () => {
-    if(rol.value === "Voluntario") {
-        const data = {
-            rutVoluntario: rut.value,
-            nombreVoluntario: nombre.value,
-            apellidoVoluntario: apellido.value,
-            edadVoluntario: edad.value, 
-            sexoVoluntario: sexo.value,
-            email: email.value,
-            contrasena: contrasena.value,
-            disponibilidad: disponibilidad.value
+    if(isRegisterFormValid.value) {
+        if(rol.value === "Voluntario") {
+            const data = {
+                rutVoluntario: rut.value,
+                nombreVoluntario: nombre.value,
+                apellidoVoluntario: apellido.value,
+                edadVoluntario: edad.value, 
+                sexoVoluntario: sexo.value,
+                email: email.value,
+                contrasena: contrasena.value,
+                disponibilidad: disponibilidad.value
+            }
+            /* 
+            try {
+                const response = await axios.post("http://localhost:8090/voluntarios/crear", data)
+                console.log(response);
+            } catch (error) {
+                console.log(error);
+            } */
+
+            console.log("Voluntario")
+            console.log(data);
+            redirectToLogin();
+        } 
+        else if (rol.value === "Coordinador") {
+            const data = {
+                rutCoordinador: rut.value,
+                nombreCoordinador: nombre.value,
+                apellidoCoordinador: apellido.value,
+                email: email.value,
+                contrasena: contrasena.value,
+                idInstitucion: institucion.value
+            }
+            console.log("Coordinador")
+            console.log(data);
+            redirectToLogin();
         }
-        console.log("Voluntario")
-        console.log(data);
-        redirectToLogin();
-    } 
-    else if (rol.value === "Coordinador") {
-        const data = {
-            rutCoordinador: rut.value,
-            nombreCoordinador: nombre.value,
-            apellidoCoordinador: apellido.value,
-            email: email.value,
-            contrasena: contrasena.value,
-            idInstitucion: institucion.value
-        }
-        console.log("Coordinador")
-        console.log(data);
-        redirectToLogin();
     }
 }
 

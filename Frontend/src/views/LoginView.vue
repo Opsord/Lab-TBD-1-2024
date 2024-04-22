@@ -15,7 +15,7 @@
                     <label for="contrasena" class="text-sm">Contraseña</label>
                     <Input v-model="contrasena" type="password" placeholder="********"/>
                 </div>
-                <ButtonPrimary @click="redirectToHome" buttonText="Ingresar"/>
+                <ButtonPrimary @click="loginUser" buttonText="Ingresar"/>
                 <div class="flex justify-center gap-2 text-sm">
                     <span>¿Aún no tienes cuenta?</span>
                     <button class="font-bold text-teal-600 hover:underline" @click="redirectToRegister">Registrate</button>
@@ -27,7 +27,7 @@
 
 <script setup>
 import { useRouter } from "vue-router";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { store } from "../store";
 import axios from 'axios';
 import ButtonPrimary from '../components/ButtonPrimary.vue';
@@ -38,7 +38,11 @@ const router = useRouter();
 const email = ref("");
 const contrasena = ref("");
 
-const redirectToHome = async () => {
+const isLoginFormValid = computed(() => {
+    return email.value.trim() !== "" && contrasena.value.trim() !== "";
+});
+
+const loginUser = async () => {
     // Verificar datos validos
     // Guardar valores ingresados
     // Try-Catch
@@ -46,10 +50,21 @@ const redirectToHome = async () => {
     // Comprobar response
     // Guardar autenticacion en store
     // Router push
-    console.log("Redirigiendo a /home");
-    router.push('/home');
+    if(isLoginFormValid.value) {
+        const data = {
+            email: email.value,
+            contrasena: contrasena.value
+        }
+        console.log(data)
+        
+        try {
+            console.log("Redirigiendo a /home");
+            router.push('/home');
+        } catch {
+            
+        }
+    }
 }
-
 
 const redirectToRegister = () => {
     console.log("Redirigiendo a /register");
