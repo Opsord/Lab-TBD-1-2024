@@ -1,4 +1,5 @@
 package G1TBD.LABTBD.repositories;
+
 import G1TBD.LABTBD.entities.VoluntarioEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @Repository
-public class VoluntarioRepositoryImp implements  VoluntarioRepository{
+public class VoluntarioRepositoryImp implements VoluntarioRepository {
 
     private static final Logger logger = Logger.getLogger(VoluntarioRepositoryImp.class.getName());
 
@@ -18,19 +19,21 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
 
     @Override
     public VoluntarioEntity crear(VoluntarioEntity voluntario) {
-        String sql = "INSERT INTO Voluntario (rutVoluntario, nombreVoluntario, apellidoVoluntario, edadVoluntario, sexoVoluntario, email, contrasena, disponibilidad) " +
-                "VALUES (:rutVoluntario, :nombreVoluntario, :apellidoVoluntario, :edadVoluntario, :sexoVoluntario, :email, :contrasena, :disponibilidad)";
+        String sql = "INSERT INTO Voluntario (rut, nombre, apellido, edadVoluntario, sexoVoluntario, email, contrasena, disponibilidad, role) "
+                +
+                "VALUES (:rut, :nombre, :apellido, :edadVoluntario, :sexoVoluntario, :email, :contrasena, :disponibilidad, :role)";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
-                    .addParameter("rutVoluntario", voluntario.getRutVoluntario())
-                    .addParameter("nombreVoluntario", voluntario.getNombreVoluntario())
-                    .addParameter("apellidoVoluntario", voluntario.getApellidoVoluntario())
+                    .addParameter("rut", voluntario.getRut())
+                    .addParameter("nombre", voluntario.getNombre())
+                    .addParameter("apellido", voluntario.getApellido())
                     .addParameter("edadVoluntario", voluntario.getEdadVoluntario())
                     .addParameter("sexoVoluntario", voluntario.isSexoVoluntario())
                     .addParameter("email", voluntario.getEmail())
                     .addParameter("contrasena", voluntario.getContrasena())
                     .addParameter("disponibilidad", voluntario.isDisponibilidad())
+                    .addParameter("role", voluntario.getRole())
                     .executeUpdate();
             return voluntario;
         } catch (Exception e) {
@@ -54,11 +57,11 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
 
     @Override
     public VoluntarioEntity obtenerPorRut(String rut) {
-        String sql = "SELECT * FROM Voluntario WHERE rutVoluntario = :rutVoluntario";
+        String sql = "SELECT * FROM Voluntario WHERE rut = :rut";
 
         try (Connection conn = sql2o.open()) {
             List<VoluntarioEntity> voluntarios = conn.createQuery(sql)
-                    .addParameter("rutVoluntario", rut)
+                    .addParameter("rut", rut)
                     .executeAndFetch(VoluntarioEntity.class);
             return voluntarios.isEmpty() ? null : voluntarios.get(0);
         } catch (Exception e) {
@@ -82,16 +85,32 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
     }
 
     @Override
+    public VoluntarioEntity obtenerPorEmail(String email) {
+        String sql = "SELECT * FROM Voluntario WHERE email = :email";
+
+        try (Connection conn = sql2o.open()) {
+            List<VoluntarioEntity> voluntarios = conn.createQuery(sql)
+                    .addParameter("email", email)
+                    .executeAndFetch(VoluntarioEntity.class);
+            return voluntarios.isEmpty() ? null : voluntarios.get(0);
+        } catch (Exception e) {
+            logger.severe("Error al obtener voluntario por email: " + e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
     public boolean actualizar(VoluntarioEntity voluntario) {
-        String sql = "UPDATE Voluntario SET rutVoluntario = :rutVoluntario, nombreVoluntario = :nombreVoluntario, apellidoVoluntario = :apellidoVoluntario, " +
-                "edadVoluntario = :edadVoluntario, sexoVoluntario = :sexoVoluntario, email = :email, contrasena = :contrasena, disponibilidad = :disponibilidad " +
-                "WHERE rutVoluntario = :rutVoluntario";
+        String sql = "UPDATE Voluntario SET rut = :rut, nombre = :nombre, apellido = :apellido, " +
+                "edadVoluntario = :edadVoluntario, sexoVoluntario = :sexoVoluntario, email = :email, contrasena = :contrasena, disponibilidad = :disponibilidad "
+                +
+                "WHERE rut = :rut";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
-                    .addParameter("rutVoluntario", voluntario.getRutVoluntario())
-                    .addParameter("nombreVoluntario", voluntario.getNombreVoluntario())
-                    .addParameter("apellidoVoluntario", voluntario.getApellidoVoluntario())
+                    .addParameter("rut", voluntario.getRut())
+                    .addParameter("nombre", voluntario.getNombre())
+                    .addParameter("apellido", voluntario.getApellido())
                     .addParameter("edadVoluntario", voluntario.getEdadVoluntario())
                     .addParameter("sexoVoluntario", voluntario.isSexoVoluntario())
                     .addParameter("email", voluntario.getEmail())
@@ -106,14 +125,13 @@ public class VoluntarioRepositoryImp implements  VoluntarioRepository{
         }
     }
 
-
     @Override
     public boolean eliminar(String rut) {
-        String sql = "DELETE FROM Voluntario WHERE rutVoluntario = :rutVoluntario";
+        String sql = "DELETE FROM Voluntario WHERE rut = :rut";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
-                    .addParameter("rutVoluntario", rut)
+                    .addParameter("rut", rut)
                     .executeUpdate();
             conn.commit();
             return true;

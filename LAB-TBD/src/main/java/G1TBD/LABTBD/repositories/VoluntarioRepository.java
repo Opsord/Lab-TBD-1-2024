@@ -11,6 +11,8 @@ public interface VoluntarioRepository {
 
     VoluntarioEntity obtenerPorRut(String rut);
 
+    VoluntarioEntity obtenerPorEmail(String email);
+
     public VoluntarioEntity obtenerPorId(long id);
 
     boolean actualizar(VoluntarioEntity voluntario);

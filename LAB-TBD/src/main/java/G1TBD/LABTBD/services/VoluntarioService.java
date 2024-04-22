@@ -25,6 +25,10 @@ public class VoluntarioService {
         return voluntarioRepository.obtenerPorRut(rut);
     }
 
+    public VoluntarioEntity obtenerPorEmail(String email) {
+        return voluntarioRepository.obtenerPorEmail(email);
+    }
+
     public VoluntarioEntity obtenerPorId(long id) {
         return voluntarioRepository.obtenerPorId(id);
     }

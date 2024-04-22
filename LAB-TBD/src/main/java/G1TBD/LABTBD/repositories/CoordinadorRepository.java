@@ -12,6 +12,8 @@ public interface CoordinadorRepository {
 
     CoordinadorEntity obtenerPorRut(String rut);
 
+    CoordinadorEntity obtenerPorEmail(String email);
+
     boolean actualizar(CoordinadorEntity coordinador);
 
     boolean eliminar(String rut);

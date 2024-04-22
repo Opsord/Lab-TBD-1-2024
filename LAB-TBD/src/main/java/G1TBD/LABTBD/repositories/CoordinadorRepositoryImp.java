@@ -19,14 +19,14 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
 
     @Override
     public CoordinadorEntity crear(CoordinadorEntity coordinador) {
-        String sql = "INSERT INTO Coordinador (rutCoordinador, nombreCoordinador, apellidoCoordinador, email, contrasena, idInstitucion) " +
-                "VALUES (:rutCoordinador, :nombreCoordinador, :apellidoCoordinador, :email, :contrasena, :idInstitucion)";
+        String sql = "INSERT INTO Coordinador (rut, nombre, apellido, email, contrasena, idInstitucion) " +
+                "VALUES (:rut, :nombre, :apellido, :email, :contrasena, :idInstitucion)";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
-                    .addParameter("rutCoordinador", coordinador.getRutCoordinador())
-                    .addParameter("nombreCoordinador", coordinador.getNombreCoordinador())
-                    .addParameter("apellidoCoordinador", coordinador.getApellidoCoordinador())
+                    .addParameter("rut", coordinador.getRut())
+                    .addParameter("nombre", coordinador.getNombre())
+                    .addParameter("apellido", coordinador.getApellido())
                     .addParameter("email", coordinador.getEmail())
                     .addParameter("contrasena", coordinador.getContrasena())
                     .addParameter("idInstitucion", coordinador.getIdInstitucion())
@@ -39,9 +39,9 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
     }
 
     @Override
-    public List<CoordinadorEntity> obtenerTodos(){
+    public List<CoordinadorEntity> obtenerTodos() {
         String sql = "SELECT * FROM Coordinador";
-        try (Connection conn = sql2o.open()){
+        try (Connection conn = sql2o.open()) {
             return conn.createQuery(sql)
                     .executeAndFetch(CoordinadorEntity.class);
         } catch (Exception e) {
@@ -52,11 +52,11 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
 
     @Override
     public CoordinadorEntity obtenerPorRut(String rut) {
-        String sql = "SELECT * FROM Coordinador WHERE rutCoordinador = :rutCoordinador";
+        String sql = "SELECT * FROM Coordinador WHERE rut = :rut";
 
         try (Connection conn = sql2o.open()) {
             List<CoordinadorEntity> coordinadores = conn.createQuery(sql)
-                    .addParameter("rutCoordinador", rut)
+                    .addParameter("rut", rut)
                     .executeAndFetch(CoordinadorEntity.class);
             if (coordinadores.isEmpty()) {
                 return null;
@@ -69,16 +69,34 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
     }
 
     @Override
+    public CoordinadorEntity obtenerPorEmail(String email) {
+        String sql = "SELECT * FROM Coordinador WHERE email = :email";
+
+        try (Connection conn = sql2o.open()) {
+            List<CoordinadorEntity> coordinadores = conn.createQuery(sql)
+                    .addParameter("email", email)
+                    .executeAndFetch(CoordinadorEntity.class);
+            if (coordinadores.isEmpty()) {
+                return null;
+            }
+            return coordinadores.get(0);
+        } catch (Exception e) {
+            logger.severe("Error al obtener coordinador por email: " + e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
     public boolean actualizar(CoordinadorEntity coordinador) {
-        String sql = "UPDATE Coordinador SET rutCoordinador = :rutCoordinador, nombreCoordinador = :nombreCoordinador, " +
-                "apellidoCoordinador = :apellidoCoordinador, email = :email, contrasena = :contrasena, idInstitucion = :idInstitucion " +
-                "WHERE rutCoordinador = :rutCoordinador";
+        String sql = "UPDATE Coordinador SET rut = :rut, nombre = :nombre, " +
+                "apellido = :apellido, email = :email, contrasena = :contrasena, idInstitucion = :idInstitucion " +
+                "WHERE rut = :rut";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
-                    .addParameter("rutCoordinador", coordinador.getRutCoordinador())
-                    .addParameter("nombreCoordinador", coordinador.getNombreCoordinador())
-                    .addParameter("apellidoCoordinador", coordinador.getApellidoCoordinador())
+                    .addParameter("rut", coordinador.getRut())
+                    .addParameter("nombre", coordinador.getNombre())
+                    .addParameter("apellido", coordinador.getApellido())
                     .addParameter("email", coordinador.getEmail())
                     .addParameter("contrasena", coordinador.getContrasena())
                     .addParameter("idInstitucion", coordinador.getIdInstitucion())
@@ -93,11 +111,11 @@ public class CoordinadorRepositoryImp implements CoordinadorRepository {
 
     @Override
     public boolean eliminar(String rut) {
-        String sql = "DELETE FROM Coordinador WHERE rutCoordinador = :rutCoordinador";
+        String sql = "DELETE FROM Coordinador WHERE rut = :rut";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
-                    .addParameter("rutCoordinador", rut)
+                    .addParameter("rut", rut)
                     .executeUpdate();
             conn.commit();
             return true;

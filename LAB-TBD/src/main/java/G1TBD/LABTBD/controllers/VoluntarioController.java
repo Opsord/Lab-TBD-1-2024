@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/voluntario")
+@RequestMapping("/voluntarios")
 @CrossOrigin(origins = "http://localhost:8090/voluntarios")
 public class VoluntarioController {
 
@@ -31,6 +31,11 @@ public class VoluntarioController {
     @GetMapping("/porRut/{rut}")
     public VoluntarioEntity obtenerPorRut(@PathVariable String rut) {
         return voluntarioService.obtenerPorRut(rut);
+    }
+
+    @GetMapping("/porEmail/{email}")
+    public VoluntarioEntity obtenerPorEmail(@PathVariable String email) {
+        return voluntarioService.obtenerPorEmail(email);
     }
 
     @GetMapping("/porId/{id}")

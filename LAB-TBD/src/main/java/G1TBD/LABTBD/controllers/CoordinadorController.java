@@ -37,6 +37,11 @@ public class CoordinadorController {
         return coordinadorService.obtenerPorRut(rut);
     }
 
+    @GetMapping("/porEmail/{email}")
+    public CoordinadorEntity obtenerPorEmail(@PathVariable String email) {
+        return coordinadorService.obtenerPorEmail(email);
+    }
+
     @PutMapping("/actualizar")
     public boolean actualizar(@RequestBody CoordinadorEntity coordinador) {
         return coordinadorService.actualizar(coordinador);

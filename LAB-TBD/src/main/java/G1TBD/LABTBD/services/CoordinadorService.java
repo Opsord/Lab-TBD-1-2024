@@ -25,6 +25,10 @@ public class CoordinadorService {
         return coordinadorRepository.obtenerPorRut(rut);
     }
 
+    public CoordinadorEntity obtenerPorEmail(String email) {
+        return coordinadorRepository.obtenerPorEmail(email);
+    }
+
     public boolean actualizar(CoordinadorEntity coordinador) {
         return coordinadorRepository.actualizar(coordinador);
     }
