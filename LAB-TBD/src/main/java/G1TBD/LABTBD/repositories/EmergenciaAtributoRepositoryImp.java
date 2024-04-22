@@ -19,8 +19,8 @@ public class EmergenciaAtributoRepositoryImp implements EmergenciaAtributoReposi
 
     @Override
     public EmergenciaAtributoEntity crear(EmergenciaAtributoEntity emergenciaAtributo) {
-        String sql = "INSERT INTO Emergencia_Atributo (idAtributo, compatibilidad) " +
-                "VALUES ( :idAtributo, :compatibilidad)";
+        String sql = "INSERT INTO Emergencia_Atributo (idEmergencia,idAtributo, compatibilidad) " +
+                "VALUES (:idEmergencia, :idAtributo, :compatibilidad)";
 
 
         try (Connection conn = sql2o.open()) {
