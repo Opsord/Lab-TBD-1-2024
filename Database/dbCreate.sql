@@ -7,7 +7,8 @@ CREATE TABLE Voluntario (
     edadVoluntario INT NOT NULL,
     sexoVoluntario BOOLEAN NOT NULL,
     contrasena VARCHAR(255) NOT NULL,
-    disponibilidad BOOLEAN NOT NULL
+    disponibilidad BOOLEAN NOT NULL,
+    role VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE Atributo (
@@ -36,7 +37,8 @@ CREATE TABLE Coordinador (
     apellido VARCHAR(255) NOT NULL,  
     contrasena VARCHAR(255) NOT NULL,
     idInstitucion BIGINT,
-    FOREIGN KEY (idInstitucion) REFERENCES Institucion(idInstitucion)
+    FOREIGN KEY (idInstitucion) REFERENCES Institucion(idInstitucion),
+    role VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE Emergencia (
