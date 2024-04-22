@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/emergencias")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:8090/emergencias")
 public class EmergenciaController {
 
     @Autowired
@@ -34,18 +34,11 @@ public class EmergenciaController {
     public List<EmergenciaEntity> obtenerTodasActivas() {
         return emergenciaService.obtenerTodasActivas();
     }
-//    @GetMapping("/finalizadas")
-//    public List<EmergenciaEntity> obtenerTodasFinalizadas() {
-//        return emergenciaService.obtenerTodasFinalizadas();
-//    }
-
 
     @GetMapping("/porId/{id}")
     public EmergenciaEntity obtenerPorId(@PathVariable long id) {
         return emergenciaService.obtenerPorId(id);
     }
-
-
 
     @PutMapping("/actualizar")
     public boolean actualizar(@RequestBody EmergenciaEntity emergencia) {
@@ -61,10 +54,10 @@ public class EmergenciaController {
     public List<EmergenciaEntity> obtenerFinalizadas() {
         return emergenciaService.emergenciasFinalizadas();
     }
-//
-//    @GetMapping("/datosEmergencias")
-//    public List<datosEmergencia> obtenerDatosEmergencias() {
-//        return emergenciaService.datosEmergencias();
-//    }
+
+    @GetMapping("/datosEmergencias")
+    public List<datosEmergencia> obtenerDatosEmergencias() {
+        return emergenciaService.datosEmergencias();
+    }
 
 }
