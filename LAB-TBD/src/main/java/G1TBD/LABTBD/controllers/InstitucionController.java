@@ -1,7 +1,7 @@
 package G1TBD.LABTBD.controllers;
 
-import G1TBD.LABTBD.entities.InstitucionEntity;
-import G1TBD.LABTBD.services.InstitucionService;
+import G1TBD.LABTBD.entities.InstitutionEntity;
+import G1TBD.LABTBD.services.InstitutionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,33 +13,33 @@ import java.util.List;
 public class InstitucionController {
 
     @Autowired
-    private InstitucionService institucionService;
+    private InstitutionService institutionService;
 
     String homeLinkRedirect = "redirect:/instituciones";
 
     @PostMapping("/crear")
-    public String crear(@RequestBody InstitucionEntity institucion) {
-        institucionService.crear(institucion);
+    public String crear(@RequestBody InstitutionEntity institucion) {
+        institutionService.create(institucion);
         return homeLinkRedirect;
     }
 
     @GetMapping("/todo")
-    public List<InstitucionEntity> obtenerTodos() {
-        return institucionService.obtenerTodos();
+    public List<InstitutionEntity> obtenerTodos() {
+        return institutionService.getAll();
     }
 
     @GetMapping("/porId/{id}")
-    public InstitucionEntity obtenerPorId(@PathVariable long id) {
-        return institucionService.obtenerPorId(id);
+    public InstitutionEntity obtenerPorId(@PathVariable long id) {
+        return institutionService.getById(id);
     }
 
     @PutMapping("/actualizar")
-    public boolean actualizar(@RequestBody InstitucionEntity institucion) {
-        return institucionService.actualizar(institucion);
+    public boolean actualizar(@RequestBody InstitutionEntity institucion) {
+        return institutionService.update(institucion);
     }
 
     @DeleteMapping("/eliminar/{id}")
     public boolean eliminar(@PathVariable long id) {
-        return institucionService.eliminar(id);
+        return institutionService.delete(id);
     }
 }

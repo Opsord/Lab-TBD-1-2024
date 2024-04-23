@@ -1,8 +1,8 @@
 package G1TBD.LABTBD.auth;
 /*
-import G1TBD.LABTBD.entities.VoluntarioEntity;
+import G1TBD.LABTBD.entities.VolunteerEntity;
 import G1TBD.LABTBD.jwt.JwtService;
-import G1TBD.LABTBD.repositories.VoluntarioRepository;
+import G1TBD.LABTBD.repositories.VolunteerRepository;
 import G1TBD.LABTBD.user.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 public class AuthService {
 
     @Autowired
-    private VoluntarioRepository voluntarioRepository;
+    private VolunteerRepository voluntarioRepository;
 
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
@@ -35,7 +35,7 @@ public class AuthService {
     }
 
     public AuthResponse registerVoluntario(RegisterRequest registerRequest) {
-        VoluntarioEntity voluntarioEntity = VoluntarioEntity.builder()
+        VolunteerEntity voluntarioEntity = VolunteerEntity.builder()
                 .email(registerRequest.getEmail())
                 .contrasena(passwordEncoder.encode(registerRequest.getContrasena()))
                 .rut(registerRequest.getRut())
@@ -61,7 +61,7 @@ public class AuthService {
     }
 
     public AuthResponse registerCoordinador(RegisterRequest registerRequest) {
-        VoluntarioEntity voluntarioEntity = VoluntarioEntity.builder()
+        VolunteerEntity voluntarioEntity = VolunteerEntity.builder()
                 .email(registerRequest.getEmail())
                 .contrasena(passwordEncoder.encode(registerRequest.getContrasena()))
                 .rut(registerRequest.getRut())

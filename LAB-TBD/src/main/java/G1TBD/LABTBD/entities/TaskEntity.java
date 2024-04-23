@@ -9,11 +9,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RankingEntity {
+public class TaskEntity {
 
-    private long idRanking;
-    private String idVolunteer;
     private long idTask;
-    private Integer valorRanking;
+    private long idEmergency;
+    private String type;
+    private String description;
+    private boolean state;
 
 }

@@ -19,34 +19,34 @@ public class RankingController {
 
     @PostMapping("/crearRanking")
     public String crear(@RequestBody RankingEntity ranking) {
-        rankingService.crear(ranking);
+        rankingService.create(ranking);
         return homeLinkRedirect;
     }
 
     @GetMapping("/obtenerTodosLosRanking")
     public List<RankingEntity> obtenerTodos() {
-        return rankingService.obtenerTodos();
+        return rankingService.getAll();
     }
 
     @GetMapping("/obtenerRankingPorId/{id}")
     public RankingEntity obtenerPorId(@PathVariable long id) {
-        return rankingService.obtenerPorId(id);
+        return rankingService.getById(id);
     }
 
 
     @GetMapping("/obtenerRankingPorIdTarea/{id}")
     public List<RankingEntity> obtenerPorIdTarea(@PathVariable long id) {
-        return rankingService.obtenerPorIdTarea(id);
+        return rankingService.getByTaskId(id);
     }
 
 
     @PutMapping("/actualizarRanking")
     public boolean actualizar(@RequestBody RankingEntity ranking) {
-        return rankingService.actualizar(ranking);
+        return rankingService.update(ranking);
     }
 
     @DeleteMapping("/eliminarRanking/{id}")
     public boolean eliminar(@PathVariable long id) {
-        return rankingService.eliminar(id);
+        return rankingService.delete(id);
     }
 }

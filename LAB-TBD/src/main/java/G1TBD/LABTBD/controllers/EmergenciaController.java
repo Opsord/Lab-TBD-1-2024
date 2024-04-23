@@ -1,8 +1,8 @@
 package G1TBD.LABTBD.controllers;
 
-import G1TBD.LABTBD.dtos.datosEmergencia;
-import G1TBD.LABTBD.entities.EmergenciaEntity;
-import G1TBD.LABTBD.services.EmergenciaService;
+import G1TBD.LABTBD.data.SingleEmergencyData;
+import G1TBD.LABTBD.entities.EmergencyEntity;
+import G1TBD.LABTBD.services.EmergencyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,48 +16,48 @@ import java.util.List;
 public class EmergenciaController {
 
     @Autowired
-    private EmergenciaService emergenciaService;
+    private EmergencyService emergencyService;
 
 
     @PostMapping("/crear")
-    public ResponseEntity<EmergenciaEntity> crear(@RequestBody EmergenciaEntity emergencia) {
-        EmergenciaEntity emergenciaCreada = emergenciaService.crear(emergencia);
+    public ResponseEntity<EmergencyEntity> crear(@RequestBody EmergencyEntity emergencia) {
+        EmergencyEntity emergenciaCreada = emergencyService.create(emergencia);
         return new ResponseEntity<>(emergenciaCreada, HttpStatus.CREATED);
     }
 
     @GetMapping("/todo")
-    public List<EmergenciaEntity> obtenerTodos() {
-        return emergenciaService.obtenerTodos();
+    public List<EmergencyEntity> obtenerTodos() {
+        return emergencyService.getAll();
     }
 
     @GetMapping("/activas")
-    public List<EmergenciaEntity> obtenerTodasActivas() {
-        return emergenciaService.obtenerTodasActivas();
+    public List<EmergencyEntity> obtenerTodasActivas() {
+        return emergencyService.getAllActive();
     }
 
     @GetMapping("/porId/{id}")
-    public EmergenciaEntity obtenerPorId(@PathVariable long id) {
-        return emergenciaService.obtenerPorId(id);
+    public EmergencyEntity obtenerPorId(@PathVariable long id) {
+        return emergencyService.getById(id);
     }
 
     @PutMapping("/actualizar")
-    public boolean actualizar(@RequestBody EmergenciaEntity emergencia) {
-        return emergenciaService.actualizar(emergencia);
+    public boolean actualizar(@RequestBody EmergencyEntity emergencia) {
+        return emergencyService.update(emergencia);
     }
 
     @DeleteMapping("/eliminar/{id}")
     public boolean eliminar(@PathVariable Long id) {
-        return emergenciaService.eliminar(id);
+        return emergencyService.delete(id);
     }
 
     @GetMapping("/finalizadas")
-    public List<EmergenciaEntity> obtenerFinalizadas() {
-        return emergenciaService.emergenciasFinalizadas();
+    public List<EmergencyEntity> obtenerFinalizadas() {
+        return emergencyService.getClosedEmergencies();
     }
 
     @GetMapping("/datosEmergencias")
-    public List<datosEmergencia> obtenerDatosEmergencias() {
-        return emergenciaService.datosEmergencias();
+    public List<SingleEmergencyData> obtenerDatosEmergencias() {
+        return emergencyService.allEmergencyData();
     }
 
 }

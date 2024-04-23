@@ -1,8 +1,5 @@
 package G1TBD.LABTBD.config;
 
-import G1TBD.LABTBD.entities.CoordinadorEntity;
-import G1TBD.LABTBD.entities.VoluntarioEntity;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 /*
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,16 +13,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
  */
 
-import G1TBD.LABTBD.repositories.CoordinadorRepository;
-import G1TBD.LABTBD.repositories.VoluntarioRepository;
+import G1TBD.LABTBD.repositories.CoordinatorRepository;
+import G1TBD.LABTBD.repositories.VolunteerRepository;
 import lombok.RequiredArgsConstructor;
 
 @Configuration
 @RequiredArgsConstructor
 public class AppConfig {
 
-    private final VoluntarioRepository voluntarioRepository;
-    private final CoordinadorRepository coordinadorRepository;
+    private final VolunteerRepository volunteerRepository;
+    private final CoordinatorRepository coordinatorRepository;
 
     /*
     @Bean
@@ -36,11 +33,11 @@ public class AppConfig {
     @Bean
     public UserDetailsService userDetailService() {
         return username -> {
-            VoluntarioEntity voluntario = voluntarioRepository.obtenerPorRut(username);
+            VolunteerEntity voluntario = volunteerRepository.obtenerPorRut(username);
             if (voluntario != null) {
                 return voluntario;
             }
-            CoordinadorEntity coordinador = coordinadorRepository.obtenerPorRut(username);
+            CoordinatorEntity coordinador = coordinatorRepository.obtenerPorRut(username);
             if (coordinador != null) {
                 return coordinador;
             }

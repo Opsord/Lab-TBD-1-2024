@@ -1,7 +1,7 @@
 package G1TBD.LABTBD.controllers;
 
-import G1TBD.LABTBD.entities.CoordinadorEntity;
-import G1TBD.LABTBD.services.CoordinadorService;
+import G1TBD.LABTBD.entities.CoordinatorEntity;
+import G1TBD.LABTBD.services.CoordinatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,39 +16,39 @@ public class CoordinadorController {
     private static final Logger logger = Logger.getLogger(CoordinadorController.class.getName());
 
     @Autowired
-    private CoordinadorService coordinadorService;
+    private CoordinatorService coordinatorService;
 
     String homeLinkRedirect = "redirect:/coordinadores";
 
     @PostMapping("/crear")
-    public String crear(@RequestBody CoordinadorEntity coordinador) {
+    public String crear(@RequestBody CoordinatorEntity coordinador) {
         logger.info("Creando coordinador: " + coordinador.toString());
-        coordinadorService.crear(coordinador);
+        coordinatorService.create(coordinador);
         return homeLinkRedirect;
     }
 
     @GetMapping("/todo")
-    public List<CoordinadorEntity> obtenerTodos() {
-        return coordinadorService.obtenerTodos();
+    public List<CoordinatorEntity> obtenerTodos() {
+        return coordinatorService.getAll();
     }
 
     @GetMapping("/porRut/{rut}")
-    public CoordinadorEntity obtenerPorRut(@PathVariable String rut) {
-        return coordinadorService.obtenerPorRut(rut);
+    public CoordinatorEntity obtenerPorRut(@PathVariable String rut) {
+        return coordinatorService.getByRut(rut);
     }
 
     @GetMapping("/porEmail/{email}")
-    public CoordinadorEntity obtenerPorEmail(@PathVariable String email) {
-        return coordinadorService.obtenerPorEmail(email);
+    public CoordinatorEntity obtenerPorEmail(@PathVariable String email) {
+        return coordinatorService.getByEmail(email);
     }
 
     @PutMapping("/actualizar")
-    public boolean actualizar(@RequestBody CoordinadorEntity coordinador) {
-        return coordinadorService.actualizar(coordinador);
+    public boolean actualizar(@RequestBody CoordinatorEntity coordinador) {
+        return coordinatorService.update(coordinador);
     }
 
     @DeleteMapping("/eliminar/{rut}")
     public boolean eliminar(@PathVariable String rut) {
-        return coordinadorService.eliminar(rut);
+        return coordinatorService.delete(rut);
     }
 }

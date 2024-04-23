@@ -1,7 +1,7 @@
 package G1TBD.LABTBD.controllers;
 
-import G1TBD.LABTBD.entities.VoluntarioAtributoEntity;
-import G1TBD.LABTBD.services.VoluntarioAtributoService;
+import G1TBD.LABTBD.entities.VolunteerAttributeEntity;
+import G1TBD.LABTBD.services.VolunteerAttributeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,33 +12,33 @@ import java.util.List;
 public class VoluntarioAtributoController {
 
     @Autowired
-    private VoluntarioAtributoService voluntarioAtributoService;
+    private VolunteerAttributeService volunteerAttributeService;
 
     String homeLinkRedirect = "redirect:/voluntarioatributos";
 
     @PostMapping("/crear")
-    public String crear(@RequestBody VoluntarioAtributoEntity voluntarioAtributo) {
-        voluntarioAtributoService.crear(voluntarioAtributo);
+    public String crear(@RequestBody VolunteerAttributeEntity voluntarioAtributo) {
+        volunteerAttributeService.create(voluntarioAtributo);
         return homeLinkRedirect;
     }
 
     @GetMapping("/todo")
-    public List<VoluntarioAtributoEntity> obtenerTodos() {
-        return voluntarioAtributoService.obtenerTodos();
+    public List<VolunteerAttributeEntity> obtenerTodos() {
+        return volunteerAttributeService.getAll();
     }
 
     @GetMapping("/porId/{id}")
-    public VoluntarioAtributoEntity obtenerPorId(@PathVariable long id) {
-        return voluntarioAtributoService.obtenerPorId(id);
+    public VolunteerAttributeEntity obtenerPorId(@PathVariable long id) {
+        return volunteerAttributeService.getById(id);
     }
 
     @PutMapping("/actualizar")
-    public boolean actualizar(@RequestBody VoluntarioAtributoEntity voluntarioAtributo) {
-        return voluntarioAtributoService.actualizar(voluntarioAtributo);
+    public boolean actualizar(@RequestBody VolunteerAttributeEntity voluntarioAtributo) {
+        return volunteerAttributeService.update(voluntarioAtributo);
     }
 
     @DeleteMapping("/eliminar{id}")
     public boolean eliminar(@PathVariable long id) {
-        return voluntarioAtributoService.eliminar(id);
+        return volunteerAttributeService.delete(id);
     }
 }

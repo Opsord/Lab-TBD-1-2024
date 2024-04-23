@@ -3,7 +3,6 @@ package G1TBD.LABTBD.repositories;
 import G1TBD.LABTBD.entities.RankingEntity;
 import java.util.Collections;
 
-import G1TBD.LABTBD.entities.TareaEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
@@ -21,7 +20,7 @@ public class RankingRepositoryImp implements RankingRepository{
     private Sql2o sql2o;
 
     @Override
-    public RankingEntity crear(RankingEntity ranking) {
+    public RankingEntity create(RankingEntity ranking) {
         String sql = "INSERT INTO Ranking (idVoluntario, idTarea, valorRanking) " +
                 "VALUES (:idVoluntario, :idTarea, :valorRanking)";
 
@@ -29,8 +28,8 @@ public class RankingRepositoryImp implements RankingRepository{
 
         try (Connection conn = sql2o.open()) {
             long id = (long) conn.createQuery(sql)
-                    .addParameter("idVoluntario", ranking.getIdVoluntario())
-                    .addParameter("idTarea", ranking.getIdTarea())
+                    .addParameter("idVoluntario", ranking.getIdVolunteer())
+                    .addParameter("idTarea", ranking.getIdTask())
                     .addParameter("valorRanking", ranking.getValorRanking())
                     .executeUpdate()
                             .getKey();
@@ -45,7 +44,7 @@ public class RankingRepositoryImp implements RankingRepository{
     }
 
     @Override
-    public List<RankingEntity> obtenerTodos() {
+    public List<RankingEntity> getAll() {
         String sql = "SELECT * FROM Ranking";
 
         try (Connection conn = sql2o.open()) {
@@ -57,7 +56,7 @@ public class RankingRepositoryImp implements RankingRepository{
     }
 
     @Override
-    public RankingEntity obtenerPorId(long id) {
+    public RankingEntity getById(long id) {
         String sql = "SELECT * FROM Ranking WHERE idRanking = :idRanking";
 
         try (Connection conn = sql2o.open()) {
@@ -71,15 +70,15 @@ public class RankingRepositoryImp implements RankingRepository{
     }
 
     @Override
-    public boolean actualizar(RankingEntity ranking) {
+    public boolean update(RankingEntity ranking) {
         String sql = "UPDATE Ranking SET idVoluntario = :idVoluntario, idTarea = :idTarea, valorRanking = :valorRanking " +
                 "WHERE idRanking = :idRanking";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
                     .addParameter("idRanking", ranking.getIdRanking())
-                    .addParameter("idVoluntario", ranking.getIdVoluntario())
-                    .addParameter("idTarea", ranking.getIdTarea())
+                    .addParameter("idVoluntario", ranking.getIdVolunteer())
+                    .addParameter("idTarea", ranking.getIdTask())
                     .addParameter("valorRanking", ranking.getValorRanking())
                     .executeUpdate();
             conn.commit();
@@ -91,7 +90,7 @@ public class RankingRepositoryImp implements RankingRepository{
     }
 
     @Override
-    public boolean eliminar(long id) {
+    public boolean delete(long id) {
         String sql = "DELETE FROM Ranking WHERE idRanking = :idRanking";
 
         try (Connection conn = sql2o.open()) {
@@ -107,12 +106,12 @@ public class RankingRepositoryImp implements RankingRepository{
     }
 
     @Override
-    public List<RankingEntity> obtenerRankingPorIdTarea(long idTarea) {
+    public List<RankingEntity> getByTaskId(long idTask) {
         String sql = "SELECT * FROM Ranking WHERE idTarea = :idTarea";
 
         try(Connection conn = sql2o.open()) {
             return conn.createQuery(sql)
-                    .addParameter("idTarea", idTarea)
+                    .addParameter("idTarea", idTask)
                     .executeAndFetch(RankingEntity.class);
         } catch (Exception e) {
             logger.severe("Error al obtener ranking por id de emergencia: " + e.getMessage());

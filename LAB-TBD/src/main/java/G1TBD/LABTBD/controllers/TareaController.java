@@ -1,7 +1,7 @@
 package G1TBD.LABTBD.controllers;
 
-import G1TBD.LABTBD.entities.TareaEntity;
-import G1TBD.LABTBD.services.TareaService;
+import G1TBD.LABTBD.entities.TaskEntity;
+import G1TBD.LABTBD.services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,40 +13,40 @@ import java.util.List;
 public class TareaController {
 
     @Autowired
-    private TareaService tareaService;
+    private TaskService taskService;
 
     String homeLinkRedirect = "redirect:/tareas";
 
     @PostMapping("/crear")
-    public String crear(@RequestBody TareaEntity tarea) {
-        tareaService.crear(tarea);
+    public String crear(@RequestBody TaskEntity tarea) {
+        taskService.create(tarea);
         return homeLinkRedirect;
     }
 
     @GetMapping("/todo")
-    public List<TareaEntity> obtenerTodos() {
-        return tareaService.obtenerTodos();
+    public List<TaskEntity> obtenerTodos() {
+        return taskService.getAll();
     }
 
     @GetMapping("/porId/{id}")
-    public TareaEntity obtenerPorId(@PathVariable long id) {
-        return tareaService.obtenerPorId(id);
+    public TaskEntity obtenerPorId(@PathVariable long id) {
+        return taskService.getById(id);
     }
 
 
     @GetMapping("/porIdEmergencia/{id}")
-    public List<TareaEntity> obtenerPorIdEmergencia(@PathVariable long id) {
-        return tareaService.obtenerPorIdEmergencia(id);
+    public List<TaskEntity> obtenerPorIdEmergencia(@PathVariable long id) {
+        return taskService.getByEmergencyId(id);
     }
 
     @PutMapping("/actualizar")
-    public boolean actualizar(@RequestBody TareaEntity tarea) {
-        return tareaService.actualizar(tarea);
+    public boolean actualizar(@RequestBody TaskEntity tarea) {
+        return taskService.update(tarea);
     }
 
     @DeleteMapping("/eliminar/{id}")
     public boolean eliminar(@PathVariable long id) {
-        return tareaService.eliminar(id);
+        return taskService.delete(id);
     }
 
 }

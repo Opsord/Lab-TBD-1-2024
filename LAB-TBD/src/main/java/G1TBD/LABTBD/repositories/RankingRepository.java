@@ -6,14 +6,15 @@ import java.util.List;
 
 public interface RankingRepository {
 
-    RankingEntity crear(RankingEntity ranking);
+    RankingEntity create(RankingEntity ranking);
 
-    List<RankingEntity> obtenerTodos();
+    List<RankingEntity> getAll();
 
-    RankingEntity obtenerPorId(long id);
+    RankingEntity getById(long id);
 
-    boolean actualizar(RankingEntity ranking);
+    boolean update(RankingEntity ranking);
 
-    boolean eliminar(long id);
-    public List<RankingEntity> obtenerRankingPorIdTarea(long idTarea);
+    boolean delete(long id);
+
+    public List<RankingEntity> getByTaskId(long idTask);
 }

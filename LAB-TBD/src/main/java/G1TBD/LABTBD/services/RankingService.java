@@ -1,7 +1,6 @@
 package G1TBD.LABTBD.services;
 
 import G1TBD.LABTBD.entities.RankingEntity;
-import G1TBD.LABTBD.entities.TareaEntity;
 import G1TBD.LABTBD.repositories.RankingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,29 +13,27 @@ public class RankingService {
     @Autowired
     private RankingRepository rankingRepository;
 
-    public RankingEntity crear(RankingEntity ranking) {
-        return rankingRepository.crear(ranking);
+    public RankingEntity create(RankingEntity ranking) {
+        return rankingRepository.create(ranking);
     }
 
-    public List<RankingEntity> obtenerTodos() {
-        return rankingRepository.obtenerTodos();
+    public List<RankingEntity> getAll() {
+        return rankingRepository.getAll();
     }
 
-    public RankingEntity obtenerPorId(long id) {
-        return rankingRepository.obtenerPorId(id);
+    public RankingEntity getById(long id) {
+        return rankingRepository.getById(id);
     }
 
-    public List<RankingEntity> obtenerPorIdTarea(long id) {
-        return rankingRepository.obtenerRankingPorIdTarea(id);
+    public List<RankingEntity> getByTaskId(long id) {
+        return rankingRepository.getByTaskId(id);
     }
 
-
-
-    public boolean actualizar(RankingEntity ranking) {
-        return rankingRepository.actualizar(ranking);
+    public boolean update(RankingEntity ranking) {
+        return rankingRepository.update(ranking);
     }
 
-    public boolean eliminar(long id) {
-        return rankingRepository.eliminar(id);
+    public boolean delete(long id) {
+        return rankingRepository.delete(id);
     }
 }
