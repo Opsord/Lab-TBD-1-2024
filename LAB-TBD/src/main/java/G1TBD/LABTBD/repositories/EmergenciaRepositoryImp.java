@@ -22,14 +22,15 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
 
     @Override
     public EmergenciaEntity crear(EmergenciaEntity emergencia){
-        String sql = "INSERT INTO Emergencia (estadoEmergencia, tituloEmergencia, descripcionEmergencia)" +
-                "VALUES (:estadoEmergencia, :tituloEmergencia, :descripcionEmergencia)";
+        String sql = "INSERT INTO Emergencia (estadoEmergencia, tituloEmergencia, descripcionEmergencia, idCoordinador)" +
+                "VALUES (:estadoEmergencia, :tituloEmergencia, :descripcionEmergencia, :idCoordinador)";
 
         try (Connection conn = sql2o.open()) {
             long id = (long) conn.createQuery(sql)
                     .addParameter("estadoEmergencia", emergencia.isEstadoEmergencia())
                     .addParameter("tituloEmergencia", emergencia.getTituloEmergencia())
                     .addParameter("descripcionEmergencia", emergencia.getDescripcionEmergencia())
+                    .addParameter("idCoordinador", emergencia.getIdcoordinador())
                     .executeUpdate()
                     .getKey();
 
