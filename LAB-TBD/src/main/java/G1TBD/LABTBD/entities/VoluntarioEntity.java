@@ -24,10 +24,10 @@ public class VoluntarioEntity {
 
     private long idVoluntario;
     private String rut;
-    private String rutvoluntario;
+    //private String rutvoluntario;
     private String email;
-    private String nombreVoluntario;
-    private String apellidoVoluntario;
+    private String nombre;
+    private String apellido;
     private int edadVoluntario;
     private boolean sexoVoluntario;
     private String contrasena;

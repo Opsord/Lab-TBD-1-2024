@@ -26,8 +26,8 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
                     .addParameter("rut", voluntario.getRut())
-                    .addParameter("nombre", voluntario.getNombreVoluntario())
-                    .addParameter("apellido", voluntario.getApellidoVoluntario())
+                    .addParameter("nombre", voluntario.getNombre())
+                    .addParameter("apellido", voluntario.getApellido())
                     .addParameter("edadVoluntario", voluntario.getEdadVoluntario())
                     .addParameter("sexoVoluntario", voluntario.isSexoVoluntario())
                     .addParameter("email", voluntario.getEmail())
@@ -72,7 +72,7 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
     @Override
     public VoluntarioEntity obtenerPorId(long id) {
 //        String sql = "SELECT * FROM Voluntario WHERE idVoluntario = :idVoluntario";
-        String sql = "SELECT idVoluntario, rut, email, nombre AS nombreVoluntario, apellido AS apellidoVoluntario, edadVoluntario, sexoVoluntario, contrasena, disponibilidad, role FROM Voluntario WHERE idVoluntario = :idVoluntario";
+        String sql = "SELECT idVoluntario, rut, email, nombre, apellido, edadVoluntario, sexoVoluntario, contrasena, disponibilidad, role FROM Voluntario WHERE idVoluntario = :idVoluntario";
 
         try (Connection conn = sql2o.open()) {
             List<VoluntarioEntity> voluntarios = conn.createQuery(sql)
@@ -110,8 +110,8 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
                     .addParameter("rut", voluntario.getRut())
-                    .addParameter("nombre", voluntario.getNombreVoluntario())
-                    .addParameter("apellido", voluntario.getApellidoVoluntario())
+                    .addParameter("nombre", voluntario.getNombre())
+                    .addParameter("apellido", voluntario.getApellido())
                     .addParameter("edadVoluntario", voluntario.getEdadVoluntario())
                     .addParameter("sexoVoluntario", voluntario.isSexoVoluntario())
                     .addParameter("email", voluntario.getEmail())
