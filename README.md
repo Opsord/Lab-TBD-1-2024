@@ -1,74 +1,60 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>README - Sistema de Emergencias</title>
-</head>
-<body>
-    <h1>Sistema de Emergencias - README</h1>
+# Sistema de Emergencias - README
 
-    <p>Este proyecto es un sistema de gestión de emergencias que permite la coordinación entre voluntarios y coordinadores para responder eficazmente a situaciones de emergencia.</p>
+Este proyecto es un sistema de gestión de emergencias que permite la coordinación entre voluntarios y coordinadores para responder eficazmente a situaciones de emergencia.
 
-    <h2>Características principales</h2>
-    <ul>
-        <li>Registro y gestión de voluntarios.</li>
-        <li>Asignación de tareas a voluntarios por parte de los coordinadores.</li>
-        <li>Seguimiento en tiempo real del estado de las tareas asignadas.</li>
-        <li>Generación de reportes de actividad y desempeño.</li>
-    </ul>
+## Características principales
 
-    <h2>Tecnologías utilizadas</h2>
-    <ul>
-        <li>Java</li>
-        <li>Spring Boot</li>
-        <li>MySQL</li>
-    </ul>
+- Registro y gestión de voluntarios.
+- Asignación de tareas a voluntarios por parte de los coordinadores.
+- Seguimiento en tiempo real del estado de las tareas asignadas.
+- Generación de reportes de actividad y desempeño.
 
-    <h2>Instalación</h2>
+## Tecnologías utilizadas
 
-    <h3>Requisitos previos</h3>
-    <ul>
-        <li>JDK 8 o superior instalado</li>
-        <li>Maven</li>
-        <li>MySQL Server</li>
-    </ul>
+- Java
+- Spring Boot
+- MySQL
 
-    <h3>Pasos para la instalación</h3>
-    <ol>
-        <li>Clona el repositorio a tu máquina local.</li>
-        <li>Crea una base de datos MySQL con el nombre <code>LabTBD-1-2024</code>.</li>
-        <li>Ejecutar los script .sql en la carpeta "Database" en el siguiente orden: dbCreate, triggers, procedures, loadData.</li>
-        <li>Abre el proyecto en tu IDE preferido (por ejemplo, IntelliJ IDEA, Eclipse).</li>
-        <li>Configura las credenciales de la base de datos en el archivo <code>application.properties</code> ubicado en <code>src/main/resources/</code>.</li>
-        <li>Ejecuta la aplicación. La aplicación estará disponible en <a href="http://localhost:8090">http://localhost:8090</a>.</li>
-    </ol>
+## Instalación
 
-    <h2>Uso</h2>
-    <ol>
-        <li>Ejecuta el backend y el frontend de la aplicacion en tus editores de codigo favoritos.<li>
-        <li>Accede a la aplicación desde tu navegador web.</li>
-        <li>Inicia sesión como coordinador o voluntario según corresponda.</li>
-        <li>Explora las diferentes funcionalidades ofrecidas por el sistema, como registro de voluntarios, asignación de tareas, seguimiento de tareas, etc.</li>
-        <li>¡Comienza a utilizar el sistema para gestionar emergencias de manera eficiente!</li>
-    </ol>
+### Requisitos previos
 
-    <h2>Contribución</h2>
-    <p>Las contribuciones son bienvenidas. Si deseas contribuir al desarrollo de este proyecto, por favor sigue estos pasos:</p>
-    <ol>
-        <li>Haz un fork del repositorio.</li>
-        <li>Crea una rama para tu funcionalidad (<code>git checkout -b feature/AmazingFeature</code>).</li>
-        <li>Realiza tus cambios.</li>
-        <li>Haz commit de tus cambios (<code>git commit -m 'Add some AmazingFeature'</code>).</li>
-        <li>Haz push a la rama (<code>git push origin feature/AmazingFeature</code>).</li>
-        <li>Abre un pull request.</li>
-    </ol>
+- JDK 8 o superior instalado
+- Maven
+- MySQL Server
 
-    <h2>Soporte</h2>
-    <p>Para obtener ayuda o reportar problemas, por favor contacta al equipo de desarrollo.</p>
+### Pasos para la instalación
 
-    <h2>Licencia</h2>
-    <p>Este proyecto está bajo la Licencia MIT. Consulta el archivo <code>LICENSE</code> para más detalles.</p>
+1. Clona el repositorio a tu máquina local.
+2. Crea una base de datos MySQL con el nombre `LabTBD-1-2024`.
+3. Ejecutar los script .sql en la carpeta "Database" en el siguiente orden: dbCreate, triggers, procedures, loadData.
+4. Abre el proyecto en tu IDE preferido (por ejemplo, IntelliJ IDEA, Eclipse).
+5. Configura las credenciales de la base de datos en el archivo `application.properties` ubicado en `src/main/resources/`.
+6. Ejecuta la aplicación. La aplicación estará disponible en [http://localhost:8090](http://localhost:8090).
 
-</body>
-</html>
+## Uso
+
+1. Ejecuta el backend y el frontend de la aplicación en tus editores de código favoritos.
+2. Accede a la aplicación desde tu navegador web.
+3. Inicia sesión como coordinador o voluntario según corresponda.
+4. Explora las diferentes funcionalidades ofrecidas por el sistema, como registro de voluntarios, asignación de tareas, seguimiento de tareas, etc.
+5. ¡Comienza a utilizar el sistema para gestionar emergencias de manera eficiente!
+
+## Contribución
+
+Las contribuciones son bienvenidas. Si deseas contribuir al desarrollo de este proyecto, por favor sigue estos pasos:
+
+1. Haz un fork del repositorio.
+2. Crea una rama para tu funcionalidad (`git checkout -b feature/AmazingFeature`).
+3. Realiza tus cambios.
+4. Haz commit de tus cambios (`git commit -m 'Add some AmazingFeature'`).
+5. Haz push a la rama (`git push origin feature/AmazingFeature`).
+6. Abre un pull request.
+
+## Soporte
+
+Para obtener ayuda o reportar problemas, por favor contacta al equipo de desarrollo.
+
+## Licencia
+
+Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
